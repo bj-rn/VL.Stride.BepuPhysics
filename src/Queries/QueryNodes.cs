@@ -112,7 +112,7 @@ public class SweepCastNode
         [DefaultValue(100f)] float maxDistance,
         SweepShape? shape,
         [DefaultValue(0.5f)] float radius,
-        [Pin(Name = "Box Size"), DefaultValue(typeof(Vector3), "1.0, 1.0, 1.0")] Vector3 boxSize,
+        [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
         SBepu.CollisionMask? collisionMask,
         bool enabled = true)
@@ -167,7 +167,7 @@ public class OverlapNode
         Vector3 position,
         SweepShape? shape,
         [DefaultValue(0.5f)] float radius,
-        [Pin(Name = "Box Size"), DefaultValue(typeof(Vector3), "1.0, 1.0, 1.0")] Vector3 boxSize,
+        [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
         SBepu.CollisionMask? collisionMask,
         bool enabled = true)
