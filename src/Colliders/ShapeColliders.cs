@@ -24,7 +24,7 @@ public class BoxColliderNode
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
     [return: Pin(Name = "Output")]
     public SColliders.BoxCollider Update(
-        [DefaultValue(typeof(Vector3), "1.0, 1.0, 1.0")] Vector3 size,
+        [DefaultValue("1.0, 1.0, 1.0")] Vector3 size,
         Vector3 positionLocal,
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
