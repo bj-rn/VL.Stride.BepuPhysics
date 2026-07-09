@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>VL.Stride.BepuPhysics</id>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <title>VL.Stride.BepuPhysics</title>
     <authors>bj-rn</authors>
     <owners>bj-rn</owners>
@@ -18,9 +18,12 @@
     <license type="expression">MIT</license>
     <readme>docs\README.md</readme>
     <dependencies>
-      <!-- Exact pin: must match the Stride version bundled with the targeted vvvv release,
-           a floor constraint would let the resolver walk up to 4.3.x, which targets a Stride
-           version vvvv doesn't ship. BepuPhysics (and BepuUtilities) come transitively.-->
+      <!-- Exact pins. Stride.BepuPhysics must match the Stride version bundled with the
+           targeted vvvv release (a floor constraint would let the resolver walk up to 4.3.x,
+           which targets a Stride version vvvv doesn't ship). BepuPhysics is pinned to the
+           exact beta this library was built against (BepuUtilities comes transitively).
+           Both are prerelease-dependent: install with `nuget install -prerelease`. -->
+      <dependency id="BepuPhysics" version="[2.5.0-beta.25]" />
       <dependency id="Stride.BepuPhysics" version="[4.2.1.2487]" />
     </dependencies>
   </metadata>
