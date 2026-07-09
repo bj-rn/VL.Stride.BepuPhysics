@@ -5,13 +5,6 @@ using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 
 namespace VL.Stride.BepuPhysics.Colliders;
 
-// Pin default rules (hard-won, see README dev notes):
-// - Quaternion pins: BARE required parameters — VL's type default (Identity) applies.
-//   An attribute or `= default` would override it with zeros.
-// - Vector3/float pins with non-zero defaults: [DefaultValue] on REQUIRED parameters
-//   (`= default` would shadow the attribute; VL checks the C# default first).
-// - Zero-guards below keep behavior sane even if a patch explicitly supplies zeros.
-
 /// <summary>Box collision shape.</summary>
 [ProcessNode(Name = "BoxCollider")]
 public class BoxColliderNode
