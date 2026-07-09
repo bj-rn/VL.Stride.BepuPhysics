@@ -17,7 +17,7 @@
       </p:NodeReference>
       <Patch Id="HcCN000000000000000008">
         <Canvas Id="HcCN000000000000000009" CanvasType="Group">
-          <Pad Id="HcCN000000000000000060" Bounds="100,40,540,25" ShowValueBox="true" isIOBox="true" Value="A dynamic box swings from a kinematic anchor via a BallSocket constraint.">
+          <Pad Id="HcCN000000000000000060" Bounds="124,49,542,26" ShowValueBox="true" isIOBox="true" Value="A dynamic box swings from a kinematic anchor via a BallSocket constraint.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -26,22 +26,24 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="120,180,140,19" Id="HcCN000000000000000010">
+          <Node Bounds="140,150,140,19" Id="HcCN000000000000000010">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BoxCollider" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HcCN000000000000000011" Name="Output" Kind="OutputPin" />
             <Pin Id="GNHBPc4znc8OtEaLJ3R2GC" Name="Size" Kind="InputPin" />
             <Pin Id="Iu097HhPvfMMfiCFShV7Wg" Name="Position Local" Kind="InputPin" />
             <Pin Id="B7RWMQ1H7qdM11UApx78Pq" Name="Rotation Local" Kind="InputPin" />
             <Pin Id="HBYCSMoCDPrNQiOxHVcui3" Name="Mass" Kind="InputPin" />
           </Node>
-          <Node Bounds="120,240,265,19" Id="HcCN000000000000000012">
+          <Node Bounds="140,240,265,19" Id="HcCN000000000000000012">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="Body" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HcCN000000000000000013" Name="Colliders" Kind="InputPin" />
             <Pin Id="HcCN000000000000000014" Name="Kinematic" Kind="InputPin" DefaultValue="True">
               <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
@@ -63,7 +65,7 @@
             <Pin Id="A58nrsGRmllLINd2daPbWO" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="DtgZQpmIwpeP3DW74bpd8L" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="120,300,65,19" Id="HcCN000000000000000016">
+          <Node Bounds="140,340,65,19" Id="HcCN000000000000000016">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="FromValue" />
@@ -72,12 +74,12 @@
             <Pin Id="HcCN000000000000000017" Name="Input" Kind="InputPin" />
             <Pin Id="HcCN000000000000000018" Name="Result" Kind="OutputPin" />
           </Node>
-          <Pad Id="HcCN000000000000000019" Comment="Anchor Position" Bounds="415,121,60,43" ShowValueBox="true" isIOBox="true" Value="0, 4, 0">
+          <Pad Id="HcCN000000000000000019" Comment="Anchor Position" Bounds="435,121,60,43" ShowValueBox="true" isIOBox="true" Value="0, 2, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="360,190,58,19" Id="HcCN000000000000000020">
+          <Node Bounds="380,180,58,19" Id="HcCN000000000000000020">
             <p:NodeReference LastCategoryFullName="3D.Transform" LastDependency="CoreLibBasics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="Translate" />
@@ -89,7 +91,7 @@
             <Pin Id="HcCN000000000000000022" Name="Translation" Kind="InputPin" />
             <Pin Id="HcCN000000000000000023" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="120,360,165,19" Id="HcCN000000000000000024">
+          <Node Bounds="320,470,165,19" Id="HcCN000000000000000024">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Box" />
@@ -107,22 +109,24 @@
             <Pin Id="R8DF2cjm7YQNI8I5l0cYLs" Name="Name" Kind="InputPin" />
             <Pin Id="HWdPfEndFo0OH4WVyJnYx3" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="520,180,140,19" Id="HcCN000000000000000028">
+          <Node Bounds="535,180,140,19" Id="HcCN000000000000000028">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BoxCollider" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HcCN000000000000000029" Name="Output" Kind="OutputPin" />
             <Pin Id="MxcTlPPOV8TP3QOS8wHnnU" Name="Size" Kind="InputPin" />
             <Pin Id="IcDFBEB8M0IPUJLR0ARbEz" Name="Position Local" Kind="InputPin" />
             <Pin Id="OK9ffSIq1Z1OUA5KabSTGY" Name="Rotation Local" Kind="InputPin" />
             <Pin Id="OO7OlpOQqEgLCBHbsj8Mqt" Name="Mass" Kind="InputPin" />
           </Node>
-          <Node Bounds="520,240,265,19" Id="HcCN000000000000000030">
+          <Node Bounds="535,240,265,19" Id="HcCN000000000000000030">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="Body" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HcCN000000000000000031" Name="Colliders" Kind="InputPin" />
             <Pin Id="OqNZePcT1NKNG0Il71U3cs" Name="Kinematic" Kind="InputPin" />
             <Pin Id="HmPT9pTiqo2PZKt2PY9ag2" Name="Interpolation" Kind="InputPin" />
@@ -140,11 +144,12 @@
             <Pin Id="N9jWiEQu4cJLdT4UHnGOGa" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="CHhbFg0zVW1O7ySYrxFUSn" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="580,350,150,19" Id="HcCN000000000000000033">
+          <Node Bounds="595,370,150,19" Id="HcCN000000000000000033">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BallSocket" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="HcCN000000000000000034" Name="Body A" Kind="InputPin" />
             <Pin Id="HcCN000000000000000035" Name="Body B" Kind="InputPin" />
             <Pin Id="LqFmY1U8tDcPOUq4WQmpCa" Name="Local Offset A" Kind="InputPin" />
@@ -159,7 +164,7 @@
             <Pin Id="OVJ78cOTUXgPy9cyNLSy0e" Name="Enabled" Kind="InputPin" />
             <Pin Id="Dm14PguihI8OM6dICoD8du" Name="Attached" Kind="OutputPin" />
           </Node>
-          <Node Bounds="520,510,65,19" Id="HcCN000000000000000038">
+          <Node Bounds="535,460,65,19" Id="HcCN000000000000000038">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="Cons" />
@@ -169,7 +174,7 @@
             <Pin Id="HcCN000000000000000040" Name="Input 2" Kind="InputPin" />
             <Pin Id="HcCN000000000000000041" Name="Result" Kind="OutputPin" />
           </Node>
-          <Node Bounds="373,580,165,19" Id="HcCN000000000000000042">
+          <Node Bounds="435,570,165,19" Id="HcCN000000000000000042">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Box" />
@@ -187,12 +192,12 @@
             <Pin Id="JUTquBGigQ4MCVgIWubkNn" Name="Name" Kind="InputPin" />
             <Pin Id="Q1D2M3oHd3SMmDcleq7MKG" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Pad Id="HcCN000000000000000046" Comment="Bob Start" Bounds="815,141,60,43" ShowValueBox="true" isIOBox="true" Value="2, 4, 0">
+          <Pad Id="HcCN000000000000000046" Comment="Bob Start" Bounds="830,121,60,43" ShowValueBox="true" isIOBox="true" Value="2, 2, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="760,200,58,19" Id="HcCN000000000000000047">
+          <Node Bounds="775,180,58,19" Id="HcCN000000000000000047">
             <p:NodeReference LastCategoryFullName="3D.Transform" LastDependency="CoreLibBasics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="Translate" />
@@ -204,7 +209,7 @@
             <Pin Id="HcCN000000000000000049" Name="Translation" Kind="InputPin" />
             <Pin Id="HcCN000000000000000050" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="427,630,185,19" Id="HcCN000000000000000051">
+          <Node Bounds="550,630,185,19" Id="HcCN000000000000000051">
             <p:NodeReference LastCategoryFullName="Stride.Lights" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="DirectionalLight" />
@@ -224,7 +229,7 @@
             <Pin Id="SesgqNLffqHMGdmCfQOPNS" Name="Enabled" Kind="InputPin" />
             <Pin Id="DyZ6eACLe39PXo471CerT2" Name="Show Helper" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="320,680,165,19" Id="HcCN000000000000000053">
+          <Node Bounds="320,680,350,19" Id="HcCN000000000000000053">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
@@ -238,7 +243,7 @@
             <Pin Id="QuemSBDk8H2LUNpyOBp5K7" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="SjjkjDoSV0EPbQxt5WdW8W" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="820,240,90,19" Id="HcCN000000000000000103">
+          <Node Bounds="184,430,90,19" Id="HcCN000000000000000103">
             <p:NodeReference LastCategoryFullName="Stride.Materials" LastDependency="VL.Stride.Rendering.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="PBRMaterial" />
@@ -276,7 +281,7 @@
             <Pin Id="HcCN000000000000000059" Name="Input" Kind="InputPin" />
             <Pin Id="SrTlERBLARNO0ckG8s7ktU" Name="Camera" Kind="InputPin" />
             <Pin Id="DIAabmigurHNzckOvAImJb" Name="Enable Default Camera" Kind="InputPin" />
-            <Pin Id="J30ZZof44vXLH2NcEzraUW" Name="Title" Kind="InputPin" />
+            <Pin Id="J30ZZof44vXLH2NcEzraUW" Name="Title" Kind="InputPin" DefaultValue="Constraints" />
             <Pin Id="II9K0fRGpjoLNVuAzfnpjy" Name="Title Bar Interaction Width" Kind="InputPin" IsHidden="true" />
             <Pin Id="IdnXjdsrXxHL66EWjep3aV" Name="Clear Color" Kind="InputPin" />
             <Pin Id="IKbJtmzlP5zQExMpMBAZrL" Name="Clear" Kind="InputPin" />
@@ -306,35 +311,32 @@
             <Pin Id="HOD84w1JGNIMDU6CkVALYA" Name="Back Buffer" Kind="OutputPin" IsHidden="true" />
             <Pin Id="R1hMcaHAYC8L4Cx4U2XaaX" Name="Depth Buffer" Kind="OutputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="1017,231,205,19" Id="Ih0CGXcynT8PrXZPfNSV8n">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="SimulationSettings" />
-            </p:NodeReference>
-            <Pin Id="OIVSKQunwBkNSgQKSf1qeb" Name="Gravity" Kind="InputPin" />
-            <Pin Id="PNmWE2gXI4SNWO5byBMCy7" Name="Linear Damping" Kind="InputPin" />
-            <Pin Id="TX1pmhMMJQGPLDxfuNWp7F" Name="Angular Damping" Kind="InputPin" />
-            <Pin Id="KdHf0cattFsMo3Y9Nu8d6c" Name="Time Scale" Kind="InputPin" />
-            <Pin Id="PPmFP6FomChPDI0G1nSRmS" Name="Fixed Time Step Seconds" Kind="InputPin" />
-            <Pin Id="FRUslrLfP7wLC5UyvcH8Sm" Name="Max Step Per Frame" Kind="InputPin" />
-            <Pin Id="ThGzbqJXXY8McjBBFfdUoy" Name="Parallel Update" Kind="InputPin" />
-            <Pin Id="PpcWFbDfHdUOqtawLK9Ahp" Name="Use Per Body Attributes" Kind="InputPin" />
-            <Pin Id="MenWdPGG3xFPQwBfY9iBWa" Name="Solver Velocity Iterations" Kind="InputPin" />
-            <Pin Id="B60YVXMrlDzNdEOIgVztVM" Name="Solver Sub Steps" Kind="InputPin" />
-            <Pin Id="HhtfxrA9oI5N6u954cJjOl" Name="Collision Matrix" Kind="InputPin" IsHidden="true" />
-            <Pin Id="RZroQf3gxcyPr3alrpIris" Name="Enabled" Kind="InputPin" />
-            <Pin Id="Fdgzz2MWBwUN1lgTgihU2j" Name="Output" Kind="OutputPin" />
-            <Pin Id="VrhOXBBr653PeuPuDsuZKA" Name="Simulation Index" Kind="InputPin" IsHidden="true" />
-          </Node>
-          <Node Bounds="860,471,56,19" Id="TRhsaeCGet5PmP6BYbWAN4">
+          <Node Bounds="832,300,56,19" Id="TRhsaeCGet5PmP6BYbWAN4">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="BepuInfo" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbY988MdrwpPf1Py2jaFUf" Name="Collidable" Kind="InputPin" />
             <Pin Id="HloEHk7p44zNuy1mYlT46D" Name="Info" Kind="OutputPin" />
           </Node>
-          <Pad Id="VtmYD7JyizGNpoY0F1LKVZ" Comment="Info" Bounds="871,530,348,128" ShowValueBox="true" isIOBox="true" Value="Config OK | PhysicsGameSystem: True | Sim Enabled: True, TimeScale: 1 | Gravity: X:0 Y:-9.8 Z:0 | Active bodies: 0 | Statics: 0 || Component: BodyComponent | Entity: Box | InScene: True | AttachedToSim: True | Collider: CompoundCollider (children: 1) | Pos: X:NaN Y:NaN Z:NaN | Awake: False" />
+          <Pad Id="VtmYD7JyizGNpoY0F1LKVZ" Comment="Info" Bounds="834,350,348,128" ShowValueBox="true" isIOBox="true" Value="Config OK | PhysicsGameSystem: True | Sim Enabled: True, TimeScale: 1 | Gravity: X:0 Y:-9.8 Z:0 | Active bodies: 0 | Statics: 0 || Component: BodyComponent | Entity: Box | InScene: True | AttachedToSim: True | Collider: CompoundCollider (children: 1) | Pos: X:NaN Y:NaN Z:NaN | Awake: False" />
+          <Pad Id="AsMmGs6fn1rNCHUuAyB9Uy" Comment="Kinematic" Bounds="162,191,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="DEP8r6Saj9mLthiuVJ1yXk" Comment="Reset Pose" Bounds="797,220,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="HcCN000000000000000070" Name="Create" />
         <Patch Id="HcCN000000000000000071" Name="Update" />
@@ -357,12 +359,14 @@
         <Link Id="HcCN000000000000000092" Ids="HcCN000000000000000046,HcCN000000000000000049" />
         <Link Id="HcCN000000000000000093" Ids="HcCN000000000000000050,HcCN000000000000000111" />
         <Link Id="HcCN000000000000000094" Ids="HcCN000000000000000045,HcCN000000000000000055" />
-        <Link Id="HcCN000000000000000095" Ids="HcCN000000000000000052,HcCN000000000000000056" />
         <Link Id="HcCN000000000000000096" Ids="HcCN000000000000000057,HcCN000000000000000059" />
         <Link Id="HcCN000000000000000106" Ids="HcCN000000000000000105,HcCN000000000000000101" />
         <Link Id="HcCN000000000000000107" Ids="HcCN000000000000000105,HcCN000000000000000102" />
         <Link Id="VnWXl6UZoC1PRjvu79IqU6" Ids="HcCN000000000000000032,HbY988MdrwpPf1Py2jaFUf" />
         <Link Id="MRIpuciOUb3M0BzXEITMfI" Ids="HloEHk7p44zNuy1mYlT46D,VtmYD7JyizGNpoY0F1LKVZ" />
+        <Link Id="QOmdafmtMAHLoWYrnDxbfD" Ids="AsMmGs6fn1rNCHUuAyB9Uy,HcCN000000000000000014" />
+        <Link Id="MmQgNcDBb1gMYKgfdX3guE" Ids="DEP8r6Saj9mLthiuVJ1yXk,N9jWiEQu4cJLdT4UHnGOGa" />
+        <Link Id="RiprNnSUsBBMFpgqiWL4j0" Ids="HcCN000000000000000052,HcCN000000000000000056" />
       </Patch>
     </Node>
   </Patch>
