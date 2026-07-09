@@ -7,6 +7,7 @@ using VL.Core.Import;
 using VL.Lib.Basics.Resources;
 using VL.Lib.Collections;
 using VL.Model;
+using VL.Stride.BepuPhysics.Internal;
 using SBepu = global::Stride.BepuPhysics;
 
 namespace VL.Stride.BepuPhysics.Simulation;
@@ -60,6 +61,7 @@ public class SimulationSettingsNode : IDisposable
     {
         // Same path the engine's own processors take — creates the configuration,
         // a default simulation and the PhysicsGameSystem on first use.
+        BepuSettingsBootstrap.EnsureConfigured();
         _config ??= _gameHandle.Resource.Services.GetOrCreate<SBepu.BepuConfiguration>();
 
         if (simulationIndex < 0 || simulationIndex >= _config.BepuSimulations.Count)
@@ -132,6 +134,7 @@ public class GetSimulationNode : IDisposable
     [return: Pin(Name = "Output")]
     public SBepu.BepuSimulation? Update(int simulationIndex = 0)
     {
+        BepuSettingsBootstrap.EnsureConfigured();
         _config ??= _gameHandle.Resource.Services.GetOrCreate<SBepu.BepuConfiguration>();
         if (simulationIndex < 0 || simulationIndex >= _config.BepuSimulations.Count)
             return null;

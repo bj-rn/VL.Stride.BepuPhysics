@@ -21,6 +21,7 @@ public class StaticNode
 
     public StaticNode()
     {
+        BepuSettingsBootstrap.EnsureConfigured();
         _component = new SBepu.StaticComponent { Collider = new SColliders.EmptyCollider() };
     }
 

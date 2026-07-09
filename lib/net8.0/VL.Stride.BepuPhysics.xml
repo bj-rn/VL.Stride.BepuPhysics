@@ -665,6 +665,15 @@
             <param name="anyStopped">True in frames where any contact ended.</param>
             <param name="noContactResponse">When true, collidables using this handler let others pass through (trigger volumes).</param>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.BepuSettingsBootstrap">
+            <summary>
+            Quietly pre-configures Bepu for the running game: without a BepuConfiguration entry in the
+            game settings, the engine's lazy bootstrap (BepuConfiguration.NewInstance) logs two warnings
+            ("Creating a default configuration..." / "No simulations configured...") before creating
+            defaults anyway. We inject the same defaults into the settings up front, so the engine finds
+            them and stays silent — while still registering its (internal) PhysicsGameSystem itself.
+            </summary>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.BufferingContactHandler">
             <summary>
             IContactHandler implementation that buffers events between node updates.

@@ -26,6 +26,7 @@ public class BodyNode
 
     public BodyNode()
     {
+        BepuSettingsBootstrap.EnsureConfigured();
         _component = new SBepu.BodyComponent
         {
             Collider = new SColliders.EmptyCollider(),
