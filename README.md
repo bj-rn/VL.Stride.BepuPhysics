@@ -18,13 +18,14 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 ## Installation
 
 ```
-nuget install VL.Stride.BepuPhysics
+nuget install VL.Stride.BepuPhysics -prerelease
 ```
 
 All runtime dependencies (Stride.BepuPhysics, BepuPhysics, BepuUtilities) resolve
-automatically. The package rides on the Stride version bundled with vvvv, the declared
-`Stride.BepuPhysics` version must match it (vvvv gamma 7.x ships Stride **4.2.1.2487**,
-check the About dialog).
+automatically. The `-prerelease` flag is required because BepuPhysics only exists as a
+prerelease package on nuget.org. The package rides on the Stride version bundled with
+vvvv, the pinned `Stride.BepuPhysics` version must match it (vvvv gamma 7.x ships Stride
+**4.2.1.2487**, check the About dialog).
 
 ## Quick start
 
