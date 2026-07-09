@@ -687,18 +687,6 @@
             node-owned CompoundCollider; an explicit ICollider (MeshCollider, EmptyCollider) overrides it.
             </summary>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.Internal.StrideTypeConverters">
-            <summary>
-            Makes [DefaultValue(typeof(Vector3), "1.0, 1.0, 1.0")] work: DefaultValueAttribute resolves
-            values via TypeDescriptor, and Stride's math types have no working converter in a vvvv
-            session. (Stride.Core.Design's converters pass standalone tests but fail inside vvvv —
-            verified live — so we register our own minimal invariant-culture converters.)
-            Accepts both Stride's "X:1 Y:1 Z:1" format and comma-separated "1, 1, 1".
-            The TypeDescriptor.Refresh calls defeat descriptor caching: vvvv queries some of these
-            descriptors during startup and the cached converter-less descriptor would otherwise win
-            (observed for Quaternion).
-            </summary>
-        </member>
         <member name="T:VL.Stride.BepuPhysics.Queries.QueryOperations">
             <summary>
             Stateless physics queries.
