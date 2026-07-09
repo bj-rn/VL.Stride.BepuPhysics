@@ -653,16 +653,18 @@
         <member name="T:VL.Stride.BepuPhysics.ContactEventsNode">
             <summary>
             Collects contact events for the collidables its handler output is connected to.
-            Connect the Handler output to the ContactHandler pin of Body/Static nodes,
-            then read the per-frame contact spreads.
+            Connect the Handler output to the ContactHandler pin of Body/Static nodes, then either
+            read the per-frame contact spreads or use the observable outputs with VL's reactive nodes.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.ContactEventsNode.Update(VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,System.Boolean@,System.Boolean@,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.ContactEventsNode.Update(VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,System.Boolean@,System.Boolean@,System.IObservable{VL.Stride.BepuPhysics.ContactInfo}@,System.IObservable{VL.Stride.BepuPhysics.ContactInfo}@,System.Boolean)">
             <param name="started">Contacts that began touching this frame.</param>
             <param name="touching">Contacts currently touching (fires every frame while in contact).</param>
             <param name="stopped">Contacts that stopped touching this frame.</param>
             <param name="anyStarted">True in frames where any contact began.</param>
             <param name="anyStopped">True in frames where any contact ended.</param>
+            <param name="onStarted">Observable notification per contact that began touching — for use with reactive nodes (ForEach (Reactive), HoldLatest, ...).</param>
+            <param name="onStopped">Observable notification per contact that stopped touching — for use with reactive nodes.</param>
             <param name="noContactResponse">When true, collidables using this handler let others pass through (trigger volumes).</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.BepuSettingsBootstrap">
@@ -676,9 +678,10 @@
         </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.BufferingContactHandler">
             <summary>
-            IContactHandler implementation that buffers events between node updates.
+            IContactHandler implementation that buffers events between node updates and additionally
+            pushes started/stopped contacts as observable notifications.
             Physics steps run on the main thread (inside the game system update),
-            so plain lists without locking are sufficient.
+            so plain lists without locking are sufficient and OnNext fires on the main thread.
             </summary>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.ColliderInput">
