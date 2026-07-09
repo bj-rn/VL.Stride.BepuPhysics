@@ -22,13 +22,13 @@ nuget install VL.Stride.BepuPhysics
 ```
 
 All runtime dependencies (Stride.BepuPhysics, BepuPhysics, BepuUtilities) resolve
-automatically. The package rides on the Stride version bundled with vvvv — the declared
+automatically. The package rides on the Stride version bundled with vvvv, the declared
 `Stride.BepuPhysics` version must match it (vvvv gamma 7.x ships Stride **4.2.1.2487**,
 check the About dialog).
 
 ## Quick start
 
-Open `help/HowTo Falling Bodies.vl` — a dynamic box falling onto a static ground,
+Open `help/HowTo Falling Bodies.vl`, a dynamic box falling onto a static ground,
 or browse the `Stride.Physics.Bepu` category in the node browser.
 
 Basics:
