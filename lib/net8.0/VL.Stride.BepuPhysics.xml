@@ -1,0 +1,802 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VL.Stride.BepuPhysics</name>
+    </assembly>
+    <members>
+        <member name="T:VL.Stride.BepuPhysics.BepuInfo">
+            <summary>
+            Diagnostic: reports the state of the Bepu integration (configuration, game system, simulation, body counts).
+            Optionally connect a Body/Static component to diagnose its attachment chain.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BepuInfo.Update(System.String@,Stride.BepuPhysics.CollidableComponent)">
+            <param name="info">Human-readable state of the physics integration and, if connected, the component.</param>
+            <param name="collidable">Optional: a Body or Static component to diagnose (attachment, collider, pose, sleep state).</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.MeshColliderNode">
+            <summary>
+            Collision shape from a Stride Model's mesh data. Works with runtime/procedural models.
+            Connect to the Body/Static node's ColliderOverride pin (a mesh cannot be part of a compound).
+            Outputs null while no Model is connected.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.MeshColliderNode.Update(Stride.Rendering.Model,System.Boolean,System.Single)">
+            <param name="model">Stride Model whose mesh data is used for collision. Works with runtime and procedural models.</param>
+            <param name="closed">Whether the mesh is treated as a closed volume (enables correct inertia).</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode">
+            <summary>
+            Convex hull collision shape from pre-decomposed hull data.
+            Outputs null while no hull data is connected. (Hull baking is not provided by this package.)
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,System.Single)">
+            <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.EmptyColliderNode">
+            <summary>
+            Explicit no-collision shape: the body participates in the simulation without colliding.
+            Connect to the Body node's ColliderOverride pin.
+            </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.BoxColliderNode">
+            <summary>Box collision shape.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.BoxColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
+            <param name="size">Extents of the box in meters.</param>
+            <param name="positionLocal">Position of this shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.SphereColliderNode">
+            <summary>Sphere collision shape.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.SphereColliderNode.Update(System.Single,Stride.Core.Mathematics.Vector3,System.Single)">
+            <param name="radius">Radius of the sphere or capsule shape.</param>
+            <param name="positionLocal">Position of this shape relative to the body origin.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.CapsuleColliderNode">
+            <summary>Capsule collision shape (aligned to local Y).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.CapsuleColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
+            <param name="radius">Radius of the sphere or capsule shape.</param>
+            <param name="length">Length between the two cap centers (total length = length + 2 * radius).</param>
+            <param name="positionLocal">Position of this shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.CylinderColliderNode">
+            <summary>Cylinder collision shape (aligned to local Y).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.CylinderColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
+            <param name="radius">Radius of the sphere or capsule shape.</param>
+            <param name="length">Height of the cylinder.</param>
+            <param name="positionLocal">Position of this shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.TriangleColliderNode">
+            <summary>Single-triangle collision shape.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.TriangleColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
+            <param name="a">First vertex relative to the body origin.</param>
+            <param name="b">Second vertex relative to the body origin.</param>
+            <param name="c">Third vertex relative to the body origin.</param>
+            <param name="positionLocal">Position of this shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.BodyNode">
+            <summary>
+            A dynamic or kinematic rigid body simulated by BepuPhysics.
+            Connect the output to an Entity (like a ModelComponent); the body drives the entity's transform.
+            The entity's transform at attach time defines the initial pose.
+            Connect one or more collider shapes; each shape instance can only be used by one body.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+            <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
+            <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
+            <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
+            <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
+            <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+            <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+            <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast bodies that would tunnel through thin geometry.</param>
+            <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
+            <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
+            <param name="resetPose">While true, re-teleports the body to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
+            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
+            <returns>The body component — connect to an Entity's Components input.</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.BodyOperations">
+            <summary>
+            Operations on a Body component. Mutating operations run while Apply is true —
+            connect a Bang for one-shot application.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.ApplyLinearImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Applies a one-frame impulse at the center of mass while Apply is true.</summary>
+            <param name="body">The body to apply the impulse to.</param>
+            <param name="impulse">Impulse in world space (mass times velocity change).</param>
+            <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot push.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.ApplyAngularImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Applies a one-frame angular impulse while Apply is true.</summary>
+            <param name="body">The body to apply the impulse to.</param>
+            <param name="impulse">Angular impulse in world space (spin around each axis).</param>
+            <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot spin.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.ApplyImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Applies an impulse at an offset from the center of mass while Apply is true.</summary>
+            <param name="body">The body to apply the impulse to.</param>
+            <param name="impulse">Impulse in world space (mass times velocity change).</param>
+            <param name="impulseOffset">Application point relative to the center of mass — off-center impulses add spin.</param>
+            <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot push.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.Teleport(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
+            <summary>Instantly moves the body while Apply is true (no sweep, no collision on the way).</summary>
+            <param name="body">The body to move.</param>
+            <param name="position">Target position in world space.</param>
+            <param name="orientation">Target orientation in world space.</param>
+            <param name="apply">Teleports each frame while true. Connect a Bang. Collisions along the way are ignored.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.SetTargetPose(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
+            <summary>Sets the target pose for a kinematic body while Apply is true — the body moves there with proper sweep.</summary>
+            <param name="body">The kinematic body to move.</param>
+            <param name="position">Target position in world space.</param>
+            <param name="orientation">Target orientation in world space.</param>
+            <param name="apply">Moves towards the target with proper sweep each frame while true — pushes dynamic bodies out of the way.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.SetLinearVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Overwrites the linear velocity while Apply is true.</summary>
+            <param name="body">The body whose velocity is overwritten.</param>
+            <param name="velocity">New linear velocity in units per second, world space.</param>
+            <param name="apply">Overwrites each frame while true. Connect a Bang for a one-shot set.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.SetAngularVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Overwrites the angular velocity while Apply is true.</summary>
+            <param name="body">The body whose velocity is overwritten.</param>
+            <param name="velocity">New angular velocity in radians per second around each world axis.</param>
+            <param name="apply">Overwrites each frame while true. Connect a Bang for a one-shot set.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.GetBodyState(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Boolean@)">
+            <summary>Reads the current physics state of a body.</summary>
+            <param name="body">The body to read. Outputs defaults while not attached to a simulation.</param>
+            <param name="position">Current position in world space.</param>
+            <param name="orientation">Current orientation in world space.</param>
+            <param name="linearVelocity">Current linear velocity in units per second.</param>
+            <param name="angularVelocity">Current angular velocity in radians per second.</param>
+            <param name="awake">True while the body is actively simulated (not sleeping).</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.BodyOperations.Awaken(Stride.BepuPhysics.BodyComponent,System.Boolean)">
+            <summary>Wakes the body up while Apply is true.</summary>
+            <param name="body">The body to wake up.</param>
+            <param name="apply">Wakes the body each frame while true.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.StaticNode">
+            <summary>
+            Immovable collision geometry (ground, walls, level geometry).
+            Connect the output to an Entity; the entity's transform places the static shape.
+            Connect one or more collider shapes; each shape instance can only be used by one collidable.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+            <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
+            <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
+            <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this static.</param>
+            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
+            <returns>The static component — connect to an Entity's Components input.</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularHingeNode">
+            <summary>Aligns two local axes on two bodies, like a hinge without position lock.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularHingeNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularMotorNode">
+            <summary>Drives the relative angular velocity between two bodies towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="targetVelocityLocalA">Target relative angular velocity, expressed in the local space of body A.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularServoNode">
+            <summary>Servos the relative orientation between two bodies towards a target rotation.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Quaternion,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="targetRelativeRotationLocalA">Target orientation of body B relative to body A, in the local space of A.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularSwivelHingeNode">
+            <summary>Like AngularHinge but with a free swivel axis (universal-joint-like).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularSwivelHingeNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularAxisMotorNode">
+            <summary>Drives rotation around an axis of body A towards a target velocity.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularAxisMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localAxisA">Rotation axis in the local space of body A.</param>
+            <param name="targetVelocity">Target angular velocity around the axis in radians per second.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AngularAxisGearMotorNode">
+            <summary>Couples rotation of two bodies around an axis with a gear-like velocity ratio.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AngularAxisGearMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localAxisA">Rotation axis in the local space of body A.</param>
+            <param name="velocityScale">Gear ratio: angular velocity of body B relative to body A around the axis.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.BallSocketNode">
+            <summary>Ball and socket joint: keeps two anchor points on two bodies together.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.BallSocketNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.BallSocketMotorNode">
+            <summary>Ball socket joint that drives a target velocity at the anchor point.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.BallSocketMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="targetVelocityLocalA">Target velocity of the anchor on body B, expressed in the local space of body A.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.BallSocketServoNode">
+            <summary>Ball socket joint that servos the anchor of body B towards the anchor of body A.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.BallSocketServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.CenterDistanceNode">
+            <summary>Keeps the centers of two bodies at a target distance.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.CenterDistanceNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="targetDistance">Distance to maintain between the two body centers.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.CenterDistanceLimitNode">
+            <summary>Keeps the distance between the centers of two bodies within a range.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.CenterDistanceLimitNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="minimumDistance">Smallest allowed distance between the two body centers.</param>
+            <param name="maximumDistance">Largest allowed distance between the two body centers.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.DistanceLimitNode">
+            <summary>Keeps the distance between two anchor points within a range.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.DistanceLimitNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="minimumDistance">Smallest allowed distance between the two anchor points.</param>
+            <param name="maximumDistance">Largest allowed distance between the two anchor points.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.DistanceServoNode">
+            <summary>Servos the distance between two anchor points towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.DistanceServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="targetDistance">Distance between the two anchor points the servo drives towards.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.HingeNode">
+            <summary>Full hinge joint: anchors two bodies and allows rotation around a single axis.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.HingeNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.SwivelHingeNode">
+            <summary>Anchors two bodies allowing rotation around a swivel axis on A and a hinge axis on B.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.SwivelHingeNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.SwingLimitNode">
+            <summary>Limits the swing angle between two axes on two bodies.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.SwingLimitNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="axisLocalA">Reference axis in the local space of body A.</param>
+            <param name="axisLocalB">Measured axis in the local space of body B.</param>
+            <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.TwistLimitNode">
+            <summary>Limits the twist angle around the aligned basis axes of two bodies.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.TwistLimitNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Quaternion,Stride.Core.Mathematics.Quaternion,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+            <param name="localBasisB">Twist basis in the local space of body B.</param>
+            <param name="minimumAngle">Smallest allowed twist angle in radians.</param>
+            <param name="maximumAngle">Largest allowed twist angle in radians.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.TwistMotorNode">
+            <summary>Drives the relative twist velocity around two axes towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.TwistMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localAxisA">Twist axis in the local space of body A.</param>
+            <param name="localAxisB">Twist axis in the local space of body B.</param>
+            <param name="targetVelocity">Target twist velocity in radians per second.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.TwistServoNode">
+            <summary>Servos the twist angle around the aligned basis axes towards a target angle.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.TwistServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Quaternion,Stride.Core.Mathematics.Quaternion,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+            <param name="localBasisB">Twist basis in the local space of body B.</param>
+            <param name="targetAngle">Twist angle in radians the servo drives towards.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.WeldNode">
+            <summary>Rigidly locks two bodies together (relative position and orientation).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.WeldNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffset">Position of body B relative to body A.</param>
+            <param name="localOrientation">Orientation of body B relative to body A.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.LinearAxisLimitNode">
+            <summary>Limits the offset between two anchors along an axis to a range.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.LinearAxisLimitNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localAxis">Sliding axis in the local space of body A.</param>
+            <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
+            <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.LinearAxisMotorNode">
+            <summary>Drives the offset between two anchors along an axis towards a target velocity.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.LinearAxisMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localAxis">Sliding axis in the local space of body A.</param>
+            <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.LinearAxisServoNode">
+            <summary>Servos body B's anchor onto a plane defined on body A.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.LinearAxisServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane.</param>
+            <param name="targetOffset">Distance from the plane the servo drives towards.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.PointOnLineServoNode">
+            <summary>Keeps body B's anchor on a line defined on body A.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.PointOnLineServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+            <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+            <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.AreaNode">
+            <summary>Keeps the area of the triangle spanned by three body centers at a target (cloth-like).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.AreaNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="bodyC">Third constrained body (C).</param>
+            <param name="targetScaledArea">Target area of the triangle spanned by the three body centers.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.VolumeNode">
+            <summary>Keeps the volume of the tetrahedron spanned by four body centers at a target (softbody-like).</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.VolumeNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,Stride.BepuPhysics.BodyComponent,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="bodyA">First constrained body (A).</param>
+            <param name="bodyB">Second constrained body (B).</param>
+            <param name="bodyC">Third constrained body (C).</param>
+            <param name="bodyD">Fourth constrained body (D).</param>
+            <param name="targetScaledVolume">Target volume of the tetrahedron spanned by the four body centers.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.OneBodyAngularMotorNode">
+            <summary>Drives a single body's angular velocity towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.OneBodyAngularMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="body">The constrained body.</param>
+            <param name="targetVelocity">Target angular velocity in world space, radians per second.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.OneBodyAngularServoNode">
+            <summary>Servos a single body's orientation towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.OneBodyAngularServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Quaternion,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="body">The constrained body.</param>
+            <param name="targetOrientation">World-space orientation the servo drives the body towards.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.OneBodyLinearMotorNode">
+            <summary>Drives the velocity of a point on a single body towards a target.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.OneBodyLinearMotorNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="body">The constrained body.</param>
+            <param name="localOffset">Anchor point relative to the center of the body.</param>
+            <param name="targetVelocity">Target velocity of the anchor point in world space, units per second.</param>
+            <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+            <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Constraints.OneBodyLinearServoNode">
+            <summary>Servos a point on a single body towards a world-space target position.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Constraints.OneBodyLinearServoNode.Update(System.Boolean@,Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
+            <param name="body">The constrained body.</param>
+            <param name="localOffset">Anchor point relative to the center of the body.</param>
+            <param name="target">World-space position the servo drives the anchor point towards.</param>
+            <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+            <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+            <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+            <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+            <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+            <param name="enabled">Temporarily deactivates the constraint when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.ContinuousDetectionKind">
+            <summary>
+            Continuous collision detection mode. Mirrors BepuPhysics.Collidables.ContinuousDetectionMode —
+            defined here so the pin default resolves from a VL-imported assembly.
+            </summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ContinuousDetectionKind.Discrete">
+            <summary>No sweep tests — fast objects may tunnel through thin geometry.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ContinuousDetectionKind.Passive">
+            <summary>No sweeps of its own, but other continuous collidables can see it.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ContinuousDetectionKind.Continuous">
+            <summary>Sweep tests prevent tunneling at higher cost.</summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.ContactInfo">
+            <summary>
+            One contact point between two collidables.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.ContactInfo.#ctor(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.CollidableComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single)">
+            <summary>
+            One contact point between two collidables.
+            </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.ContactEventsNode">
+            <summary>
+            Collects contact events for the collidables its handler output is connected to.
+            Connect the Handler output to the ContactHandler pin of Body/Static nodes,
+            then read the per-frame contact spreads.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.ContactEventsNode.Update(VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,VL.Lib.Collections.Spread{VL.Stride.BepuPhysics.ContactInfo}@,System.Boolean@,System.Boolean@,System.Boolean)">
+            <param name="started">Contacts that began touching this frame.</param>
+            <param name="touching">Contacts currently touching (fires every frame while in contact).</param>
+            <param name="stopped">Contacts that stopped touching this frame.</param>
+            <param name="anyStarted">True in frames where any contact began.</param>
+            <param name="anyStopped">True in frames where any contact ended.</param>
+            <param name="noContactResponse">When true, collidables using this handler let others pass through (trigger volumes).</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.BufferingContactHandler">
+            <summary>
+            IContactHandler implementation that buffers events between node updates.
+            Physics steps run on the main thread (inside the game system update),
+            so plain lists without locking are sufficient.
+            </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.ColliderInput">
+            <summary>
+            Shared collider-pin logic for Body/Static nodes: a pin group of shapes is wrapped in a
+            node-owned CompoundCollider; an explicit ICollider (MeshCollider, EmptyCollider) overrides it.
+            </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.StrideTypeConverters">
+            <summary>
+            Makes [DefaultValue(typeof(Vector3), "1.0, 1.0, 1.0")] work: DefaultValueAttribute resolves
+            values via TypeDescriptor, and Stride's math types have no working converter in a vvvv
+            session. (Stride.Core.Design's converters pass standalone tests but fail inside vvvv —
+            verified live — so we register our own minimal invariant-culture converters.)
+            Accepts both Stride's "X:1 Y:1 Z:1" format and comma-separated "1, 1, 1".
+            The TypeDescriptor.Refresh calls defeat descriptor caching: vvvv queries some of these
+            descriptors during startup and the cached converter-less descriptor would otherwise win
+            (observed for Quaternion).
+            </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Queries.QueryOperations">
+            <summary>
+            Stateless physics queries.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Queries.QueryOperations.RayCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask})">
+            <summary>Casts a ray and reports the closest hit.</summary>
+            <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+            <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
+            <param name="didHit">True when the ray hit anything within Max Distance.</param>
+            <param name="origin">Ray start position in world space.</param>
+            <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+            <param name="maxDistance">Maximum travel distance of the ray.</param>
+            <param name="collisionMask">Which collision layers the ray tests against. Null = Everything.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Queries.RayCastPenetratingNode">
+            <summary>
+            Casts a ray and reports all hits along it, sorted by distance.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Queries.RayCastPenetratingNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+            <param name="origin">Ray start position in world space.</param>
+            <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+            <param name="maxDistance">Maximum travel distance of the query.</param>
+            <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
+            <param name="enabled">Skips the query and outputs an empty spread when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Queries.SweepCastNode">
+            <summary>
+            Sweeps a shape along a direction and reports all hits.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Queries.SweepCastNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{VL.Stride.BepuPhysics.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+            <param name="origin">Ray start position in world space.</param>
+            <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+            <param name="maxDistance">Maximum travel distance of the query.</param>
+            <param name="shape">Shape used by the query. Null = Sphere.</param>
+            <param name="radius">Radius of the sphere or capsule shape.</param>
+            <param name="boxSize">Extents of the box shape.</param>
+            <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
+            <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
+            <param name="enabled">Skips the query and outputs an empty spread when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Queries.OverlapNode">
+            <summary>
+            Reports all collidables overlapping a shape placed at a position.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Queries.OverlapNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,System.Nullable{VL.Stride.BepuPhysics.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+            <param name="position">Center of the test shape in world space.</param>
+            <param name="shape">Shape used by the query. Null = Sphere.</param>
+            <param name="radius">Radius of the sphere or capsule shape.</param>
+            <param name="boxSize">Extents of the box shape.</param>
+            <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
+            <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
+            <param name="enabled">Skips the query and outputs an empty spread when false.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Queries.SweepShape">
+            <summary>Shape used by sweep and overlap queries.</summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationSettingsNode">
+            <summary>
+            Configures the Bepu physics simulation (gravity, timing, solver, collision matrix)
+            and outputs it for use with query nodes. Uses the same lazily-created simulation the
+            Body/Static components attach to.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationSettingsNode.Update(System.Nullable{Stride.Core.Mathematics.Vector3},System.Single,System.Single,System.Single,System.Double,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Int32,VL.Lib.Collections.Spread{Stride.BepuPhysics.CollisionMask},System.Boolean,System.Int32)">
+            <param name="gravity">Global gravity applied to all non-kinematic bodies. Null = (0, -9.8, 0).</param>
+            <param name="linearDamping">How quickly bodies lose linear velocity over time.</param>
+            <param name="angularDamping">How quickly bodies lose angular velocity over time.</param>
+            <param name="timeScale">Scales simulation time; 0.5 = slow motion, 2 = double speed.</param>
+            <param name="fixedTimeStepSeconds">Length of one physics step in seconds (default 1/60).</param>
+            <param name="maxStepPerFrame">Upper limit of physics steps per frame to avoid spirals of death; -1 = unlimited.</param>
+            <param name="parallelUpdate">Runs per-body updates multithreaded.</param>
+            <param name="usePerBodyAttributes">Enables per-body Gravity flags (slightly more per-body work).</param>
+            <param name="solverVelocityIterations">Solver velocity iterations per substep; more = stiffer, costlier.</param>
+            <param name="solverSubSteps">Solver substeps per physics step; more = more accurate stacks and joints.</param>
+            <param name="collisionMatrix">Per-layer collision masks: element N = mask of layers that layer N collides with.</param>
+            <param name="enabled">Pauses the whole simulation when false.</param>
+            <param name="simulationIndex">Which simulation to configure (0 unless using multiple simulations).</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Simulation.GetSimulationNode">
+            <summary>
+            Outputs the running Bepu simulation (for query nodes) without changing its settings.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.GetSimulationNode.Update(System.Int32)">
+            <param name="simulationIndex">Which simulation to fetch (0 unless using multiple simulations).</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationResetNode">
+            <summary>
+            Captures the pose and velocity of every body in the simulation and restores them on demand —
+            a whole-simulation reset without wiring individual bodies.
+            By default the first frame with bodies present is captured automatically; bang Capture to
+            take a new snapshot (e.g. after spawning more bodies or arranging a new start state).
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationResetNode.Update(System.Int32@,Stride.BepuPhysics.BepuSimulation,System.Boolean,System.Boolean,System.Boolean)">
+            <param name="capturedBodies">Number of bodies in the current snapshot.</param>
+            <param name="simulation">The simulation to snapshot — from a SimulationSettings or GetSimulation node.</param>
+            <param name="capture">Takes a new snapshot of all body poses and velocities. Connect a Bang.</param>
+            <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang.</param>
+            <param name="autoCapture">Automatically captures the first frame in which any bodies exist.</param>
+        </member>
+    </members>
+</doc>

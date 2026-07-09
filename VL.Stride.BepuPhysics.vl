@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="Qb7NfzXk2mPvR4tYw8LaC1" LanguageVersion="2025.7.3" Version="0.128">
+  <NugetDependency Id="Rc8OgAYl3nQwS5uZx9MbD2" Location="VL.CoreLib" Version="2025.7.3" />
+  <NugetDependency Id="Sd9PhBZm4oRxT6vAy0NcE3" Location="VL.Stride" Version="2025.7.3" />
+  <NugetDependency Id="Te0QiCan5pSyU7wBz1OdF4" Location="Stride.BepuPhysics" Version="4.2.1.2487" />
+  <PlatformDependency Id="Uf1RjDbo6qTzV8xCa2PeG5" Location="./lib/net8.0/VL.Stride.BepuPhysics.dll" IsForward="true" />
+  <Patch Id="Vg2SkEcp7rUaW9yDb3QfH6">
+    <Canvas Id="Wh3TlFdq8sVbX0zEc4RgI7" DefaultCategory="Stride.Physics.Bepu" BordersChecked="false" CanvasType="FullCategory" />
+    <Node Name="Application" Bounds="100,100" Id="Xi4UmGer9tWcY1aFd5ShJ8">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <CategoryReference Kind="Category" Name="Primitive" />
+      </p:NodeReference>
+      <Patch Id="Yj5VnHfs0uXdZ2bGe6TiK9">
+        <Canvas Id="Zk6WoIgt1vYea3cHf7UjL0" CanvasType="Group" />
+        <Patch Id="Al7XpJhu2wZfb4dIg8VkM1" Name="Create" />
+        <Patch Id="Bm8YqKiv3xAgc5eJh9WlN2" Name="Update" />
+        <ProcessDefinition Id="Cn9ZrLjw4yBhd6fKi0XmO3">
+          <Fragment Id="Do0AsMkx5zCie7gLj1YnP4" Patch="Al7XpJhu2wZfb4dIg8VkM1" Enabled="true" />
+          <Fragment Id="Ep1BtNly6aDjf8hMk2ZoQ5" Patch="Bm8YqKiv3xAgc5eJh9WlN2" Enabled="true" />
+        </ProcessDefinition>
+      </Patch>
+    </Node>
+  </Patch>
+</Document>

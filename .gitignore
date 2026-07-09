@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.nupkg
+.vscode/
+
+# Build output: DLL + XML docs are committed (clone-and-go package repo),
+# everything else in lib/ is not
+lib/**/*.json
+lib/**/*.pdb

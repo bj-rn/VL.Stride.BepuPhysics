@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>VL.Stride.BepuPhysics</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <!-- Build output goes to the package's lib folder where vvvv expects it -->
+    <OutputPath>..\lib\net8.0\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VL.Core" Version="$(VLVersion)" />
+    <PackageReference Include="VL.Stride.Runtime" Version="$(VLVersion)" />
+    <PackageReference Include="Stride.BepuPhysics" Version="$(StrideVersion)" />
+  </ItemGroup>
+
+</Project>

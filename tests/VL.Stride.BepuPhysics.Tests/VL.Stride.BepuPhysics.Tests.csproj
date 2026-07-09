@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="VL.TestFramework" Version="$(VLVersion)" />
+    <!-- Runtime deps of the VL platform not covered by vvvv.exe's deps.json in a test process -->
+    <PackageReference Include="System.Interactive" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.*" />
+    <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.*" />
+  </ItemGroup>
+
+  <!-- Copy only the Bepu runtime DLLs (no package reference — Stride's asset toolchain
+       would drag an incompatible Roslyn into the test process). Makes the enum types
+       loadable when the VL compiler computes imported pin defaults. -->
+  <ItemGroup>
+    <None Include="$(NuGetPackageRoot)stride.bepuphysics\$(StrideVersion)\lib\net8.0\Stride.BepuPhysics.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <None Include="$(NuGetPackageRoot)bepuphysics\2.5.0-beta.25\lib\net8.0\BepuPhysics.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <None Include="$(NuGetPackageRoot)bepuutilities\2.5.0-beta.25\lib\net8.0\BepuUtilities.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+  </ItemGroup>
+
+</Project>

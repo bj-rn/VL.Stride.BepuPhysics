@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>VL.Stride.BepuPhysics</id>
+    <version>0.1.0</version>
+    <title>VL.Stride.BepuPhysics</title>
+    <authors>bj-rn</authors>
+    <owners>bj-rn</owners>
+    <projectUrl>https://github.com/bj-rn/VL.Stride.BepuPhysics</projectUrl>
+    <repository type="git" url="https://github.com/bj-rn/VL.Stride.BepuPhysics.git" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+        BepuPhysics v2 rigid body physics for vvvv gamma, based on Stride.BepuPhysics and integrated
+        with the VL.Stride entity system: bodies, statics, collider shapes, all constraint types,
+        raycast/sweep/overlap queries, contact events and live simulation settings.
+    </description>
+    <tags>VL, vvvv, gamma, stride, stride3d, physics, bepu, bepuphysics, rigidbody</tags>
+    <license type="expression">MIT</license>
+    <readme>docs\README.md</readme>
+    <dependencies>
+      <!-- Must match the Stride version bundled with the targeted vvvv release.
+           BepuPhysics (and BepuUtilities) come transitively from this package. -->
+      <dependency id="Stride.BepuPhysics" version="4.2.1.2487" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\lib\**\VL.Stride.BepuPhysics.dll" target="lib\" />
+    <file src="..\lib\**\VL.Stride.BepuPhysics.xml" target="lib\" />
+    <file src="..\*.vl" target="" />
+    <file src="..\help\**" target="help\" />
+    <file src="..\README.md" target="docs\" />
+  </files>
+</package>
