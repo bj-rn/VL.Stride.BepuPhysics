@@ -59,6 +59,60 @@ public static class QueryOperations
         }
         didHit = simulation.RayCast(origin, direction, maxDistance, out hit, collisionMask ?? SBepu.CollisionMask.Everything);
     }
+
+    /// <summary>Sweeps a shape along a direction and reports the closest hit.</summary>
+    /// <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
+    /// <param name="didHit">True when the sweep hit anything within Max Distance.</param>
+    /// <param name="origin">Sweep start position in world space.</param>
+    /// <param name="direction">Sweep direction in world space (does not need to be normalized).</param>
+    /// <param name="maxDistance">Maximum travel distance of the sweep.</param>
+    /// <param name="shape">Shape used by the query. Null = Sphere.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
+    /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
+    /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
+    /// <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
+    public static void SweepCast(
+        SBepu.BepuSimulation? simulation,
+        out SBepu.HitInfo hit,
+        out bool didHit,
+        Vector3 origin,
+        Vector3 direction,
+        [DefaultValue(100f)] float maxDistance,
+        SweepShape? shape,
+        [DefaultValue(0.5f)] float radius,
+        [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
+        [DefaultValue(1f)] float capsuleLength,
+        Quaternion orientation,
+        SBepu.CollisionMask? collisionMask)
+    {
+        if (simulation is null || direction == Vector3.Zero)
+        {
+            hit = default;
+            didHit = false;
+            return;
+        }
+        var mask = collisionMask ?? SBepu.CollisionMask.Everything;
+        var pose = new SDefinitions.RigidPose(origin, orientation);
+        var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
+        switch (shape ?? SweepShape.Sphere)
+        {
+            case SweepShape.Sphere:
+                didHit = simulation.SweepCast(new Sphere(radius), pose, velocity, maxDistance, out hit, mask);
+                break;
+            case SweepShape.Box:
+                didHit = simulation.SweepCast(new Box(boxSize.X, boxSize.Y, boxSize.Z), pose, velocity, maxDistance, out hit, mask);
+                break;
+            case SweepShape.Capsule:
+                didHit = simulation.SweepCast(new Capsule(radius, capsuleLength), pose, velocity, maxDistance, out hit, mask);
+                break;
+            default:
+                hit = default;
+                didHit = false;
+                break;
+        }
+    }
 }
 
 /// <summary>
@@ -108,8 +162,8 @@ public class RayCastPenetratingNode
 /// <summary>
 /// Sweeps a shape along a direction and reports all hits.
 /// </summary>
-[ProcessNode(Name = "SweepCast")]
-public class SweepCastNode
+[ProcessNode(Name = "SweepCastPenetrating")]
+public class SweepCastPenetratingNode
 {
     private readonly List<SBepu.HitInfo> _buffer = new();
     private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
@@ -123,6 +177,7 @@ public class SweepCastNode
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
+    /// <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
     [return: Pin(Name = "Output")]
@@ -135,6 +190,7 @@ public class SweepCastNode
         [DefaultValue(0.5f)] float radius,
         [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
+        Quaternion orientation,
         SBepu.CollisionMask? collisionMask,
         bool enabled = true)
     {
@@ -144,7 +200,7 @@ public class SweepCastNode
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
         _buffer.Clear();
-        var pose = new SDefinitions.RigidPose(origin, Quaternion.Identity);
+        var pose = new SDefinitions.RigidPose(origin, orientation);
         var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
         switch (shape ?? SweepShape.Sphere)
         {

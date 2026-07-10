@@ -10,7 +10,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu`
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
-- Queries: RayCast, RayCastPenetrating, SweepCast, Overlap
+- Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
 - Per-collidable contact events (started / touching / stopped)
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
 - Transform interpolation enabled by default for smooth visuals at any frame rate
