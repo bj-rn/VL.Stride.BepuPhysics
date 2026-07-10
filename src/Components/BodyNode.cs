@@ -24,6 +24,20 @@ public class BodyNode
     private Matrix? _lastTeleportTo;
     private bool _teleportPending;
 
+    // Change detection is against the last PIN value, not the component state, so setter
+    // nodes may mutate the component without this node reverting it (see PinValue<T>).
+    private PinValue<bool> _kinematic;
+    private PinValue<SDefinitions.InterpolationMode> _interpolation;
+    private PinValue<SBepu.CollisionLayer> _collisionLayer;
+    private PinValue<float> _springFrequency;
+    private PinValue<float> _springDampingRatio;
+    private PinValue<float> _frictionCoefficient;
+    private PinValue<float> _maximumRecoveryVelocity;
+    private PinValue<float> _sleepThreshold;
+    private PinValue<bool> _gravity;
+    private PinValue<global::BepuPhysics.Collidables.ContinuousDetectionMode> _continuousDetection;
+    private PinValue<SContacts.IContactHandler?> _contactHandler;
+
     public BodyNode()
     {
         BepuSettingsBootstrap.EnsureConfigured();
@@ -76,28 +90,28 @@ public class BodyNode
         var effectiveInterpolation = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
         var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
 
-        if (_component.Kinematic != kinematic)
+        if (_kinematic.Changed(kinematic))
             _component.Kinematic = kinematic;
-        if (_component.InterpolationMode != effectiveInterpolation)
+        if (_interpolation.Changed(effectiveInterpolation))
             _component.InterpolationMode = effectiveInterpolation;
-        if (_component.CollisionLayer != effectiveLayer)
+        if (_collisionLayer.Changed(effectiveLayer))
             _component.CollisionLayer = effectiveLayer;
-        if (_component.SpringFrequency != springFrequency)
+        if (_springFrequency.Changed(springFrequency))
             _component.SpringFrequency = springFrequency;
-        if (_component.SpringDampingRatio != springDampingRatio)
+        if (_springDampingRatio.Changed(springDampingRatio))
             _component.SpringDampingRatio = springDampingRatio;
-        if (_component.FrictionCoefficient != frictionCoefficient)
+        if (_frictionCoefficient.Changed(frictionCoefficient))
             _component.FrictionCoefficient = frictionCoefficient;
-        if (_component.MaximumRecoveryVelocity != maximumRecoveryVelocity)
+        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity))
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
-        if (_component.SleepThreshold != sleepThreshold)
+        if (_sleepThreshold.Changed(sleepThreshold))
             _component.SleepThreshold = sleepThreshold;
-        if (_component.Gravity != gravity)
+        if (_gravity.Changed(gravity))
             _component.Gravity = gravity;
         var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
-        if (_component.ContinuousDetectionMode != detectionMode)
+        if (_continuousDetection.Changed(detectionMode))
             _component.ContinuousDetectionMode = detectionMode;
-        if (!ReferenceEquals(_component.ContactEventHandler, contactHandler))
+        if (_contactHandler.Changed(contactHandler))
             _component.ContactEventHandler = contactHandler;
 
         // Places the body whenever the connected matrix CHANGES — a constant matrix therefore

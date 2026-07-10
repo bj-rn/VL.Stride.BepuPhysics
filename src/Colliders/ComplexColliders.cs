@@ -1,4 +1,5 @@
 using VL.Core.Import;
+using VL.Stride.BepuPhysics.Internal;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 using SModel = global::Stride.Rendering.Model;
@@ -14,6 +15,9 @@ namespace VL.Stride.BepuPhysics.Colliders;
 public class MeshColliderNode
 {
     private readonly SColliders.MeshCollider _collider = new() { Model = null! };
+    private PinValue<SModel?> _model;
+    private PinValue<bool> _closed;
+    private PinValue<float> _mass;
 
     /// <param name="model">Stride Model whose mesh data is used for collision. Works with runtime and procedural models.</param>
     /// <param name="closed">Whether the mesh is treated as a closed volume (enables correct inertia).</param>
@@ -27,11 +31,11 @@ public class MeshColliderNode
         if (model is null)
             return null;
 
-        if (!ReferenceEquals(_collider.Model, model))
+        if (_model.Changed(model))
             _collider.Model = model;
-        if (_collider.Closed != closed)
+        if (_closed.Changed(closed))
             _collider.Closed = closed;
-        if (_collider.Mass != mass)
+        if (_mass.Changed(mass))
             _collider.Mass = mass;
         return _collider;
     }
@@ -45,6 +49,8 @@ public class MeshColliderNode
 public class ConvexHullColliderNode
 {
     private readonly SColliders.ConvexHullCollider _collider = new() { Hull = null! };
+    private PinValue<SDefinitions.DecomposedHulls?> _hull;
+    private PinValue<float> _mass;
 
     /// <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
@@ -56,9 +62,9 @@ public class ConvexHullColliderNode
         if (hull is null)
             return null;
 
-        if (!ReferenceEquals(_collider.Hull, hull))
+        if (_hull.Changed(hull))
             _collider.Hull = hull;
-        if (_collider.Mass != mass)
+        if (_mass.Changed(mass))
             _collider.Mass = mass;
         return _collider;
     }

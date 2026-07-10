@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Stride.Core.Mathematics;
 using VL.Core.Import;
+using VL.Stride.BepuPhysics.Internal;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 
 namespace VL.Stride.BepuPhysics.Colliders;
@@ -10,6 +11,8 @@ namespace VL.Stride.BepuPhysics.Colliders;
 public class BoxColliderNode
 {
     private readonly SColliders.BoxCollider _collider = new();
+    private PinValue<Vector3> _size;
+    private ColliderPinSync _sync;
 
     /// <param name="size">Extents of the box in meters. Every dimension must be greater than zero, a zero size box has zero inertia and produces NaN poses.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
@@ -22,9 +25,9 @@ public class BoxColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (_collider.Size != size)
+        if (_size.Changed(size))
             _collider.Size = size;
-        ColliderCommon.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
         return _collider;
     }
 }
@@ -34,6 +37,8 @@ public class BoxColliderNode
 public class SphereColliderNode
 {
     private readonly SColliders.SphereCollider _collider = new();
+    private PinValue<float> _radius;
+    private ColliderPinSync _sync;
 
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
@@ -44,9 +49,9 @@ public class SphereColliderNode
         Vector3 positionLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (_collider.Radius != radius)
+        if (_radius.Changed(radius))
             _collider.Radius = radius;
-        ColliderCommon.Sync(_collider, positionLocal, Quaternion.Identity, mass);
+        _sync.Sync(_collider, positionLocal, Quaternion.Identity, mass);
         return _collider;
     }
 }
@@ -56,6 +61,9 @@ public class SphereColliderNode
 public class CapsuleColliderNode
 {
     private readonly SColliders.CapsuleCollider _collider = new();
+    private PinValue<float> _radius;
+    private PinValue<float> _length;
+    private ColliderPinSync _sync;
 
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="length">Length between the two cap centers (total length = length + 2 * radius).</param>
@@ -70,11 +78,11 @@ public class CapsuleColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (_collider.Radius != radius)
+        if (_radius.Changed(radius))
             _collider.Radius = radius;
-        if (_collider.Length != length)
+        if (_length.Changed(length))
             _collider.Length = length;
-        ColliderCommon.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
         return _collider;
     }
 }
@@ -84,6 +92,9 @@ public class CapsuleColliderNode
 public class CylinderColliderNode
 {
     private readonly SColliders.CylinderCollider _collider = new();
+    private PinValue<float> _radius;
+    private PinValue<float> _length;
+    private ColliderPinSync _sync;
 
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="length">Height of the cylinder.</param>
@@ -98,11 +109,11 @@ public class CylinderColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (_collider.Radius != radius)
+        if (_radius.Changed(radius))
             _collider.Radius = radius;
-        if (_collider.Length != length)
+        if (_length.Changed(length))
             _collider.Length = length;
-        ColliderCommon.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
         return _collider;
     }
 }
@@ -112,6 +123,10 @@ public class CylinderColliderNode
 public class TriangleColliderNode
 {
     private readonly SColliders.TriangleCollider _collider = new();
+    private PinValue<Vector3> _a;
+    private PinValue<Vector3> _b;
+    private PinValue<Vector3> _c;
+    private ColliderPinSync _sync;
 
     /// <param name="a">First vertex relative to the body origin.</param>
     /// <param name="b">Second vertex relative to the body origin.</param>
@@ -128,26 +143,34 @@ public class TriangleColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (_collider.A != a)
+        if (_a.Changed(a))
             _collider.A = a;
-        if (_collider.B != b)
+        if (_b.Changed(b))
             _collider.B = b;
-        if (_collider.C != c)
+        if (_c.Changed(c))
             _collider.C = c;
-        ColliderCommon.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
         return _collider;
     }
 }
 
-internal static class ColliderCommon
+/// <summary>
+/// Per-node pin change detection for the placement properties shared by all shape colliders.
+/// Like PinValue, diffs against the last pin value so external writes are not reverted.
+/// </summary>
+internal struct ColliderPinSync
 {
-    public static void Sync(SColliders.ColliderBase collider, Vector3 positionLocal, Quaternion rotationLocal, float mass)
+    private PinValue<Vector3> _positionLocal;
+    private PinValue<Quaternion> _rotationLocal;
+    private PinValue<float> _mass;
+
+    public void Sync(SColliders.ColliderBase collider, Vector3 positionLocal, Quaternion rotationLocal, float mass)
     {
-        if (collider.PositionLocal != positionLocal)
+        if (_positionLocal.Changed(positionLocal))
             collider.PositionLocal = positionLocal;
-        if (collider.RotationLocal != rotationLocal)
+        if (_rotationLocal.Changed(rotationLocal))
             collider.RotationLocal = rotationLocal;
-        if (collider.Mass != mass)
+        if (_mass.Changed(mass))
             collider.Mass = mass;
     }
 }

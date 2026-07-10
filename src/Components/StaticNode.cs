@@ -19,6 +19,15 @@ public class StaticNode
     private readonly ColliderInput _colliderInput = new();
     private readonly SBepu.StaticComponent _component;
 
+    // Change detection is against the last PIN value, not the component state, so setter
+    // nodes may mutate the component without this node reverting it (see PinValue<T>).
+    private PinValue<SBepu.CollisionLayer> _collisionLayer;
+    private PinValue<float> _springFrequency;
+    private PinValue<float> _springDampingRatio;
+    private PinValue<float> _frictionCoefficient;
+    private PinValue<float> _maximumRecoveryVelocity;
+    private PinValue<SContacts.IContactHandler?> _contactHandler;
+
     public StaticNode()
     {
         BepuSettingsBootstrap.EnsureConfigured();
@@ -50,17 +59,17 @@ public class StaticNode
             _component.Collider = effectiveCollider;
 
         var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
-        if (_component.CollisionLayer != effectiveLayer)
+        if (_collisionLayer.Changed(effectiveLayer))
             _component.CollisionLayer = effectiveLayer;
-        if (_component.SpringFrequency != springFrequency)
+        if (_springFrequency.Changed(springFrequency))
             _component.SpringFrequency = springFrequency;
-        if (_component.SpringDampingRatio != springDampingRatio)
+        if (_springDampingRatio.Changed(springDampingRatio))
             _component.SpringDampingRatio = springDampingRatio;
-        if (_component.FrictionCoefficient != frictionCoefficient)
+        if (_frictionCoefficient.Changed(frictionCoefficient))
             _component.FrictionCoefficient = frictionCoefficient;
-        if (_component.MaximumRecoveryVelocity != maximumRecoveryVelocity)
+        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity))
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
-        if (!ReferenceEquals(_component.ContactEventHandler, contactHandler))
+        if (_contactHandler.Changed(contactHandler))
             _component.ContactEventHandler = contactHandler;
 
         return _component;

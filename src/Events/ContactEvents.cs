@@ -44,6 +44,7 @@ public readonly record struct ContactInfo(
     /// <param name="point">The contact point in world space.</param>
     /// <param name="normal">The contact normal in world space, pointing away from the source.</param>
     /// <param name="depth">Penetration depth at the contact point.</param>
+    /// <param name="contactInfo">The unsplit contact. Hidden pin whose only purpose is to give this node a different signature than the auto generated Split.</param>
     public void Split(
         out SBepu.CollidableComponent? source,
         out SBepu.CollidableComponent? other,
