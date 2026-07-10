@@ -14,6 +14,142 @@
             <param name="info">Human-readable state of the physics integration and, if connected, the component.</param>
             <param name="collidable">Optional: a Body or Static component to diagnose (attachment, collider, pose, sleep state).</param>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.ColliderOperations">
+            <summary>
+            Read and write access to collider shapes, for example from a GetColliders node.
+            Use CastAs (BoxCollider) to narrow a ColliderBase for the shape specific operations.
+            Mutating operations run while Apply is true — connect a Bang for one-shot application.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetColliderInfo(Stride.BepuPhysics.Definitions.Colliders.ColliderBase,VL.Stride.BepuPhysics.ColliderKind@)">
+            <summary>Identifies which shape a collider is, for routing before CastAs.</summary>
+            <param name="collider">The collider shape to identify.</param>
+            <param name="kind">Which shape the collider is. None while nothing is connected.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetColliderSettings(Stride.BepuPhysics.Definitions.Colliders.ColliderBase,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,System.Single@)">
+            <summary>Reads the placement properties shared by all collider shapes.</summary>
+            <param name="collider">The collider shape to read. Outputs the defaults while null.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetBoxColliderSettings(Stride.BepuPhysics.Definitions.Colliders.BoxCollider,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,System.Single@)">
+            <summary>Reads all settings of a box collider, mirroring the BoxCollider node's inputs.</summary>
+            <param name="collider">The box collider to read. Outputs the defaults while null.</param>
+            <param name="size">Extents of the box in meters.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetSphereColliderSettings(Stride.BepuPhysics.Definitions.Colliders.SphereCollider,System.Single@,Stride.Core.Mathematics.Vector3@,System.Single@)">
+            <summary>Reads all settings of a sphere collider, mirroring the SphereCollider node's inputs.</summary>
+            <param name="collider">The sphere collider to read. Outputs the defaults while null.</param>
+            <param name="radius">Radius of the sphere.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetCapsuleColliderSettings(Stride.BepuPhysics.Definitions.Colliders.CapsuleCollider,System.Single@,System.Single@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,System.Single@)">
+            <summary>Reads all settings of a capsule collider, mirroring the CapsuleCollider node's inputs.</summary>
+            <param name="collider">The capsule collider to read. Outputs the defaults while null.</param>
+            <param name="radius">Radius of the capsule.</param>
+            <param name="length">Length between the two cap centers.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetCylinderColliderSettings(Stride.BepuPhysics.Definitions.Colliders.CylinderCollider,System.Single@,System.Single@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,System.Single@)">
+            <summary>Reads all settings of a cylinder collider, mirroring the CylinderCollider node's inputs.</summary>
+            <param name="collider">The cylinder collider to read. Outputs the defaults while null.</param>
+            <param name="radius">Radius of the cylinder.</param>
+            <param name="length">Height of the cylinder.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.GetTriangleColliderSettings(Stride.BepuPhysics.Definitions.Colliders.TriangleCollider,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,System.Single@)">
+            <summary>Reads all settings of a triangle collider, mirroring the TriangleCollider node's inputs.</summary>
+            <param name="collider">The triangle collider to read. Outputs the defaults while null.</param>
+            <param name="a">First vertex relative to the body origin.</param>
+            <param name="b">Second vertex relative to the body origin.</param>
+            <param name="c">Third vertex relative to the body origin.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body.</param>
+            <param name="mass">Relative weight of the shape within its compound.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetColliderSettings(Stride.BepuPhysics.Definitions.Colliders.ColliderBase,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <summary>
+            Writes the placement properties shared by all collider shapes while Apply is true.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The collider shape to write to.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetBoxColliderSettings(Stride.BepuPhysics.Definitions.Colliders.BoxCollider,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <summary>
+            Writes all settings of a box collider while Apply is true, mirroring the BoxCollider node's inputs.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The box collider to write to. Use CastAs (BoxCollider) to narrow a ColliderBase.</param>
+            <param name="size">Extents of the box in meters. Every dimension must be greater than zero, a zero size box has zero inertia and produces NaN poses.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetSphereColliderSettings(Stride.BepuPhysics.Definitions.Colliders.SphereCollider,System.Single,Stride.Core.Mathematics.Vector3,System.Single,System.Boolean)">
+            <summary>
+            Writes all settings of a sphere collider while Apply is true, mirroring the SphereCollider node's inputs.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The sphere collider to write to. Use CastAs (SphereCollider) to narrow a ColliderBase.</param>
+            <param name="radius">Radius of the sphere. Must be greater than zero.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetCapsuleColliderSettings(Stride.BepuPhysics.Definitions.Colliders.CapsuleCollider,System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <summary>
+            Writes all settings of a capsule collider while Apply is true, mirroring the CapsuleCollider node's inputs.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The capsule collider to write to. Use CastAs (CapsuleCollider) to narrow a ColliderBase.</param>
+            <param name="radius">Radius of the capsule. Must be greater than zero.</param>
+            <param name="length">Length between the two cap centers.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetCylinderColliderSettings(Stride.BepuPhysics.Definitions.Colliders.CylinderCollider,System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <summary>
+            Writes all settings of a cylinder collider while Apply is true, mirroring the CylinderCollider node's inputs.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The cylinder collider to write to. Use CastAs (CylinderCollider) to narrow a ColliderBase.</param>
+            <param name="radius">Radius of the cylinder. Must be greater than zero.</param>
+            <param name="length">Height of the cylinder.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ColliderOperations.SetTriangleColliderSettings(Stride.BepuPhysics.Definitions.Colliders.TriangleCollider,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <summary>
+            Writes all settings of a triangle collider while Apply is true, mirroring the TriangleCollider node's inputs.
+            A written property is overwritten again once the owning collider node's pin value changes.
+            </summary>
+            <param name="collider">The triangle collider to write to. Use CastAs (TriangleCollider) to narrow a ColliderBase.</param>
+            <param name="a">First vertex relative to the body origin.</param>
+            <param name="b">Second vertex relative to the body origin.</param>
+            <param name="c">Third vertex relative to the body origin.</param>
+            <param name="positionLocal">Position of the shape relative to the body origin.</param>
+            <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.MeshColliderNode">
             <summary>
             Collision shape from a Stride Model's mesh data. Works with runtime/procedural models.
@@ -21,10 +157,11 @@
             Outputs null while no Model is connected.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.MeshColliderNode.Update(Stride.Rendering.Model,System.Boolean,System.Single)">
+        <member name="M:VL.Stride.BepuPhysics.Colliders.MeshColliderNode.Update(Stride.Rendering.Model,System.Boolean,System.Single,System.Boolean)">
             <param name="model">Stride Model whose mesh data is used for collision. Works with runtime and procedural models.</param>
             <param name="closed">Whether the mesh is treated as a closed volume (enables correct inertia).</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode">
             <summary>
@@ -32,9 +169,10 @@
             Outputs null while no hull data is connected. (Hull baking is not provided by this package.)
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,System.Single)">
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,System.Single,System.Boolean)">
             <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.EmptyColliderNode">
             <summary>
@@ -45,50 +183,61 @@
         <member name="T:VL.Stride.BepuPhysics.Colliders.BoxColliderNode">
             <summary>Box collision shape.</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.BoxColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
-            <param name="size">Extents of the box in meters.</param>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.BoxColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <param name="size">Extents of the box in meters. Every dimension must be greater than zero, a zero size box has zero inertia and produces NaN poses.</param>
             <param name="positionLocal">Position of this shape relative to the body origin.</param>
-            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.SphereColliderNode">
             <summary>Sphere collision shape.</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.SphereColliderNode.Update(System.Single,Stride.Core.Mathematics.Vector3,System.Single)">
-            <param name="radius">Radius of the sphere or capsule shape.</param>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.SphereColliderNode.Update(System.Single,Stride.Core.Mathematics.Vector3,System.Single,System.Boolean)">
+            <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
             <param name="positionLocal">Position of this shape relative to the body origin.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.CapsuleColliderNode">
             <summary>Capsule collision shape (aligned to local Y).</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.CapsuleColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
-            <param name="radius">Radius of the sphere or capsule shape.</param>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.CapsuleColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
             <param name="length">Length between the two cap centers (total length = length + 2 * radius).</param>
             <param name="positionLocal">Position of this shape relative to the body origin.</param>
-            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.CylinderColliderNode">
             <summary>Cylinder collision shape (aligned to local Y).</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.CylinderColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
-            <param name="radius">Radius of the sphere or capsule shape.</param>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.CylinderColliderNode.Update(System.Single,System.Single,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
+            <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
             <param name="length">Height of the cylinder.</param>
             <param name="positionLocal">Position of this shape relative to the body origin.</param>
-            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.TriangleColliderNode">
             <summary>Single-triangle collision shape.</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.TriangleColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single)">
+        <member name="M:VL.Stride.BepuPhysics.Colliders.TriangleColliderNode.Update(Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
             <param name="a">First vertex relative to the body origin.</param>
             <param name="b">Second vertex relative to the body origin.</param>
             <param name="c">Third vertex relative to the body origin.</param>
             <param name="positionLocal">Position of this shape relative to the body origin.</param>
-            <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+            <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.ColliderPinSync">
+            <summary>
+            Per-node pin change detection for the placement properties shared by all shape colliders.
+            Like PinValue, diffs against the last pin value so external writes are not reverted.
+            </summary>
         </member>
         <member name="T:VL.Stride.BepuPhysics.BodyNode">
             <summary>
@@ -98,7 +247,7 @@
             Connect one or more collider shapes; each shape instance can only be used by one body.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
             <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
             <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
@@ -113,6 +262,7 @@
             <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
             <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
             <param name="resetPose">While true, re-teleports the body to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
+            <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <returns>The body component — connect to an Entity's Components input.</returns>
         </member>
@@ -145,14 +295,14 @@
             <summary>Instantly moves the body while Apply is true (no sweep, no collision on the way).</summary>
             <param name="body">The body to move.</param>
             <param name="position">Target position in world space.</param>
-            <param name="orientation">Target orientation in world space.</param>
+            <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="apply">Teleports each frame while true. Connect a Bang. Collisions along the way are ignored.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.BodyOperations.SetTargetPose(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
             <summary>Sets the target pose for a kinematic body while Apply is true — the body moves there with proper sweep.</summary>
             <param name="body">The kinematic body to move.</param>
             <param name="position">Target position in world space.</param>
-            <param name="orientation">Target orientation in world space.</param>
+            <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="apply">Moves towards the target with proper sweep each frame while true — pushes dynamic bodies out of the way.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.BodyOperations.SetLinearVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
@@ -171,7 +321,7 @@
             <summary>Reads the current physics state of a body.</summary>
             <param name="body">The body to read. Outputs defaults while not attached to a simulation.</param>
             <param name="position">Current position in world space.</param>
-            <param name="orientation">Current orientation in world space.</param>
+            <param name="orientation">Current orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="linearVelocity">Current linear velocity in units per second.</param>
             <param name="angularVelocity">Current angular velocity in radians per second.</param>
             <param name="awake">True while the body is actively simulated (not sleeping).</param>
@@ -181,6 +331,77 @@
             <param name="body">The body to wake up.</param>
             <param name="apply">Wakes the body each frame while true.</param>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.CollidableOperations">
+            <summary>
+            Read and write access to collidables obtained from queries or contact events.
+            Use CastAs (BodyComponent) to narrow a CollidableComponent for the Body operations.
+            Mutating operations run while Apply is true — connect a Bang for one-shot application.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.GetCollidableInfo(Stride.BepuPhysics.CollidableComponent,Stride.Engine.Entity@,System.String@,VL.Stride.BepuPhysics.CollidableKind@,System.Boolean@)">
+            <summary>Identifies a collidable: its entity and whether it is a body or a static.</summary>
+            <param name="collidable">The collidable to identify, for example from a RayCast hit or a ContactEvents contact.</param>
+            <param name="entity">The entity the collidable is attached to. Null while not attached or no input.</param>
+            <param name="entityName">Name of that entity. Empty while not attached or no input.</param>
+            <param name="kind">Whether the collidable is a Body, a Static or nothing is connected.</param>
+            <param name="attached">True while the collidable is part of a simulation.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.GetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single@,System.Single@,System.Single@,System.Single@,Stride.BepuPhysics.CollisionLayer@)">
+            <summary>Reads the contact material settings shared by bodies and statics.</summary>
+            <param name="collidable">The collidable to read. Outputs the component defaults while null.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
+            <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.GetBodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean@,System.Single@,System.Boolean@,Stride.BepuPhysics.Definitions.InterpolationMode@,VL.Stride.BepuPhysics.ContinuousDetectionKind@)">
+            <summary>Reads the body specific settings. Use GetBodyState for pose and velocities.</summary>
+            <param name="body">The body to read. Outputs the component defaults while null.</param>
+            <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
+            <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+            <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+            <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
+            <param name="continuousDetection">Continuous collision detection mode of the body.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.SetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single,System.Single,System.Single,System.Single,System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Boolean)">
+            <summary>
+            Writes the contact material settings shared by bodies and statics while Apply is true.
+            A written property is overwritten again once the owning Body or Static node's pin value changes.
+            </summary>
+            <param name="collidable">The collidable to write to, for example from a RayCast hit or a ContactEvents contact.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
+            <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.SetBodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean,System.Single,System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},System.Boolean)">
+            <summary>
+            Writes the body specific settings while Apply is true.
+            A written property is overwritten again once the owning Body node's pin value changes.
+            </summary>
+            <param name="body">The body to write to. Use CastAs (BodyComponent) to narrow a collidable.</param>
+            <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away.</param>
+            <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+            <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+            <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
+            <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.GetCollidersNode">
+            <summary>
+            Reads the collider shapes of a collidable's compound.
+            Connect a RayCast hit's ChildIndex to pick the exact shape that was hit.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.GetCollidersNode.Update(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.Definitions.Colliders.ColliderBase@,System.Int32)">
+            <param name="collidable">The collidable whose shapes are read, for example from a RayCast hit or a ContactEvents contact.</param>
+            <param name="child">The shape at Child Index. Null while the index is out of range. Use CastAs (BoxCollider) to access shape properties.</param>
+            <param name="childIndex">Index of the shape to output on the Child pin. A HitInfo's ChildIndex connects here.</param>
+            <returns>All collider shapes of the collidable's compound. Empty for mesh, empty and unconnected collidables.</returns>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.StaticNode">
             <summary>
             Immovable collision geometry (ground, walls, level geometry).
@@ -188,7 +409,7 @@
             Connect one or more collider shapes; each shape instance can only be used by one collidable.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
             <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
             <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
             <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
@@ -196,6 +417,7 @@
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
             <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
             <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this static.</param>
+            <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <returns>The static component — connect to an Entity's Components input.</returns>
         </member>
@@ -206,8 +428,8 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
-            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+            <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
             <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -246,8 +468,8 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
-            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis.</param>
+            <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
             <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -259,7 +481,7 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="localAxisA">Rotation axis in the local space of body A.</param>
+            <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="targetVelocity">Target angular velocity around the axis in radians per second.</param>
             <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
             <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -272,7 +494,7 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="localAxisA">Rotation axis in the local space of body A.</param>
+            <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="velocityScale">Gear ratio: angular velocity of body B relative to body A around the axis.</param>
             <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
             <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -385,9 +607,9 @@
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-            <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
+            <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
             <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -400,9 +622,9 @@
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-            <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
+            <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localHingeAxisB">Hinge axis in the local space of body B.</param>
+            <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
             <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -414,8 +636,8 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="axisLocalA">Reference axis in the local space of body A.</param>
-            <param name="axisLocalB">Measured axis in the local space of body B.</param>
+            <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+            <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -443,8 +665,8 @@
             <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
             <param name="bodyA">First constrained body (A).</param>
             <param name="bodyB">Second constrained body (B).</param>
-            <param name="localAxisA">Twist axis in the local space of body A.</param>
-            <param name="localAxisB">Twist axis in the local space of body B.</param>
+            <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+            <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="targetVelocity">Target twist velocity in radians per second.</param>
             <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
             <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -489,7 +711,7 @@
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localAxis">Sliding axis in the local space of body A.</param>
+            <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
             <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
@@ -505,7 +727,7 @@
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localAxis">Sliding axis in the local space of body A.</param>
+            <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
             <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
             <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -520,7 +742,7 @@
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane.</param>
+            <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="targetOffset">Distance from the plane the servo drives towards.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -538,7 +760,7 @@
             <param name="bodyB">Second constrained body (B).</param>
             <param name="localOffsetA">Anchor point relative to the center of body A.</param>
             <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-            <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line.</param>
+            <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
             <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
             <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
             <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
@@ -640,15 +862,85 @@
         <member name="F:VL.Stride.BepuPhysics.ContinuousDetectionKind.Continuous">
             <summary>Sweep tests prevent tunneling at higher cost.</summary>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.CollidableKind">
+            <summary>What kind of collidable a CollidableComponent is.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.CollidableKind.None">
+            <summary>No collidable connected.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.CollidableKind.Body">
+            <summary>A dynamic or kinematic body (BodyComponent).</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.CollidableKind.Static">
+            <summary>Immovable collision geometry (StaticComponent).</summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.ColliderKind">
+            <summary>What shape a collider is.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.None">
+            <summary>No collider connected.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.Box">
+            <summary>A BoxCollider.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.Sphere">
+            <summary>A SphereCollider.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.Capsule">
+            <summary>A CapsuleCollider.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.Cylinder">
+            <summary>A CylinderCollider.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.Triangle">
+            <summary>A TriangleCollider.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.ColliderKind.ConvexHull">
+            <summary>A ConvexHullCollider.</summary>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.ContactInfo">
             <summary>
             One contact point between two collidables.
             </summary>
+            <param name="Source">The collidable the contact handler is attached to.</param>
+            <param name="Other">The other collidable involved in the contact.</param>
+            <param name="Point">The contact point in world space.</param>
+            <param name="Normal">The contact normal in world space, pointing away from the source.</param>
+            <param name="Depth">Penetration depth at the contact point.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.ContactInfo.#ctor(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.CollidableComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single)">
             <summary>
             One contact point between two collidables.
             </summary>
+            <param name="Source">The collidable the contact handler is attached to.</param>
+            <param name="Other">The other collidable involved in the contact.</param>
+            <param name="Point">The contact point in world space.</param>
+            <param name="Normal">The contact normal in world space, pointing away from the source.</param>
+            <param name="Depth">Penetration depth at the contact point.</param>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.ContactInfo.Source">
+            <summary>The collidable the contact handler is attached to.</summary>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.ContactInfo.Other">
+            <summary>The other collidable involved in the contact.</summary>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.ContactInfo.Point">
+            <summary>The contact point in world space.</summary>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.ContactInfo.Normal">
+            <summary>The contact normal in world space, pointing away from the source.</summary>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.ContactInfo.Depth">
+            <summary>Penetration depth at the contact point.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.ContactInfo.Split(Stride.BepuPhysics.CollidableComponent@,Stride.BepuPhysics.CollidableComponent@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Single@,VL.Stride.BepuPhysics.ContactInfo@)">
+            <summary>Splits the contact into its parts.</summary>
+            <param name="source">The collidable the contact handler is attached to.</param>
+            <param name="other">The other collidable involved in the contact.</param>
+            <param name="point">The contact point in world space.</param>
+            <param name="normal">The contact normal in world space, pointing away from the source.</param>
+            <param name="depth">Penetration depth at the contact point.</param>
+            <param name="contactInfo">The unsplit contact. Hidden pin whose only purpose is to give this node a different signature than the auto generated Split.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.ContactEventsNode">
             <summary>
@@ -690,10 +982,27 @@
             node-owned CompoundCollider; an explicit ICollider (MeshCollider, EmptyCollider) overrides it.
             </summary>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.PinValue`1">
+            <summary>
+            Change detection against the last pin value instead of the component state, so values
+            written to the component from elsewhere (setter nodes operating on query/contact results)
+            are not reverted while the pin is unchanged. The pin wins again once its value changes.
+            The first call always reports a change so pin defaults initialize the component.
+            </summary>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Queries.QueryOperations">
             <summary>
             Stateless physics queries.
             </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Queries.QueryOperations.Split(System.Nullable{Stride.BepuPhysics.HitInfo},Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Single@,Stride.BepuPhysics.CollidableComponent@,System.Int32@)">
+            <summary>Splits a query hit into its parts.</summary>
+            <param name="input">The hit to split.</param>
+            <param name="point">The position where the intersection occurred, in world space.</param>
+            <param name="normal">The surface normal at the hit, in world space.</param>
+            <param name="distance">The distance along the ray or sweep where the hit occurred.</param>
+            <param name="collidable">The Body or Static component that was hit.</param>
+            <param name="childIndex">Index of the child shape that was hit when the collidable uses a compound collider.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Queries.QueryOperations.RayCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask})">
             <summary>Casts a ray and reports the closest hit.</summary>
@@ -729,8 +1038,8 @@
             <param name="direction">Ray direction in world space (does not need to be normalized).</param>
             <param name="maxDistance">Maximum travel distance of the query.</param>
             <param name="shape">Shape used by the query. Null = Sphere.</param>
-            <param name="radius">Radius of the sphere or capsule shape.</param>
-            <param name="boxSize">Extents of the box shape.</param>
+            <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
+            <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
             <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
             <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
             <param name="enabled">Skips the query and outputs an empty spread when false.</param>
@@ -744,8 +1053,8 @@
             <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
             <param name="position">Center of the test shape in world space.</param>
             <param name="shape">Shape used by the query. Null = Sphere.</param>
-            <param name="radius">Radius of the sphere or capsule shape.</param>
-            <param name="boxSize">Extents of the box shape.</param>
+            <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
+            <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
             <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
             <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
             <param name="enabled">Skips the query and outputs an empty spread when false.</param>
@@ -760,7 +1069,7 @@
             Body/Static components attach to.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationSettingsNode.Update(System.Nullable{Stride.Core.Mathematics.Vector3},System.Single,System.Single,System.Single,System.Double,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Int32,VL.Lib.Collections.Spread{Stride.BepuPhysics.CollisionMask},System.Boolean,System.Int32)">
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationSettingsNode.Update(Stride.Core.Mathematics.Vector3,System.Single,System.Single,System.Single,System.Double,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Int32,VL.Lib.Collections.Spread{Stride.BepuPhysics.CollisionMask},System.Boolean,System.Int32)">
             <param name="gravity">Global gravity applied to all non-kinematic bodies. Null = (0, -9.8, 0).</param>
             <param name="linearDamping">How quickly bodies lose linear velocity over time.</param>
             <param name="angularDamping">How quickly bodies lose angular velocity over time.</param>
