@@ -26,7 +26,7 @@ public class SimulationResetNode
     private bool _lastReset;
 
     /// <param name="capturedBodies">Number of bodies in the current snapshot.</param>
-    /// <param name="simulation">The simulation to snapshot — from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to snapshot, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="capture">Takes a new snapshot of all body poses and velocities. Connect a Bang.</param>
     /// <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang.</param>
     /// <param name="autoCapture">Automatically captures the first frame in which any bodies exist.</param>
