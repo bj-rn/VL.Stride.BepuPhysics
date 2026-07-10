@@ -13,6 +13,27 @@ namespace VL.Stride.BepuPhysics.Queries;
 /// </summary>
 public static class QueryOperations
 {
+    /// <summary>Splits a query hit into its parts.</summary>
+    /// <param name="input">The hit to split.</param>
+    /// <param name="point">The position where the intersection occurred, in world space.</param>
+    /// <param name="normal">The surface normal at the hit, in world space.</param>
+    /// <param name="distance">The distance along the ray or sweep where the hit occurred.</param>
+    /// <param name="collidable">The Body or Static component that was hit.</param>
+    /// <param name="childIndex">Index of the child shape that was hit when the collidable uses a compound collider.</param>
+    public static void Split(SBepu.HitInfo? input,
+        out Vector3 point,
+        out Vector3 normal,
+        out float distance,
+        out SBepu.CollidableComponent? collidable,
+        out int childIndex)
+    {
+        point = input?.Point ?? default;
+        normal = input?.Normal ?? default;
+        distance = input?.Distance ?? default;
+        collidable = input?.Collidable;
+        childIndex = input?.ChildIndex ?? -1;
+    }
+
     /// <summary>Casts a ray and reports the closest hit.</summary>
     /// <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
