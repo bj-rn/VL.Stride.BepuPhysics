@@ -8,6 +8,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 ## Features
 
 - `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu`
+- `Character` component: a walking, jumping physics character (Move / TryJump / GetCharacterState)
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
