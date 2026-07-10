@@ -45,7 +45,7 @@ public class SimulationSettingsNode : IDisposable
     /// <param name="simulationIndex">Which simulation to configure (0 unless using multiple simulations).</param>
     [return: Pin(Name = "Output")]
     public SBepu.BepuSimulation? Update(
-        Vector3? gravity = null,
+        [DefaultValue("1.0, -9.8, 1.0")] Vector3 gravity,
         float linearDamping = 0.05f,
         float angularDamping = 0.05f,
         float timeScale = 1f,
@@ -68,11 +68,9 @@ public class SimulationSettingsNode : IDisposable
             return null;
         var sim = _config.BepuSimulations[simulationIndex];
 
-        // null = engine default. NOTE: [DefaultValue] strings with decimals ("-9.8") fail to
-        // parse on some locales, silently zeroing the pin — hence the nullable pattern.
-        var effectiveGravity = gravity ?? new Vector3(0f, -9.8f, 0f);
-        if (sim.PoseGravity != effectiveGravity)
-            sim.PoseGravity = effectiveGravity;
+
+        if (sim.PoseGravity != gravity)
+            sim.PoseGravity = gravity;
         if (sim.PoseLinearDamping != linearDamping)
             sim.PoseLinearDamping = linearDamping;
         if (sim.PoseAngularDamping != angularDamping)
