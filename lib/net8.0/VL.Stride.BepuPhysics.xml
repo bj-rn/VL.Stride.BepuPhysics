@@ -331,6 +331,75 @@
             <param name="body">The body to wake up.</param>
             <param name="apply">Wakes the body each frame while true.</param>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.CharacterNode">
+            <summary>
+            A physics driven character: a dynamic body that walks and jumps.
+            Connect the output to an Entity (like a ModelComponent); a capsule is the typical collider.
+            Drive it with the Move and TryJump operations and read state with GetCharacterState.
+            The character handles its own contact events for ground detection, therefore it has no
+            ContactHandler pin. Use Trigger or ContactEvents on the collidables it interacts with instead.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+            <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
+            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
+            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
+            <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
+            <param name="collisionLayer">The collision layer of this character (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz, how hard contacts push overlapping bodies apart.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
+            <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate. Default -1 keeps the character always awake so it reacts to Move immediately.</param>
+            <param name="gravity">Whether gravity affects this character. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+            <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast characters that would tunnel through thin geometry.</param>
+            <param name="teleportTo">Places the character at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
+            <param name="resetPose">While true, re-teleports the character to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
+            <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
+            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
+            <returns>The character component, connect to an Entity's Components input.</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.CharacterOperations">
+            <summary>
+            Operations on a Character component. The Character is also a Body, so the Body operations
+            (impulses, Teleport, GetBodyState, ...) work on it as well.
+            Mutating operations run while Apply is true.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterOperations.Move(Stride.BepuPhysics.CharacterComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Sets the character's movement velocity from Direction times its Speed while Apply is true.</summary>
+            <param name="character">The character to move.</param>
+            <param name="direction">Movement direction in world space. The length scales the speed (2 = twice as fast). The last velocity persists, write a zero direction to stop.</param>
+            <param name="apply">Applies the movement each frame while true. Hold true while driving the character with an input direction.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterOperations.TryJump(Stride.BepuPhysics.CharacterComponent,System.Boolean)">
+            <summary>Queues a jump for the next physics tick while Apply is true. Fails silently when the character is not grounded.</summary>
+            <param name="character">The character that should jump.</param>
+            <param name="apply">Tries to jump each frame while true. Connect a Bang for a single jump.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterOperations.GetCharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single@,System.Single@)">
+            <summary>Reads the character specific settings, mirroring the Character node's inputs. Use GetCollidableInfo for identity and GetBodySettings for the body settings.</summary>
+            <param name="character">The character to read. Outputs the defaults while null.</param>
+            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
+            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterOperations.SetCharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Writes the character specific settings while Apply is true.
+            A written property is overwritten again once the owning Character node's pin value changes.
+            </summary>
+            <param name="character">The character to write to.</param>
+            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
+            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CharacterOperations.GetCharacterState(Stride.BepuPhysics.CharacterComponent,System.Boolean@,System.Boolean@,Stride.Core.Mathematics.Vector3@)">
+            <summary>Reads the character specific state. Use GetBodyState for pose and actual body velocities.</summary>
+            <param name="character">The character to read. Outputs defaults while not attached to a simulation.</param>
+            <param name="isGrounded">True while the character stands on a support surface.</param>
+            <param name="isJumping">True while a jump is in progress.</param>
+            <param name="movementVelocity">The desired movement velocity set via Move, in world space.</param>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.CollidableOperations">
             <summary>
             Read and write access to collidables obtained from queries or contact events.
