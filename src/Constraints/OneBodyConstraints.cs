@@ -64,7 +64,6 @@ public class OneBodyAngularServoNode
         float servoMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (targetOrientation == default) targetOrientation = Quaternion.Identity;
         if (!ReferenceEquals(_c.A, body)) _c.A = body;
         if (_c.TargetOrientation != targetOrientation) _c.TargetOrientation = targetOrientation;
         if (_c.SpringFrequency != springFrequency) _c.SpringFrequency = springFrequency;

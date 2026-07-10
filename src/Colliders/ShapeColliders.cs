@@ -11,10 +11,10 @@ public class BoxColliderNode
 {
     private readonly SColliders.BoxCollider _collider = new();
 
-    /// <param name="size">Extents of the box in meters.</param>
+    /// <param name="size">Extents of the box in meters. Every dimension must be greater than zero, a zero size box has zero inertia and produces NaN poses.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
-    /// <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.BoxCollider Update(
         [DefaultValue("1.0, 1.0, 1.0")] Vector3 size,
@@ -22,15 +22,6 @@ public class BoxColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        // A zero-size box has zero inertia (NaN poses under load); treat it as the 1m default.
-        if (size == default)
-            size = Vector3.One;
-        // An all-zero quaternion is never valid input; treat it as identity.
-        if (rotationLocal == default)
-            rotationLocal = Quaternion.Identity;
-        if (mass == 0f)
-            mass = 1f;
-
         if (_collider.Size != size)
             _collider.Size = size;
         ColliderCommon.Sync(_collider, positionLocal, rotationLocal, mass);
@@ -44,20 +35,15 @@ public class SphereColliderNode
 {
     private readonly SColliders.SphereCollider _collider = new();
 
-    /// <param name="radius">Radius of the sphere or capsule shape.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.SphereCollider Update(
         [DefaultValue(0.5f)] float radius,
         Vector3 positionLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (radius == 0f)
-            radius = 0.5f;
-        if (mass == 0f)
-            mass = 1f;
-
         if (_collider.Radius != radius)
             _collider.Radius = radius;
         ColliderCommon.Sync(_collider, positionLocal, Quaternion.Identity, mass);
@@ -71,11 +57,11 @@ public class CapsuleColliderNode
 {
     private readonly SColliders.CapsuleCollider _collider = new();
 
-    /// <param name="radius">Radius of the sphere or capsule shape.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="length">Length between the two cap centers (total length = length + 2 * radius).</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
-    /// <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.CapsuleCollider Update(
         [DefaultValue(0.5f)] float radius,
@@ -84,13 +70,6 @@ public class CapsuleColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (radius == 0f)
-            radius = 0.5f;
-        if (rotationLocal == default)
-            rotationLocal = Quaternion.Identity;
-        if (mass == 0f)
-            mass = 1f;
-
         if (_collider.Radius != radius)
             _collider.Radius = radius;
         if (_collider.Length != length)
@@ -106,11 +85,11 @@ public class CylinderColliderNode
 {
     private readonly SColliders.CylinderCollider _collider = new();
 
-    /// <param name="radius">Radius of the sphere or capsule shape.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="length">Height of the cylinder.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
-    /// <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.CylinderCollider Update(
         [DefaultValue(0.5f)] float radius,
@@ -119,13 +98,6 @@ public class CylinderColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (radius == 0f)
-            radius = 0.5f;
-        if (rotationLocal == default)
-            rotationLocal = Quaternion.Identity;
-        if (mass == 0f)
-            mass = 1f;
-
         if (_collider.Radius != radius)
             _collider.Radius = radius;
         if (_collider.Length != length)
@@ -145,8 +117,8 @@ public class TriangleColliderNode
     /// <param name="b">Second vertex relative to the body origin.</param>
     /// <param name="c">Third vertex relative to the body origin.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
-    /// <param name="rotationLocal">Rotation of this shape relative to the body.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.TriangleCollider Update(
         Vector3 a,
@@ -156,11 +128,6 @@ public class TriangleColliderNode
         Quaternion rotationLocal,
         [DefaultValue(1f)] float mass)
     {
-        if (rotationLocal == default)
-            rotationLocal = Quaternion.Identity;
-        if (mass == 0f)
-            mass = 1f;
-
         if (_collider.A != a)
             _collider.A = a;
         if (_collider.B != b)

@@ -17,7 +17,7 @@ public class MeshColliderNode
 
     /// <param name="model">Stride Model whose mesh data is used for collision. Works with runtime and procedural models.</param>
     /// <param name="closed">Whether the mesh is treated as a closed volume (enables correct inertia).</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.ICollider? Update(
         SModel? model = null,
@@ -47,7 +47,7 @@ public class ConvexHullColliderNode
     private readonly SColliders.ConvexHullCollider _collider = new() { Hull = null! };
 
     /// <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
-    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass.</param>
+    /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     [return: Pin(Name = "Output")]
     public SColliders.ConvexHullCollider? Update(
         SDefinitions.DecomposedHulls? hull = null,

@@ -17,7 +17,7 @@ public class LinearAxisLimitNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localAxis">Sliding axis in the local space of body A.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
     /// <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
@@ -37,7 +37,6 @@ public class LinearAxisLimitNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localAxis == default) localAxis = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;
@@ -64,7 +63,7 @@ public class LinearAxisMotorNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localAxis">Sliding axis in the local space of body A.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -82,7 +81,6 @@ public class LinearAxisMotorNode
         float motorMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localAxis == default) localAxis = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;
@@ -108,7 +106,7 @@ public class LinearAxisServoNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane.</param>
+    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetOffset">Distance from the plane the servo drives towards.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -132,7 +130,6 @@ public class LinearAxisServoNode
         float servoMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localPlaneNormal == default) localPlaneNormal = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;
@@ -161,7 +158,7 @@ public class PointOnLineServoNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line.</param>
+    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
@@ -183,7 +180,6 @@ public class PointOnLineServoNode
         float servoMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localDirection == default) localDirection = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;

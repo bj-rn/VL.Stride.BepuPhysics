@@ -16,9 +16,9 @@ public class HingeNode
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-    /// <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -35,8 +35,6 @@ public class HingeNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localHingeAxisA == default) localHingeAxisA = Vector3.UnitY;
-        if (localHingeAxisB == default) localHingeAxisB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;
@@ -61,9 +59,9 @@ public class SwivelHingeNode
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -80,8 +78,6 @@ public class SwivelHingeNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localSwivelAxisA == default) localSwivelAxisA = Vector3.UnitY;
-        if (localHingeAxisB == default) localHingeAxisB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffsetA != localOffsetA) _c.LocalOffsetA = localOffsetA;
@@ -105,8 +101,8 @@ public class SwingLimitNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="axisLocalA">Reference axis in the local space of body A.</param>
-    /// <param name="axisLocalB">Measured axis in the local space of body B.</param>
+    /// <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -123,8 +119,6 @@ public class SwingLimitNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (axisLocalA == default) axisLocalA = Vector3.UnitY;
-        if (axisLocalB == default) axisLocalB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.AxisLocalA != axisLocalA) _c.AxisLocalA = axisLocalA;
@@ -167,8 +161,6 @@ public class TwistLimitNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localBasisA == default) localBasisA = Quaternion.Identity;
-        if (localBasisB == default) localBasisB = Quaternion.Identity;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalBasisA != localBasisA) _c.LocalBasisA = localBasisA;
@@ -192,8 +184,8 @@ public class TwistMotorNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localAxisA">Twist axis in the local space of body A.</param>
-    /// <param name="localAxisB">Twist axis in the local space of body B.</param>
+    /// <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetVelocity">Target twist velocity in radians per second.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -210,8 +202,6 @@ public class TwistMotorNode
         float motorMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localAxisA == default) localAxisA = Vector3.UnitY;
-        if (localAxisB == default) localAxisB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalAxisA != localAxisA) _c.LocalAxisA = localAxisA;
@@ -258,8 +248,6 @@ public class TwistServoNode
         float servoMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localBasisA == default) localBasisA = Quaternion.Identity;
-        if (localBasisB == default) localBasisB = Quaternion.Identity;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalBasisA != localBasisA) _c.LocalBasisA = localBasisA;
@@ -301,7 +289,6 @@ public class WeldNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localOrientation == default) localOrientation = Quaternion.Identity;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalOffset != localOffset) _c.LocalOffset = localOffset;

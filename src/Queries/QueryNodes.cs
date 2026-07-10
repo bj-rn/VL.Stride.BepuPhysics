@@ -99,8 +99,8 @@ public class SweepCastNode
     /// <param name="direction">Ray direction in world space (does not need to be normalized).</param>
     /// <param name="maxDistance">Maximum travel distance of the query.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
-    /// <param name="radius">Radius of the sphere or capsule shape.</param>
-    /// <param name="boxSize">Extents of the box shape.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
+    /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
@@ -120,8 +120,6 @@ public class SweepCastNode
         if (!enabled || simulation is null || direction == Vector3.Zero)
             return _result = Spread<SBepu.HitInfo>.Empty;
 
-        if (boxSize == default)
-            boxSize = Vector3.One;
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
         _buffer.Clear();
@@ -156,8 +154,8 @@ public class OverlapNode
     /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
     /// <param name="position">Center of the test shape in world space.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
-    /// <param name="radius">Radius of the sphere or capsule shape.</param>
-    /// <param name="boxSize">Extents of the box shape.</param>
+    /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
+    /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
@@ -175,8 +173,6 @@ public class OverlapNode
         if (!enabled || simulation is null)
             return _result = Spread<SBepu.CollidableComponent>.Empty;
 
-        if (boxSize == default)
-            boxSize = Vector3.One;
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
         _buffer.Clear();

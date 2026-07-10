@@ -51,7 +51,7 @@ public static class BodyOperations
     /// <summary>Instantly moves the body while Apply is true (no sweep, no collision on the way).</summary>
     /// <param name="body">The body to move.</param>
     /// <param name="position">Target position in world space.</param>
-    /// <param name="orientation">Target orientation in world space.</param>
+    /// <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="apply">Teleports each frame while true. Connect a Bang. Collisions along the way are ignored.</param>
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? Teleport(SBepu.BodyComponent? body, Vector3 position,
@@ -59,8 +59,6 @@ public static class BodyOperations
     {
         if (apply && body is not null)
         {
-            if (orientation == default)
-                orientation = Quaternion.Identity;
             body.Teleport(position, orientation);
         }
         return body;
@@ -69,7 +67,7 @@ public static class BodyOperations
     /// <summary>Sets the target pose for a kinematic body while Apply is true — the body moves there with proper sweep.</summary>
     /// <param name="body">The kinematic body to move.</param>
     /// <param name="position">Target position in world space.</param>
-    /// <param name="orientation">Target orientation in world space.</param>
+    /// <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="apply">Moves towards the target with proper sweep each frame while true — pushes dynamic bodies out of the way.</param>
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? SetTargetPose(SBepu.BodyComponent? body, Vector3 position,
@@ -77,8 +75,6 @@ public static class BodyOperations
     {
         if (apply && body is not null)
         {
-            if (orientation == default)
-                orientation = Quaternion.Identity;
             body.SetTargetPose(position, orientation);
         }
         return body;
@@ -111,7 +107,7 @@ public static class BodyOperations
     /// <summary>Reads the current physics state of a body.</summary>
     /// <param name="body">The body to read. Outputs defaults while not attached to a simulation.</param>
     /// <param name="position">Current position in world space.</param>
-    /// <param name="orientation">Current orientation in world space.</param>
+    /// <param name="orientation">Current orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="linearVelocity">Current linear velocity in units per second.</param>
     /// <param name="angularVelocity">Current angular velocity in radians per second.</param>
     /// <param name="awake">True while the body is actively simulated (not sleeping).</param>

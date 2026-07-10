@@ -15,8 +15,8 @@ public class AngularHingeNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localHingeAxisA">Hinge axis in the local space of body A.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -31,8 +31,6 @@ public class AngularHingeNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localHingeAxisA == default) localHingeAxisA = Vector3.UnitY;
-        if (localHingeAxisB == default) localHingeAxisB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalHingeAxisA != localHingeAxisA) _c.LocalHingeAxisA = localHingeAxisA;
@@ -108,7 +106,6 @@ public class AngularServoNode
         float servoMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (targetRelativeRotationLocalA == default) targetRelativeRotationLocalA = Quaternion.Identity;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.TargetRelativeRotationLocalA != targetRelativeRotationLocalA) _c.TargetRelativeRotationLocalA = targetRelativeRotationLocalA;
@@ -132,8 +129,8 @@ public class AngularSwivelHingeNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -148,8 +145,6 @@ public class AngularSwivelHingeNode
         float springDampingRatio = 5f,
         bool enabled = true)
     {
-        if (localSwivelAxisA == default) localSwivelAxisA = Vector3.UnitY;
-        if (localHingeAxisB == default) localHingeAxisB = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalSwivelAxisA != localSwivelAxisA) _c.LocalSwivelAxisA = localSwivelAxisA;
@@ -171,7 +166,7 @@ public class AngularAxisMotorNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localAxisA">Rotation axis in the local space of body A.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetVelocity">Target angular velocity around the axis in radians per second.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -187,7 +182,6 @@ public class AngularAxisMotorNode
         float motorMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localAxisA == default) localAxisA = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalAxisA != localAxisA) _c.LocalAxisA = localAxisA;
@@ -209,7 +203,7 @@ public class AngularAxisGearMotorNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localAxisA">Rotation axis in the local space of body A.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
     /// <param name="velocityScale">Gear ratio: angular velocity of body B relative to body A around the axis.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -225,7 +219,6 @@ public class AngularAxisGearMotorNode
         float motorMaximumForce = 1000f,
         bool enabled = true)
     {
-        if (localAxisA == default) localAxisA = Vector3.UnitY;
         if (!ReferenceEquals(_c.A, bodyA)) _c.A = bodyA;
         if (!ReferenceEquals(_c.B, bodyB)) _c.B = bodyB;
         if (_c.LocalAxisA != localAxisA) _c.LocalAxisA = localAxisA;
