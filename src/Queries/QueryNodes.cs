@@ -39,7 +39,7 @@ public static class QueryOperations
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the ray hit anything within Max Distance.</param>
     /// <param name="origin">Ray start position in world space.</param>
-    /// <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+    /// <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the ray.</param>
     /// <param name="collisionMask">Which collision layers the ray tests against. Null = Everything.</param>
     public static void RayCast(
@@ -57,6 +57,9 @@ public static class QueryOperations
             didHit = false;
             return;
         }
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
         didHit = simulation.RayCast(origin, direction, maxDistance, out hit, collisionMask ?? SBepu.CollisionMask.Everything);
     }
 
@@ -65,7 +68,7 @@ public static class QueryOperations
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the sweep hit anything within Max Distance.</param>
     /// <param name="origin">Sweep start position in world space.</param>
-    /// <param name="direction">Sweep direction in world space (does not need to be normalized).</param>
+    /// <param name="direction">Sweep direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the sweep.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
@@ -94,6 +97,9 @@ public static class QueryOperations
             return;
         }
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
         var pose = new SDefinitions.RigidPose(origin, orientation);
         var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
         switch (shape ?? SweepShape.Sphere)
@@ -127,7 +133,7 @@ public class RayCastPenetratingNode
 
     /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
     /// <param name="origin">Ray start position in world space.</param>
-    /// <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+    /// <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the query.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
@@ -143,6 +149,9 @@ public class RayCastPenetratingNode
         if (!enabled || simulation is null || direction == Vector3.Zero)
             return _result = Spread<SBepu.HitInfo>.Empty;
 
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
         _buffer.Clear();
         simulation.RayCastPenetrating(origin, direction, maxDistance, _buffer, collisionMask ?? SBepu.CollisionMask.Everything);
         return _result = ToSpread(_buffer, _builder, _result);
@@ -170,8 +179,8 @@ public class SweepCastPenetratingNode
     private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
 
     /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
-    /// <param name="origin">Ray start position in world space.</param>
-    /// <param name="direction">Ray direction in world space (does not need to be normalized).</param>
+    /// <param name="origin">Sweep start position in world space.</param>
+    /// <param name="direction">Sweep direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the query.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
@@ -199,6 +208,9 @@ public class SweepCastPenetratingNode
 
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
         _buffer.Clear();
         var pose = new SDefinitions.RigidPose(origin, orientation);
         var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
