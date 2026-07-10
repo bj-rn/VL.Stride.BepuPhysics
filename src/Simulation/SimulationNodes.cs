@@ -16,6 +16,8 @@ namespace VL.Stride.BepuPhysics.Simulation;
 /// Configures the Bepu physics simulation (gravity, timing, solver, collision matrix)
 /// and outputs it for use with query nodes. Uses the same lazily-created simulation the
 /// Body/Static components attach to.
+/// Use only ONE SimulationSettings node per simulation — several instances write to the
+/// same global state and fight each other. To merely read the simulation, use GetSimulation.
 /// </summary>
 [ProcessNode(Name = "SimulationSettings")]
 public class SimulationSettingsNode : IDisposable
@@ -23,12 +25,13 @@ public class SimulationSettingsNode : IDisposable
     private readonly IResourceHandle<Game> _gameHandle = AppHost.Current.Services.GetGameHandle();
     private SBepu.BepuConfiguration? _config;
     private object? _lastMatrix = new(); // sentinel so a connected matrix is applied on first frame
-    // Shadow the solver pins: BepuSimulation itself rewrites Solver.SubstepCount during its
-    // soft-start window (boost ×factor, then divide back), so we must only write when the
-    // USER changes the pin — comparing against the live solver value fights the engine
-    // and corrupts the soft-start restore (SubstepCount 1/4 = 0 → ArgumentException).
-    private int _lastVelocityIterations = 8;
-    private int _lastSubSteps = 1;
+    // Shadow the solver pins against the last PIN value: BepuSimulation itself rewrites
+    // Solver.SubstepCount during its soft-start window (boost ×factor, then divide back),
+    // so diffing against the live solver value fights the engine and corrupts the soft-start
+    // restore (SubstepCount 1/4 = 0 → ArgumentException). PinValue reports the first call as
+    // a change, so the pins are authoritative from the first frame like every other pin here.
+    private PinValue<int> _velocityIterations;
+    private PinValue<int> _subSteps;
 
     /// <param name="gravity">Global gravity applied to all non-kinematic bodies. Null = (0, -9.8, 0).</param>
     /// <param name="linearDamping">How quickly bodies lose linear velocity over time.</param>
@@ -90,14 +93,10 @@ public class SimulationSettingsNode : IDisposable
 
         // SolverIteration/SolverSubStep are init-only on the Stride wrapper,
         // but Bepu's Solver exposes them mutable — apply live through it (on pin change only).
-        if (solverVelocityIterations != _lastVelocityIterations && solverVelocityIterations > 0)
-        {
-            _lastVelocityIterations = solverVelocityIterations;
+        if (_velocityIterations.Changed(solverVelocityIterations) && solverVelocityIterations > 0)
             sim.Simulation.Solver.VelocityIterationCount = solverVelocityIterations;
-        }
-        if (solverSubSteps != _lastSubSteps && solverSubSteps > 0)
+        if (_subSteps.Changed(solverSubSteps) && solverSubSteps > 0)
         {
-            _lastSubSteps = solverSubSteps;
             sim.Simulation.Solver.SubstepCount = solverSubSteps;
             // Restart the soft-start window so the engine's boost/restore math stays consistent.
             sim.ResetSoftStart();
