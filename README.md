@@ -23,9 +23,27 @@ nuget install VL.Stride.BepuPhysics -prerelease
 
 All runtime dependencies (Stride.BepuPhysics, BepuPhysics, BepuUtilities) resolve
 automatically. The `-prerelease` flag is required because BepuPhysics only exists as a
-prerelease package on nuget.org. The package rides on the Stride version bundled with
-vvvv, the pinned `Stride.BepuPhysics` version must match it (vvvv gamma 7.x ships Stride
-**4.2.1.2487**, check the About dialog).
+prerelease package on nuget.org.
+
+## Compatibility
+
+The package rides on the Stride version bundled with vvvv, the pinned
+`Stride.BepuPhysics` version must match it exactly (check the About dialog in vvvv).
+
+| vvvv gamma | Stride     | VL.Stride.BepuPhysics |
+|------------|------------|-----------------------|
+| 7.x        | 4.2.1.2487 | 0.2.x                 |
+
+When a new vvvv release updates the bundled Stride version, this package needs a
+matching release:
+
+1. Check the Stride version of the new vvvv (About dialog).
+2. Bump `StrideVersion` (and `VLVersion` if vvvv changed too) in `Directory.Packages.props`.
+3. Update the exact pins in `deployment/VL.Stride.BepuPhysics.nuspec`: the
+   `Stride.BepuPhysics` version and the `BepuPhysics` beta it depends on
+   (see the dependency list of the Stride.BepuPhysics package on nuget.org).
+4. Rebuild, run the patch verification (see Testing), bump the package version in the
+   nuspec, add a row to this table and release.
 
 ## Quick start
 
