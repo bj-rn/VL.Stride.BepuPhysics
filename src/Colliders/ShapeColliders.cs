@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Stride.Core.Mathematics;
 using VL.Core.Import;
+using VL.Model;
 using VL.Stride.BepuPhysics.Internal;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 
@@ -18,16 +19,18 @@ public class BoxColliderNode
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.BoxCollider Update(
         [DefaultValue("1.0, 1.0, 1.0")] Vector3 size,
         Vector3 positionLocal,
         Quaternion rotationLocal,
-        [DefaultValue(1f)] float mass)
+        [DefaultValue(1f)] float mass,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
-        if (_size.Changed(size))
+        if (_size.Changed(size) | reapplyInputs)
             _collider.Size = size;
-        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass, reapplyInputs);
         return _collider;
     }
 }
@@ -43,15 +46,17 @@ public class SphereColliderNode
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.SphereCollider Update(
         [DefaultValue(0.5f)] float radius,
         Vector3 positionLocal,
-        [DefaultValue(1f)] float mass)
+        [DefaultValue(1f)] float mass,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
-        if (_radius.Changed(radius))
+        if (_radius.Changed(radius) | reapplyInputs)
             _collider.Radius = radius;
-        _sync.Sync(_collider, positionLocal, Quaternion.Identity, mass);
+        _sync.Sync(_collider, positionLocal, Quaternion.Identity, mass, reapplyInputs);
         return _collider;
     }
 }
@@ -70,19 +75,21 @@ public class CapsuleColliderNode
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.CapsuleCollider Update(
         [DefaultValue(0.5f)] float radius,
         [DefaultValue(1f)] float length,
         Vector3 positionLocal,
         Quaternion rotationLocal,
-        [DefaultValue(1f)] float mass)
+        [DefaultValue(1f)] float mass,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
-        if (_radius.Changed(radius))
+        if (_radius.Changed(radius) | reapplyInputs)
             _collider.Radius = radius;
-        if (_length.Changed(length))
+        if (_length.Changed(length) | reapplyInputs)
             _collider.Length = length;
-        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass, reapplyInputs);
         return _collider;
     }
 }
@@ -101,19 +108,21 @@ public class CylinderColliderNode
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.CylinderCollider Update(
         [DefaultValue(0.5f)] float radius,
         [DefaultValue(1f)] float length,
         Vector3 positionLocal,
         Quaternion rotationLocal,
-        [DefaultValue(1f)] float mass)
+        [DefaultValue(1f)] float mass,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
-        if (_radius.Changed(radius))
+        if (_radius.Changed(radius) | reapplyInputs)
             _collider.Radius = radius;
-        if (_length.Changed(length))
+        if (_length.Changed(length) | reapplyInputs)
             _collider.Length = length;
-        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass, reapplyInputs);
         return _collider;
     }
 }
@@ -134,6 +143,7 @@ public class TriangleColliderNode
     /// <param name="positionLocal">Position of this shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.TriangleCollider Update(
         Vector3 a,
@@ -141,15 +151,16 @@ public class TriangleColliderNode
         Vector3 c,
         Vector3 positionLocal,
         Quaternion rotationLocal,
-        [DefaultValue(1f)] float mass)
+        [DefaultValue(1f)] float mass,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
-        if (_a.Changed(a))
+        if (_a.Changed(a) | reapplyInputs)
             _collider.A = a;
-        if (_b.Changed(b))
+        if (_b.Changed(b) | reapplyInputs)
             _collider.B = b;
-        if (_c.Changed(c))
+        if (_c.Changed(c) | reapplyInputs)
             _collider.C = c;
-        _sync.Sync(_collider, positionLocal, rotationLocal, mass);
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass, reapplyInputs);
         return _collider;
     }
 }
@@ -164,13 +175,14 @@ internal struct ColliderPinSync
     private PinValue<Quaternion> _rotationLocal;
     private PinValue<float> _mass;
 
-    public void Sync(SColliders.ColliderBase collider, Vector3 positionLocal, Quaternion rotationLocal, float mass)
+    public void Sync(SColliders.ColliderBase collider, Vector3 positionLocal, Quaternion rotationLocal, float mass, bool force = false)
     {
-        if (_positionLocal.Changed(positionLocal))
+        // Non-short-circuit | so the shadow fields update even while force is true.
+        if (_positionLocal.Changed(positionLocal) | force)
             collider.PositionLocal = positionLocal;
-        if (_rotationLocal.Changed(rotationLocal))
+        if (_rotationLocal.Changed(rotationLocal) | force)
             collider.RotationLocal = rotationLocal;
-        if (_mass.Changed(mass))
+        if (_mass.Changed(mass) | force)
             collider.Mass = mass;
     }
 }

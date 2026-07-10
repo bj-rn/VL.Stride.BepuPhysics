@@ -62,6 +62,7 @@ public class BodyNode
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
     /// <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
     /// <param name="resetPose">While true, re-teleports the body to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
     /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
     /// <returns>The body component — connect to an Entity's Components input.</returns>
     [return: Pin(Name = "Output")]
@@ -80,6 +81,7 @@ public class BodyNode
         SContacts.IContactHandler? contactHandler = null,
         Matrix? teleportTo = null,
         bool resetPose = false,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false,
         [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null)
     {
         var effectiveCollider = _colliderInput.Resolve(colliders, colliderOverride);
@@ -90,28 +92,29 @@ public class BodyNode
         var effectiveInterpolation = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
         var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
 
-        if (_kinematic.Changed(kinematic))
+        // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
+        if (_kinematic.Changed(kinematic) | reapplyInputs)
             _component.Kinematic = kinematic;
-        if (_interpolation.Changed(effectiveInterpolation))
+        if (_interpolation.Changed(effectiveInterpolation) | reapplyInputs)
             _component.InterpolationMode = effectiveInterpolation;
-        if (_collisionLayer.Changed(effectiveLayer))
+        if (_collisionLayer.Changed(effectiveLayer) | reapplyInputs)
             _component.CollisionLayer = effectiveLayer;
-        if (_springFrequency.Changed(springFrequency))
+        if (_springFrequency.Changed(springFrequency) | reapplyInputs)
             _component.SpringFrequency = springFrequency;
-        if (_springDampingRatio.Changed(springDampingRatio))
+        if (_springDampingRatio.Changed(springDampingRatio) | reapplyInputs)
             _component.SpringDampingRatio = springDampingRatio;
-        if (_frictionCoefficient.Changed(frictionCoefficient))
+        if (_frictionCoefficient.Changed(frictionCoefficient) | reapplyInputs)
             _component.FrictionCoefficient = frictionCoefficient;
-        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity))
+        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity) | reapplyInputs)
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
-        if (_sleepThreshold.Changed(sleepThreshold))
+        if (_sleepThreshold.Changed(sleepThreshold) | reapplyInputs)
             _component.SleepThreshold = sleepThreshold;
-        if (_gravity.Changed(gravity))
+        if (_gravity.Changed(gravity) | reapplyInputs)
             _component.Gravity = gravity;
         var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
-        if (_continuousDetection.Changed(detectionMode))
+        if (_continuousDetection.Changed(detectionMode) | reapplyInputs)
             _component.ContinuousDetectionMode = detectionMode;
-        if (_contactHandler.Changed(contactHandler))
+        if (_contactHandler.Changed(contactHandler) | reapplyInputs)
             _component.ContactEventHandler = contactHandler;
 
         // Places the body whenever the connected matrix CHANGES — a constant matrix therefore

@@ -1,4 +1,5 @@
 using VL.Core.Import;
+using VL.Model;
 using VL.Stride.BepuPhysics.Internal;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
@@ -22,20 +23,23 @@ public class MeshColliderNode
     /// <param name="model">Stride Model whose mesh data is used for collision. Works with runtime and procedural models.</param>
     /// <param name="closed">Whether the mesh is treated as a closed volume (enables correct inertia).</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.ICollider? Update(
         SModel? model = null,
         bool closed = true,
-        float mass = 1f)
+        float mass = 1f,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
         if (model is null)
             return null;
 
-        if (_model.Changed(model))
+        // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
+        if (_model.Changed(model) | reapplyInputs)
             _collider.Model = model;
-        if (_closed.Changed(closed))
+        if (_closed.Changed(closed) | reapplyInputs)
             _collider.Closed = closed;
-        if (_mass.Changed(mass))
+        if (_mass.Changed(mass) | reapplyInputs)
             _collider.Mass = mass;
         return _collider;
     }
@@ -54,17 +58,20 @@ public class ConvexHullColliderNode
 
     /// <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.ConvexHullCollider? Update(
         SDefinitions.DecomposedHulls? hull = null,
-        float mass = 1f)
+        float mass = 1f,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
         if (hull is null)
             return null;
 
-        if (_hull.Changed(hull))
+        // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
+        if (_hull.Changed(hull) | reapplyInputs)
             _collider.Hull = hull;
-        if (_mass.Changed(mass))
+        if (_mass.Changed(mass) | reapplyInputs)
             _collider.Mass = mass;
         return _collider;
     }

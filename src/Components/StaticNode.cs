@@ -41,6 +41,7 @@ public class StaticNode
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this static.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
     /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
     /// <returns>The static component — connect to an Entity's Components input.</returns>
     [return: Pin(Name = "Output")]
@@ -52,6 +53,7 @@ public class StaticNode
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
         SContacts.IContactHandler? contactHandler = null,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false,
         [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null)
     {
         var effectiveCollider = _colliderInput.Resolve(colliders, colliderOverride);
@@ -59,17 +61,18 @@ public class StaticNode
             _component.Collider = effectiveCollider;
 
         var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
-        if (_collisionLayer.Changed(effectiveLayer))
+        // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
+        if (_collisionLayer.Changed(effectiveLayer) | reapplyInputs)
             _component.CollisionLayer = effectiveLayer;
-        if (_springFrequency.Changed(springFrequency))
+        if (_springFrequency.Changed(springFrequency) | reapplyInputs)
             _component.SpringFrequency = springFrequency;
-        if (_springDampingRatio.Changed(springDampingRatio))
+        if (_springDampingRatio.Changed(springDampingRatio) | reapplyInputs)
             _component.SpringDampingRatio = springDampingRatio;
-        if (_frictionCoefficient.Changed(frictionCoefficient))
+        if (_frictionCoefficient.Changed(frictionCoefficient) | reapplyInputs)
             _component.FrictionCoefficient = frictionCoefficient;
-        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity))
+        if (_maximumRecoveryVelocity.Changed(maximumRecoveryVelocity) | reapplyInputs)
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
-        if (_contactHandler.Changed(contactHandler))
+        if (_contactHandler.Changed(contactHandler) | reapplyInputs)
             _component.ContactEventHandler = contactHandler;
 
         return _component;
