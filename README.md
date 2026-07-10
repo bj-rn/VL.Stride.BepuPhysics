@@ -12,6 +12,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
 - Per-collidable contact events (started / touching / stopped)
+- Trigger volumes: overlap detection without collision response (entered / exited)
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
 - Transform interpolation enabled by default for smooth visuals at any frame rate
 
