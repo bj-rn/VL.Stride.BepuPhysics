@@ -1092,26 +1092,6 @@
           </Node>
           <!--
 
-    ************************ IVertexStructure ************************
-
--->
-          <Node Name="IVertexStructure" Bounds="379,200" Id="Tmvve1AUaIxLzZIayvoUMT">
-            <p:NodeReference>
-              <Choice Kind="ForwardDefinition" Name="Forward" />
-              <CategoryReference Kind="Category" Name="Primitive" />
-            </p:NodeReference>
-            <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-              <Choice Kind="TypeFlag" Name="IVertexStructure" />
-              <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-              <AssemblyReference ID="Stride.BepuPhysics.dll" />
-            </p:TypeAnnotation>
-            <Patch Id="UuBJ79dXD34QA188Sfx0Gj">
-              <Canvas Id="LWixUS6CKmgM9v431StVtB" BordersChecked="false" CanvasType="Group" />
-              <ProcessDefinition Id="UepNuFTVe9dQTzEl6GBP4u" IsHidden="true" />
-            </Patch>
-          </Node>
-          <!--
-
     ************************ MaterialProperties ************************
 
 -->
