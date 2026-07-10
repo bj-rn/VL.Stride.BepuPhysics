@@ -33,7 +33,7 @@ The package rides on the Stride version bundled with vvvv, the pinned
 
 | vvvv gamma | Stride     | VL.Stride.BepuPhysics |
 |------------|------------|-----------------------|
-| 7.x        | 4.2.1.2487 | 0.2.x                 |
+| 7.x        | 4.2.1.2487 | 0.2.0 and up          |
 
 When a new vvvv release updates the bundled Stride version, this package needs a
 matching release:
@@ -116,6 +116,86 @@ defaults (`ImportedParameterPinDefinitionSymbol.GetDefaultValue` →
 documents compile and run fine in real vvvv; the issue is a candidate for an upstream
 report to vvvv. Once fixed, remove the `[Explicit]` attribute and the checks become
 CI-ready (`dotnet test` in the GitHub workflow).
+
+## Upgrading to a newer Stride.BepuPhysics
+
+This section collects what to check and change in this wrapper when moving past the
+pinned `Stride.BepuPhysics` 4.2.1.2487. The release steps themselves (version pins,
+nuspec, rebuild, verification) are in the Compatibility section above. The deltas below
+were collected by comparing the pinned assembly against the upstream master branch
+(stride3d/stride, July 2026). Upstream moves on, so recheck each item at upgrade time.
+
+### How to inspect an assembly version
+
+Reflection is the authoritative source, XML docs only show documented members:
+
+1. Create a console project referencing the new `Stride.BepuPhysics` version
+   (copy this repo's `NuGet.config` next to it for the package feeds).
+2. Load a type, walk `BaseType` up to `EntityComponent` and print properties and
+   methods via `GetProperties`/`GetMethods` with `BindingFlags.DeclaredOnly`.
+3. Alternatively diff the packages' XML doc files:
+   `~/.nuget/packages/stride.bepuphysics/<version>/lib/net8.0/Stride.BepuPhysics.xml`.
+
+### Known API deltas: 4.2.1.2487 vs upstream master
+
+#### CharacterComponent was reworked
+
+The pinned version is the old, velocity driven character:
+
+| pinned 4.2.1.2487 | upstream master |
+|---|---|
+| `CharacterComponent : BodyComponent` | split into `CharacterComponentAbstract : BodyComponent` and `CharacterComponent` on top |
+| `Move(Vector3 direction)` sets velocity from direction times `Speed` (direction length scales speed) | removed, set `MoveVector` (a `Vector2` in the body's local space, X = sideways, Y = forward) instead |
+| `Velocity` property (world space) | still exists but `[Obsolete]`, forwards to `MoveVector` |
+| `IsGrounded`, `IsJumping`, `Contacts` | `IsGrounded` kept (on the abstract base) |
+| `JumpForce` | same name (`DataAlias("JumpSpeed")` hints at an even older name, irrelevant for us) |
+| fixed internal ground test | new tunables: `MaximumHorizontalForce`, `MaximumVerticalForce`, `SlopeAngle`, `MinimumSupportDepth`, `MinimumSupportContinuationDepth`, `AirControlScale`, `AirControlForceScale`, `LocalUp` |
+
+Wrapper impact when upgrading:
+1. The `Move` operation must switch from calling `Move(Vector3)` to writing `MoveVector`,
+   including the world space to local space conversion if the wrapper keeps its
+   world space movement pin.
+2. The Character node can expose the new tunables as pins (slope angle, air control,
+   forces, local up).
+3. Check whether `IsJumping` and `Contacts` still exist on master at upgrade time.
+
+#### OverlapInfo was removed
+
+The pinned `BepuSimulation.Overlap(shape, pose, ICollection<OverlapInfo>, mask)` fills
+`OverlapInfo` records carrying `Collidable`, `PenetrationDirection` and
+`PenetrationLength`. On master the overlap handlers only collect plain
+`CollidableComponent`, the `OverlapInfo` type is gone.
+
+Wrapper impact when upgrading:
+1. The `Overlap` node's Output (`Spread<OverlapInfo>`) and the `Split (OverlapInfo)`
+   operation lose their data source. Either drop the penetration outputs or check
+   whether master offers a replacement API (`OverlapInfoStack` existed in 4.2.1 as a
+   low level variant, check what survived).
+2. Remove the `OverlapInfo` forward from `VL.Stride.BepuPhysics.vl`.
+
+#### Unchanged (verified against master, recheck anyway)
+
+- Query methods on `BepuSimulation`: `RayCast`, `RayCastPenetrating`, `SweepCast`,
+  `SweepCastPenetrating` have the same shapes and semantics (T values in units of the
+  direction's length, the wrapper normalizes).
+- `Trigger`/`TriggerDelegate` exist in both, the wrapper no longer uses them (own
+  handler with `NoContactResponse => true`).
+- The 30 constraint components, collider types, `HitInfo`, `CollisionMask`,
+  `InterpolationMode` and the contact event interfaces are structurally the same.
+- `BepuSimulation` soft start behavior (`SolverSubStep` boosted by
+  `SoftStartSubstepFactor` during the window) is the same on master, the
+  SimulationSettings solver pin handling stays valid.
+
+### Notes for the wrapper's own code at upgrade time
+
+- `BepuSettingsBootstrap` mirrors what `BepuConfiguration.NewInstance` does lazily.
+  If upstream changes its lazy bootstrap or the warning behavior, adjust or drop the
+  bootstrap.
+- `ISimulationUpdate` (relevant for the planned per step hook node) is an entity
+  component interface in 4.2.1 (`IComponent<ISimulationUpdate, SimulationUpdateProcessor>`
+  with `Entity`, `Simulation`, `SimulationSelector` properties). Registration happens
+  through the entity component system, so a hook node needs a carrier component
+  attached to an entity. Recheck the interface shape on the new version.
 
 ## License
 
