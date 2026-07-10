@@ -34,6 +34,21 @@ public static class QueryOperations
         childIndex = input?.ChildIndex ?? -1;
     }
 
+    /// <summary>Splits an overlap query result into its parts.</summary>
+    /// <param name="input">The overlap to split.</param>
+    /// <param name="collidable">The Body or Static component the test shape overlaps with.</param>
+    /// <param name="penetrationDirection">Direction the test shape has to move along to separate from this overlap.</param>
+    /// <param name="penetrationLength">Distance the test shape has to move to separate from this overlap.</param>
+    public static void Split(SBepu.OverlapInfo? input,
+        out SBepu.CollidableComponent? collidable,
+        out Vector3 penetrationDirection,
+        out float penetrationLength)
+    {
+        collidable = input?.Collidable;
+        penetrationDirection = input?.PenetrationDirection ?? default;
+        penetrationLength = input?.PenetrationLength ?? default;
+    }
+
     /// <summary>Casts a ray and reports the closest hit.</summary>
     /// <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
@@ -231,41 +246,52 @@ public class SweepCastPenetratingNode
 }
 
 /// <summary>
-/// Reports all collidables overlapping a shape placed at a position.
+/// Reports all overlaps of a shape placed at a position: the overlapping collidables plus
+/// the direction and distance needed to separate. A compound collidable can produce several
+/// overlaps, one per overlapping child shape. Use Split to access an overlap's parts.
 /// </summary>
 [ProcessNode(Name = "Overlap")]
 public class OverlapNode
 {
     private readonly List<SBepu.OverlapInfo> _buffer = new();
-    private readonly SpreadBuilder<SBepu.CollidableComponent> _builder = new();
-    private Spread<SBepu.CollidableComponent> _result = Spread<SBepu.CollidableComponent>.Empty;
+    private readonly SpreadBuilder<SBepu.OverlapInfo> _infoBuilder = new();
+    private readonly SpreadBuilder<SBepu.CollidableComponent> _collidableBuilder = new();
+    private Spread<SBepu.OverlapInfo> _result = Spread<SBepu.OverlapInfo>.Empty;
+    private Spread<SBepu.CollidableComponent> _collidables = Spread<SBepu.CollidableComponent>.Empty;
 
     /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="collidables">The collidable of each overlap, in the same order as the Output. May contain a collidable several times when it uses a compound collider.</param>
     /// <param name="position">Center of the test shape in world space.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
     /// <param name="radius">Radius of the sphere or capsule shape. Must be greater than zero.</param>
     /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
+    /// <param name="orientation">Orientation of the test shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
+    /// <returns>One entry per overlap with the collidable, penetration direction and length. Use Split to access the parts.</returns>
     [return: Pin(Name = "Output")]
-    public Spread<SBepu.CollidableComponent> Update(
+    public Spread<SBepu.OverlapInfo> Update(
         SBepu.BepuSimulation? simulation,
+        out Spread<SBepu.CollidableComponent> collidables,
         Vector3 position,
         SweepShape? shape,
         [DefaultValue(0.5f)] float radius,
         [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
+        Quaternion orientation,
         SBepu.CollisionMask? collisionMask,
         bool enabled = true)
     {
         if (!enabled || simulation is null)
-            return _result = Spread<SBepu.CollidableComponent>.Empty;
-
+        {
+            collidables = _collidables = Spread<SBepu.CollidableComponent>.Empty;
+            return _result = Spread<SBepu.OverlapInfo>.Empty;
+        }
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
         _buffer.Clear();
-        var pose = new SDefinitions.RigidPose(position, Quaternion.Identity);
+        var pose = new SDefinitions.RigidPose(position, orientation);
         switch (shape ?? SweepShape.Sphere)
         {
             case SweepShape.Sphere:
@@ -280,14 +306,20 @@ public class OverlapNode
         }
 
         if (_buffer.Count == 0)
-            return _result = Spread<SBepu.CollidableComponent>.Empty;
-        _builder.Clear();
+        {
+            collidables = _collidables = Spread<SBepu.CollidableComponent>.Empty;
+            return _result = Spread<SBepu.OverlapInfo>.Empty;
+        }
+        _infoBuilder.Clear();
+        _collidableBuilder.Clear();
         foreach (var info in _buffer)
         {
+            _infoBuilder.Add(info);
             if (info.Collidable is not null)
-                _builder.Add(info.Collidable);
+                _collidableBuilder.Add(info.Collidable);
         }
-        return _result = _builder.ToSpread();
+        collidables = _collidables = _collidableBuilder.ToSpread();
+        return _result = _infoBuilder.ToSpread();
     }
 }
 
