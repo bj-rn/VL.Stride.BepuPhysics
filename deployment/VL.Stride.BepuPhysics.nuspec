@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>VL.Stride.BepuPhysics</id>
-    <version>0.1.4</version>
+    <version>0.2.0</version>
     <title>VL.Stride.BepuPhysics</title>
     <authors>bj-rn</authors>
     <owners>bj-rn</owners>
