@@ -23,6 +23,9 @@ public readonly record struct ContactInfo(
     Vector3 Normal,
     float Depth)
 {
+    // The properties below restate the primary constructor parameters on purpose: only
+    // property-level XML docs become pin tooltips in vvvv. Do not "clean them up".
+
     /// <summary>The collidable the contact handler is attached to.</summary>
     public SBepu.CollidableComponent? Source { get; init; } = Source;
 
@@ -66,6 +69,8 @@ public readonly record struct ContactInfo(
 /// Collects contact events for the collidables its handler output is connected to.
 /// Connect the Handler output to the ContactHandler pin of Body/Static nodes, then either
 /// read the per-frame contact spreads or use the observable outputs with VL's reactive nodes.
+/// Note: events only fire on physics steps, while the simulation is paused (Enabled = false)
+/// the Touching output goes empty even though bodies still overlap.
 /// </summary>
 [ProcessNode(Name = "ContactEvents")]
 public class ContactEventsNode : IDisposable
@@ -77,8 +82,8 @@ public class ContactEventsNode : IDisposable
     /// <param name="stopped">Contacts that stopped touching this frame.</param>
     /// <param name="anyStarted">True in frames where any contact began.</param>
     /// <param name="anyStopped">True in frames where any contact ended.</param>
-    /// <param name="onStarted">Observable notification per contact that began touching — for use with reactive nodes (ForEach (Reactive), HoldLatest, ...).</param>
-    /// <param name="onStopped">Observable notification per contact that stopped touching — for use with reactive nodes.</param>
+    /// <param name="onStarted">Observable notification per contact that began touching, for use with reactive nodes (ForEach (Reactive), HoldLatest, ...).</param>
+    /// <param name="onStopped">Observable notification per contact that stopped touching, for use with reactive nodes.</param>
     /// <param name="noContactResponse">When true, collidables using this handler let others pass through (trigger volumes).</param>
     [return: Pin(Name = "Output")]
     public SContacts.IContactHandler Update(

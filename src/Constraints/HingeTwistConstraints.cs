@@ -29,9 +29,9 @@ public class HingeNode
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -86,9 +86,9 @@ public class SwivelHingeNode
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
-    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="enabled">Temporarily deactivates the constraint when false.</param>
@@ -141,8 +141,8 @@ public class SwingLimitNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
-    /// <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -251,8 +251,8 @@ public class TwistMotorNode
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="bodyA">First constrained body (A).</param>
     /// <param name="bodyB">Second constrained body (B).</param>
-    /// <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
-    /// <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetVelocity">Target twist velocity in radians per second.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>

@@ -31,7 +31,7 @@ public class LinearAxisLimitNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
     /// <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
@@ -91,7 +91,7 @@ public class LinearAxisMotorNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
@@ -151,7 +151,7 @@ public class LinearAxisServoNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="targetOffset">Distance from the plane the servo drives towards.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
@@ -219,7 +219,7 @@ public class PointOnLineServoNode
     /// <param name="bodyB">Second constrained body (B).</param>
     /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
     /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
-    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector ,a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
