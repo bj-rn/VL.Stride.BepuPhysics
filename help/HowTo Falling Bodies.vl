@@ -199,14 +199,14 @@
             <Pin Id="BOXIecFr5OOOJ8SCz8qEzw" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="KH0PXRa65rRNLoUWgYHHCm" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="407,540,205,19" Id="HbFB000000000000000065">
+          <Node Bounds="387,540,225,19" Id="HbFB000000000000000065">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="Ktbzu8aBpStOutOZlpxM38" Name="Bounds" Kind="InputPin" DefaultValue="1000, 40, 786, 432" IsHidden="true" />
-            <Pin Id="HK8EPMQNmcLPtxbYXfDozI" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="HK8EPMQNmcLPtxbYXfDozI" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="RBt5gwVH4sjLTzsEaohOLY" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="Dv6AcrtIu3ULcRm8MDOxHM" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="AyeUEyly8T9MGEKsgMEyVH" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />

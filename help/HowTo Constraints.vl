@@ -161,7 +161,7 @@
             <Pin Id="HcCN000000000000000037" Name="Output" Kind="OutputPin" />
             <Pin Id="Mqi7TrauzF2OIAjWm2agzl" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="Iiz5MqRjvaFNXx9AGaYhEZ" Name="Spring Damping Ratio" Kind="InputPin" />
-            <Pin Id="OVJ78cOTUXgPy9cyNLSy0e" Name="Enabled" Kind="InputPin" />
+            <Pin Id="OVJ78cOTUXgPy9cyNLSy0e" Name="Enabled" Kind="InputPin" DefaultValue="True" />
             <Pin Id="Dm14PguihI8OM6dICoD8du" Name="Attached" Kind="OutputPin" />
           </Node>
           <Node Bounds="535,460,65,19" Id="HcCN000000000000000038">
@@ -261,14 +261,14 @@
             <Pin Id="CLfwwxsaKupP111Zf5VgsD" Name="Transparency" Kind="InputPin" />
             <Pin Id="AcqvThsbHItP0dIQRAPC4n" Name="Cull Mode" Kind="InputPin" />
           </Node>
-          <Node Bounds="320,750,205,19" Id="HcCN000000000000000058">
+          <Node Bounds="300,750,225,19" Id="HcCN000000000000000058">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="CtaO8B9kUepMUo0bHKg0gw" Name="Bounds" Kind="InputPin" DefaultValue="1000, 40, 786, 432" IsHidden="true" />
-            <Pin Id="PvgFkJaqdArQD12EjrMTRr" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="PvgFkJaqdArQD12EjrMTRr" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="DkJcDep6VVlLAM9OW306Fk" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="O6EcOAU6Ml2MC4XtuavOAo" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="QaUeC5fPWpvMx6R8otiTX1" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
