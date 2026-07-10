@@ -43,9 +43,9 @@ public class SimulationSettingsNode : IDisposable
     /// <param name="usePerBodyAttributes">Enables per-body Gravity flags (slightly more per-body work).</param>
     /// <param name="solverVelocityIterations">Solver velocity iterations per substep; more = stiffer, costlier.</param>
     /// <param name="solverSubSteps">Solver substeps per physics step; more = more accurate stacks and joints.</param>
-    /// <param name="collisionMatrix">Per-layer collision masks: element N = mask of layers that layer N collides with.</param>
+    /// <param name="collisionMatrix">Per-layer collision masks: element N = mask of layers that layer N collides with. Layers beyond the spread's count keep their current value; disconnecting does not reset the matrix.</param>
     /// <param name="enabled">Pauses the whole simulation when false.</param>
-    /// <param name="simulationIndex">Which simulation to configure (0 unless using multiple simulations).</param>
+    /// <param name="simulationIndex">Which simulation to configure. Currently only simulation 0 exists — additional simulations cannot yet be created, any other index outputs null.</param>
     [return: Pin(Name = "Output")]
     public SBepu.BepuSimulation? Update(
         [DefaultValue("0.0, -9.8, 0.0")] Vector3 gravity,
@@ -127,7 +127,7 @@ public class GetSimulationNode : IDisposable
     private readonly IResourceHandle<Game> _gameHandle = AppHost.Current.Services.GetGameHandle();
     private SBepu.BepuConfiguration? _config;
 
-    /// <param name="simulationIndex">Which simulation to fetch (0 unless using multiple simulations).</param>
+    /// <param name="simulationIndex">Which simulation to fetch. Currently only simulation 0 exists — additional simulations cannot yet be created, any other index outputs null.</param>
     [return: Pin(Name = "Output")]
     public SBepu.BepuSimulation? Update(int simulationIndex = 0)
     {
