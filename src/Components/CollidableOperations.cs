@@ -8,8 +8,9 @@ using SEngine = global::Stride.Engine;
 namespace VL.Stride.BepuPhysics;
 
 /// <summary>
-/// Read access to collidables obtained from queries or contact events.
+/// Read and write access to collidables obtained from queries or contact events.
 /// Use CastAs (BodyComponent) to narrow a CollidableComponent for the Body operations.
+/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
 /// </summary>
 public static class CollidableOperations
 {
@@ -94,6 +95,73 @@ public static class CollidableOperations
         gravity = body.Gravity;
         interpolation = body.InterpolationMode;
         continuousDetection = (ContinuousDetectionKind)body.ContinuousDetectionMode;
+    }
+
+    /// <summary>
+    /// Writes the contact material settings shared by bodies and statics while Apply is true.
+    /// A written property is overwritten again once the owning Body or Static node's pin value changes.
+    /// </summary>
+    /// <param name="collidable">The collidable to write to, for example from a RayCast hit or a ContactEvents contact.</param>
+    /// <param name="springFrequency">Contact spring stiffness in Hz.</param>
+    /// <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
+    /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
+    /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
+    /// <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SBepu.CollidableComponent? SetCollidableSettings(SBepu.CollidableComponent? collidable,
+        float springFrequency = 30f,
+        float springDampingRatio = 3f,
+        float frictionCoefficient = 1f,
+        float maximumRecoveryVelocity = 1000f,
+        SBepu.CollisionLayer? collisionLayer = null,
+        bool apply = false)
+    {
+        if (apply && collidable is not null)
+        {
+            // Wake first — mutating a sleeping body writes into sleeping-set memory.
+            if (collidable is SBepu.BodyComponent body)
+                body.Awake = true;
+            collidable.SpringFrequency = springFrequency;
+            collidable.SpringDampingRatio = springDampingRatio;
+            collidable.FrictionCoefficient = frictionCoefficient;
+            collidable.MaximumRecoveryVelocity = maximumRecoveryVelocity;
+            collidable.CollisionLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
+        }
+        return collidable;
+    }
+
+    /// <summary>
+    /// Writes the body specific settings while Apply is true.
+    /// A written property is overwritten again once the owning Body node's pin value changes.
+    /// </summary>
+    /// <param name="body">The body to write to. Use CastAs (BodyComponent) to narrow a collidable.</param>
+    /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away.</param>
+    /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
+    /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SBepu.BodyComponent? SetBodySettings(SBepu.BodyComponent? body,
+        bool kinematic = false,
+        float sleepThreshold = 0.01f,
+        bool gravity = true,
+        SDefinitions.InterpolationMode? interpolation = null,
+        ContinuousDetectionKind? continuousDetection = null,
+        bool apply = false)
+    {
+        if (apply && body is not null)
+        {
+            // Wake first — mutating a sleeping body writes into sleeping-set memory.
+            body.Awake = true;
+            body.Kinematic = kinematic;
+            body.SleepThreshold = sleepThreshold;
+            body.Gravity = gravity;
+            body.InterpolationMode = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
+            body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
+        }
+        return body;
     }
 }
 

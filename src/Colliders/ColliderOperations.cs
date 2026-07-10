@@ -1,11 +1,14 @@
+using System.ComponentModel;
 using Stride.Core.Mathematics;
+using VL.Core.Import;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 
 namespace VL.Stride.BepuPhysics.Colliders;
 
 /// <summary>
-/// Read access to collider shapes, for example from a GetColliders node.
-/// Use CastAs (BoxCollider) to narrow a ColliderBase for the shape specific getters.
+/// Read and write access to collider shapes, for example from a GetColliders node.
+/// Use CastAs (BoxCollider) to narrow a ColliderBase for the shape specific operations.
+/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
 /// </summary>
 public static class ColliderOperations
 {
@@ -139,5 +142,179 @@ public static class ColliderOperations
         positionLocal = collider?.PositionLocal ?? Vector3.Zero;
         rotationLocal = collider?.RotationLocal ?? Quaternion.Identity;
         mass = collider?.Mass ?? 1f;
+    }
+
+    /// <summary>
+    /// Writes the placement properties shared by all collider shapes while Apply is true.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The collider shape to write to.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.ColliderBase? SetColliderSettings(SColliders.ColliderBase? collider,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.PositionLocal = positionLocal;
+            collider.RotationLocal = rotationLocal;
+            collider.Mass = mass;
+        }
+        return collider;
+    }
+
+    /// <summary>
+    /// Writes all settings of a box collider while Apply is true, mirroring the BoxCollider node's inputs.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The box collider to write to. Use CastAs (BoxCollider) to narrow a ColliderBase.</param>
+    /// <param name="size">Extents of the box in meters. Every dimension must be greater than zero, a zero size box has zero inertia and produces NaN poses.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.BoxCollider? SetBoxColliderSettings(SColliders.BoxCollider? collider,
+        [DefaultValue("1.0, 1.0, 1.0")] Vector3 size,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.Size = size;
+            collider.PositionLocal = positionLocal;
+            collider.RotationLocal = rotationLocal;
+            collider.Mass = mass;
+        }
+        return collider;
+    }
+
+    /// <summary>
+    /// Writes all settings of a sphere collider while Apply is true, mirroring the SphereCollider node's inputs.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The sphere collider to write to. Use CastAs (SphereCollider) to narrow a ColliderBase.</param>
+    /// <param name="radius">Radius of the sphere. Must be greater than zero.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.SphereCollider? SetSphereColliderSettings(SColliders.SphereCollider? collider,
+        [DefaultValue(0.5f)] float radius,
+        Vector3 positionLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.Radius = radius;
+            collider.PositionLocal = positionLocal;
+            collider.Mass = mass;
+        }
+        return collider;
+    }
+
+    /// <summary>
+    /// Writes all settings of a capsule collider while Apply is true, mirroring the CapsuleCollider node's inputs.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The capsule collider to write to. Use CastAs (CapsuleCollider) to narrow a ColliderBase.</param>
+    /// <param name="radius">Radius of the capsule. Must be greater than zero.</param>
+    /// <param name="length">Length between the two cap centers.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.CapsuleCollider? SetCapsuleColliderSettings(SColliders.CapsuleCollider? collider,
+        [DefaultValue(0.5f)] float radius,
+        [DefaultValue(1f)] float length,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.Radius = radius;
+            collider.Length = length;
+            collider.PositionLocal = positionLocal;
+            collider.RotationLocal = rotationLocal;
+            collider.Mass = mass;
+        }
+        return collider;
+    }
+
+    /// <summary>
+    /// Writes all settings of a cylinder collider while Apply is true, mirroring the CylinderCollider node's inputs.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The cylinder collider to write to. Use CastAs (CylinderCollider) to narrow a ColliderBase.</param>
+    /// <param name="radius">Radius of the cylinder. Must be greater than zero.</param>
+    /// <param name="length">Height of the cylinder.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.CylinderCollider? SetCylinderColliderSettings(SColliders.CylinderCollider? collider,
+        [DefaultValue(0.5f)] float radius,
+        [DefaultValue(1f)] float length,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.Radius = radius;
+            collider.Length = length;
+            collider.PositionLocal = positionLocal;
+            collider.RotationLocal = rotationLocal;
+            collider.Mass = mass;
+        }
+        return collider;
+    }
+
+    /// <summary>
+    /// Writes all settings of a triangle collider while Apply is true, mirroring the TriangleCollider node's inputs.
+    /// A written property is overwritten again once the owning collider node's pin value changes.
+    /// </summary>
+    /// <param name="collider">The triangle collider to write to. Use CastAs (TriangleCollider) to narrow a ColliderBase.</param>
+    /// <param name="a">First vertex relative to the body origin.</param>
+    /// <param name="b">Second vertex relative to the body origin.</param>
+    /// <param name="c">Third vertex relative to the body origin.</param>
+    /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
+    /// <param name="rotationLocal">Rotation of the shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="mass">Relative weight of the shape within its compound. Must be greater than zero.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SColliders.TriangleCollider? SetTriangleColliderSettings(SColliders.TriangleCollider? collider,
+        Vector3 a,
+        Vector3 b,
+        Vector3 c,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
+        bool apply = false)
+    {
+        if (apply && collider is not null)
+        {
+            collider.A = a;
+            collider.B = b;
+            collider.C = c;
+            collider.PositionLocal = positionLocal;
+            collider.RotationLocal = rotationLocal;
+            collider.Mass = mass;
+        }
+        return collider;
     }
 }

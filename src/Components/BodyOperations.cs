@@ -18,8 +18,13 @@ public static class BodyOperations
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? ApplyLinearImpulse(SBepu.BodyComponent? body, Vector3 impulse, bool apply = false)
     {
-        if (apply)
-            body?.ApplyLinearImpulse(impulse);
+        if (apply && body is not null)
+        {
+            // Wake first — Stride's impulse and velocity calls write to the BodyReference without
+            // waking, and writes to a sleeping body are not integrated.
+            body.Awake = true;
+            body.ApplyLinearImpulse(impulse);
+        }
         return body;
     }
 
@@ -30,8 +35,11 @@ public static class BodyOperations
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? ApplyAngularImpulse(SBepu.BodyComponent? body, Vector3 impulse, bool apply = false)
     {
-        if (apply)
-            body?.ApplyAngularImpulse(impulse);
+        if (apply && body is not null)
+        {
+            body.Awake = true;
+            body.ApplyAngularImpulse(impulse);
+        }
         return body;
     }
 
@@ -43,8 +51,11 @@ public static class BodyOperations
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? ApplyImpulse(SBepu.BodyComponent? body, Vector3 impulse, Vector3 impulseOffset, bool apply = false)
     {
-        if (apply)
-            body?.ApplyImpulse(impulse, impulseOffset);
+        if (apply && body is not null)
+        {
+            body.Awake = true;
+            body.ApplyImpulse(impulse, impulseOffset);
+        }
         return body;
     }
 
@@ -59,6 +70,7 @@ public static class BodyOperations
     {
         if (apply && body is not null)
         {
+            body.Awake = true;
             body.Teleport(position, orientation);
         }
         return body;
@@ -75,6 +87,7 @@ public static class BodyOperations
     {
         if (apply && body is not null)
         {
+            body.Awake = true;
             body.SetTargetPose(position, orientation);
         }
         return body;
@@ -88,7 +101,10 @@ public static class BodyOperations
     public static SBepu.BodyComponent? SetLinearVelocity(SBepu.BodyComponent? body, Vector3 velocity, bool apply = false)
     {
         if (apply && body is not null)
+        {
+            body.Awake = true;
             body.LinearVelocity = velocity;
+        }
         return body;
     }
 
@@ -100,7 +116,10 @@ public static class BodyOperations
     public static SBepu.BodyComponent? SetAngularVelocity(SBepu.BodyComponent? body, Vector3 velocity, bool apply = false)
     {
         if (apply && body is not null)
+        {
+            body.Awake = true;
             body.AngularVelocity = velocity;
+        }
         return body;
     }
 
