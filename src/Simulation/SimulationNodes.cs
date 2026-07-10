@@ -45,7 +45,7 @@ public class SimulationSettingsNode : IDisposable
     /// <param name="simulationIndex">Which simulation to configure (0 unless using multiple simulations).</param>
     [return: Pin(Name = "Output")]
     public SBepu.BepuSimulation? Update(
-        [DefaultValue("1.0, -9.8, 1.0")] Vector3 gravity,
+        [DefaultValue("0.0, -9.8, 0.0")] Vector3 gravity,
         float linearDamping = 0.05f,
         float angularDamping = 0.05f,
         float timeScale = 1f,
