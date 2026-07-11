@@ -60,10 +60,10 @@ public class BodyNode
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast bodies that would tunnel through thin geometry.</param>
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
+    /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
     /// <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
     /// <param name="resetPose">While true, re-teleports the body to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
     /// <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
-    /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
     /// <returns>The body component — connect to an Entity's Components input.</returns>
     [return: Pin(Name = "Output")]
     public SBepu.BodyComponent Update(
@@ -79,10 +79,10 @@ public class BodyNode
         bool gravity = true,
         ContinuousDetectionKind? continuousDetection = null,
         SContacts.IContactHandler? contactHandler = null,
+        [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null,
         Matrix? teleportTo = null,
         bool resetPose = false,
-        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false,
-        [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null)
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
         var effectiveCollider = _colliderInput.Resolve(colliders, colliderOverride);
         if (!ReferenceEquals(_component.Collider, effectiveCollider))

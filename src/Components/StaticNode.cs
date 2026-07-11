@@ -41,8 +41,8 @@ public class StaticNode
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this static.</param>
-    /// <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
     /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
+    /// <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
     /// <returns>The static component — connect to an Entity's Components input.</returns>
     [return: Pin(Name = "Output")]
     public SBepu.StaticComponent Update(
@@ -53,8 +53,8 @@ public class StaticNode
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
         SContacts.IContactHandler? contactHandler = null,
-        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false,
-        [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null)
+        [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null,
+        [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
         var effectiveCollider = _colliderInput.Resolve(colliders, colliderOverride);
         if (!ReferenceEquals(_component.Collider, effectiveCollider))
