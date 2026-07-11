@@ -16,6 +16,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - Per-collidable contact events (started / touching / stopped)
 - Trigger volumes: overlap detection without collision response (entered / exited)
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
+- Per step hooks: the SimulationUpdate node reports every physics step (counts and observables) for frame rate independent forces
 - Transform interpolation enabled by default for smooth visuals at any frame rate
 
 ## Installation
