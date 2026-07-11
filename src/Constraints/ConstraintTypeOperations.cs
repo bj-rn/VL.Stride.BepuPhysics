@@ -1,0 +1,1619 @@
+using System.ComponentModel;
+using Stride.Core.Mathematics;
+using VL.Core.Import;
+using SConstraints = global::Stride.BepuPhysics.Constraints;
+
+namespace VL.Stride.BepuPhysics.Constraints;
+
+/// <summary>
+/// Type specific read and write access to constraints, mirroring each constraint node's inputs.
+/// Use CastAs to narrow a ConstraintComponentBase from a GetConstraints node, routed by
+/// GetConstraintInfo's Kind. Body references stay read only and Enabled is covered by
+/// SetConstraintEnabled. Mutating operations run while Apply is true.
+/// </summary>
+// Generated from the constraint node definitions (gen_constraint_typeops.py), keep in sync
+// when node pins change.
+public static class ConstraintTypeOperations
+{
+    /// <summary>Reads all settings of an AngularHinge constraint, mirroring the AngularHinge node's inputs.</summary>
+    /// <param name="constraint">The AngularHinge constraint to read. Outputs the defaults while null. Use CastAs (AngularHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetAngularHingeSettings(SConstraints.AngularHingeConstraintComponent? constraint,
+        out Vector3 localHingeAxisA,
+        out Vector3 localHingeAxisB,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localHingeAxisA = constraint?.LocalHingeAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        localHingeAxisB = constraint?.LocalHingeAxisB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularHinge constraint while Apply is true, mirroring the AngularHinge node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularHinge constraint to write to. Use CastAs (AngularHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularHingeConstraintComponent? SetAngularHingeSettings(SConstraints.AngularHingeConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisB,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalHingeAxisA = localHingeAxisA;
+            constraint.LocalHingeAxisB = localHingeAxisB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an AngularMotor constraint, mirroring the AngularMotor node's inputs.</summary>
+    /// <param name="constraint">The AngularMotor constraint to read. Outputs the defaults while null. Use CastAs (AngularMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetVelocityLocalA">Target relative angular velocity, expressed in the local space of body A.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetAngularMotorSettings(SConstraints.AngularMotorConstraintComponent? constraint,
+        out Vector3 targetVelocityLocalA,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        targetVelocityLocalA = constraint?.TargetVelocityLocalA ?? default;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularMotor constraint while Apply is true, mirroring the AngularMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularMotor constraint to write to. Use CastAs (AngularMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetVelocityLocalA">Target relative angular velocity, expressed in the local space of body A.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularMotorConstraintComponent? SetAngularMotorSettings(SConstraints.AngularMotorConstraintComponent? constraint,
+        Vector3 targetVelocityLocalA,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetVelocityLocalA = targetVelocityLocalA;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an AngularServo constraint, mirroring the AngularServo node's inputs.</summary>
+    /// <param name="constraint">The AngularServo constraint to read. Outputs the defaults while null. Use CastAs (AngularServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetRelativeRotationLocalA">Target orientation of body B relative to body A, in the local space of A.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetAngularServoSettings(SConstraints.AngularServoConstraintComponent? constraint,
+        out Quaternion targetRelativeRotationLocalA,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        targetRelativeRotationLocalA = constraint?.TargetRelativeRotationLocalA ?? Quaternion.Identity;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularServo constraint while Apply is true, mirroring the AngularServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularServo constraint to write to. Use CastAs (AngularServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetRelativeRotationLocalA">Target orientation of body B relative to body A, in the local space of A.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularServoConstraintComponent? SetAngularServoSettings(SConstraints.AngularServoConstraintComponent? constraint,
+        Quaternion targetRelativeRotationLocalA,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetRelativeRotationLocalA = targetRelativeRotationLocalA;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an AngularSwivelHinge constraint, mirroring the AngularSwivelHinge node's inputs.</summary>
+    /// <param name="constraint">The AngularSwivelHinge constraint to read. Outputs the defaults while null. Use CastAs (AngularSwivelHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetAngularSwivelHingeSettings(SConstraints.AngularSwivelHingeConstraintComponent? constraint,
+        out Vector3 localSwivelAxisA,
+        out Vector3 localHingeAxisB,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localSwivelAxisA = constraint?.LocalSwivelAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        localHingeAxisB = constraint?.LocalHingeAxisB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularSwivelHinge constraint while Apply is true, mirroring the AngularSwivelHinge node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularSwivelHinge constraint to write to. Use CastAs (AngularSwivelHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept perpendicular to the swivel axis. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularSwivelHingeConstraintComponent? SetAngularSwivelHingeSettings(SConstraints.AngularSwivelHingeConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localSwivelAxisA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisB,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalSwivelAxisA = localSwivelAxisA;
+            constraint.LocalHingeAxisB = localHingeAxisB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an AngularAxisMotor constraint, mirroring the AngularAxisMotor node's inputs.</summary>
+    /// <param name="constraint">The AngularAxisMotor constraint to read. Outputs the defaults while null. Use CastAs (AngularAxisMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target angular velocity around the axis in radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetAngularAxisMotorSettings(SConstraints.AngularAxisMotorConstraintComponent? constraint,
+        out Vector3 localAxisA,
+        out float targetVelocity,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localAxisA = constraint?.LocalAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        targetVelocity = constraint?.TargetVelocity ?? 0f;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularAxisMotor constraint while Apply is true, mirroring the AngularAxisMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularAxisMotor constraint to write to. Use CastAs (AngularAxisMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target angular velocity around the axis in radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularAxisMotorConstraintComponent? SetAngularAxisMotorSettings(SConstraints.AngularAxisMotorConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxisA,
+        float targetVelocity = 0f,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalAxisA = localAxisA;
+            constraint.TargetVelocity = targetVelocity;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an AngularAxisGearMotor constraint, mirroring the AngularAxisGearMotor node's inputs.</summary>
+    /// <param name="constraint">The AngularAxisGearMotor constraint to read. Outputs the defaults while null. Use CastAs (AngularAxisGearMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="velocityScale">Gear ratio: angular velocity of body B relative to body A around the axis.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetAngularAxisGearMotorSettings(SConstraints.AngularAxisGearMotorConstraintComponent? constraint,
+        out Vector3 localAxisA,
+        out float velocityScale,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localAxisA = constraint?.LocalAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        velocityScale = constraint?.VelocityScale ?? 1f;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an AngularAxisGearMotor constraint while Apply is true, mirroring the AngularAxisGearMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The AngularAxisGearMotor constraint to write to. Use CastAs (AngularAxisGearMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Rotation axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="velocityScale">Gear ratio: angular velocity of body B relative to body A around the axis.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AngularAxisGearMotorConstraintComponent? SetAngularAxisGearMotorSettings(SConstraints.AngularAxisGearMotorConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxisA,
+        float velocityScale = 1f,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalAxisA = localAxisA;
+            constraint.VelocityScale = velocityScale;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a BallSocket constraint, mirroring the BallSocket node's inputs.</summary>
+    /// <param name="constraint">The BallSocket constraint to read. Outputs the defaults while null. Use CastAs (BallSocketConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetBallSocketSettings(SConstraints.BallSocketConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a BallSocket constraint while Apply is true, mirroring the BallSocket node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The BallSocket constraint to write to. Use CastAs (BallSocketConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.BallSocketConstraintComponent? SetBallSocketSettings(SConstraints.BallSocketConstraintComponent? constraint,
+        Vector3 localOffsetA = default,
+        Vector3 localOffsetB = default,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a BallSocketMotor constraint, mirroring the BallSocketMotor node's inputs.</summary>
+    /// <param name="constraint">The BallSocketMotor constraint to read. Outputs the defaults while null. Use CastAs (BallSocketMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="targetVelocityLocalA">Target velocity of the anchor on body B, expressed in the local space of body A.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetBallSocketMotorSettings(SConstraints.BallSocketMotorConstraintComponent? constraint,
+        out Vector3 localOffsetB,
+        out Vector3 targetVelocityLocalA,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        targetVelocityLocalA = constraint?.TargetVelocityLocalA ?? default;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a BallSocketMotor constraint while Apply is true, mirroring the BallSocketMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The BallSocketMotor constraint to write to. Use CastAs (BallSocketMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="targetVelocityLocalA">Target velocity of the anchor on body B, expressed in the local space of body A.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.BallSocketMotorConstraintComponent? SetBallSocketMotorSettings(SConstraints.BallSocketMotorConstraintComponent? constraint,
+        Vector3 localOffsetB = default,
+        Vector3 targetVelocityLocalA = default,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.TargetVelocityLocalA = targetVelocityLocalA;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a BallSocketServo constraint, mirroring the BallSocketServo node's inputs.</summary>
+    /// <param name="constraint">The BallSocketServo constraint to read. Outputs the defaults while null. Use CastAs (BallSocketServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetBallSocketServoSettings(SConstraints.BallSocketServoConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a BallSocketServo constraint while Apply is true, mirroring the BallSocketServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The BallSocketServo constraint to write to. Use CastAs (BallSocketServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.BallSocketServoConstraintComponent? SetBallSocketServoSettings(SConstraints.BallSocketServoConstraintComponent? constraint,
+        Vector3 localOffsetA = default,
+        Vector3 localOffsetB = default,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a CenterDistance constraint, mirroring the CenterDistance node's inputs.</summary>
+    /// <param name="constraint">The CenterDistance constraint to read. Outputs the defaults while null. Use CastAs (CenterDistanceConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetDistance">Distance to maintain between the two body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetCenterDistanceSettings(SConstraints.CenterDistanceConstraintComponent? constraint,
+        out float targetDistance,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        targetDistance = constraint?.TargetDistance ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a CenterDistance constraint while Apply is true, mirroring the CenterDistance node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The CenterDistance constraint to write to. Use CastAs (CenterDistanceConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetDistance">Distance to maintain between the two body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.CenterDistanceConstraintComponent? SetCenterDistanceSettings(SConstraints.CenterDistanceConstraintComponent? constraint,
+        float targetDistance = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetDistance = targetDistance;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a CenterDistanceLimit constraint, mirroring the CenterDistanceLimit node's inputs.</summary>
+    /// <param name="constraint">The CenterDistanceLimit constraint to read. Outputs the defaults while null. Use CastAs (CenterDistanceLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="minimumDistance">Smallest allowed distance between the two body centers.</param>
+    /// <param name="maximumDistance">Largest allowed distance between the two body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetCenterDistanceLimitSettings(SConstraints.CenterDistanceLimitConstraintComponent? constraint,
+        out float minimumDistance,
+        out float maximumDistance,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        minimumDistance = constraint?.MinimumDistance ?? 0f;
+        maximumDistance = constraint?.MaximumDistance ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a CenterDistanceLimit constraint while Apply is true, mirroring the CenterDistanceLimit node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The CenterDistanceLimit constraint to write to. Use CastAs (CenterDistanceLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="minimumDistance">Smallest allowed distance between the two body centers.</param>
+    /// <param name="maximumDistance">Largest allowed distance between the two body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.CenterDistanceLimitConstraintComponent? SetCenterDistanceLimitSettings(SConstraints.CenterDistanceLimitConstraintComponent? constraint,
+        float minimumDistance = 0f,
+        float maximumDistance = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.MinimumDistance = minimumDistance;
+            constraint.MaximumDistance = maximumDistance;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a DistanceLimit constraint, mirroring the DistanceLimit node's inputs.</summary>
+    /// <param name="constraint">The DistanceLimit constraint to read. Outputs the defaults while null. Use CastAs (DistanceLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="minimumDistance">Smallest allowed distance between the two anchor points.</param>
+    /// <param name="maximumDistance">Largest allowed distance between the two anchor points.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetDistanceLimitSettings(SConstraints.DistanceLimitConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out float minimumDistance,
+        out float maximumDistance,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        minimumDistance = constraint?.MinimumDistance ?? 0f;
+        maximumDistance = constraint?.MaximumDistance ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a DistanceLimit constraint while Apply is true, mirroring the DistanceLimit node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The DistanceLimit constraint to write to. Use CastAs (DistanceLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="minimumDistance">Smallest allowed distance between the two anchor points.</param>
+    /// <param name="maximumDistance">Largest allowed distance between the two anchor points.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.DistanceLimitConstraintComponent? SetDistanceLimitSettings(SConstraints.DistanceLimitConstraintComponent? constraint,
+        Vector3 localOffsetA = default,
+        Vector3 localOffsetB = default,
+        float minimumDistance = 0f,
+        float maximumDistance = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.MinimumDistance = minimumDistance;
+            constraint.MaximumDistance = maximumDistance;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a DistanceServo constraint, mirroring the DistanceServo node's inputs.</summary>
+    /// <param name="constraint">The DistanceServo constraint to read. Outputs the defaults while null. Use CastAs (DistanceServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="targetDistance">Distance between the two anchor points the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetDistanceServoSettings(SConstraints.DistanceServoConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out float targetDistance,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        targetDistance = constraint?.TargetDistance ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a DistanceServo constraint while Apply is true, mirroring the DistanceServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The DistanceServo constraint to write to. Use CastAs (DistanceServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="targetDistance">Distance between the two anchor points the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.DistanceServoConstraintComponent? SetDistanceServoSettings(SConstraints.DistanceServoConstraintComponent? constraint,
+        Vector3 localOffsetA = default,
+        Vector3 localOffsetB = default,
+        float targetDistance = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.TargetDistance = targetDistance;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a Hinge constraint, mirroring the Hinge node's inputs.</summary>
+    /// <param name="constraint">The Hinge constraint to read. Outputs the defaults while null. Use CastAs (HingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetHingeSettings(SConstraints.HingeConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localHingeAxisA,
+        out Vector3 localOffsetB,
+        out Vector3 localHingeAxisB,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localHingeAxisA = constraint?.LocalHingeAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localHingeAxisB = constraint?.LocalHingeAxisB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a Hinge constraint while Apply is true, mirroring the Hinge node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The Hinge constraint to write to. Use CastAs (HingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localHingeAxisA">Hinge axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B; kept aligned with the axis on A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.HingeConstraintComponent? SetHingeSettings(SConstraints.HingeConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisB,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalHingeAxisA = localHingeAxisA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalHingeAxisB = localHingeAxisB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a SwivelHinge constraint, mirroring the SwivelHinge node's inputs.</summary>
+    /// <param name="constraint">The SwivelHinge constraint to read. Outputs the defaults while null. Use CastAs (SwivelHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetSwivelHingeSettings(SConstraints.SwivelHingeConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localSwivelAxisA,
+        out Vector3 localOffsetB,
+        out Vector3 localHingeAxisB,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localSwivelAxisA = constraint?.LocalSwivelAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localHingeAxisB = constraint?.LocalHingeAxisB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a SwivelHinge constraint while Apply is true, mirroring the SwivelHinge node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The SwivelHinge constraint to write to. Use CastAs (SwivelHingeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localSwivelAxisA">Free swivel axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localHingeAxisB">Hinge axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.SwivelHingeConstraintComponent? SetSwivelHingeSettings(SConstraints.SwivelHingeConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localSwivelAxisA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localHingeAxisB,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalSwivelAxisA = localSwivelAxisA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalHingeAxisB = localHingeAxisB;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a SwingLimit constraint, mirroring the SwingLimit node's inputs.</summary>
+    /// <param name="constraint">The SwingLimit constraint to read. Outputs the defaults while null. Use CastAs (SwingLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetSwingLimitSettings(SConstraints.SwingLimitConstraintComponent? constraint,
+        out Vector3 axisLocalA,
+        out Vector3 axisLocalB,
+        out float maximumSwingAngle,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        axisLocalA = constraint?.AxisLocalA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        axisLocalB = constraint?.AxisLocalB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        maximumSwingAngle = constraint?.MaximumSwingAngle ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a SwingLimit constraint while Apply is true, mirroring the SwingLimit node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The SwingLimit constraint to write to. Use CastAs (SwingLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="axisLocalA">Reference axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="axisLocalB">Measured axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="maximumSwingAngle">Largest allowed angle between the two axes in radians.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.SwingLimitConstraintComponent? SetSwingLimitSettings(SConstraints.SwingLimitConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 axisLocalA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 axisLocalB,
+        float maximumSwingAngle = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.AxisLocalA = axisLocalA;
+            constraint.AxisLocalB = axisLocalB;
+            constraint.MaximumSwingAngle = maximumSwingAngle;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a TwistLimit constraint, mirroring the TwistLimit node's inputs.</summary>
+    /// <param name="constraint">The TwistLimit constraint to read. Outputs the defaults while null. Use CastAs (TwistLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+    /// <param name="localBasisB">Twist basis in the local space of body B.</param>
+    /// <param name="minimumAngle">Smallest allowed twist angle in radians.</param>
+    /// <param name="maximumAngle">Largest allowed twist angle in radians.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetTwistLimitSettings(SConstraints.TwistLimitConstraintComponent? constraint,
+        out Quaternion localBasisA,
+        out Quaternion localBasisB,
+        out float minimumAngle,
+        out float maximumAngle,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localBasisA = constraint?.LocalBasisA ?? Quaternion.Identity;
+        localBasisB = constraint?.LocalBasisB ?? Quaternion.Identity;
+        minimumAngle = constraint?.MinimumAngle ?? -1f;
+        maximumAngle = constraint?.MaximumAngle ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a TwistLimit constraint while Apply is true, mirroring the TwistLimit node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The TwistLimit constraint to write to. Use CastAs (TwistLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+    /// <param name="localBasisB">Twist basis in the local space of body B.</param>
+    /// <param name="minimumAngle">Smallest allowed twist angle in radians.</param>
+    /// <param name="maximumAngle">Largest allowed twist angle in radians.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.TwistLimitConstraintComponent? SetTwistLimitSettings(SConstraints.TwistLimitConstraintComponent? constraint,
+        Quaternion localBasisA,
+        Quaternion localBasisB,
+        float minimumAngle = -1f,
+        float maximumAngle = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalBasisA = localBasisA;
+            constraint.LocalBasisB = localBasisB;
+            constraint.MinimumAngle = minimumAngle;
+            constraint.MaximumAngle = maximumAngle;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a TwistMotor constraint, mirroring the TwistMotor node's inputs.</summary>
+    /// <param name="constraint">The TwistMotor constraint to read. Outputs the defaults while null. Use CastAs (TwistMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target twist velocity in radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetTwistMotorSettings(SConstraints.TwistMotorConstraintComponent? constraint,
+        out Vector3 localAxisA,
+        out Vector3 localAxisB,
+        out float targetVelocity,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localAxisA = constraint?.LocalAxisA ?? new Vector3(0.0f, 1.0f, 0.0f);
+        localAxisB = constraint?.LocalAxisB ?? new Vector3(0.0f, 1.0f, 0.0f);
+        targetVelocity = constraint?.TargetVelocity ?? 0f;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a TwistMotor constraint while Apply is true, mirroring the TwistMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The TwistMotor constraint to write to. Use CastAs (TwistMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localAxisA">Twist axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="localAxisB">Twist axis in the local space of body B. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target twist velocity in radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.TwistMotorConstraintComponent? SetTwistMotorSettings(SConstraints.TwistMotorConstraintComponent? constraint,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxisA,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxisB,
+        float targetVelocity = 0f,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalAxisA = localAxisA;
+            constraint.LocalAxisB = localAxisB;
+            constraint.TargetVelocity = targetVelocity;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a TwistServo constraint, mirroring the TwistServo node's inputs.</summary>
+    /// <param name="constraint">The TwistServo constraint to read. Outputs the defaults while null. Use CastAs (TwistServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+    /// <param name="localBasisB">Twist basis in the local space of body B.</param>
+    /// <param name="targetAngle">Twist angle in radians the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetTwistServoSettings(SConstraints.TwistServoConstraintComponent? constraint,
+        out Quaternion localBasisA,
+        out Quaternion localBasisB,
+        out float targetAngle,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localBasisA = constraint?.LocalBasisA ?? Quaternion.Identity;
+        localBasisB = constraint?.LocalBasisB ?? Quaternion.Identity;
+        targetAngle = constraint?.TargetAngle ?? 0f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a TwistServo constraint while Apply is true, mirroring the TwistServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The TwistServo constraint to write to. Use CastAs (TwistServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localBasisA">Twist basis in the local space of body A (twist measured around its Y axis).</param>
+    /// <param name="localBasisB">Twist basis in the local space of body B.</param>
+    /// <param name="targetAngle">Twist angle in radians the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.TwistServoConstraintComponent? SetTwistServoSettings(SConstraints.TwistServoConstraintComponent? constraint,
+        Quaternion localBasisA,
+        Quaternion localBasisB,
+        float targetAngle = 0f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalBasisA = localBasisA;
+            constraint.LocalBasisB = localBasisB;
+            constraint.TargetAngle = targetAngle;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a Weld constraint, mirroring the Weld node's inputs.</summary>
+    /// <param name="constraint">The Weld constraint to read. Outputs the defaults while null. Use CastAs (WeldConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Position of body B relative to body A.</param>
+    /// <param name="localOrientation">Orientation of body B relative to body A.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetWeldSettings(SConstraints.WeldConstraintComponent? constraint,
+        out Vector3 localOffset,
+        out Quaternion localOrientation,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffset = constraint?.LocalOffset ?? default;
+        localOrientation = constraint?.LocalOrientation ?? Quaternion.Identity;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a Weld constraint while Apply is true, mirroring the Weld node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The Weld constraint to write to. Use CastAs (WeldConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Position of body B relative to body A.</param>
+    /// <param name="localOrientation">Orientation of body B relative to body A.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.WeldConstraintComponent? SetWeldSettings(SConstraints.WeldConstraintComponent? constraint,
+        Vector3 localOffset,
+        Quaternion localOrientation,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffset = localOffset;
+            constraint.LocalOrientation = localOrientation;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a LinearAxisLimit constraint, mirroring the LinearAxisLimit node's inputs.</summary>
+    /// <param name="constraint">The LinearAxisLimit constraint to read. Outputs the defaults while null. Use CastAs (LinearAxisLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
+    /// <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetLinearAxisLimitSettings(SConstraints.LinearAxisLimitConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out Vector3 localAxis,
+        out float minimumOffset,
+        out float maximumOffset,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localAxis = constraint?.LocalAxis ?? new Vector3(0.0f, 1.0f, 0.0f);
+        minimumOffset = constraint?.MinimumOffset ?? 0f;
+        maximumOffset = constraint?.MaximumOffset ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a LinearAxisLimit constraint while Apply is true, mirroring the LinearAxisLimit node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The LinearAxisLimit constraint to write to. Use CastAs (LinearAxisLimitConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="minimumOffset">Smallest allowed offset between the anchors along the axis.</param>
+    /// <param name="maximumOffset">Largest allowed offset between the anchors along the axis.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.LinearAxisLimitConstraintComponent? SetLinearAxisLimitSettings(SConstraints.LinearAxisLimitConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxis,
+        float minimumOffset = 0f,
+        float maximumOffset = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalAxis = localAxis;
+            constraint.MinimumOffset = minimumOffset;
+            constraint.MaximumOffset = maximumOffset;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a LinearAxisMotor constraint, mirroring the LinearAxisMotor node's inputs.</summary>
+    /// <param name="constraint">The LinearAxisMotor constraint to read. Outputs the defaults while null. Use CastAs (LinearAxisMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetLinearAxisMotorSettings(SConstraints.LinearAxisMotorConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out Vector3 localAxis,
+        out float targetVelocity,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localAxis = constraint?.LocalAxis ?? new Vector3(0.0f, 1.0f, 0.0f);
+        targetVelocity = constraint?.TargetVelocity ?? 0f;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a LinearAxisMotor constraint while Apply is true, mirroring the LinearAxisMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The LinearAxisMotor constraint to write to. Use CastAs (LinearAxisMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localAxis">Sliding axis in the local space of body A. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetVelocity">Target sliding velocity along the axis in units per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.LinearAxisMotorConstraintComponent? SetLinearAxisMotorSettings(SConstraints.LinearAxisMotorConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localAxis,
+        float targetVelocity = 0f,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalAxis = localAxis;
+            constraint.TargetVelocity = targetVelocity;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a LinearAxisServo constraint, mirroring the LinearAxisServo node's inputs.</summary>
+    /// <param name="constraint">The LinearAxisServo constraint to read. Outputs the defaults while null. Use CastAs (LinearAxisServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetOffset">Distance from the plane the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetLinearAxisServoSettings(SConstraints.LinearAxisServoConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out Vector3 localPlaneNormal,
+        out float targetOffset,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localPlaneNormal = constraint?.LocalPlaneNormal ?? new Vector3(0.0f, 1.0f, 0.0f);
+        targetOffset = constraint?.TargetOffset ?? 0f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a LinearAxisServo constraint while Apply is true, mirroring the LinearAxisServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The LinearAxisServo constraint to write to. Use CastAs (LinearAxisServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localPlaneNormal">Plane normal in the local space of body A; the servo drives the anchor of B onto that plane. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="targetOffset">Distance from the plane the servo drives towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.LinearAxisServoConstraintComponent? SetLinearAxisServoSettings(SConstraints.LinearAxisServoConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localPlaneNormal,
+        float targetOffset = 0f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalPlaneNormal = localPlaneNormal;
+            constraint.TargetOffset = targetOffset;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a PointOnLineServo constraint, mirroring the PointOnLineServo node's inputs.</summary>
+    /// <param name="constraint">The PointOnLineServo constraint to read. Outputs the defaults while null. Use CastAs (PointOnLineServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetPointOnLineServoSettings(SConstraints.PointOnLineServoConstraintComponent? constraint,
+        out Vector3 localOffsetA,
+        out Vector3 localOffsetB,
+        out Vector3 localDirection,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localOffsetA = constraint?.LocalOffsetA ?? default;
+        localOffsetB = constraint?.LocalOffsetB ?? default;
+        localDirection = constraint?.LocalDirection ?? new Vector3(0.0f, 1.0f, 0.0f);
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a PointOnLineServo constraint while Apply is true, mirroring the PointOnLineServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The PointOnLineServo constraint to write to. Use CastAs (PointOnLineServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffsetA">Anchor point relative to the center of body A.</param>
+    /// <param name="localOffsetB">Anchor point relative to the center of body B.</param>
+    /// <param name="localDirection">Line direction in the local space of body A; the anchor of B is kept on that line. Must be a non-zero (unit-length) vector, a zero axis produces NaN poses in the solver.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.PointOnLineServoConstraintComponent? SetPointOnLineServoSettings(SConstraints.PointOnLineServoConstraintComponent? constraint,
+        Vector3 localOffsetA,
+        Vector3 localOffsetB,
+        [DefaultValue("0.0, 1.0, 0.0")] Vector3 localDirection,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffsetA = localOffsetA;
+            constraint.LocalOffsetB = localOffsetB;
+            constraint.LocalDirection = localDirection;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an Area constraint, mirroring the Area node's inputs.</summary>
+    /// <param name="constraint">The Area constraint to read. Outputs the defaults while null. Use CastAs (AreaConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetScaledArea">Target area of the triangle spanned by the three body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetAreaSettings(SConstraints.AreaConstraintComponent? constraint,
+        out float targetScaledArea,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        targetScaledArea = constraint?.TargetScaledArea ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an Area constraint while Apply is true, mirroring the Area node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The Area constraint to write to. Use CastAs (AreaConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetScaledArea">Target area of the triangle spanned by the three body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.AreaConstraintComponent? SetAreaSettings(SConstraints.AreaConstraintComponent? constraint,
+        float targetScaledArea = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetScaledArea = targetScaledArea;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of a Volume constraint, mirroring the Volume node's inputs.</summary>
+    /// <param name="constraint">The Volume constraint to read. Outputs the defaults while null. Use CastAs (VolumeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetScaledVolume">Target volume of the tetrahedron spanned by the four body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    public static void GetVolumeSettings(SConstraints.VolumeConstraintComponent? constraint,
+        out float targetScaledVolume,
+        out float springFrequency,
+        out float springDampingRatio)
+    {
+        targetScaledVolume = constraint?.TargetScaledVolume ?? 1f;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+    }
+
+    /// <summary>
+    /// Writes all settings of a Volume constraint while Apply is true, mirroring the Volume node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The Volume constraint to write to. Use CastAs (VolumeConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetScaledVolume">Target volume of the tetrahedron spanned by the four body centers.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.VolumeConstraintComponent? SetVolumeSettings(SConstraints.VolumeConstraintComponent? constraint,
+        float targetScaledVolume = 1f,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetScaledVolume = targetScaledVolume;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an OneBodyAngularMotor constraint, mirroring the OneBodyAngularMotor node's inputs.</summary>
+    /// <param name="constraint">The OneBodyAngularMotor constraint to read. Outputs the defaults while null. Use CastAs (OneBodyAngularMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetVelocity">Target angular velocity in world space, radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetOneBodyAngularMotorSettings(SConstraints.OneBodyAngularMotorConstraintComponent? constraint,
+        out Vector3 targetVelocity,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        targetVelocity = constraint?.TargetVelocity ?? default;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an OneBodyAngularMotor constraint while Apply is true, mirroring the OneBodyAngularMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The OneBodyAngularMotor constraint to write to. Use CastAs (OneBodyAngularMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetVelocity">Target angular velocity in world space, radians per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.OneBodyAngularMotorConstraintComponent? SetOneBodyAngularMotorSettings(SConstraints.OneBodyAngularMotorConstraintComponent? constraint,
+        Vector3 targetVelocity,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetVelocity = targetVelocity;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an OneBodyAngularServo constraint, mirroring the OneBodyAngularServo node's inputs.</summary>
+    /// <param name="constraint">The OneBodyAngularServo constraint to read. Outputs the defaults while null. Use CastAs (OneBodyAngularServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetOrientation">World-space orientation the servo drives the body towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetOneBodyAngularServoSettings(SConstraints.OneBodyAngularServoConstraintComponent? constraint,
+        out Quaternion targetOrientation,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        targetOrientation = constraint?.TargetOrientation ?? Quaternion.Identity;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an OneBodyAngularServo constraint while Apply is true, mirroring the OneBodyAngularServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The OneBodyAngularServo constraint to write to. Use CastAs (OneBodyAngularServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="targetOrientation">World-space orientation the servo drives the body towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.OneBodyAngularServoConstraintComponent? SetOneBodyAngularServoSettings(SConstraints.OneBodyAngularServoConstraintComponent? constraint,
+        Quaternion targetOrientation,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.TargetOrientation = targetOrientation;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an OneBodyLinearMotor constraint, mirroring the OneBodyLinearMotor node's inputs.</summary>
+    /// <param name="constraint">The OneBodyLinearMotor constraint to read. Outputs the defaults while null. Use CastAs (OneBodyLinearMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Anchor point relative to the center of the body.</param>
+    /// <param name="targetVelocity">Target velocity of the anchor point in world space, units per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    public static void GetOneBodyLinearMotorSettings(SConstraints.OneBodyLinearMotorConstraintComponent? constraint,
+        out Vector3 localOffset,
+        out Vector3 targetVelocity,
+        out float motorDamping,
+        out float motorMaximumForce)
+    {
+        localOffset = constraint?.LocalOffset ?? default;
+        targetVelocity = constraint?.TargetVelocity ?? default;
+        motorDamping = constraint?.MotorDamping ?? 10f;
+        motorMaximumForce = constraint?.MotorMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an OneBodyLinearMotor constraint while Apply is true, mirroring the OneBodyLinearMotor node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The OneBodyLinearMotor constraint to write to. Use CastAs (OneBodyLinearMotorConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Anchor point relative to the center of the body.</param>
+    /// <param name="targetVelocity">Target velocity of the anchor point in world space, units per second.</param>
+    /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
+    /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.OneBodyLinearMotorConstraintComponent? SetOneBodyLinearMotorSettings(SConstraints.OneBodyLinearMotorConstraintComponent? constraint,
+        Vector3 localOffset,
+        Vector3 targetVelocity,
+        float motorDamping = 10f,
+        float motorMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffset = localOffset;
+            constraint.TargetVelocity = targetVelocity;
+            constraint.MotorDamping = motorDamping;
+            constraint.MotorMaximumForce = motorMaximumForce;
+        }
+        return constraint;
+    }
+
+    /// <summary>Reads all settings of an OneBodyLinearServo constraint, mirroring the OneBodyLinearServo node's inputs.</summary>
+    /// <param name="constraint">The OneBodyLinearServo constraint to read. Outputs the defaults while null. Use CastAs (OneBodyLinearServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Anchor point relative to the center of the body.</param>
+    /// <param name="target">World-space position the servo drives the anchor point towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    public static void GetOneBodyLinearServoSettings(SConstraints.OneBodyLinearServoConstraintComponent? constraint,
+        out Vector3 localOffset,
+        out Vector3 target,
+        out float springFrequency,
+        out float springDampingRatio,
+        out float servoMaximumSpeed,
+        out float servoBaseSpeed,
+        out float servoMaximumForce)
+    {
+        localOffset = constraint?.LocalOffset ?? default;
+        target = constraint?.Target ?? default;
+        springFrequency = constraint?.SpringFrequency ?? 30f;
+        springDampingRatio = constraint?.SpringDampingRatio ?? 5f;
+        servoMaximumSpeed = constraint?.ServoMaximumSpeed ?? 10f;
+        servoBaseSpeed = constraint?.ServoBaseSpeed ?? 1f;
+        servoMaximumForce = constraint?.ServoMaximumForce ?? 1000f;
+    }
+
+    /// <summary>
+    /// Writes all settings of an OneBodyLinearServo constraint while Apply is true, mirroring the OneBodyLinearServo node's inputs.
+    /// A written property is overwritten again once the owning constraint node's pin value changes.
+    /// </summary>
+    /// <param name="constraint">The OneBodyLinearServo constraint to write to. Use CastAs (OneBodyLinearServoConstraintComponent) to narrow a ConstraintComponentBase.</param>
+    /// <param name="localOffset">Anchor point relative to the center of the body.</param>
+    /// <param name="target">World-space position the servo drives the anchor point towards.</param>
+    /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
+    /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
+    /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
+    /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
+    /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SConstraints.OneBodyLinearServoConstraintComponent? SetOneBodyLinearServoSettings(SConstraints.OneBodyLinearServoConstraintComponent? constraint,
+        Vector3 localOffset,
+        Vector3 target,
+        float springFrequency = 30f,
+        float springDampingRatio = 5f,
+        float servoMaximumSpeed = 10f,
+        float servoBaseSpeed = 1f,
+        float servoMaximumForce = 1000f,
+        bool apply = false)
+    {
+        if (apply && constraint is not null)
+        {
+            constraint.LocalOffset = localOffset;
+            constraint.Target = target;
+            constraint.SpringFrequency = springFrequency;
+            constraint.SpringDampingRatio = springDampingRatio;
+            constraint.ServoMaximumSpeed = servoMaximumSpeed;
+            constraint.ServoBaseSpeed = servoBaseSpeed;
+            constraint.ServoMaximumForce = servoMaximumForce;
+        }
+        return constraint;
+    }
+}

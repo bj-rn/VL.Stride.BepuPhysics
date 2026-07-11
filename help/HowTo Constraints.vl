@@ -147,7 +147,7 @@
             <Pin Id="O2wx90YBnpFOtBPkiTGCcH" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
             <Pin Id="CHhbFg0zVW1O7ySYrxFUSn" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="595,370,150,19" Id="HcCN000000000000000033">
+          <Node Bounds="595,400,150,19" Id="HcCN000000000000000033">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BallSocket" />
@@ -408,7 +408,7 @@
           </Pad>
           <Pad Id="EQ9tWOY99CFN1tb316Z1aD" Comment="Has Spring" Bounds="1396,671,35,35" ShowValueBox="true" isIOBox="true" />
           <Pad Id="OK5f8ecGM02OD3rM913vs2" Comment="Spring Frequency" Bounds="1304,710,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="DzH5Zyiag1aLnUAE086kLp" Comment="Spring Frequency" Bounds="680,320,35,15" ShowValueBox="true" isIOBox="true" Value="30">
+          <Pad Id="DzH5Zyiag1aLnUAE086kLp" Comment="Spring Frequency" Bounds="680,340,35,15" ShowValueBox="true" isIOBox="true" Value="30">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
@@ -421,7 +421,7 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="MqwWLQbMBA3PQ3R67FExyr" Comment="Reapply Inputs" Bounds="742,350,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="MqwWLQbMBA3PQ3R67FExyr" Comment="Reapply Inputs" Bounds="742,360,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -505,6 +505,60 @@
             <Pin Id="IMqggbBoP8QPWS72PJ6CO1" Name="Apply" Kind="InputPin" />
             <Pin Id="Q4IamTeJVJGMooJ4reqMfU" Name="Output" Kind="OutputPin" />
           </Node>
+          <Node Bounds="838,580,48,19" Id="JLVkzAJGWYELLJb9PWhSo4">
+            <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="CastAs" />
+            </p:NodeReference>
+            <Pin Id="Be5d1nmhQPsLSbcrbIMw5b" Name="Input" Kind="StateInputPin" />
+            <Pin Id="K2HD9jjvp77LDt5fBuICoy" Name="Default" Kind="InputPin" />
+            <Pin Id="Q9634fsntOKLBVnVZfPWLB" Name="Result" Kind="OutputPin" />
+            <Pin Id="EEjr12wbQDiLvF7jaEBVoU" Name="Success" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="859,640,114,19" Id="IjkQAEJoXZSPTpR4tuzG3r">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintTypeOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="GetBallSocketSettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="LpL52fsl6sFLT5VSWqjl20" Name="Constraint" Kind="InputPin" />
+            <Pin Id="SYU4ORmzYkEQBsm1lduolX" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="A7MjPPyQyvkMPb0UjBg8UW" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="ORKjX3RiuZcLHIHNJXPppC" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="BkhWK8OhrkHMnpIhCFU74t" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Pad Id="IUUqOAb4fBfN42hnxwLY5i" Comment="Local Offset B" Bounds="659,290,35,43" ShowValueBox="true" isIOBox="true" Value="2, 0, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="838,770,112,19" Id="H0AnmRI2j10P3pXG4o46hV">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintTypeOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="SetBallSocketSettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="AsfOsA2x1CaPuS2cVyXk99" Name="Constraint" Kind="InputPin" />
+            <Pin Id="HGTV35u4E1pNqnzMcZ5cIz" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="RTNsvPXi5yLK9bWMRFahkz" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="Ji6sni2BYhZOOWiMUmY1Ps" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="MBXlJAsrg4JMVvcLYkDUMS" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="OfC0hDrDdijOIJenWx8JHE" Name="Apply" Kind="InputPin" />
+            <Pin Id="TdnRiHQ5sVjO5lDw3CVoPV" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="Q7xEaD2KivwLQmk4MrP1Cb" Comment="Apply" Bounds="947,740,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="HWKez1VycMKMSmmMnTD4bf" Comment="Local Offset B" Bounds="883,681,35,43" ShowValueBox="true" isIOBox="true" Value="3, 0, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
         </Canvas>
         <Patch Id="HcCN000000000000000070" Name="Create" />
         <Patch Id="HcCN000000000000000071" Name="Update" />
@@ -557,6 +611,15 @@
         <Link Id="QXazuMbprftOcQRyrU0hyI" Ids="BNNoEB80uSxM7IuJfkLHrT,LiolQNgPZrQNOgBN0mvMrA" />
         <Link Id="SAy97umRHkVLAtIgaoM8hz" Ids="Gz2SDb6vrANPyAnfmlfJnu,Fsp7iohKlxcPvalfLjABzb" />
         <Link Id="IVvIEQnoA19MJIQThaJTAR" Ids="MyqhgiOknsCPesyzbNPe7H,KPF3KzFRTOsOkn2az2jTjI" />
+        <Link Id="OjhdKfjwYEiMXHuX2KMtgO" Ids="BNNoEB80uSxM7IuJfkLHrT,Be5d1nmhQPsLSbcrbIMw5b" />
+        <Link Id="VIu2UFD4CJ9Pr1sEhQabIU" Ids="Q9634fsntOKLBVnVZfPWLB,LpL52fsl6sFLT5VSWqjl20" />
+        <Link Id="MewTKbrLnsFO2YldITAwNv" Ids="IUUqOAb4fBfN42hnxwLY5i,HcCN000000000000000036" />
+        <Link Id="NwhsUGIWWccO4MmmTASXDx" Ids="Q9634fsntOKLBVnVZfPWLB,AsfOsA2x1CaPuS2cVyXk99" />
+        <Link Id="KOdj0lpOLAXQXQMgQTyhC0" Ids="SYU4ORmzYkEQBsm1lduolX,HGTV35u4E1pNqnzMcZ5cIz" />
+        <Link Id="K7WxJRQwyvENQ5DXB0rEy6" Ids="ORKjX3RiuZcLHIHNJXPppC,Ji6sni2BYhZOOWiMUmY1Ps" />
+        <Link Id="SEdz4gMQCKPM2JCokz73xp" Ids="BkhWK8OhrkHMnpIhCFU74t,MBXlJAsrg4JMVvcLYkDUMS" />
+        <Link Id="OJS40S0jNVOMkqMhk4Jb1g" Ids="Q7xEaD2KivwLQmk4MrP1Cb,OfC0hDrDdijOIJenWx8JHE" />
+        <Link Id="UKve23pRws6MujuFwBkXQf" Ids="HWKez1VycMKMSmmMnTD4bf,RTNsvPXi5yLK9bWMRFahkz" />
       </Patch>
     </Node>
   </Patch>
