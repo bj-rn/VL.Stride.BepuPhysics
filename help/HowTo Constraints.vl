@@ -59,6 +59,7 @@
             <Pin Id="JLRzH9KsP6mNnUS0WdeznH" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="V5b3cWDzwuNOdHC7TlpUD0" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="IB7duHsOhmZOr5sctUm7AN" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="Hpmqd3kDGfkOnQRmIBjCbr" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="LzPd5IjkdlPNZHXrvUIKpQ" Name="Gravity" Kind="InputPin" />
             <Pin Id="T6qb0ss6V58LwD3AkUNmxG" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="BmZwgNylTCpPZfTDgnR6Z0" Name="Contact Handler" Kind="InputPin" />
@@ -140,6 +141,7 @@
             <Pin Id="BgNYM2kJxRnPRgsN968Iqd" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="CJHzuw9eRhlNRR5osYkIZ4" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="H5H9xT8EUtZOUWuTbsR5nY" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="CqJli136UxbLRj4cSOWHu8" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="DuPNxvj08s5LHWPCX6tH05" Name="Gravity" Kind="InputPin" />
             <Pin Id="BIZiDLHZBdxOfRW00unLjy" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="DEp1bXNkwvVP6YK5UuwRlZ" Name="Contact Handler" Kind="InputPin" />
@@ -380,9 +382,8 @@
             </p:TypeAnnotation>
           </Pad>
           <Node Bounds="1288,840,96,19" Id="Geh1ZGiplgUPgKb5oFoOdN">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="ConstraintOperations" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="SetSpringSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
@@ -573,9 +574,9 @@
             <Pin Id="AmPoFrc3VZAOaAqlerIr9M" Name="Child" Kind="OutputPin" />
           </Node>
           <Node Bounds="1871,710,114,19" Id="GS3HnYxftuaMHEi9iJshqI">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="BodyOperations" />
+              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="ApplyAngularImpulse" />
             </p:NodeReference>
             <Pin Id="PSBC2Cw64MMM4GPjHscto8" Name="Body" Kind="InputPin" />

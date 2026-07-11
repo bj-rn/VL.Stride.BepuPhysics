@@ -50,18 +50,20 @@
             <Pin Id="HbCH000000000000000033" Name="Jump Force" Kind="InputPin" />
             <Pin Id="HbCH000000000000000034" Name="Interpolation" Kind="InputPin" />
             <Pin Id="HbCH000000000000000035" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="QUbqLb5hRyCOqhK1O3SVmH" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="HbCH000000000000000036" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="HbCH000000000000000037" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="HbCH000000000000000038" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="HbCH000000000000000039" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="HbCH000000000000000040" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="Rlatdm9uUCiLCx4hEqalZX" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="HbCH000000000000000041" Name="Gravity" Kind="InputPin" />
             <Pin Id="HbCH000000000000000042" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="LTMqn6BdXBCObkwixFfb0M" Name="Collider Override" Kind="InputPin" IsHidden="true" />
             <Pin Id="HbCH000000000000000043" Name="Teleport To" Kind="InputPin" />
             <Pin Id="HbCH000000000000000044" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="HbCH000000000000000045" Name="Output" Kind="OutputPin" />
             <Pin Id="CcMyJkTeDJSPyGkdj0FNYo" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
-            <Pin Id="LTMqn6BdXBCObkwixFfb0M" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="764,450,65,19" Id="HbCH000000000000000050">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
@@ -229,13 +231,14 @@
             <Pin Id="HbCH000000000000000121" Name="Colliders" Kind="InputPin" />
             <Pin Id="HbCH000000000000000122" Name="Output" Kind="OutputPin" />
             <Pin Id="QJKtzLE8k7yNc4p0yherkz" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="HgDxGqni0eRNMK61IXPBxa" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="Syq6ULr1idMMeU2MkU6MgX" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="SDoSiHWr6DCM7hDbNCXUJL" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="B49gqoQXNiRL76DuQUjcCX" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="DdLl5xeZDOZLSC04JsZqZf" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="PBiBdxH2ITsQTjJet5Wsdr" Name="Contact Handler" Kind="InputPin" />
-            <Pin Id="J8oIk2pd1GQLVUUoem0IHq" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
             <Pin Id="Bzd0mypqJv8P3pbEW0xLNI" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="J8oIk2pd1GQLVUUoem0IHq" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="507,420,65,19" Id="HbCH000000000000000125">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
@@ -341,14 +344,14 @@
             <Pin Id="Q5vdcVjqgQjPCUtffbhEtZ" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="JTgD73xJNYWQUbcak9bUwd" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="407,770,225,19" Id="HbCH000000000000000170">
+          <Node Bounds="387,770,225,19" Id="HbCH000000000000000170">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="Db0qJ8BZFhzN5C4gzjms9P" Name="Bounds" Kind="InputPin" DefaultValue="1000, 40, 786, 432" IsHidden="true" />
-            <Pin Id="HFfnui0ddbvOsBE4RFkf3E" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="HFfnui0ddbvOsBE4RFkf3E" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="GciqXPLYW6SLNDqYZdBzJk" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="SqpmCd5QFymPfQMgjPsMIB" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="B8K3s2BFlQwN6JFudALxRL" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
@@ -740,7 +743,7 @@
           </Node>
           <Pad Id="RJjnplIjpZMO78eh3JfjbD" Comment="Speed" Bounds="1498,990,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="JcbzKko0p60OeVWa1XWnUu" Comment="Jump Force" Bounds="1605,980,35,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="847,830,48,19" Id="OzFnvNzgeMRMeq240Z45GZ">
+          <Node Bounds="758,840,48,19" Id="OzFnvNzgeMRMeq240Z45GZ">
             <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="CastAs" />
@@ -750,7 +753,7 @@
             <Pin Id="Ur8M7EHjgZiOJHE8LZTekp" Name="Result" Kind="OutputPin" />
             <Pin Id="OCqMzZvv1mhLWmnhdDko6y" Name="Success" Kind="OutputPin" />
           </Node>
-          <Node Bounds="847,890,196,19" Id="DZXWG1n8iNxMOYpYqtKcXW">
+          <Node Bounds="758,900,295,19" Id="DZXWG1n8iNxMOYpYqtKcXW">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="BodyState" />
@@ -760,13 +763,15 @@
             <Pin Id="CbHVYGhUTgMLGhm4o0tQgU" Name="Orientation" Kind="OutputPin" />
             <Pin Id="BHuuwksbrdyNCZ35F9MK2u" Name="Linear Velocity" Kind="OutputPin" />
             <Pin Id="G0C3CwP8HM4Qae8oMcnYod" Name="Angular Velocity" Kind="OutputPin" />
+            <Pin Id="RPEZrk0Y1NPMqnVbtc9Ba7" Name="Previous Linear Velocity" Kind="OutputPin" />
+            <Pin Id="TR7VH1apzOeLgmo3tgVknR" Name="Previous Angular Velocity" Kind="OutputPin" />
             <Pin Id="O7B6REingZMLBOq1iRpoGB" Name="Awake" Kind="OutputPin" />
           </Node>
-          <Pad Id="QbyUBQiXfuDOuD69fL9xdL" Comment="Position" Bounds="849,1200,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="P1S3zBPhKIpPoY9UPZA7oP" Comment="Orientation" Bounds="897,1120,35,57" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="CCkHtnFemnEQFnaXqp7OwR" Comment="Linear Velocity" Bounds="945,1050,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="G0rgidmdSn0MvYEj6mZkKv" Comment="Angular Velocity" Bounds="992,990,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="IjtBPlOs6JPN8qIEVzQReM" Comment="Awake" Bounds="1040,930,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="QbyUBQiXfuDOuD69fL9xdL" Comment="Position" Bounds="760,1345,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="P1S3zBPhKIpPoY9UPZA7oP" Comment="Orientation" Bounds="808,1265,35,57" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="CCkHtnFemnEQFnaXqp7OwR" Comment="Linear Velocity" Bounds="856,1195,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="G0rgidmdSn0MvYEj6mZkKv" Comment="Angular Velocity" Bounds="903,1135,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="IjtBPlOs6JPN8qIEVzQReM" Comment="Awake" Bounds="1050,960,35,35" ShowValueBox="true" isIOBox="true" />
           <Node Bounds="1708,890,110,19" Id="SyavQqMJtcYNe4GKx9Wbpw">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CharacterOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -797,6 +802,8 @@
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
+          <Pad Id="Rnbk4GDiK40N0YMbMIf2vD" Comment="Previous Linear Velocity" Bounds="953,1075,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="VHunJ3fQR0jP8kzysa8mRO" Comment="Previous Angular Velocity" Bounds="1002,1020,35,43" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="HbCH000000000000000010" Name="Create" />
         <Patch Id="HbCH000000000000000011" Name="Update" />
@@ -851,6 +858,8 @@
         <Link Id="UjLpw3pzq6CNALBuQKJUKq" Ids="EYWBvb84ggjLnMW9j6bnA6,HlOBB8TgG4uOK9juOMbHvN" />
         <Link Id="MeT3Ao6AN9wODrbLTOJojE" Ids="Ey3ZXltMvGMLzqHI3Yl1LH,QEJH3gmfON8MqgbVptQwRn" />
         <Link Id="PvKrBIE4JQKLxL0Mld7QuX" Ids="KS68DUdgf0rQP0qACHcTOj,HarsJHXIz1SMHR4ljJbdBr" />
+        <Link Id="SeIqdieDe11MlDakuJJB6u" Ids="RPEZrk0Y1NPMqnVbtc9Ba7,Rnbk4GDiK40N0YMbMIf2vD" />
+        <Link Id="AudcF9qBa4XMKpVNe2jRxA" Ids="TR7VH1apzOeLgmo3tgVknR,VHunJ3fQR0jP8kzysa8mRO" />
       </Patch>
     </Node>
   </Patch>

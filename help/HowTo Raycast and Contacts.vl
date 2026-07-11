@@ -615,10 +615,24 @@
             </p:ValueBoxSettings>
           </Pad>
           <Node Bounds="1815,401,85,19" Id="ShZtOe2KYrwNBa1pcBPGqd">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Queries.QueryOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Queries" LastDependency="VL.Stride.BepuPhysics.vl" OverloadStrategy="AllPinsThatAreNotCommon">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="QueryOperations" NeedsToBeDirectParent="true" />
+              <CategoryReference Kind="ClassType" Name="Queries" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="Split" />
+              <PinReference Kind="InputPin" Name="Input">
+                <p:DataTypeReference p:Type="TypeReference" LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+                  <Choice Kind="TypeFlag" Name="Nullable" />
+                  <p:TypeArguments>
+                    <TypeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+                      <Choice Kind="TypeFlag" Name="HitInfo" />
+                    </TypeReference>
+                  </p:TypeArguments>
+                </p:DataTypeReference>
+              </PinReference>
+              <PinReference Kind="OutputPin" Name="Point" ParameterModifier="ref" />
+              <PinReference Kind="OutputPin" Name="Normal" ParameterModifier="ref" />
+              <PinReference Kind="OutputPin" Name="Distance" ParameterModifier="ref" />
+              <PinReference Kind="OutputPin" Name="Child Index" ParameterModifier="ref" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="ACv3w3x45avPUajPkzK5aW" Name="Input" Kind="InputPin" />
@@ -1009,6 +1023,42 @@
           <Pad Id="DksyaZ9Cse0NCIXKj6Lw1b" Comment="Inverse Mass" Bounds="4131,1110,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="UyF0iY07Bq1MrqSh9KCqQ5" Comment="Center Of Mass" Bounds="4165,1050,35,43" ShowValueBox="true" isIOBox="true" />
           <Pad Id="Tn3xrxuBEqRMhw3WYZeKdQ" Comment="Speculative Margin" Bounds="4199,1010,35,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="579,800,65,19" Id="RQAkq2RsPKxP6cwO14frie">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="RayCast" />
+            </p:NodeReference>
+            <Pin Id="P9gpbCfZU5JMwieusTnOlX" Name="Collidable" Kind="InputPin" />
+            <Pin Id="HyikBM7Qx8ONc8izXcre2W" Name="Origin" Kind="InputPin" />
+            <Pin Id="SXhwKlVownmPmGXhBmy1vs" Name="Direction" Kind="InputPin" />
+            <Pin Id="EY4qfU6mopILNbHmY9J8LQ" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="HtEWqM0CrzLOtaU91hFA9Q" Name="Hit" Kind="OutputPin" />
+            <Pin Id="PGorAFT2lJjQc9Hhqhdxlp" Name="Did Hit" Kind="OutputPin" />
+          </Node>
+          <Pad Id="SRqkkMsXQrXMGPiTkXdSbb" Comment="Ray Origin" Bounds="601,670,60,43" ShowValueBox="true" isIOBox="true" Value="0, 5, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="RC7UiJuBO9VOFlgHgZfMLb" Comment="Ray Direction" Bounds="621,740,60,43" ShowValueBox="true" isIOBox="true" Value="0, -1, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="689,800,104,19" Id="PszYeJk1sO9P5iWdWbfkj3">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
+              <Choice Kind="ProcessAppFlag" Name="RayCastPenetrating" />
+            </p:NodeReference>
+            <Pin Id="LHIL5hCy2dyMDSHEMoz5AN" Name="Collidable" Kind="InputPin" />
+            <Pin Id="VPvfRIn7fesMXssrwZf9fu" Name="Origin" Kind="InputPin" />
+            <Pin Id="RaFnp7e1mQ1L0aX2RfbrNp" Name="Direction" Kind="InputPin" />
+            <Pin Id="FM67D8MemhfNcNyf18MWcD" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="IkQhUSy1dtyLuzHEJ2k1wb" Name="Enabled" Kind="InputPin" />
+            <Pin Id="NG5gXGXFBcwOSYaexQih6s" Name="Output" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="HrRC000000000000000084" Name="Create" />
         <Patch Id="HrRC000000000000000085" Name="Update" />
@@ -1161,6 +1211,12 @@
         <Link Id="DNwRN8DlkF0LkumgzTU497" Ids="IlUfIt1wTywPoz1zXmgGtu,UyF0iY07Bq1MrqSh9KCqQ5" />
         <Link Id="H4WxGOcfLhVNmZYcWSSMrn" Ids="HR01vNQrijFQApbSfpTFiV,Tn3xrxuBEqRMhw3WYZeKdQ" />
         <Link Id="NzUtDGSMdS4LbzbedOCUNV" Ids="HxYu7ldJPSKNrlePsZ6jVt,TRfASTKz2FKL3Td9sec4VO" />
+        <Link Id="HM394FopZHTMscK2maINlN" Ids="HrRC000000000000000016,P9gpbCfZU5JMwieusTnOlX" />
+        <Link Id="UfioXB8YcZvNwnhuk55dmX" Ids="SRqkkMsXQrXMGPiTkXdSbb,HyikBM7Qx8ONc8izXcre2W" />
+        <Link Id="E0GoaCt8Mo7MfR7E4Q3Uhj" Ids="RC7UiJuBO9VOFlgHgZfMLb,SXhwKlVownmPmGXhBmy1vs" />
+        <Link Id="LC57AZyO4JnPvMBJx26qdv" Ids="RC7UiJuBO9VOFlgHgZfMLb,RaFnp7e1mQ1L0aX2RfbrNp" />
+        <Link Id="ES4pO4qyfbqLyGPGkBlWWT" Ids="SRqkkMsXQrXMGPiTkXdSbb,VPvfRIn7fesMXssrwZf9fu" />
+        <Link Id="CVkCSfp5LoIN3x1FjYpEQV" Ids="HrRC000000000000000016,LHIL5hCy2dyMDSHEMoz5AN" />
       </Patch>
     </Node>
   </Patch>
