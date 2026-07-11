@@ -6,7 +6,7 @@ namespace VL.Stride.BepuPhysics;
 
 /// <summary>
 /// Operations on a Character component. The Character is also a Body, so the Body operations
-/// (impulses, Teleport, GetBodyState, ...) work on it as well.
+/// (impulses, Teleport, BodyState, ...) work on it as well.
 /// Mutating operations run while Apply is true.
 /// </summary>
 public static class CharacterOperations
@@ -42,11 +42,11 @@ public static class CharacterOperations
         return character;
     }
 
-    /// <summary>Reads the character specific settings, mirroring the Character node's inputs. Use GetCollidableInfo for identity and GetBodySettings for the body settings.</summary>
+    /// <summary>Reads the character specific settings, mirroring the Character node's inputs. Use CollidableInfo for identity and BodySettings for the body settings.</summary>
     /// <param name="character">The character to read. Outputs the defaults while null.</param>
     /// <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
     /// <param name="jumpForce">Force of the impulse applied by TryJump.</param>
-    public static void GetCharacterSettings(SBepu.CharacterComponent? character,
+    public static void CharacterSettings(SBepu.CharacterComponent? character,
         out float speed, out float jumpForce)
     {
         speed = character?.Speed ?? 10f;
@@ -75,12 +75,12 @@ public static class CharacterOperations
         return character;
     }
 
-    /// <summary>Reads the character specific state. Use GetBodyState for pose and actual body velocities.</summary>
+    /// <summary>Reads the character specific state. Use BodyState for pose and actual body velocities.</summary>
     /// <param name="character">The character to read. Outputs defaults while not attached to a simulation.</param>
     /// <param name="isGrounded">True while the character stands on a support surface.</param>
     /// <param name="isJumping">True while a jump is in progress.</param>
     /// <param name="movementVelocity">The desired movement velocity set via Move, in world space.</param>
-    public static void GetCharacterState(SBepu.CharacterComponent? character,
+    public static void CharacterState(SBepu.CharacterComponent? character,
         out bool isGrounded, out bool isJumping, out Vector3 movementVelocity)
     {
         if (character is null || character.Simulation is null)

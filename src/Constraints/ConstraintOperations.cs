@@ -7,7 +7,7 @@ namespace VL.Stride.BepuPhysics.Constraints;
 
 /// <summary>
 /// Reads the constraints referencing a body, for example one obtained from a query or contact.
-/// Use GetConstraintInfo to identify each constraint, the capability operations (spring, motor,
+/// Use ConstraintInfo to identify each constraint, the capability operations (spring, motor,
 /// servo) for the common tuning properties, or CastAs for type specific access.
 /// </summary>
 [ProcessNode(Name = "GetConstraints")]
@@ -69,10 +69,10 @@ public static class ConstraintOperations
     /// <param name="kind">Which constraint type this is. None while nothing is connected.</param>
     /// <param name="attached">True while the constraint is active in the simulation (bodies valid, same simulation, enabled).</param>
     /// <param name="enabled">Whether the constraint is currently enabled.</param>
-    /// <param name="isSpring">True when the spring operations apply (GetSpringSettings, SetSpringSettings).</param>
-    /// <param name="isMotor">True when the motor operations apply (GetMotorSettings, SetMotorSettings).</param>
-    /// <param name="isServo">True when the servo operations apply (GetServoSettings, SetServoSettings).</param>
-    public static void GetConstraintInfo(SConstraints.ConstraintComponentBase? constraint,
+    /// <param name="isSpring">True when the spring operations apply (SpringSettings, SetSpringSettings).</param>
+    /// <param name="isMotor">True when the motor operations apply (MotorSettings, SetMotorSettings).</param>
+    /// <param name="isServo">True when the servo operations apply (ServoSettings, SetServoSettings).</param>
+    public static void ConstraintInfo(SConstraints.ConstraintComponentBase? constraint,
         out ConstraintKind kind,
         out bool attached,
         out bool enabled,
@@ -125,7 +125,7 @@ public static class ConstraintOperations
     /// <param name="constraint">The constraint to read. Outputs zero while not attached.</param>
     /// <param name="forceSquared">Squared sum of all forces the constraint applied on the last tick. Compare with a motor's maximum force.</param>
     /// <param name="impulseSquared">Squared sum of all impulses the constraint applied on the last tick. Scales with the time step and sub steps, prefer Force Squared.</param>
-    public static void GetConstraintForce(SConstraints.ConstraintComponentBase? constraint,
+    public static void ConstraintForce(SConstraints.ConstraintComponentBase? constraint,
         out float forceSquared,
         out float impulseSquared)
     {
@@ -156,12 +156,12 @@ public static class ConstraintOperations
         return constraint;
     }
 
-    /// <summary>Reads the spring settings of any constraint that has them (see GetConstraintInfo's Is Spring).</summary>
+    /// <summary>Reads the spring settings of any constraint that has them (see ConstraintInfo's Is Spring).</summary>
     /// <param name="constraint">The constraint to read. Outputs the defaults while null or without spring settings.</param>
     /// <param name="springFrequency">Constraint spring stiffness in Hz (target undamped oscillation frequency).</param>
     /// <param name="springDampingRatio">Constraint spring damping; 1 = critical damping, higher settles stiffer.</param>
     /// <param name="hasSpring">True when the constraint has spring settings.</param>
-    public static void GetSpringSettings(SConstraints.ConstraintComponentBase? constraint,
+    public static void SpringSettings(SConstraints.ConstraintComponentBase? constraint,
         out float springFrequency,
         out float springDampingRatio,
         out bool hasSpring)
@@ -180,7 +180,7 @@ public static class ConstraintOperations
 
     /// <summary>
     /// Writes the spring settings of any constraint that has them while Apply is true.
-    /// Does nothing on constraints without spring settings (see GetConstraintInfo's Is Spring).
+    /// Does nothing on constraints without spring settings (see ConstraintInfo's Is Spring).
     /// A written property is overwritten again once the owning constraint node's pin value changes.
     /// </summary>
     /// <param name="constraint">The constraint to write to.</param>
@@ -201,12 +201,12 @@ public static class ConstraintOperations
         return constraint;
     }
 
-    /// <summary>Reads the motor settings of any constraint that has them (see GetConstraintInfo's Is Motor).</summary>
+    /// <summary>Reads the motor settings of any constraint that has them (see ConstraintInfo's Is Motor).</summary>
     /// <param name="constraint">The constraint to read. Outputs the defaults while null or without motor settings.</param>
     /// <param name="motorDamping">How aggressively the motor corrects towards the target velocity.</param>
     /// <param name="motorMaximumForce">Maximum force the motor may apply.</param>
     /// <param name="hasMotor">True when the constraint has motor settings.</param>
-    public static void GetMotorSettings(SConstraints.ConstraintComponentBase? constraint,
+    public static void MotorSettings(SConstraints.ConstraintComponentBase? constraint,
         out float motorDamping,
         out float motorMaximumForce,
         out bool hasMotor)
@@ -225,7 +225,7 @@ public static class ConstraintOperations
 
     /// <summary>
     /// Writes the motor settings of any constraint that has them while Apply is true.
-    /// Does nothing on constraints without motor settings (see GetConstraintInfo's Is Motor).
+    /// Does nothing on constraints without motor settings (see ConstraintInfo's Is Motor).
     /// A written property is overwritten again once the owning constraint node's pin value changes.
     /// </summary>
     /// <param name="constraint">The constraint to write to.</param>
@@ -246,13 +246,13 @@ public static class ConstraintOperations
         return constraint;
     }
 
-    /// <summary>Reads the servo settings of any constraint that has them (see GetConstraintInfo's Is Servo).</summary>
+    /// <summary>Reads the servo settings of any constraint that has them (see ConstraintInfo's Is Servo).</summary>
     /// <param name="constraint">The constraint to read. Outputs the defaults while null or without servo settings.</param>
     /// <param name="servoMaximumSpeed">Maximum speed the servo may use to approach the target.</param>
     /// <param name="servoBaseSpeed">Minimum speed used while correcting remaining error.</param>
     /// <param name="servoMaximumForce">Maximum force the servo may apply.</param>
     /// <param name="hasServo">True when the constraint has servo settings.</param>
-    public static void GetServoSettings(SConstraints.ConstraintComponentBase? constraint,
+    public static void ServoSettings(SConstraints.ConstraintComponentBase? constraint,
         out float servoMaximumSpeed,
         out float servoBaseSpeed,
         out float servoMaximumForce,
@@ -274,7 +274,7 @@ public static class ConstraintOperations
 
     /// <summary>
     /// Writes the servo settings of any constraint that has them while Apply is true.
-    /// Does nothing on constraints without servo settings (see GetConstraintInfo's Is Servo).
+    /// Does nothing on constraints without servo settings (see ConstraintInfo's Is Servo).
     /// A written property is overwritten again once the owning constraint node's pin value changes.
     /// </summary>
     /// <param name="constraint">The constraint to write to.</param>

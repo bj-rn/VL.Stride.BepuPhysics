@@ -20,7 +20,7 @@ public static class CollidableOperations
     /// <param name="entityName">Name of that entity. Empty while not attached or no input.</param>
     /// <param name="kind">Whether the collidable is a Body, a Static or nothing is connected.</param>
     /// <param name="attached">True while the collidable is part of a simulation.</param>
-    public static void GetCollidableInfo(SBepu.CollidableComponent? collidable,
+    public static void CollidableInfo(SBepu.CollidableComponent? collidable,
         out SEngine.Entity? entity,
         out string entityName,
         out CollidableKind kind,
@@ -44,7 +44,7 @@ public static class CollidableOperations
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
     /// <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
-    public static void GetCollidableSettings(SBepu.CollidableComponent? collidable,
+    public static void CollidableSettings(SBepu.CollidableComponent? collidable,
         out float springFrequency,
         out float springDampingRatio,
         out float frictionCoefficient,
@@ -67,14 +67,14 @@ public static class CollidableOperations
         collisionLayer = collidable.CollisionLayer;
     }
 
-    /// <summary>Reads the body specific settings. Use GetBodyState for pose and velocities.</summary>
+    /// <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
     /// <param name="body">The body to read. Outputs the component defaults while null.</param>
     /// <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
     /// <param name="continuousDetection">Continuous collision detection mode of the body.</param>
-    public static void GetBodySettings(SBepu.BodyComponent? body,
+    public static void BodySettings(SBepu.BodyComponent? body,
         out bool kinematic,
         out float sleepThreshold,
         out bool gravity,

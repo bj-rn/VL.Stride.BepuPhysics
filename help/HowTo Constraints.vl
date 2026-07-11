@@ -355,7 +355,7 @@
           <Node Bounds="1045,580,105,19" Id="QhKR5O0jqanNxQsLI5jIWo">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetConstraintInfo" />
+              <Choice Kind="OperationCallFlag" Name="ConstraintInfo" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="BsYBPBGJAdONYtJWAmKBny" Name="Constraint" Kind="InputPin" />
@@ -393,7 +393,7 @@
           <Node Bounds="1302,590,97,19" Id="JaiAVqFcHLYO2njYiQB1A2">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetSpringSettings" />
+              <Choice Kind="OperationCallFlag" Name="SpringSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="B5kdkd3YCblQW2xmg1fAEc" Name="Constraint" Kind="InputPin" />
@@ -438,7 +438,7 @@
           <Node Bounds="1540,590,104,19" Id="OrwJ7M9JX4NNXG5TFGPJLM">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetConstraintForce" />
+              <Choice Kind="OperationCallFlag" Name="ConstraintForce" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="LiolQNgPZrQNOgBN0mvMrA" Name="Constraint" Kind="InputPin" />
@@ -460,7 +460,7 @@
           <Node Bounds="1817,580,95,19" Id="FW6URN8w5rSOlHJ6UBp0fO">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetMotorSettings" />
+              <Choice Kind="OperationCallFlag" Name="MotorSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="JlXD7ozZfhlOQFpO4QBOHg" Name="Constraint" Kind="InputPin" />
@@ -483,7 +483,7 @@
           <Node Bounds="1959,580,93,19" Id="VH3PGZdvjrdNWIpLNY2Xq1">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetServoSettings" />
+              <Choice Kind="OperationCallFlag" Name="ServoSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="FkLPMk4Zmg5LnMpalDTfig" Name="Constraint" Kind="InputPin" />
@@ -518,7 +518,7 @@
           <Node Bounds="859,640,114,19" Id="IjkQAEJoXZSPTpR4tuzG3r">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.ConstraintTypeOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetBallSocketSettings" />
+              <Choice Kind="OperationCallFlag" Name="BallSocketSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="LpL52fsl6sFLT5VSWqjl20" Name="Constraint" Kind="InputPin" />

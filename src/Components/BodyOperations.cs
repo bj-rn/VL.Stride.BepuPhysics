@@ -130,7 +130,7 @@ public static class BodyOperations
     /// <param name="linearVelocity">Current linear velocity in units per second.</param>
     /// <param name="angularVelocity">Current angular velocity in radians per second.</param>
     /// <param name="awake">True while the body is actively simulated (not sleeping).</param>
-    public static void GetBodyState(SBepu.BodyComponent? body,
+    public static void BodyState(SBepu.BodyComponent? body,
         out Vector3 position, out Quaternion orientation,
         out Vector3 linearVelocity, out Vector3 angularVelocity, out bool awake)
     {

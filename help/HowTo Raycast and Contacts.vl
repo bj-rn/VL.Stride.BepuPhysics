@@ -476,7 +476,7 @@
                       <Node Bounds="1316,770,120,19" Id="PV0Lw0xdcC4PKYgal0SlOy">
                         <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.ColliderOperations" LastDependency="VL.Stride.BepuPhysics.vl">
                           <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                          <Choice Kind="OperationCallFlag" Name="GetBoxColliderSettings" />
+                          <Choice Kind="OperationCallFlag" Name="BoxColliderSettings" />
                         </p:NodeReference>
                         <Pin Id="HzZGVdqjuWYLgV6nuaJTmV" Name="Collider" Kind="InputPin" />
                         <Pin Id="SkDz3EVWgBoLM3Iq3cHCDt" Name="Size" Kind="OutputPin" />
@@ -632,7 +632,7 @@
           <Node Bounds="2629,600,95,19" Id="Rd1eTanWpemPEER9fVwr8z">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetCollidableInfo" />
+              <Choice Kind="OperationCallFlag" Name="CollidableInfo" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="FgVq4arjqqZOpXpfbzbqBp" Name="Collidable" Kind="InputPin" />
@@ -648,7 +648,7 @@
           <Node Bounds="2355,600,113,19" Id="GN6yBLe5lHKODwJ2Zft1n8">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetCollidableSettings" />
+              <Choice Kind="OperationCallFlag" Name="CollidableSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="Knxq74fgDW4OFUIMmd9p3V" Name="Collidable" Kind="InputPin" />
@@ -686,7 +686,7 @@
               <Node Bounds="2944,865,218,19" Id="GcQdrxOSarJOkYyyiDnqIZ">
                 <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="GetBodySettings" />
+                  <Choice Kind="OperationCallFlag" Name="BodySettings" />
                 </p:NodeReference>
                 <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
                 <Pin Id="SuyUmzSUkpvPCOOXeMuVhm" Name="Body" Kind="InputPin" />
@@ -699,7 +699,7 @@
               <Node Bounds="3210,866,373,19" Id="BIvhiupji5zMGdxQ9w18fr">
                 <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="GetBodyState" />
+                  <Choice Kind="OperationCallFlag" Name="BodyState" />
                 </p:NodeReference>
                 <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
                 <Pin Id="IHBKgfodJ7jOQqy5OnZI2w" Name="Body" Kind="InputPin" />
@@ -771,7 +771,7 @@
           <Node Bounds="616,1210,113,19" Id="OAslo2LepEyOkyNv8GgPN7">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetCollidableSettings" />
+              <Choice Kind="OperationCallFlag" Name="CollidableSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="Auih5V1moBjPU0guWkRk4B" Name="Collidable" Kind="InputPin" />
@@ -817,7 +817,7 @@
           <Node Bounds="1942,630,85,19" Id="MfFjvWcHmbhLGaxWEcCQhU">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.ColliderOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetColliderInfo" />
+              <Choice Kind="OperationCallFlag" Name="ColliderInfo" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="GnZSeFF1tIdLsOGxitr6YV" Name="Collider" Kind="InputPin" />
@@ -837,7 +837,7 @@
               <Node Bounds="2099,720,171,19" Id="OrgrGU0RJH3LL8M28WAzIX">
                 <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.ColliderOperations" LastDependency="VL.Stride.BepuPhysics.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="GetBoxColliderSettings" />
+                  <Choice Kind="OperationCallFlag" Name="BoxColliderSettings" />
                 </p:NodeReference>
                 <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
                 <Pin Id="OaOfDpNCtXoQDURaln2P78" Name="Collider" Kind="InputPin" />

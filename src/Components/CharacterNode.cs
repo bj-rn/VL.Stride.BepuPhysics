@@ -12,7 +12,7 @@ namespace VL.Stride.BepuPhysics;
 /// <summary>
 /// A physics driven character: a dynamic body that walks and jumps.
 /// Connect the output to an Entity (like a ModelComponent); a capsule is the typical collider.
-/// Drive it with the Move and TryJump operations and read state with GetCharacterState.
+/// Drive it with the Move and TryJump operations and read state with CharacterState.
 /// The character handles its own contact events for ground detection, therefore it has no
 /// ContactHandler pin. Use Trigger or ContactEvents on the collidables it interacts with instead.
 /// </summary>

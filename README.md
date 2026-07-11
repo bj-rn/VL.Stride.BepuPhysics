@@ -8,10 +8,10 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 ## Features
 
 - `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu`
-- `Character` component: a walking, jumping physics character (Move / TryJump / GetCharacterState)
+- `Character` component: a walking, jumping physics character (Move / TryJump / CharacterState)
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
-- Runtime constraint access: GetConstraints on a body, GetConstraintInfo, spring / motor / servo get and set operations, applied force readout, plus type specific get and set operations for all 30 constraint types
+- Runtime constraint access: GetConstraints on a body, ConstraintInfo, spring / motor / servo settings operations, applied force readout, plus type specific settings operations for all 30 constraint types
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
 - Per-collidable contact events (started / touching / stopped)
 - Trigger volumes: overlap detection without collision response (entered / exited)

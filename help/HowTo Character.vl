@@ -179,7 +179,7 @@
           <Node Bounds="1149,887,180,19" Id="HbCH000000000000000100">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetCharacterState" />
+              <Choice Kind="OperationCallFlag" Name="CharacterState" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="HbCH000000000000000101" Name="Character" Kind="InputPin" />
@@ -731,7 +731,7 @@
           <Node Bounds="1496,890,112,19" Id="GYghbesNn9INQ6mWGF6fk0">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CharacterOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetCharacterSettings" />
+              <Choice Kind="OperationCallFlag" Name="CharacterSettings" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="Bbu9ipI0BGRLJERorA2d45" Name="Character" Kind="InputPin" />
@@ -753,7 +753,7 @@
           <Node Bounds="847,890,196,19" Id="DZXWG1n8iNxMOYpYqtKcXW">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="GetBodyState" />
+              <Choice Kind="OperationCallFlag" Name="BodyState" />
             </p:NodeReference>
             <Pin Id="PrG4xnI8Ed1MiA9jr2ImPY" Name="Body" Kind="InputPin" />
             <Pin Id="CaJOaQpCOpgMKj1fuKBhhb" Name="Position" Kind="OutputPin" />

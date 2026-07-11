@@ -15,7 +15,7 @@ public static class ColliderOperations
     /// <summary>Identifies which shape a collider is, for routing before CastAs.</summary>
     /// <param name="collider">The collider shape to identify.</param>
     /// <param name="kind">Which shape the collider is. None while nothing is connected.</param>
-    public static void GetColliderInfo(SColliders.ColliderBase? collider,
+    public static void ColliderInfo(SColliders.ColliderBase? collider,
         out ColliderKind kind)
     {
         kind = collider switch
@@ -35,7 +35,7 @@ public static class ColliderOperations
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of the shape relative to the body.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetColliderSettings(SColliders.ColliderBase? collider,
+    public static void ColliderSettings(SColliders.ColliderBase? collider,
         out Vector3 positionLocal,
         out Quaternion rotationLocal,
         out float mass)
@@ -51,7 +51,7 @@ public static class ColliderOperations
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of the shape relative to the body.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetBoxColliderSettings(SColliders.BoxCollider? collider,
+    public static void BoxColliderSettings(SColliders.BoxCollider? collider,
         out Vector3 size,
         out Vector3 positionLocal,
         out Quaternion rotationLocal,
@@ -68,7 +68,7 @@ public static class ColliderOperations
     /// <param name="radius">Radius of the sphere.</param>
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetSphereColliderSettings(SColliders.SphereCollider? collider,
+    public static void SphereColliderSettings(SColliders.SphereCollider? collider,
         out float radius,
         out Vector3 positionLocal,
         out float mass)
@@ -85,7 +85,7 @@ public static class ColliderOperations
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of the shape relative to the body.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetCapsuleColliderSettings(SColliders.CapsuleCollider? collider,
+    public static void CapsuleColliderSettings(SColliders.CapsuleCollider? collider,
         out float radius,
         out float length,
         out Vector3 positionLocal,
@@ -106,7 +106,7 @@ public static class ColliderOperations
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of the shape relative to the body.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetCylinderColliderSettings(SColliders.CylinderCollider? collider,
+    public static void CylinderColliderSettings(SColliders.CylinderCollider? collider,
         out float radius,
         out float length,
         out Vector3 positionLocal,
@@ -128,7 +128,7 @@ public static class ColliderOperations
     /// <param name="positionLocal">Position of the shape relative to the body origin.</param>
     /// <param name="rotationLocal">Rotation of the shape relative to the body.</param>
     /// <param name="mass">Relative weight of the shape within its compound.</param>
-    public static void GetTriangleColliderSettings(SColliders.TriangleCollider? collider,
+    public static void TriangleColliderSettings(SColliders.TriangleCollider? collider,
         out Vector3 a,
         out Vector3 b,
         out Vector3 c,
