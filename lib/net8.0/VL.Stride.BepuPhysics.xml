@@ -271,11 +271,12 @@
             Connect one or more collider shapes; each shape instance can only be used by one body.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
             <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
             <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
             <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
             <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
@@ -364,12 +365,13 @@
             ContactHandler pin. Use Trigger or ContactEvents on the collidables it interacts with instead.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
             <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
             <param name="jumpForce">Force of the impulse applied by TryJump.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
             <param name="collisionLayer">The collision layer of this character (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
             <param name="springFrequency">Contact spring stiffness in Hz, how hard contacts push overlapping bodies apart.</param>
             <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
@@ -439,7 +441,7 @@
             <param name="kind">Whether the collidable is a Body, a Static or nothing is connected.</param>
             <param name="attached">True while the collidable is part of a simulation.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.CollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single@,System.Single@,System.Single@,System.Single@,Stride.BepuPhysics.CollisionLayer@)">
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.CollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single@,System.Single@,System.Single@,System.Single@,Stride.BepuPhysics.CollisionLayer@,Stride.BepuPhysics.Definitions.CollisionGroup@)">
             <summary>Reads the contact material settings shared by bodies and statics.</summary>
             <param name="collidable">The collidable to read. Outputs the component defaults while null.</param>
             <param name="springFrequency">Contact spring stiffness in Hz.</param>
@@ -447,6 +449,33 @@
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
             <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
             <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
+            <param name="collisionGroup">The collision group of this collidable. Use Split (CollisionGroup) to access its parts.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.CollisionGroup(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a collision group, a fine grained filter on top of the collision layer:
+            collidables sharing the same non zero Id do not collide while the absolute difference
+            of their IndexA, IndexB and IndexC is less than two.
+            Example teams: characters A, B, C, D on one layer, split into teams {A, B} and {C, D};
+            to stop team members from colliding with each other, give A and B the Id 1 and give
+            C and D the Id 2 (all indices 0).
+            Example chain: colliders A, B, C attached in a row; B should not collide with its
+            neighbours A and C, but A and C should collide with each other. Give all three the
+            same Id and set Index A to 0, 1 and 2: A and C collide since their difference is two,
+            neither collides with B since both are only one away from B's index.
+            </summary>
+            <param name="id">The group identification number; 0 = no filtering beyond the collision layer (0..65535).</param>
+            <param name="indexA">Index of this collidable within the group; same or adjacent values ignore each other, values two or more apart collide (0..65535).</param>
+            <param name="indexB">Second index, same rule as Index A. All three index differences must be less than two to suppress a collision.</param>
+            <param name="indexC">Third index, same rule as Index A.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.Split(System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Splits a collision group into its parts.</summary>
+            <param name="input">The collision group to split.</param>
+            <param name="id">The group identification number; 0 = no filtering beyond the collision layer.</param>
+            <param name="indexA">Index of the collidable within the group.</param>
+            <param name="indexB">Second index.</param>
+            <param name="indexC">Third index.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.CollidableOperations.BodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean@,System.Single@,System.Boolean@,Stride.BepuPhysics.Definitions.InterpolationMode@,VL.Stride.BepuPhysics.ContinuousDetectionKind@)">
             <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
@@ -457,7 +486,7 @@
             <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
             <param name="continuousDetection">Continuous collision detection mode of the body.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.SetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single,System.Single,System.Single,System.Single,System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.CollidableOperations.SetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single,System.Single,System.Single,System.Single,System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Boolean)">
             <summary>
             Writes the contact material settings shared by bodies and statics while Apply is true.
             A written property is overwritten again once the owning Body or Static node's pin value changes.
@@ -468,6 +497,7 @@
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
             <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
             <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+            <param name="collisionGroup">Fine grained filter on top of the collision layer. Create with the CollisionGroup operation. Null = no group.</param>
             <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
         </member>
         <member name="M:VL.Stride.BepuPhysics.CollidableOperations.SetBodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean,System.Single,System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},System.Boolean)">
@@ -502,9 +532,10 @@
             Connect one or more collider shapes; each shape instance can only be used by one collidable.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
             <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
             <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+            <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
             <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
             <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
