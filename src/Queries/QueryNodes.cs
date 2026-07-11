@@ -142,7 +142,7 @@ public static class QueryOperations
 [ProcessNode(Name = "RayCastPenetrating")]
 public class RayCastPenetratingNode
 {
-    private readonly List<SBepu.HitInfo> _buffer = new();
+    // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
     private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
     private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
 
@@ -167,19 +167,9 @@ public class RayCastPenetratingNode
         // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
         // normalize so both are plain world units no matter what is connected.
         direction.Normalize();
-        _buffer.Clear();
-        simulation.RayCastPenetrating(origin, direction, maxDistance, _buffer, collisionMask ?? SBepu.CollisionMask.Everything);
-        return _result = ToSpread(_buffer, _builder, _result);
-    }
-
-    internal static Spread<SBepu.HitInfo> ToSpread(List<SBepu.HitInfo> buffer, SpreadBuilder<SBepu.HitInfo> builder, Spread<SBepu.HitInfo> last)
-    {
-        if (buffer.Count == 0)
-            return Spread<SBepu.HitInfo>.Empty;
-        builder.Clear();
-        foreach (var item in buffer)
-            builder.Add(item);
-        return builder.ToSpread();
+        _builder.Clear();
+        simulation.RayCastPenetrating(origin, direction, maxDistance, _builder, collisionMask ?? SBepu.CollisionMask.Everything);
+        return _result = _builder.Count == 0 ? Spread<SBepu.HitInfo>.Empty : _builder.ToSpread();
     }
 }
 
@@ -189,7 +179,7 @@ public class RayCastPenetratingNode
 [ProcessNode(Name = "SweepCastPenetrating")]
 public class SweepCastPenetratingNode
 {
-    private readonly List<SBepu.HitInfo> _buffer = new();
+    // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
     private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
     private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
 
@@ -226,22 +216,22 @@ public class SweepCastPenetratingNode
         // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
         // normalize so both are plain world units no matter what is connected.
         direction.Normalize();
-        _buffer.Clear();
+        _builder.Clear();
         var pose = new SDefinitions.RigidPose(origin, orientation);
         var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
         switch (shape ?? SweepShape.Sphere)
         {
             case SweepShape.Sphere:
-                simulation.SweepCastPenetrating(new Sphere(radius), pose, velocity, maxDistance, _buffer, mask);
+                simulation.SweepCastPenetrating(new Sphere(radius), pose, velocity, maxDistance, _builder, mask);
                 break;
             case SweepShape.Box:
-                simulation.SweepCastPenetrating(new Box(boxSize.X, boxSize.Y, boxSize.Z), pose, velocity, maxDistance, _buffer, mask);
+                simulation.SweepCastPenetrating(new Box(boxSize.X, boxSize.Y, boxSize.Z), pose, velocity, maxDistance, _builder, mask);
                 break;
             case SweepShape.Capsule:
-                simulation.SweepCastPenetrating(new Capsule(radius, capsuleLength), pose, velocity, maxDistance, _buffer, mask);
+                simulation.SweepCastPenetrating(new Capsule(radius, capsuleLength), pose, velocity, maxDistance, _builder, mask);
                 break;
         }
-        return _result = RayCastPenetratingNode.ToSpread(_buffer, _builder, _result);
+        return _result = _builder.Count == 0 ? Spread<SBepu.HitInfo>.Empty : _builder.ToSpread();
     }
 }
 
@@ -253,7 +243,7 @@ public class SweepCastPenetratingNode
 [ProcessNode(Name = "Overlap")]
 public class OverlapNode
 {
-    private readonly List<SBepu.OverlapInfo> _buffer = new();
+    // SpreadBuilder implements ICollection<T>, the engine appends overlaps directly into it.
     private readonly SpreadBuilder<SBepu.OverlapInfo> _infoBuilder = new();
     private readonly SpreadBuilder<SBepu.CollidableComponent> _collidableBuilder = new();
     private Spread<SBepu.OverlapInfo> _result = Spread<SBepu.OverlapInfo>.Empty;
@@ -290,33 +280,32 @@ public class OverlapNode
         }
 
         var mask = collisionMask ?? SBepu.CollisionMask.Everything;
-        _buffer.Clear();
+        _infoBuilder.Clear();
         var pose = new SDefinitions.RigidPose(position, orientation);
         switch (shape ?? SweepShape.Sphere)
         {
             case SweepShape.Sphere:
-                simulation.Overlap(new Sphere(radius), pose, _buffer, mask);
+                simulation.Overlap(new Sphere(radius), pose, _infoBuilder, mask);
                 break;
             case SweepShape.Box:
-                simulation.Overlap(new Box(boxSize.X, boxSize.Y, boxSize.Z), pose, _buffer, mask);
+                simulation.Overlap(new Box(boxSize.X, boxSize.Y, boxSize.Z), pose, _infoBuilder, mask);
                 break;
             case SweepShape.Capsule:
-                simulation.Overlap(new Capsule(radius, capsuleLength), pose, _buffer, mask);
+                simulation.Overlap(new Capsule(radius, capsuleLength), pose, _infoBuilder, mask);
                 break;
         }
 
-        if (_buffer.Count == 0)
+        if (_infoBuilder.Count == 0)
         {
             collidables = _collidables = Spread<SBepu.CollidableComponent>.Empty;
             return _result = Spread<SBepu.OverlapInfo>.Empty;
         }
-        _infoBuilder.Clear();
         _collidableBuilder.Clear();
-        foreach (var info in _buffer)
+        for (var i = 0; i < _infoBuilder.Count; i++)
         {
-            _infoBuilder.Add(info);
-            if (info.Collidable is not null)
-                _collidableBuilder.Add(info.Collidable);
+            var collidable = _infoBuilder[i].Collidable;
+            if (collidable is not null)
+                _collidableBuilder.Add(collidable);
         }
         collidables = _collidables = _collidableBuilder.ToSpread();
         return _result = _infoBuilder.ToSpread();
