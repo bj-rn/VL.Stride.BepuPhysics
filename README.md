@@ -11,6 +11,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - `Character` component: a walking, jumping physics character (Move / TryJump / GetCharacterState)
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
+- Runtime constraint access: GetConstraints on a body, GetConstraintInfo, spring / motor / servo get and set operations, applied force readout
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
 - Per-collidable contact events (started / touching / stopped)
 - Trigger volumes: overlap detection without collision response (entered / exited)
