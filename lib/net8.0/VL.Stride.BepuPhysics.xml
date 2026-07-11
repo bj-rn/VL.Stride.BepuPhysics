@@ -165,12 +165,12 @@
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode">
             <summary>
-            Convex hull collision shape from pre-decomposed hull data.
-            Outputs null while no hull data is connected. (Hull baking is not provided by this package.)
+            Convex hull collision shape. Bake the hull data at runtime with HullFromModel or
+            HullFromPoints. Outputs null while no hull data is connected.
             </summary>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,System.Single,System.Boolean)">
-            <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
+            <param name="hull">Hull data, from a HullFromModel or HullFromPoints node. Outputs null while unconnected.</param>
             <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
             <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
@@ -179,6 +179,30 @@
             Explicit no-collision shape: the body participates in the simulation without colliding.
             Connect to the Body node's ColliderOverride pin.
             </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.HullFromModelNode">
+            <summary>
+            Bakes convex hull data from a Stride Model's mesh vertices, for the ConvexHullCollider's
+            Hull pin. All vertices go into ONE hull: the physics shape is the model's convex envelope,
+            concave features are filled in (multi hull decomposition only exists in the Stride editor's
+            asset pipeline). Works with runtime and procedural models; imported assets need CPU
+            accessible mesh data, the same requirement MeshCollider has.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.HullFromModelNode.Update(Stride.Rendering.Model,System.Boolean)">
+            <param name="model">Stride Model whose vertices are baked into a convex hull. Outputs null while unconnected.</param>
+            <param name="rebake">While true, re-extracts the model's mesh data. Connect a Bang after changing a runtime model's geometry.</param>
+            <returns>Hull data for the ConvexHullCollider's Hull pin. Cached until the Model changes or Rebake fires.</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.HullFromPointsNode">
+            <summary>
+            Bakes convex hull data from a point cloud, for the ConvexHullCollider's Hull pin.
+            The physics shape is the convex envelope of the points, computed on attach.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.HullFromPointsNode.Update(VL.Lib.Collections.Spread{Stride.Core.Mathematics.Vector3})">
+            <param name="points">Points spanning the hull, in the collidable's local space. At least 4 points not lying in one plane are required, degenerate input fails on attach.</param>
+            <returns>Hull data for the ConvexHullCollider's Hull pin. Cached until the spread changes.</returns>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.BoxColliderNode">
             <summary>Box collision shape.</summary>
@@ -247,7 +271,7 @@
             Connect one or more collider shapes; each shape instance can only be used by one body.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
             <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
@@ -260,10 +284,10 @@
             <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
             <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast bodies that would tunnel through thin geometry.</param>
             <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
+            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
             <param name="resetPose">While true, re-teleports the body to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
             <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
-            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <returns>The body component — connect to an Entity's Components input.</returns>
         </member>
         <member name="T:VL.Stride.BepuPhysics.BodyOperations">
@@ -340,7 +364,7 @@
             ContactHandler pin. Use Trigger or ContactEvents on the collidables it interacts with instead.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
             <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
             <param name="jumpForce">Force of the impulse applied by TryJump.</param>
@@ -353,10 +377,10 @@
             <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate. Default -1 keeps the character always awake so it reacts to Move immediately.</param>
             <param name="gravity">Whether gravity affects this character. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
             <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast characters that would tunnel through thin geometry.</param>
+            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <param name="teleportTo">Places the character at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
             <param name="resetPose">While true, re-teleports the character to the TeleportTo pose and zeroes its velocities. Connect a Bang.</param>
             <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
-            <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <returns>The character component, connect to an Entity's Components input.</returns>
         </member>
         <member name="T:VL.Stride.BepuPhysics.CharacterOperations">
@@ -478,7 +502,7 @@
             Connect one or more collider shapes; each shape instance can only be used by one collidable.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,System.Boolean,Stride.BepuPhysics.Definitions.Colliders.ICollider)">
+        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
             <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
             <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
             <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
@@ -486,8 +510,8 @@
             <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
             <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
             <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this static.</param>
-            <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
+            <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <returns>The static component — connect to an Entity's Components input.</returns>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Constraints.AngularHingeNode">
@@ -2023,6 +2047,16 @@
             The first call always reports a change so pin defaults initialize the component.
             </summary>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.SimulationUpdateBridge">
+            <summary>
+            Entity component implementing ISimulationUpdate: the engine's SimUpdateProcessor picks it
+            up when it is attached to a scene entity and calls the two step methods around every
+            physics step. Buffers step statistics between node updates and additionally pushes each
+            step as observable notifications. Physics steps run on the main thread (inside the game
+            system update), so plain fields without locking are sufficient and OnNext fires on the
+            main thread.
+            </summary>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Queries.QueryOperations">
             <summary>
             Stateless physics queries.
@@ -2169,6 +2203,49 @@
             <param name="capture">Takes a new snapshot of all body poses and velocities. Connect a Bang.</param>
             <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang.</param>
             <param name="autoCapture">Automatically captures the first frame in which any bodies exist.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo">
+            <summary>
+            One physics simulation step.
+            </summary>
+            <param name="Simulation">The simulation that stepped.</param>
+            <param name="TimeStep">Duration of the step in seconds.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo.#ctor(Stride.BepuPhysics.BepuSimulation,System.Single)">
+            <summary>
+            One physics simulation step.
+            </summary>
+            <param name="Simulation">The simulation that stepped.</param>
+            <param name="TimeStep">Duration of the step in seconds.</param>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo.Simulation">
+            <summary>The simulation that stepped.</summary>
+        </member>
+        <member name="P:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo.TimeStep">
+            <summary>Duration of the step in seconds.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo.Split(Stride.BepuPhysics.BepuSimulation@,System.Single@,VL.Stride.BepuPhysics.Simulation.SimulationStepInfo@)">
+            <summary>Splits the simulation step into its parts.</summary>
+            <param name="simulation">The simulation that stepped.</param>
+            <param name="timeStep">Duration of the step in seconds.</param>
+            <param name="stepInfo">The unsplit step. Hidden pin whose only purpose is to give this node a different signature than the auto generated Split.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationUpdateNode">
+            <summary>
+            Reports every physics simulation step. Connect the Output to any Entity in the scene
+            (the hook only runs while it is part of the scene). Use the observables with reactive
+            regions (ForEach (Reactive), ...) to apply forces or read state once per physics step,
+            independent of the display frame rate. Note: several steps can occur in one frame
+            (and none while the simulation is paused), see Steps Last Frame.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationUpdateNode.Update(System.Int32@,System.Int64@,System.Single@,System.IObservable{VL.Stride.BepuPhysics.Simulation.SimulationStepInfo}@,System.IObservable{VL.Stride.BepuPhysics.Simulation.SimulationStepInfo}@)">
+            <param name="stepsLastFrame">Number of physics steps since the previous frame (0 while paused or when the frame rate outruns the fixed time step).</param>
+            <param name="stepCount">Total number of physics steps since this node was created.</param>
+            <param name="timeStep">Duration of the last step in seconds.</param>
+            <param name="onSimulationUpdate">Observable notification fired before each physics step, for use with reactive nodes.</param>
+            <param name="onAfterSimulationUpdate">Observable notification fired after each physics step, for use with reactive nodes.</param>
+            <returns>The hook component, connect to any Entity's Components input.</returns>
         </member>
     </members>
 </doc>
