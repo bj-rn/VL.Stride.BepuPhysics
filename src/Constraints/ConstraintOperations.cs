@@ -57,6 +57,53 @@ public class GetConstraintsNode
 }
 
 /// <summary>
+/// Reads the bodies a constraint references, in slot order (A, B, C, D).
+/// An entry is null while its slot is unassigned.
+/// </summary>
+[ProcessNode(Name = "GetConstraintBodies")]
+public class GetConstraintBodiesNode
+{
+    private readonly SpreadBuilder<SBepu.BodyComponent?> _builder = new();
+    private Spread<SBepu.BodyComponent?> _bodies = Spread<SBepu.BodyComponent?>.Empty;
+
+    /// <param name="constraint">The constraint whose bodies are read, for example from a GetConstraints node.</param>
+    /// <param name="child">The body at Child Index. Null while the index is out of range or the slot is unassigned.</param>
+    /// <param name="childIndex">Index of the body to output on the Child pin (0 = A, 1 = B, ...).</param>
+    /// <returns>The constraint's bodies in slot order (A, B, C, D). Empty while no input.</returns>
+    [return: Pin(Name = "Output")]
+    public Spread<SBepu.BodyComponent?> Update(
+        SConstraints.ConstraintComponentBase? constraint,
+        out SBepu.BodyComponent? child,
+        int childIndex = 0)
+    {
+        var span = constraint is null
+            ? ReadOnlySpan<SBepu.BodyComponent?>.Empty
+            : constraint.Bodies;
+        if (!Matches(_bodies, span))
+        {
+            _builder.Clear();
+            foreach (var body in span)
+                _builder.Add(body);
+            _bodies = _builder.ToSpread();
+        }
+        child = childIndex >= 0 && childIndex < _bodies.Count ? _bodies[childIndex] : null;
+        return _bodies;
+    }
+
+    private static bool Matches(Spread<SBepu.BodyComponent?> spread, ReadOnlySpan<SBepu.BodyComponent?> span)
+    {
+        if (spread.Count != span.Length)
+            return false;
+        for (var i = 0; i < span.Length; i++)
+        {
+            if (!ReferenceEquals(spread[i], span[i]))
+                return false;
+        }
+        return true;
+    }
+}
+
+/// <summary>
 /// Operations on constraints obtained from a GetConstraints node.
 /// The capability operations (spring, motor, servo) work on every constraint type that
 /// supports them and report whether it does. Mutating operations run while Apply is true.
