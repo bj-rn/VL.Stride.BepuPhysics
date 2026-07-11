@@ -10,7 +10,7 @@ namespace VL.Stride.BepuPhysics.Constraints;
 /// Use ConstraintInfo to identify each constraint, the capability operations (spring, motor,
 /// servo) for the common tuning properties, or CastAs for type specific access.
 /// </summary>
-[ProcessNode(Name = "GetConstraints")]
+[ProcessNode(Name = "GetConstraints", Category = "Stride.Physics.Bepu.Constraints.Operations")]
 public class GetConstraintsNode
 {
     private readonly SpreadBuilder<SConstraints.ConstraintComponentBase> _builder = new();
@@ -60,7 +60,7 @@ public class GetConstraintsNode
 /// Reads the bodies a constraint references, in slot order (A, B, C, D).
 /// An entry is null while its slot is unassigned.
 /// </summary>
-[ProcessNode(Name = "GetConstraintBodies")]
+[ProcessNode(Name = "GetConstraintBodies", Category = "Stride.Physics.Bepu.Constraints.Operations")]
 public class GetConstraintBodiesNode
 {
     private readonly SpreadBuilder<SBepu.BodyComponent?> _builder = new();
@@ -104,12 +104,13 @@ public class GetConstraintBodiesNode
 }
 
 /// <summary>
-/// Operations on constraints obtained from a GetConstraints node.
-/// The capability operations (spring, motor, servo) work on every constraint type that
-/// supports them and report whether it does. Mutating operations run while Apply is true.
+/// Operations on constraints obtained from a GetConstraints node: identification, applied
+/// force readout, capability settings (spring, motor, servo, they work on every constraint
+/// type that supports them and report whether it does) and type specific settings for all
+/// 30 constraint types. Mutating operations run while Apply is true.
 /// A written property is overwritten again once the owning constraint node's pin value changes.
 /// </summary>
-public static class ConstraintOperations
+public static partial class Operations
 {
     /// <summary>Identifies a constraint: its kind, state and which capability operations apply.</summary>
     /// <param name="constraint">The constraint to identify, for example from a GetConstraints node.</param>

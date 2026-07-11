@@ -6,10 +6,12 @@ using SBepu = global::Stride.BepuPhysics;
 namespace VL.Stride.BepuPhysics;
 
 /// <summary>
-/// Operations on a Body component. Mutating operations run while Apply is true —
-/// connect a Bang for one-shot application.
+/// Operations on Body, Static and Character components: state and settings readers,
+/// impulses, teleports, character movement, collision groups and single target raycasts.
+/// The Character is also a Body, so the Body operations work on it as well.
+/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
 /// </summary>
-public static class BodyOperations
+public static partial class Bodies
 {
     /// <summary>Applies a one-frame impulse at the center of mass while Apply is true.</summary>
     /// <param name="body">The body to apply the impulse to.</param>

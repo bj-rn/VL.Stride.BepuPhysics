@@ -3,6 +3,7 @@ using VL.Core.Import;
 using VL.Lib.Collections;
 using VL.Model;
 using VL.Stride.BepuPhysics.Internal;
+using static VL.Stride.BepuPhysics.Bodies;
 using SBepu = global::Stride.BepuPhysics;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SContacts = global::Stride.BepuPhysics.Definitions.Contacts;

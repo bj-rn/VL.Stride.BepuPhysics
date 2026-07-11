@@ -1,6 +1,7 @@
 using System.Reactive.Subjects;
 using BepuPhysics.CollisionDetection;
 using VL.Lib.Collections;
+using VL.Stride.BepuPhysics.Events;
 using SContacts = global::Stride.BepuPhysics.Definitions.Contacts;
 
 namespace VL.Stride.BepuPhysics.Internal;

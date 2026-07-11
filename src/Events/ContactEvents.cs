@@ -6,7 +6,7 @@ using VL.Stride.BepuPhysics.Internal;
 using SBepu = global::Stride.BepuPhysics;
 using SContacts = global::Stride.BepuPhysics.Definitions.Contacts;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Events;
 
 /// <summary>
 /// One contact point between two collidables.

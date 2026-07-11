@@ -4,12 +4,8 @@ using SBepu = global::Stride.BepuPhysics;
 
 namespace VL.Stride.BepuPhysics;
 
-/// <summary>
-/// Operations on a Character component. The Character is also a Body, so the Body operations
-/// (impulses, Teleport, BodyState, ...) work on it as well.
-/// Mutating operations run while Apply is true.
-/// </summary>
-public static class CharacterOperations
+// Character level operations of the Bodies category (see BodyOperations.cs for the summary).
+public static partial class Bodies
 {
     /// <summary>Sets the character's movement velocity from Direction times its Speed while Apply is true.</summary>
     /// <param name="character">The character to move.</param>

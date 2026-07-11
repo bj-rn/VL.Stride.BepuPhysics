@@ -1,3 +1,4 @@
+using Stride.Core.Mathematics;
 using VL.Core.Import;
 using VL.Lib.Collections;
 using SBepu = global::Stride.BepuPhysics;
@@ -7,12 +8,9 @@ using SEngine = global::Stride.Engine;
 
 namespace VL.Stride.BepuPhysics;
 
-/// <summary>
-/// Read and write access to collidables obtained from queries or contact events.
-/// Use CastAs (BodyComponent) to narrow a CollidableComponent for the Body operations.
-/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
-/// </summary>
-public static class CollidableOperations
+// Collidable level operations of the Bodies category (see BodyOperations.cs for the summary).
+// Use CastAs (BodyComponent) to narrow a CollidableComponent for the Body operations.
+public static partial class Bodies
 {
     /// <summary>Identifies a collidable: its entity and whether it is a body or a static.</summary>
     /// <param name="collidable">The collidable to identify, for example from a RayCast hit or a ContactEvents contact.</param>
@@ -112,6 +110,36 @@ public static class CollidableOperations
         indexA = group.IndexA;
         indexB = group.IndexB;
         indexC = group.IndexC;
+    }
+
+    /// <summary>
+    /// Casts a ray against a single collidable, ignoring everything else in the simulation.
+    /// Cheaper and more precise than a scene wide query when only one object matters,
+    /// for example picking against a specific body.
+    /// </summary>
+    /// <param name="collidable">The collidable to test. No hit while null or not attached to a simulation.</param>
+    /// <param name="hit">The closest hit: point, normal, distance and child index.</param>
+    /// <param name="didHit">True when the ray hit the collidable within Max Distance.</param>
+    /// <param name="origin">Ray start position in world space.</param>
+    /// <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
+    /// <param name="maxDistance">Maximum travel distance of the ray.</param>
+    public static void RayCast(SBepu.CollidableComponent? collidable,
+        out SBepu.HitInfo hit,
+        out bool didHit,
+        Vector3 origin,
+        Vector3 direction,
+        float maxDistance = 100f)
+    {
+        if (collidable is null || collidable.Simulation is null || direction == Vector3.Zero)
+        {
+            hit = default;
+            didHit = false;
+            return;
+        }
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
+        didHit = collidable.RayCast(origin, direction, maxDistance, out hit);
     }
 
     /// <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
@@ -226,7 +254,7 @@ public static class CollidableOperations
 /// Reads the collider shapes of a collidable's compound.
 /// Connect a RayCast hit's ChildIndex to pick the exact shape that was hit.
 /// </summary>
-[ProcessNode(Name = "GetColliders")]
+[ProcessNode(Name = "GetColliders", Category = "Stride.Physics.Bepu.Bodies")]
 public class GetCollidersNode
 {
     private readonly SpreadBuilder<SColliders.ColliderBase> _builder = new();
@@ -271,5 +299,41 @@ public class GetCollidersNode
                 return false;
         }
         return true;
+    }
+}
+
+/// <summary>
+/// Casts a ray against a single collidable and reports all hits along it, for example the
+/// entry and exit points through its shapes. Everything else in the simulation is ignored.
+/// </summary>
+[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Bodies")]
+public class CollidableRayCastPenetratingNode
+{
+    // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
+    private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
+    private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
+
+    /// <param name="collidable">The collidable to test. Empty while null or not attached to a simulation.</param>
+    /// <param name="origin">Ray start position in world space.</param>
+    /// <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
+    /// <param name="maxDistance">Maximum travel distance of the ray.</param>
+    /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
+    [return: Pin(Name = "Output")]
+    public Spread<SBepu.HitInfo> Update(
+        SBepu.CollidableComponent? collidable,
+        Vector3 origin,
+        Vector3 direction,
+        float maxDistance = 100f,
+        bool enabled = true)
+    {
+        if (!enabled || collidable is null || collidable.Simulation is null || direction == Vector3.Zero)
+            return _result = Spread<SBepu.HitInfo>.Empty;
+
+        // Bepu measures maxDistance and the hit T in units of the direction's LENGTH —
+        // normalize so both are plain world units no matter what is connected.
+        direction.Normalize();
+        _builder.Clear();
+        collidable.RayCastPenetrating(origin, direction, maxDistance, _builder);
+        return _result = _builder.Count == 0 ? Spread<SBepu.HitInfo>.Empty : _builder.ToSpread();
     }
 }

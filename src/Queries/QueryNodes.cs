@@ -3,16 +3,25 @@ using BepuPhysics.Collidables;
 using Stride.Core.Mathematics;
 using VL.Core.Import;
 using VL.Lib.Collections;
+using static VL.Stride.BepuPhysics.Queries;
 using SBepu = global::Stride.BepuPhysics;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 
-namespace VL.Stride.BepuPhysics.Queries;
+namespace VL.Stride.BepuPhysics;
 
 /// <summary>
-/// Stateless physics queries.
+/// Stateless physics queries against the whole simulation.
 /// </summary>
-public static class QueryOperations
+public static class Queries
 {
+    /// <summary>Shape used by sweep and overlap queries.</summary>
+    public enum SweepShape
+    {
+        Sphere,
+        Box,
+        Capsule,
+    }
+
     /// <summary>Splits a query hit into its parts.</summary>
     /// <param name="input">The hit to split.</param>
     /// <param name="point">The position where the intersection occurred, in world space.</param>
@@ -139,7 +148,7 @@ public static class QueryOperations
 /// <summary>
 /// Casts a ray and reports all hits along it, sorted by distance.
 /// </summary>
-[ProcessNode(Name = "RayCastPenetrating")]
+[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
 public class RayCastPenetratingNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
@@ -176,7 +185,7 @@ public class RayCastPenetratingNode
 /// <summary>
 /// Sweeps a shape along a direction and reports all hits.
 /// </summary>
-[ProcessNode(Name = "SweepCastPenetrating")]
+[ProcessNode(Name = "SweepCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
 public class SweepCastPenetratingNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
@@ -240,7 +249,7 @@ public class SweepCastPenetratingNode
 /// the direction and distance needed to separate. A compound collidable can produce several
 /// overlaps, one per overlapping child shape. Use Split to access an overlap's parts.
 /// </summary>
-[ProcessNode(Name = "Overlap")]
+[ProcessNode(Name = "Overlap", Category = "Stride.Physics.Bepu.Queries")]
 public class OverlapNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends overlaps directly into it.
@@ -312,10 +321,3 @@ public class OverlapNode
     }
 }
 
-/// <summary>Shape used by sweep and overlap queries.</summary>
-public enum SweepShape
-{
-    Sphere,
-    Box,
-    Capsule,
-}

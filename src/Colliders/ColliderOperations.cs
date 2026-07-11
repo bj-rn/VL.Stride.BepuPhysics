@@ -8,9 +8,9 @@ namespace VL.Stride.BepuPhysics.Colliders;
 /// <summary>
 /// Read and write access to collider shapes, for example from a GetColliders node.
 /// Use CastAs (BoxCollider) to narrow a ColliderBase for the shape specific operations.
-/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
+/// Mutating operations run while Apply is true, connect a Bang for one-shot application.
 /// </summary>
-public static class ColliderOperations
+public static class Operations
 {
     /// <summary>Identifies which shape a collider is, for routing before CastAs.</summary>
     /// <param name="collider">The collider shape to identify.</param>
