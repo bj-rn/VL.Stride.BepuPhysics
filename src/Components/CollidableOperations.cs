@@ -44,12 +44,14 @@ public static class CollidableOperations
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
     /// <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
+    /// <param name="collisionGroup">The collision group of this collidable. Use Split (CollisionGroup) to access its parts.</param>
     public static void CollidableSettings(SBepu.CollidableComponent? collidable,
         out float springFrequency,
         out float springDampingRatio,
         out float frictionCoefficient,
         out float maximumRecoveryVelocity,
-        out SBepu.CollisionLayer collisionLayer)
+        out SBepu.CollisionLayer collisionLayer,
+        out SDefinitions.CollisionGroup collisionGroup)
     {
         if (collidable is null)
         {
@@ -58,6 +60,7 @@ public static class CollidableOperations
             frictionCoefficient = 1f;
             maximumRecoveryVelocity = 1000f;
             collisionLayer = SBepu.CollisionLayer.Layer0;
+            collisionGroup = default;
             return;
         }
         springFrequency = collidable.SpringFrequency;
@@ -65,6 +68,50 @@ public static class CollidableOperations
         frictionCoefficient = collidable.FrictionCoefficient;
         maximumRecoveryVelocity = collidable.MaximumRecoveryVelocity;
         collisionLayer = collidable.CollisionLayer;
+        collisionGroup = collidable.CollisionGroup;
+    }
+
+    /// <summary>
+    /// Creates a collision group, a fine grained filter on top of the collision layer:
+    /// collidables sharing the same non zero Id do not collide while the absolute difference
+    /// of their IndexA, IndexB and IndexC is less than two.
+    /// Example teams: characters A, B, C, D on one layer, split into teams {A, B} and {C, D};
+    /// to stop team members from colliding with each other, give A and B the Id 1 and give
+    /// C and D the Id 2 (all indices 0).
+    /// Example chain: colliders A, B, C attached in a row; B should not collide with its
+    /// neighbours A and C, but A and C should collide with each other. Give all three the
+    /// same Id and set Index A to 0, 1 and 2: A and C collide since their difference is two,
+    /// neither collides with B since both are only one away from B's index.
+    /// </summary>
+    /// <param name="id">The group identification number; 0 = no filtering beyond the collision layer (0..65535).</param>
+    /// <param name="indexA">Index of this collidable within the group; same or adjacent values ignore each other, values two or more apart collide (0..65535).</param>
+    /// <param name="indexB">Second index, same rule as Index A. All three index differences must be less than two to suppress a collision.</param>
+    /// <param name="indexC">Third index, same rule as Index A.</param>
+    public static SDefinitions.CollisionGroup CollisionGroup(int id = 0, int indexA = 0, int indexB = 0, int indexC = 0)
+    {
+        return new SDefinitions.CollisionGroup
+        {
+            Id = (ushort)Math.Clamp(id, ushort.MinValue, ushort.MaxValue),
+            IndexA = (ushort)Math.Clamp(indexA, ushort.MinValue, ushort.MaxValue),
+            IndexB = (ushort)Math.Clamp(indexB, ushort.MinValue, ushort.MaxValue),
+            IndexC = (ushort)Math.Clamp(indexC, ushort.MinValue, ushort.MaxValue),
+        };
+    }
+
+    /// <summary>Splits a collision group into its parts.</summary>
+    /// <param name="input">The collision group to split.</param>
+    /// <param name="id">The group identification number; 0 = no filtering beyond the collision layer.</param>
+    /// <param name="indexA">Index of the collidable within the group.</param>
+    /// <param name="indexB">Second index.</param>
+    /// <param name="indexC">Third index.</param>
+    public static void Split(SDefinitions.CollisionGroup? input,
+        out int id, out int indexA, out int indexB, out int indexC)
+    {
+        var group = input ?? default;
+        id = group.Id;
+        indexA = group.IndexA;
+        indexB = group.IndexB;
+        indexC = group.IndexC;
     }
 
     /// <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
@@ -107,6 +154,7 @@ public static class CollidableOperations
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
     /// <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+    /// <param name="collisionGroup">Fine grained filter on top of the collision layer. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
     [return: Pin(Name = "Output")]
     public static SBepu.CollidableComponent? SetCollidableSettings(SBepu.CollidableComponent? collidable,
@@ -115,6 +163,7 @@ public static class CollidableOperations
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
         SBepu.CollisionLayer? collisionLayer = null,
+        SDefinitions.CollisionGroup? collisionGroup = null,
         bool apply = false)
     {
         if (apply && collidable is not null)
@@ -127,6 +176,7 @@ public static class CollidableOperations
             collidable.FrictionCoefficient = frictionCoefficient;
             collidable.MaximumRecoveryVelocity = maximumRecoveryVelocity;
             collidable.CollisionLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
+            collidable.CollisionGroup = collisionGroup ?? default;
         }
         return collidable;
     }

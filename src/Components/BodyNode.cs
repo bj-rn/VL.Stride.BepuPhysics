@@ -29,6 +29,7 @@ public class BodyNode
     private PinValue<bool> _kinematic;
     private PinValue<SDefinitions.InterpolationMode> _interpolation;
     private PinValue<SBepu.CollisionLayer> _collisionLayer;
+    private PinValue<SDefinitions.CollisionGroup> _collisionGroup;
     private PinValue<float> _springFrequency;
     private PinValue<float> _springDampingRatio;
     private PinValue<float> _frictionCoefficient;
@@ -52,6 +53,7 @@ public class BodyNode
     /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
     /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
     /// <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+    /// <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
     /// <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
@@ -71,6 +73,7 @@ public class BodyNode
         bool kinematic = false,
         SDefinitions.InterpolationMode? interpolation = null,
         SBepu.CollisionLayer? collisionLayer = null,
+        [Pin(Visibility = PinVisibility.Optional)] SDefinitions.CollisionGroup? collisionGroup = null,
         float springFrequency = 30f,
         float springDampingRatio = 3f,
         float frictionCoefficient = 1f,
@@ -99,6 +102,9 @@ public class BodyNode
             _component.InterpolationMode = effectiveInterpolation;
         if (_collisionLayer.Changed(effectiveLayer) | reapplyInputs)
             _component.CollisionLayer = effectiveLayer;
+        var effectiveGroup = collisionGroup ?? default;
+        if (_collisionGroup.Changed(effectiveGroup) | reapplyInputs)
+            _component.CollisionGroup = effectiveGroup;
         if (_springFrequency.Changed(springFrequency) | reapplyInputs)
             _component.SpringFrequency = springFrequency;
         if (_springDampingRatio.Changed(springDampingRatio) | reapplyInputs)

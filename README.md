@@ -17,6 +17,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - Per-collidable contact events (started / touching / stopped)
 - Trigger volumes: overlap detection without collision response (entered / exited)
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
+- Collision filtering: per collidable layer (32 layers, pair matrix) plus collision groups for fine grained rules like chain links ignoring their neighbours
 - Per step hooks: the SimulationUpdate node reports every physics step (counts and observables) for frame rate independent forces
 - Transform interpolation enabled by default for smooth visuals at any frame rate
 
@@ -217,6 +218,9 @@ Wrapper impact when upgrading:
 - Runtime VHACD decomposition stays unavailable: the only entry point in 4.2.1 is the
   editor's `HullAssetCompiler` (an `AssetCommand`, not callable at runtime). Recheck
   whether a newer version exposes a runtime API before promising multi hull baking.
+- `CollisionGroup` indices are `ushort` in 4.2.1 but `short` on master. The
+  CollisionGroup create operation clamps its int inputs, adjust the clamp range and the
+  pin docs at upgrade time.
 
 ## License
 

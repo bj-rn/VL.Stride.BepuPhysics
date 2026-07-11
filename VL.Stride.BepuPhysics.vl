@@ -735,26 +735,6 @@
         </Overlay>
         <!--
 
-    ************************ CollisionGroup ************************
-
--->
-        <Node Name="CollisionGroup" Bounds="1007,700" Id="B2UeDO9e5CNPWGD0dua4Om">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="CollisionGroup" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="Gi7KjwPpliPPjGbNyWu0gD">
-            <Canvas Id="PN8Jl0tWnJcNUbVenfqhHN" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="DdNCSn1yDw7OuETYVn3NHp" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ DecomposedHulls ************************
 
 -->
