@@ -83,6 +83,16 @@ Notes:
 - For debugging, create a local `.vscode/launch.json` (not committed) launching
   `vvvv.exe --package-repositories <parent of this repo> -o VL.Stride.BepuPhysics.vl`.
 
+### Tools
+
+- `tools/generate-constraint-typeops.py` regenerates
+  `src/Constraints/ConstraintTypeOperations.cs`, the 60 type specific constraint get and
+  set operations, from the constraint node definitions (pin types, defaults and doc texts
+  are parsed from the node files). Run it after changing constraint node pins, then
+  rebuild. The generated file is committed and marked do not edit by hand.
+- `tools/verify-patches.ps1` launches a real vvvv instance for every help patch and
+  watches for errors, see Testing below.
+
 ## Testing
 
 There are two verification layers:
