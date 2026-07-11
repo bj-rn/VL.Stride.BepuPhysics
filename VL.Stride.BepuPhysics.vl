@@ -372,26 +372,6 @@
         </Node>
         <!--
 
-    ************************ ConstraintComponent ************************
-
--->
-        <Node Name="ConstraintComponent" Bounds="1076,290" Id="Euo2QdOecjQN9pTL7yJoZa">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ConstraintComponent`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="DS0tXMXY6IFModcgCnKU59">
-            <Canvas Id="FxWFxBtTRI8O2iMh5hNMnd" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="ShDP5c0725AOd4RtR3vIQH" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ DistanceLimitConstraintComponent ************************
 
 -->
@@ -432,26 +412,6 @@
         </Node>
         <!--
 
-    ************************ FourBodyConstraintComponent ************************
-
--->
-        <Node Name="FourBodyConstraintComponent" Bounds="2081,290" Id="NRe2Q5Ti2WbLxkZuVQ4ja6">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="FourBodyConstraintComponent`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="JdST3oX49adNFlQNmBvUkf">
-            <Canvas Id="Sgejf8rh7gvNISLICAmJvH" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="Qxq7vpF038YLKQ94lQcn6r" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ HingeConstraintComponent ************************
 
 -->
@@ -468,126 +428,6 @@
           <Patch Id="QqcAZdj5nPAPW5h5rAe9i6">
             <Canvas Id="PYZ1GY7H7MANEZnEolN8FW" BordersChecked="false" CanvasType="Group" />
             <ProcessDefinition Id="E3ZdL1uuQYrPqmhLBIEIdO" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ IMotor ************************
-
--->
-        <Node Name="IMotor" Bounds="736,340" Id="EbFJyjkSC1aLMxHMC0bvoc">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IMotor" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="NQBbI3DhIFpPruR8GzYSn5">
-            <Canvas Id="Vaatl09VLn8NqcFWvKcIMl" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="D1gZlHsGkupQKI0gpn78S5" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ IOneBody ************************
-
--->
-        <Node Name="IOneBody" Bounds="1076,340" Id="SiLrPn8Vy1wNL1NP9DymiM">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IOneBody" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="LfP6ZQvJWhEOzHJqWZHO9d">
-            <Canvas Id="HvXDpyurTpAPoyW2X7D8wD" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="CXf2iDsT3uGNlql2ZEwwNR" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ IServo ************************
-
--->
-        <Node Name="IServo" Bounds="1401,340" Id="KMVUYaP6e9qPpXboxq6TcJ">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IServo" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="NXXc6azi7QZMp6gZuP4fYZ">
-            <Canvas Id="Go6Altxm8T4LzRphqhIU0r" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="NdHRjOz0FAeOZ82ymmMOoa" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ ISpring ************************
-
--->
-        <Node Name="ISpring" Bounds="1741,340" Id="L8RxEzoDEfnPpc8VXe18ah">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ISpring" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="G9yRbK2JDM4M9621qpCzz1">
-            <Canvas Id="TSsogIDtIBeOTqbavHPc23" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="Oex5Rr8oHmbL4GubSH9jND" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ ITwoBody ************************
-
--->
-        <Node Name="ITwoBody" Bounds="2081,340" Id="VlcoWJnu7pUOAhJnwO7z6H">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ITwoBody" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="QLNK0u7L5T3L1pTKpEKBCJ">
-            <Canvas Id="IKsQGZ4NceZPlr9jy6mkBW" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="AFtSzZAXzfWOqkLf28nKRH" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ IWithTwoLocalOffset ************************
-
--->
-        <Node Name="IWithTwoLocalOffset" Bounds="2421,340" Id="C6ASuOL7DjrLyrfhAJVQzq">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IWithTwoLocalOffset" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="ReiG7pEuGgDMtuLaz1EFZV">
-            <Canvas Id="CGII707LptsO2CkpbvDnSu" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="TYENO4EKl0tOL4N3e9lOaF" IsHidden="true" />
           </Patch>
         </Node>
         <!--
@@ -692,26 +532,6 @@
         </Node>
         <!--
 
-    ************************ OneBodyConstraintComponent ************************
-
--->
-        <Node Name="OneBodyConstraintComponent" Bounds="2421,390" Id="BViRsh2VlTEOcOIMPftTnv">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="OneBodyConstraintComponent`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="Bt1fQexucetMcFApnHO7FS">
-            <Canvas Id="OQCQyq6FEWyLat3BlSR9pw" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="Ndw9qRbUtnuPti4KrhHOMt" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ OneBodyLinearMotorConstraintComponent ************************
 
 -->
@@ -812,26 +632,6 @@
         </Node>
         <!--
 
-    ************************ ThreeBodyConstraintComponent ************************
-
--->
-        <Node Name="ThreeBodyConstraintComponent" Bounds="2421,440" Id="AwWGvEoTnvbP3NKCkeZN6t">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ThreeBodyConstraintComponent`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="F0K7sXoYGHgLrTJwc2dx0T">
-            <Canvas Id="LWDoS2VvJGZQUL1zZBtOn8" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="FqrNgxmM4pfOOd36IVXs1u" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ TwistLimitConstraintComponent ************************
 
 -->
@@ -892,26 +692,6 @@
         </Node>
         <!--
 
-    ************************ TwoBodyConstraintComponent ************************
-
--->
-        <Node Name="TwoBodyConstraintComponent" Bounds="1741,490" Id="IMO2UZowZQkQYtSkO0nOyk">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Constraints" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="TwoBodyConstraintComponent`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Constraints" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="JSuKRiIYftmOq6FgBQSpkO">
-            <Canvas Id="J9IoMXDZA9ALA0A25sTEx1" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="LWyrIPN2jpLL5E5Uu7fCKM" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ VolumeConstraintComponent ************************
 
 -->
@@ -955,26 +735,6 @@
         </Overlay>
         <!--
 
-    ************************ BodyVelocity ************************
-
--->
-        <Node Name="BodyVelocity" Bounds="727,700" Id="LZzMAfKNuE9OxSxc3KE9yQ">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="BodyVelocity" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="NsK4CoMNr45O4noPyEXcJ8">
-            <Canvas Id="Q6ri5y36wgrNfy0zdpTM92" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="NXzCBDDw5DaPOV5TQk7VrE" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ CollisionGroup ************************
 
 -->
@@ -991,26 +751,6 @@
           <Patch Id="Gi7KjwPpliPPjGbNyWu0gD">
             <Canvas Id="PN8Jl0tWnJcNUbVenfqhHN" BordersChecked="false" CanvasType="Group" />
             <ProcessDefinition Id="DdNCSn1yDw7OuETYVn3NHp" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ CollisionMatrix ************************
-
--->
-        <Node Name="CollisionMatrix" Bounds="1287,700" Id="JgQNni8G09eMSbHl3HQ05J">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="CollisionMatrix" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="Kb0ma9W4BgCMKwkpslFr2Q">
-            <Canvas Id="FxEyXturgEsL99XViJ5YqY" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="IFAk1fTbOmlPO0ug03yP2T" IsHidden="true" />
           </Patch>
         </Node>
         <!--
@@ -1035,26 +775,6 @@
         </Node>
         <!--
 
-    ************************ IndexBasedSimulationSelector ************************
-
--->
-        <Node Name="IndexBasedSimulationSelector" Bounds="1007,750" Id="L7stXD7EarDPn3vR0EtFiX">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IndexBasedSimulationSelector" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="CJDQb5MHlGdMdCG2f8j5NU">
-            <Canvas Id="AhfzeJUcTgBPVVcRrVx59f" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="FVa26fimQeyPxaJMmFQEUv" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
     ************************ InterpolationMode ************************
 
 -->
@@ -1071,106 +791,6 @@
           <Patch Id="KJ2okgWX8jzK9j1gS5CXCB">
             <Canvas Id="TS9Qwq5PybgMSfiX9zNMdI" BordersChecked="false" CanvasType="Group" />
             <ProcessDefinition Id="APzN4UZKja2MqypMWn6q6i" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ ISimulationSelector ************************
-
--->
-        <Node Name="ISimulationSelector" Bounds="727,800" Id="GmYfmOPkaT3P7KlRB2mQFL">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ISimulationSelector" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="MdhU8yDwm2rL5Cvjr6OuKl">
-            <Canvas Id="DIcnw35f0dzONCVGHjov4W" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="OrINKwIlGT2PaLEZH0vok7" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ MaterialProperties ************************
-
--->
-        <Node Name="MaterialProperties" Bounds="1287,800" Id="AJcnntyqWjLO4Ke0PDmS3m">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="MaterialProperties" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="Bi9cTlf8MH2PZgrnSNeAQN">
-            <Canvas Id="PO7rTaWQpLcN3ePBWiGBAB" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="CeTVUmTveaQOipSwDSl8Gs" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ RigidPose ************************
-
--->
-        <Node Name="RigidPose" Bounds="727,850" Id="OtK7dQ4ZVrNL3YlZ7coNHH">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="RigidPose" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="VxBYZV24pemPOeCeOvqHPO">
-            <Canvas Id="Kq9nJ1CskwxO5q6DDnZor0" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="VslZAWYqh9LPQkq1srxKgo" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ SceneBasedSimulationSelector ************************
-
--->
-        <Node Name="SceneBasedSimulationSelector" Bounds="1007,850" Id="HvXC36154WGNuWSLpJvHpu">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="SceneBasedSimulationSelector" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="A77vtxu7fVLLHmXJPYAL6v">
-            <Canvas Id="AfJzWQXaJ8CO59WlRmxwzG" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="IrYkS32qGzfOrmQ4rtTea0" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ ShapeTransform ************************
-
--->
-        <Node Name="ShapeTransform" Bounds="1287,850" Id="B2HMP0d0EToNAfPSgOtmzM">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ShapeTransform" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="LwoQVacKP8ZLcyNIawfU4Q">
-            <Canvas Id="TxhVELUASGmM71rynZmGuw" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="MvgT1H51sX8QcY3f66KZ9A" IsHidden="true" />
           </Patch>
         </Node>
         <Overlay Id="C4SgbqQVZx0NGzpXvq9GfD" Name="Colliders" Bounds="675,1050,804,260">
@@ -1234,26 +854,6 @@
           <Patch Id="BUhhHMGGfxCLZ9qL8C896m">
             <Canvas Id="DpyePuz9w6zMbcIpVmy9gE" BordersChecked="false" CanvasType="Group" />
             <ProcessDefinition Id="Jy87YATMR4cOJpaGwlQJTO" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ CompoundCollider ************************
-
--->
-        <Node Name="CompoundCollider" Bounds="718,1190" Id="A3ncEI647OVPNe5wgWsfiP">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions.Colliders" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="CompoundCollider" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions.Colliders" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="ErOVd5CHECwQIlBmzuSiz6">
-            <Canvas Id="Fukwj9rxI9gN73iwHiVixB" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="Otin9xc5TBpNcVpJXFDk0W" IsHidden="true" />
           </Patch>
         </Node>
         <!--
@@ -1399,86 +999,6 @@
         <Overlay Id="O434msi5RjyPgRsk3flVbz" Name="Contacts" Bounds="674,1390,557,200">
           <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
         </Overlay>
-        <!--
-
-    ************************ ContactGroup ************************
-
--->
-        <Node Name="ContactGroup" Bounds="722,1470" Id="QV4uHwMzw0BLt1qpRxLlp2">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions.Contacts" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="ContactGroup`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions.Contacts" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="BkcpS2SyoHsNUMZrwbksaA">
-            <Canvas Id="FRurPqULr0fMDtrQirx48B" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="Q5JlT1ciU0SOZo28QJXGNX" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ Contacts ************************
-
--->
-        <Node Name="Contacts" Bounds="965,1471" Id="KjskOloq9RsLxAuxspsLOF">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions.Contacts" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="Contacts`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions.Contacts" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="HITxuHHYEWZQJThuan15gx">
-            <Canvas Id="BFmC7PVMogZNkGiWFDi2VQ" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="QbPpvQ0SvfZLifi0uDcxIU" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ Contact ************************
-
--->
-        <Node Name="Contact" Bounds="722,1520" Id="HIOOQRTdScIL0SIlh0orU0">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions.Contacts" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="Contact`1" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions.Contacts" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="PBKlNNO54RPNtoABfdDDKe">
-            <Canvas Id="MHDSpbvs0pTLLyImH3jPHT" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="VAF8UsPqRgrP9an0f2YoLw" IsHidden="true" />
-          </Patch>
-        </Node>
-        <!--
-
-    ************************ IContactEventHandler ************************
-
--->
-        <Node Name="IContactEventHandler" Bounds="965,1521" Id="LP658Fb74frPf8Wbge92rJ">
-          <p:NodeReference>
-            <Choice Kind="ForwardDefinition" Name="Forward" />
-            <CategoryReference Kind="Category" Name="Primitive" />
-          </p:NodeReference>
-          <p:TypeAnnotation LastCategoryFullName="Stride.BepuPhysics.Definitions.Contacts" LastDependency="Stride.BepuPhysics.dll">
-            <Choice Kind="TypeFlag" Name="IContactEventHandler" />
-            <FullNameCategoryReference ID="Stride.BepuPhysics.Definitions.Contacts" />
-            <AssemblyReference ID="Stride.BepuPhysics.dll" />
-          </p:TypeAnnotation>
-          <Patch Id="TscxNHRXW4hQcZlpPEgfjP">
-            <Canvas Id="OD5GyseYMk7NL1MbYU8sTn" BordersChecked="false" CanvasType="Group" />
-            <ProcessDefinition Id="IyEJQeU8H1uLdtEQYyQpcK" IsHidden="true" />
-          </Patch>
-        </Node>
         <!--
 
     ************************ IContactHandler ************************
