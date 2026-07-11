@@ -43,6 +43,8 @@ public class SimulationSettingsNode : IDisposable
     /// <param name="usePerBodyAttributes">Enables per-body Gravity flags (slightly more per-body work).</param>
     /// <param name="solverVelocityIterations">Solver velocity iterations per substep; more = stiffer, costlier.</param>
     /// <param name="solverSubSteps">Solver substeps per physics step; more = more accurate stacks and joints.</param>
+    /// <param name="softStartDurationSeconds">Length of the soft start window in seconds: while it runs, the solver uses boosted sub steps so constraints settle faster after startup or a sub step change. 0 or negative disables the soft start.</param>
+    /// <param name="softStartSubstepFactor">Multiplier applied to Solver Sub Steps during the soft start window.</param>
     /// <param name="collisionMatrix">Per-layer collision masks: element N = mask of layers that layer N collides with. Layers beyond the spread's count keep their current value; disconnecting does not reset the matrix.</param>
     /// <param name="enabled">Pauses the whole simulation when false.</param>
     /// <param name="simulationIndex">Which simulation to configure. Currently only simulation 0 exists — additional simulations cannot yet be created, any other index outputs null.</param>
@@ -58,6 +60,8 @@ public class SimulationSettingsNode : IDisposable
         bool usePerBodyAttributes = false,
         int solverVelocityIterations = 8,
         int solverSubSteps = 1,
+        [Pin(Visibility = PinVisibility.Optional)] double softStartDurationSeconds = 1.0,
+        [Pin(Visibility = PinVisibility.Optional)] int softStartSubstepFactor = 4,
         [Pin(Visibility = PinVisibility.Optional)] Spread<SBepu.CollisionMask>? collisionMatrix = null,
         bool enabled = true,
         [Pin(Visibility = PinVisibility.Optional)] int simulationIndex = 0)
@@ -88,6 +92,10 @@ public class SimulationSettingsNode : IDisposable
             sim.ParallelUpdate = parallelUpdate;
         if (sim.UsePerBodyAttributes != usePerBodyAttributes)
             sim.UsePerBodyAttributes = usePerBodyAttributes;
+        if (sim.SoftStartDuration.TotalSeconds != softStartDurationSeconds)
+            sim.SoftStartDuration = TimeSpan.FromSeconds(softStartDurationSeconds);
+        if (sim.SoftStartSubstepFactor != softStartSubstepFactor && softStartSubstepFactor > 0)
+            sim.SoftStartSubstepFactor = softStartSubstepFactor;
         if (sim.Enabled != enabled)
             sim.Enabled = enabled;
 
