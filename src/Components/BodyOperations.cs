@@ -9,7 +9,7 @@ namespace VL.Stride.BepuPhysics;
 /// Operations on Body, Static and Character components: state and settings readers,
 /// impulses, teleports, character movement, collision groups and single target raycasts.
 /// The Character is also a Body, so the Body operations work on it as well.
-/// Mutating operations run while Apply is true — connect a Bang for one-shot application.
+/// Mutating operations run while Apply is true, connect a Bang for one-shot application.
 /// </summary>
 public static partial class Bodies
 {
