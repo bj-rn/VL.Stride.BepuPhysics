@@ -10,6 +10,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu`
 - `Character` component: a walking, jumping physics character (Move / TryJump / CharacterState)
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
+- Runtime hull baking: HullFromModel and HullFromPoints produce the ConvexHullCollider's hull data (single hull, the convex envelope; multi hull decomposition only exists in the Stride editor's asset pipeline)
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
 - Runtime constraint access: GetConstraints on a body, ConstraintInfo, spring / motor / servo settings operations, applied force readout, plus type specific settings operations for all 30 constraint types
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
@@ -209,6 +210,13 @@ Wrapper impact when upgrading:
   with `Entity`, `Simulation`, `SimulationSelector` properties). Registration happens
   through the entity component system, so a hook node needs a carrier component
   attached to an entity. Recheck the interface shape on the new version.
+- `HullFromModel` replicates the engine's internal `ShapeCacheSystem.ExtractMeshBuffers`
+  (the system is not public) using the public `AsReadable`/`Copy` mesh helpers from
+  `Stride.Graphics`. On master the extraction additionally applies skeleton node
+  transforms and offsets indices per mesh, recheck and mirror at upgrade time.
+- Runtime VHACD decomposition stays unavailable: the only entry point in 4.2.1 is the
+  editor's `HullAssetCompiler` (an `AssetCommand`, not callable at runtime). Recheck
+  whether a newer version exposes a runtime API before promising multi hull baking.
 
 ## License
 

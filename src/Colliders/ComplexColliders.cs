@@ -46,8 +46,8 @@ public class MeshColliderNode
 }
 
 /// <summary>
-/// Convex hull collision shape from pre-decomposed hull data.
-/// Outputs null while no hull data is connected. (Hull baking is not provided by this package.)
+/// Convex hull collision shape. Bake the hull data at runtime with HullFromModel or
+/// HullFromPoints. Outputs null while no hull data is connected.
 /// </summary>
 [ProcessNode(Name = "ConvexHullCollider")]
 public class ConvexHullColliderNode
@@ -56,7 +56,7 @@ public class ConvexHullColliderNode
     private PinValue<SDefinitions.DecomposedHulls?> _hull;
     private PinValue<float> _mass;
 
-    /// <param name="hull">Pre-decomposed hull data (DecomposedHulls asset). Outputs null while unconnected.</param>
+    /// <param name="hull">Hull data, from a HullFromModel or HullFromPoints node. Outputs null while unconnected.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
