@@ -36,6 +36,7 @@ public class CharacterNode
     private PinValue<float> _frictionCoefficient;
     private PinValue<float> _maximumRecoveryVelocity;
     private PinValue<float> _sleepThreshold;
+    private PinValue<int> _minimumTimestepCountUnderThreshold;
     private PinValue<bool> _gravity;
     private PinValue<global::BepuPhysics.Collidables.ContinuousDetectionMode> _continuousDetection;
 
@@ -60,6 +61,7 @@ public class CharacterNode
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate. Default -1 keeps the character always awake so it reacts to Move immediately.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255). Only relevant when Sleep Threshold allows sleeping.</param>
     /// <param name="gravity">Whether gravity affects this character. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast characters that would tunnel through thin geometry.</param>
     /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
@@ -80,6 +82,7 @@ public class CharacterNode
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
         float sleepThreshold = -1f,
+        [Pin(Visibility = PinVisibility.Optional)] int minimumTimestepCountUnderThreshold = 32,
         bool gravity = true,
         ContinuousDetectionKind? continuousDetection = null,
         [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null,
@@ -117,6 +120,8 @@ public class CharacterNode
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
         if (_sleepThreshold.Changed(sleepThreshold) | reapplyInputs)
             _component.SleepThreshold = sleepThreshold;
+        if (_minimumTimestepCountUnderThreshold.Changed(minimumTimestepCountUnderThreshold) | reapplyInputs)
+            _component.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
         if (_gravity.Changed(gravity) | reapplyInputs)
             _component.Gravity = gravity;
         var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);

@@ -128,11 +128,15 @@ public static class BodyOperations
     /// <param name="position">Current position in world space.</param>
     /// <param name="orientation">Current orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="linearVelocity">Current linear velocity in units per second.</param>
-    /// <param name="angularVelocity">Current angular velocity in radians per second.</param>
+    /// <param name="angularVelocity">Current angular velocity in radians per second (axis angle: the direction is the rotation axis, the length the speed).</param>
+    /// <param name="previousLinearVelocity">Linear velocity during the previous physics tick. Compare with the current velocity to detect impacts.</param>
+    /// <param name="previousAngularVelocity">Angular velocity during the previous physics tick.</param>
     /// <param name="awake">True while the body is actively simulated (not sleeping).</param>
     public static void BodyState(SBepu.BodyComponent? body,
         out Vector3 position, out Quaternion orientation,
-        out Vector3 linearVelocity, out Vector3 angularVelocity, out bool awake)
+        out Vector3 linearVelocity, out Vector3 angularVelocity,
+        out Vector3 previousLinearVelocity, out Vector3 previousAngularVelocity,
+        out bool awake)
     {
         if (body is null || body.Simulation is null)
         {
@@ -140,6 +144,8 @@ public static class BodyOperations
             orientation = Quaternion.Identity;
             linearVelocity = Vector3.Zero;
             angularVelocity = Vector3.Zero;
+            previousLinearVelocity = Vector3.Zero;
+            previousAngularVelocity = Vector3.Zero;
             awake = false;
             return;
         }
@@ -147,7 +153,38 @@ public static class BodyOperations
         orientation = body.Orientation;
         linearVelocity = body.LinearVelocity;
         angularVelocity = body.AngularVelocity;
+        previousLinearVelocity = body.PreviousLinearVelocity;
+        previousAngularVelocity = body.PreviousAngularVelocity;
         awake = body.Awake;
+    }
+
+    /// <summary>
+    /// Reads the mass properties of a body. Mass and center of mass derive from the collider
+    /// shapes and their Mass pins, they are read only here.
+    /// </summary>
+    /// <param name="body">The body to read. Outputs defaults while not attached to a simulation.</param>
+    /// <param name="mass">Total mass of the body; 0 while kinematic (infinite mass) or not attached.</param>
+    /// <param name="inverseMass">Inverse of the mass as used by the solver; 0 = infinite mass.</param>
+    /// <param name="centerOfMass">Center of mass in the body's local space, computed from the collider shapes.</param>
+    /// <param name="speculativeMargin">Diagnostic: size of the margin around the shape in which contacts can be generated, recomputed by the engine every frame from the body's velocity.</param>
+    public static void BodyMassProperties(SBepu.BodyComponent? body,
+        out float mass,
+        out float inverseMass,
+        out Vector3 centerOfMass,
+        out float speculativeMargin)
+    {
+        if (body is null || body.Simulation is null)
+        {
+            mass = 0f;
+            inverseMass = 0f;
+            centerOfMass = Vector3.Zero;
+            speculativeMargin = 0f;
+            return;
+        }
+        inverseMass = body.BodyInertia.InverseMass;
+        mass = inverseMass > 0f ? 1f / inverseMass : 0f;
+        centerOfMass = body.CenterOfMass;
+        speculativeMargin = body.SpeculativeMargin;
     }
 
     /// <summary>Wakes the body up while Apply is true.</summary>

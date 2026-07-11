@@ -48,19 +48,21 @@
             <Pin Id="NUp3SYRIlgpQPkaRXqzY4E" Name="Kinematic" Kind="InputPin" />
             <Pin Id="LWkqP0YoJ0JQcxtGwh7xnm" Name="Interpolation" Kind="InputPin" />
             <Pin Id="Rpk0rOsbOlvPIqsYl9GzZV" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="RUFtbJTMGmIO4aMguqYw7j" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="VcgccU7iawiLAEy6ERBnqU" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="FPoOo3Pk8WXPs74hVEnq9O" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="TjQpE4INZNkNgJZOScGU4t" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="RwEynC92NnDLTRCavMPjWh" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="P9JHslhADZ4MOBb2N15GLp" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="FAgQpwnvYC3NPKr8TCHflO" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="H7j6zdQo83iM2QugGJrErA" Name="Gravity" Kind="InputPin" />
             <Pin Id="ScxxAzOnepbQAgcPym5hIP" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="HrRC000000000000000014" Name="Contact Handler" Kind="InputPin" />
+            <Pin Id="GMDvzh9bxByQIna6iir2b0" Name="Collider Override" Kind="InputPin" IsHidden="true" />
             <Pin Id="HrRC000000000000000015" Name="Teleport To" Kind="InputPin" />
             <Pin Id="HrRC000000000000000016" Name="Output" Kind="OutputPin" />
             <Pin Id="ATt7TdLbWzjMbdwbdJeGgZ" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="ODnXai72PeHNQxpBRh4M6x" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
-            <Pin Id="GMDvzh9bxByQIna6iir2b0" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="372,140,207,19" Id="HrRC000000000000000017">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
@@ -154,13 +156,14 @@
             <Pin Id="HrRC000000000000000045" Name="Colliders" Kind="InputPin" />
             <Pin Id="HrRC000000000000000046" Name="Output" Kind="OutputPin" />
             <Pin Id="OnQrGKZoCRYLrSru0AffjD" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="HfzhpdWRQplM0YfuaK0J8g" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="ANarr3bG3KcNTTSFQ0SG0r" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="EEaOVuz2oCmP9oCczGnoNe" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="Q5da7BcBeWiPVHZmnVMjA3" Name="Friction Coefficient" Kind="InputPin" DefaultValue="0.25" />
             <Pin Id="SjIdy74FAR3PYg0jz9UKMG" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="FVF4resbmgCMbZKtozlZYX" Name="Contact Handler" Kind="InputPin" />
-            <Pin Id="IKuxXd9cv5vLuoyI0csvtg" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
             <Pin Id="GJfMzQysiyjPJMbtGW2h6N" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="IKuxXd9cv5vLuoyI0csvtg" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="256,1246,65,19" Id="HrRC000000000000000047">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
@@ -533,9 +536,14 @@
                       <Choice Kind="OperationCallFlag" Name="&gt;" />
                     </p:NodeReference>
                     <Pin Id="SGEIzasN4riL0GrGWkJKYB" Name="Input" Kind="InputPin" />
-                    <Pin Id="Ami5LVgeFvlQd68DJuUkWM" Name="Input 2" Kind="InputPin" />
+                    <Pin Id="Ami5LVgeFvlQd68DJuUkWM" Name="Input 2" Kind="InputPin" DefaultValue="0.05" />
                     <Pin Id="SFH3aIIPVktPUMt7qxeXLy" Name="Result" Kind="OutputPin" />
                   </Node>
+                  <Pad Id="IzORK4r7iYeOm9JoiXIHSN" Comment="" Bounds="1009,590,35,15" ShowValueBox="true" isIOBox="true" Value="0.2">
+                    <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+                      <Choice Kind="TypeFlag" Name="Float32" />
+                    </p:TypeAnnotation>
+                  </Pad>
                 </Patch>
                 <ControlPoint Id="OZlNxV2ee6yQIE4pnmhYyq" Bounds="958,912" Alignment="Bottom" />
                 <ControlPoint Id="BmB4eagLEBOPTCZHBhF7Ld" Bounds="958,463" Alignment="Top" />
@@ -629,7 +637,7 @@
             </p:ValueBoxSettings>
           </Pad>
           <Pad Id="NDJMVgIFF4SOcFFW0yBPkq" Comment="Child Index" Bounds="1944,530,35,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="2629,600,95,19" Id="Rd1eTanWpemPEER9fVwr8z">
+          <Node Bounds="2902,610,95,19" Id="Rd1eTanWpemPEER9fVwr8z">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="CollidableInfo" />
@@ -641,11 +649,11 @@
             <Pin Id="SFQJcVdHQnXOzPfTVZ0OGd" Name="Kind" Kind="OutputPin" />
             <Pin Id="GcYljSWXit0QZHd9lQUPGZ" Name="Attached" Kind="OutputPin" />
           </Node>
-          <Pad Id="CkEoxseT6u5QLky2I8ATJ6" Comment="Entity" Bounds="2631,730,18,26" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="UJY83UBB3hmPgPi8fuYKzN" Comment="Entity Name" Bounds="2661,710,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="RBI28o3kdzmQORLyqcoX2u" Comment="Kind" Bounds="2691,680,55,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="BCJAcMZqKq7QCHHdoTLzWv" Comment="Attached" Bounds="2721,641,35,35" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="2355,600,113,19" Id="GN6yBLe5lHKODwJ2Zft1n8">
+          <Pad Id="CkEoxseT6u5QLky2I8ATJ6" Comment="Entity" Bounds="2904,740,18,26" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="UJY83UBB3hmPgPi8fuYKzN" Comment="Entity Name" Bounds="2934,720,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="RBI28o3kdzmQORLyqcoX2u" Comment="Kind" Bounds="2964,690,55,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="BCJAcMZqKq7QCHHdoTLzWv" Comment="Attached" Bounds="2994,651,35,35" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="2355,600,139,19" Id="GN6yBLe5lHKODwJ2Zft1n8">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="CollidableSettings" />
@@ -657,13 +665,14 @@
             <Pin Id="CUUKirjoawvOlKKSD8kYjs" Name="Friction Coefficient" Kind="OutputPin" />
             <Pin Id="PAKgVvdJN2WNPeDqSZRxlL" Name="Maximum Recovery Velocity" Kind="OutputPin" />
             <Pin Id="MCrnk9Koha9PtdE1IVYs5N" Name="Collision Layer" Kind="OutputPin" />
+            <Pin Id="FXxWfZMk6tzNkzu6oT4UvR" Name="Collision Group" Kind="OutputPin" />
           </Node>
-          <Pad Id="Bb0SCKdU5xYOy5E5uFb3oJ" Comment="Spring Frequency" Bounds="2357,770,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="QVF7LSp2lYKOvz3ahgs57d" Comment="Spring Damping Ratio" Bounds="2384,740,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="M6DkRvxvfwwLa5xlBI0pIJ" Comment="Friction Coefficient" Bounds="2411,710,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="Cw4xnxq4NAMMZ9Br4BUCq3" Comment="Maximum Recovery Velocity" Bounds="2438,680,47,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="LXUDjOqafrSMTnV63JmX3m" Comment="Collision Layer" Bounds="2465,650,66,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="2944,765,48,19" Id="NiPCW5zVKVgP7zTo2UM1wg">
+          <Pad Id="Bb0SCKdU5xYOy5E5uFb3oJ" Comment="Spring Frequency" Bounds="2357,845,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="QVF7LSp2lYKOvz3ahgs57d" Comment="Spring Damping Ratio" Bounds="2384,815,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="M6DkRvxvfwwLa5xlBI0pIJ" Comment="Friction Coefficient" Bounds="2411,785,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Cw4xnxq4NAMMZ9Br4BUCq3" Comment="Maximum Recovery Velocity" Bounds="2438,755,47,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="LXUDjOqafrSMTnV63JmX3m" Comment="Collision Layer" Bounds="2465,725,66,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="3217,775,48,19" Id="NiPCW5zVKVgP7zTo2UM1wg">
             <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="CastAs" />
@@ -673,70 +682,32 @@
             <Pin Id="F1LJeGQShdTOM8cROhrwDg" Name="Result" Kind="OutputPin" />
             <Pin Id="SdV91NPUWzlPcpEzcjGL6d" Name="Success" Kind="OutputPin" />
           </Node>
-          <Node Bounds="2932,831,668,91" Id="OM63P8QCg6RN2AHEQYwwFj">
-            <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
-              <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
-              <CategoryReference Kind="Category" Name="Primitive" />
-              <Choice Kind="ApplicationStatefulRegion" Name="If" />
-            </p:NodeReference>
-            <Pin Id="NUiHSTnFz38Ow8U2yQXupl" Name="Condition" Kind="InputPin" />
-            <Patch Id="BORC0BBJv5dODY1ekqG1dD" ManuallySortedPins="true">
-              <Patch Id="DWfsWHnMDroMInKE8mzo6q" Name="Create" ManuallySortedPins="true" />
-              <Patch Id="SntPGo6Gtt9PLFNGDRih7f" Name="Then" ManuallySortedPins="true" />
-              <Node Bounds="2944,865,218,19" Id="GcQdrxOSarJOkYyyiDnqIZ">
-                <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
-                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="BodySettings" />
-                </p:NodeReference>
-                <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
-                <Pin Id="SuyUmzSUkpvPCOOXeMuVhm" Name="Body" Kind="InputPin" />
-                <Pin Id="Pz1a0SnvgpgN6KTc2uFStd" Name="Kinematic" Kind="OutputPin" />
-                <Pin Id="P2dDL3eCraZOwaJNCZas1f" Name="Sleep Threshold" Kind="OutputPin" />
-                <Pin Id="GVbCRkiZOUdOg9bwGk5HdM" Name="Gravity" Kind="OutputPin" />
-                <Pin Id="L0Mr1RH9c8uM43O50WgeCF" Name="Interpolation" Kind="OutputPin" />
-                <Pin Id="Qca5tVPwrIbPbSDCpcFKo0" Name="Continuous Detection" Kind="OutputPin" />
-              </Node>
-              <Node Bounds="3210,866,373,19" Id="BIvhiupji5zMGdxQ9w18fr">
-                <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
-                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="BodyState" />
-                </p:NodeReference>
-                <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
-                <Pin Id="IHBKgfodJ7jOQqy5OnZI2w" Name="Body" Kind="InputPin" />
-                <Pin Id="AsbIYgde1jTNt2hyjJd1ik" Name="Position" Kind="OutputPin" />
-                <Pin Id="R0CNsBiLfnwOJWCvXCf21Z" Name="Orientation" Kind="OutputPin" />
-                <Pin Id="VUrPyWRj0FDMwyUtSEag3p" Name="Linear Velocity" Kind="OutputPin" />
-                <Pin Id="QZZdIvHmskAMGZ9W4AZcix" Name="Angular Velocity" Kind="OutputPin" />
-                <Pin Id="KvO3yeO0WvQNg7AldgX1i5" Name="Awake" Kind="OutputPin" />
-              </Node>
-            </Patch>
-            <ControlPoint Id="GdjDjsPcwwVL5pcCBfxzmp" Bounds="2946,916" Name="K" Alignment="Bottom" />
-            <ControlPoint Id="M8uOagc2uQnNvWFgISJFDh" Bounds="2946,837" Name="K" Alignment="Top" />
-            <ControlPoint Id="J7GyQw4yFymMgON29MTAwl" Bounds="2999,916" Name="ST" Alignment="Bottom" />
-            <ControlPoint Id="KSBbXNZ6Q4dLQAkPOilfYL" Bounds="2981,837" Name="ST" Alignment="Top" />
-            <ControlPoint Id="VKwYyjyB76eNgeZbDrlade" Bounds="3052,916" Name="G" Alignment="Bottom" />
-            <ControlPoint Id="PHVlqjcK8eFPoUzLwV6kY3" Bounds="3052,837" Name="G" Alignment="Top" />
-            <ControlPoint Id="I9pZEHRLh3cQBS024gYqVm" Bounds="3106,916" Name="I" Alignment="Bottom" />
-            <ControlPoint Id="UJUcSfa94dMOBcwK4KtsfO" Bounds="3106,837" Name="I" Alignment="Top" />
-            <ControlPoint Id="EKoxXyD4SSxQVEPnjK4oT0" Bounds="3159,916" Name="CD" Alignment="Bottom" />
-            <ControlPoint Id="Np17u7z2yzNPq3snvD7WcV" Bounds="3159,837" Name="CD" Alignment="Top" />
-            <ControlPoint Id="BlkslLzOqpMMKKU242Rdgw" Bounds="3212,916" Name="P" Alignment="Bottom" />
-            <ControlPoint Id="RmahY5RGNYIN9KIYJfYRTp" Bounds="3212,837" Name="P" Alignment="Top" />
-            <ControlPoint Id="KyKWh4ux94pLJzlPmWB1VI" Bounds="3304,916" Name="O" Alignment="Bottom" />
-            <ControlPoint Id="TlIJZBnEAV7PDJRP7zc6tD" Bounds="3304,837" Name="O" Alignment="Top" />
-            <ControlPoint Id="EnBFQVjC0exMRfv5EcEu5X" Bounds="3396,916" Name="LV" Alignment="Bottom" />
-            <ControlPoint Id="IQYlXyVFprKO3ZdMOwc0Ah" Bounds="3396,837" Name="LV" Alignment="Top" />
-            <ControlPoint Id="U2sZ81KRKuDNpuZ7thH3yd" Bounds="3488,916" Name="AV" Alignment="Bottom" />
-            <ControlPoint Id="IKgdULC7q6zPrLdFTNHf0s" Bounds="3488,837" Name="AV" Alignment="Top" />
-            <ControlPoint Id="LEpQQfbRanpQYq9QJgnafW" Bounds="3580,916" Name="A" Alignment="Bottom" />
-            <ControlPoint Id="TtPP0xyAYFvOVBlQ5G37Ie" Bounds="3580,837" Name="A" Alignment="Top" />
-          </Node>
-          <Pad Id="NU0T5S9dliPNNkaVS8I6oa" Comment="Kinematic" Bounds="2946,1440,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="NfdQfxAgY2xLj1Oro9pgcw" Comment="Sleep Threshhold" Bounds="2999,1410,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="GAFMx2KqgctQBZznqQkLAL" Comment="Gravity" Bounds="3052,1350,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="P2NpPFGrqxhQdxDgh4dqYf" Comment="Interpolation" Bounds="3106,1315,88,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="PGg7Xm72wABL0vNh1iHkDx" Comment="Continous Detection" Bounds="3159,1275,83,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="2874,775,25,19" Id="M5VCtImDd69MNm4KimQYct">
+          <Pad Id="NU0T5S9dliPNNkaVS8I6oa" Comment="Kinematic" Bounds="3213,1260,35,35" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="NfdQfxAgY2xLj1Oro9pgcw" Comment="Sleep Threshhold" Bounds="3258,1230,35,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="GAFMx2KqgctQBZznqQkLAL" Comment="Gravity" Bounds="3345,1123,35,35" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="P2NpPFGrqxhQdxDgh4dqYf" Comment="Interpolation" Bounds="3387,1080,88,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="TypeFlag" Name="InterpolationMode" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="PGg7Xm72wABL0vNh1iHkDx" Comment="Continous Detection" Bounds="3429,1048,83,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="TypeFlag" Name="ContinuousDetectionKind" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="3147,785,25,19" Id="M5VCtImDd69MNm4KimQYct">
             <p:NodeReference LastCategoryFullName="Math" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="=" />
@@ -745,18 +716,38 @@
             <Pin Id="LTjKmDlm9Q3LKwp4QJy1kS" Name="Input 2" Kind="InputPin" />
             <Pin Id="AmsIUAfpPWVPa1a9tK4WlR" Name="Result" Kind="OutputPin" />
           </Node>
-          <Pad Id="OyrnTpUppz1OeYE6FcE6Z2" Comment="" Bounds="2896,746,55,15" ShowValueBox="true" isIOBox="true" Value="Body">
+          <Pad Id="OyrnTpUppz1OeYE6FcE6Z2" Comment="" Bounds="3169,756,55,15" ShowValueBox="true" isIOBox="true" Value="Body">
             <p:TypeAnnotation LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="TypeFlag" Name="CollidableKind" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Q1AjAxnCQ64L02DEsO99CL" Comment="" Bounds="2876,816,35,35" ShowValueBox="true" isIOBox="true" />
-          <ControlPoint Id="AHIrV2329z9OKGb4chsNBA" Bounds="2946,624" />
-          <Pad Id="F644lxtHclrPrSSRTsBeFx" Comment="Position" Bounds="3212,1196,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="Tbv48BQ7LtqPHmaE2MpmwK" Comment="Orientation" Bounds="3304,1136,35,57" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="MC7MWfkgKRiPGTYoCcI0lu" Comment="Linear Velocity" Bounds="3396,1071,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="Dm6rhyU2wvWOMsrlE0s2Ip" Comment="Angular Velocity" Bounds="3488,1021,35,43" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="JpFFHKSqzXcMNGMxssc2LQ" Comment="Awake" Bounds="3580,966,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Q1AjAxnCQ64L02DEsO99CL" Comment="" Bounds="3149,826,35,35" ShowValueBox="true" isIOBox="true" />
+          <ControlPoint Id="AHIrV2329z9OKGb4chsNBA" Bounds="3219,634" />
+          <Pad Id="F644lxtHclrPrSSRTsBeFx" Comment="Position" Bounds="3566,1359,35,43" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Tbv48BQ7LtqPHmaE2MpmwK" Comment="Orientation" Bounds="3627,1290,35,57" ShowValueBox="true" isIOBox="true" Value="0, 0, 0, 1">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Quaternion" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="MC7MWfkgKRiPGTYoCcI0lu" Comment="Linear Velocity" Bounds="3689,1230,35,43" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Dm6rhyU2wvWOMsrlE0s2Ip" Comment="Angular Velocity" Bounds="3750,1180,35,43" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="JpFFHKSqzXcMNGMxssc2LQ" Comment="Awake" Bounds="3934,1007,35,35" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+          </Pad>
           <Node Bounds="1875,560,72,19" Id="DSpjfApujJvNjGdki9hHlb">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -768,7 +759,7 @@
             <Pin Id="BfkfWOEEavXP24397la4G5" Name="Output" Kind="OutputPin" />
             <Pin Id="NYPY5ULru3kN5gIc8IllfH" Name="Child" Kind="OutputPin" />
           </Node>
-          <Node Bounds="616,1210,113,19" Id="OAslo2LepEyOkyNv8GgPN7">
+          <Node Bounds="616,1210,139,19" Id="OAslo2LepEyOkyNv8GgPN7">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="CollidableSettings" />
@@ -780,6 +771,7 @@
             <Pin Id="B6plJwx3X04LOeYooQ6IG7" Name="Friction Coefficient" Kind="OutputPin" />
             <Pin Id="TO4n6Vuy6sENATisFjGAyS" Name="Maximum Recovery Velocity" Kind="OutputPin" />
             <Pin Id="RiiNMyHXTESNgUBjl4yJIw" Name="Collision Layer" Kind="OutputPin" />
+            <Pin Id="N379DJ4Tb5LOq6q4imx06h" Name="Collision Group" Kind="OutputPin" />
           </Node>
           <Pad Id="CKx6zT5dewgM3xJzHNeUeR" Comment="Spring Frequency" Bounds="618,1380,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="RAzJI5R2QugM0l9xsxfUUD" Comment="Spring Damping Ratio" Bounds="645,1350,35,15" ShowValueBox="true" isIOBox="true" />
@@ -968,6 +960,55 @@
             </p:TypeAnnotation>
           </Pad>
           <ControlPoint Id="IGwUkWCkyNUM4U2umUweKg" Bounds="62,807" />
+          <Pad Id="EIjw1L1Bn71QddcbreuaPO" Comment="Collision Group" Bounds="2491,670,254,44" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="3564,953,373,19" Id="BIvhiupji5zMGdxQ9w18fr">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="BodyState" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="IHBKgfodJ7jOQqy5OnZI2w" Name="Body" Kind="InputPin" />
+            <Pin Id="AsbIYgde1jTNt2hyjJd1ik" Name="Position" Kind="OutputPin" />
+            <Pin Id="R0CNsBiLfnwOJWCvXCf21Z" Name="Orientation" Kind="OutputPin" />
+            <Pin Id="VUrPyWRj0FDMwyUtSEag3p" Name="Linear Velocity" Kind="OutputPin" />
+            <Pin Id="QZZdIvHmskAMGZ9W4AZcix" Name="Angular Velocity" Kind="OutputPin" />
+            <Pin Id="NeybNF4ae53Ocxl93EvuqD" Name="Previous Linear Velocity" Kind="OutputPin" />
+            <Pin Id="QFv76tbxHwAOtbAnlP2kyV" Name="Previous Angular Velocity" Kind="OutputPin" />
+            <Pin Id="KvO3yeO0WvQNg7AldgX1i5" Name="Awake" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="3215,956,218,19" Id="GcQdrxOSarJOkYyyiDnqIZ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="BodySettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="SuyUmzSUkpvPCOOXeMuVhm" Name="Body" Kind="InputPin" />
+            <Pin Id="Pz1a0SnvgpgN6KTc2uFStd" Name="Kinematic" Kind="OutputPin" />
+            <Pin Id="P2dDL3eCraZOwaJNCZas1f" Name="Sleep Threshold" Kind="OutputPin" />
+            <Pin Id="HVL8xgN3TjjPUF1gu9yqHf" Name="Minimum Timestep Count Under Threshold" Kind="OutputPin" />
+            <Pin Id="GVbCRkiZOUdOg9bwGk5HdM" Name="Gravity" Kind="OutputPin" />
+            <Pin Id="L0Mr1RH9c8uM43O50WgeCF" Name="Interpolation" Kind="OutputPin" />
+            <Pin Id="Qca5tVPwrIbPbSDCpcFKo0" Name="Continuous Detection" Kind="OutputPin" />
+          </Node>
+          <Pad Id="Q7pkoPOCmgAO9aWD0IxPkc" Comment="Previous Linear Velocity" Bounds="3811,1120,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="HcITFxDihxjLjjdApEmxhT" Comment="Previous Angular Velocity" Bounds="3873,1060,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="ASMcgo5fvgyMYrCUebFgWN" Comment="Minimum Timestep Count Under Threshold" Bounds="3301,1180,35,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="4095,950,107,19" Id="Cu3XLfYDHelNBaD15iOjmf">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="BodyMassProperties" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="A4BsJGS6ilAPHCJwdB19cp" Name="Body" Kind="InputPin" />
+            <Pin Id="HHi1qrpDYT9MdwHgcEfAfW" Name="Mass" Kind="OutputPin" />
+            <Pin Id="SBdpNrnBZdVP2psHldjMBR" Name="Inverse Mass" Kind="OutputPin" />
+            <Pin Id="IlUfIt1wTywPoz1zXmgGtu" Name="Center Of Mass" Kind="OutputPin" />
+            <Pin Id="HR01vNQrijFQApbSfpTFiV" Name="Speculative Margin" Kind="OutputPin" />
+          </Node>
+          <Pad Id="GYtKmxdp7izMlyncY6Wqut" Comment="Mass" Bounds="4097,1150,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="DksyaZ9Cse0NCIXKj6Lw1b" Comment="Inverse Mass" Bounds="4131,1110,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="UyF0iY07Bq1MrqSh9KCqQ5" Comment="Center Of Mass" Bounds="4165,1050,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Tn3xrxuBEqRMhw3WYZeKdQ" Comment="Speculative Margin" Bounds="4199,1010,35,15" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="HrRC000000000000000084" Name="Create" />
         <Patch Id="HrRC000000000000000085" Name="Update" />
@@ -1020,41 +1061,10 @@
         <Link Id="La3UmXCFfyTPxZmIUbeLvx" Ids="MCrnk9Koha9PtdE1IVYs5N,LXUDjOqafrSMTnV63JmX3m" />
         <Link Id="CtEj6476r8sLXaTyUwVGNn" Ids="Nt1rwFNmB83Px7YsrImHFH,AHIrV2329z9OKGb4chsNBA,EbzGO8FneHIPPe1c5L6Epf" />
         <Link Id="QAzlveHsp6PNHMnL0dCUXI" Ids="F1LJeGQShdTOM8cROhrwDg,SuyUmzSUkpvPCOOXeMuVhm" />
-        <Link Id="KGNe4CBU5doPQseN7Bta0n" Ids="SdV91NPUWzlPcpEzcjGL6d,NUiHSTnFz38Ow8U2yQXupl" />
-        <Link Id="TYww35EX6uRNZV5KpLh9YD" Ids="M8uOagc2uQnNvWFgISJFDh,GdjDjsPcwwVL5pcCBfxzmp" IsFeedback="true" />
-        <Link Id="JuEIMDY5tReM3JDsXcpAJu" Ids="Pz1a0SnvgpgN6KTc2uFStd,GdjDjsPcwwVL5pcCBfxzmp" />
-        <Link Id="JumyAUdmgn1LyZ3zakY9nc" Ids="GdjDjsPcwwVL5pcCBfxzmp,NU0T5S9dliPNNkaVS8I6oa" />
-        <Link Id="MoHDcRwuHZnMQEJqYtOWfk" Ids="KSBbXNZ6Q4dLQAkPOilfYL,J7GyQw4yFymMgON29MTAwl" IsFeedback="true" />
-        <Link Id="HW9qOdEqnUFM11TdWc8kwt" Ids="P2dDL3eCraZOwaJNCZas1f,J7GyQw4yFymMgON29MTAwl" />
-        <Link Id="IsuRDP5tzpKM7uRgLUOyVh" Ids="J7GyQw4yFymMgON29MTAwl,NfdQfxAgY2xLj1Oro9pgcw" />
-        <Link Id="H7Tq2sksoLaLX8GGtfPKOk" Ids="PHVlqjcK8eFPoUzLwV6kY3,VKwYyjyB76eNgeZbDrlade" IsFeedback="true" />
-        <Link Id="Oa2JqF8ErfSQVxN5M17cjX" Ids="GVbCRkiZOUdOg9bwGk5HdM,VKwYyjyB76eNgeZbDrlade" />
-        <Link Id="MJ4geiK3UgRQNb5Ziwwp6L" Ids="VKwYyjyB76eNgeZbDrlade,GAFMx2KqgctQBZznqQkLAL" />
-        <Link Id="S1TECQgxsjjMb53B3RmoQD" Ids="UJUcSfa94dMOBcwK4KtsfO,I9pZEHRLh3cQBS024gYqVm" IsFeedback="true" />
-        <Link Id="IbIFilqc3JdQJ7ha2vmsFN" Ids="L0Mr1RH9c8uM43O50WgeCF,I9pZEHRLh3cQBS024gYqVm" />
-        <Link Id="AaWbwneFqaAOlNLRa24lsZ" Ids="I9pZEHRLh3cQBS024gYqVm,P2NpPFGrqxhQdxDgh4dqYf" />
-        <Link Id="H0jKCbBCYDUL2lNmgrdTi5" Ids="Np17u7z2yzNPq3snvD7WcV,EKoxXyD4SSxQVEPnjK4oT0" IsFeedback="true" />
-        <Link Id="B8adB5C6R2HMttykFumjuw" Ids="Qca5tVPwrIbPbSDCpcFKo0,EKoxXyD4SSxQVEPnjK4oT0" />
-        <Link Id="RKFxEcLAfZONeKfWA6XpsJ" Ids="EKoxXyD4SSxQVEPnjK4oT0,PGg7Xm72wABL0vNh1iHkDx" />
         <Link Id="OiVCHlxUWNzMqW2lI1SoLK" Ids="RBI28o3kdzmQORLyqcoX2u,IgOn5D0kGK9PiZebvTv3m4" />
         <Link Id="SrjLMpfaZSNManRw0i0mRU" Ids="OyrnTpUppz1OeYE6FcE6Z2,LTjKmDlm9Q3LKwp4QJy1kS" />
         <Link Id="KqWwjxp6ce3LqAMUwIDQoe" Ids="AmsIUAfpPWVPa1a9tK4WlR,Q1AjAxnCQ64L02DEsO99CL" />
         <Link Id="LX92TbeYpAdLqRXXSS9DzP" Ids="F1LJeGQShdTOM8cROhrwDg,IHBKgfodJ7jOQqy5OnZI2w" />
-        <Link Id="ODQHt1sLudENFtSee2SVLE" Ids="RmahY5RGNYIN9KIYJfYRTp,BlkslLzOqpMMKKU242Rdgw" IsFeedback="true" />
-        <Link Id="Jyad7AbUivGNiSJPyL1qLR" Ids="AsbIYgde1jTNt2hyjJd1ik,BlkslLzOqpMMKKU242Rdgw" />
-        <Link Id="KH3UcG2rPPmNnc8vlgg27R" Ids="BlkslLzOqpMMKKU242Rdgw,F644lxtHclrPrSSRTsBeFx" />
-        <Link Id="SWgjBy3gag0QHB5xJAmg2M" Ids="TlIJZBnEAV7PDJRP7zc6tD,KyKWh4ux94pLJzlPmWB1VI" IsFeedback="true" />
-        <Link Id="TmRtBiLHn0WPNmhzFacxMs" Ids="R0CNsBiLfnwOJWCvXCf21Z,KyKWh4ux94pLJzlPmWB1VI" />
-        <Link Id="RFyY9J9O3gyM0RPlhKIdTn" Ids="KyKWh4ux94pLJzlPmWB1VI,Tbv48BQ7LtqPHmaE2MpmwK" />
-        <Link Id="GpWqj6YJ50MOWXiWihN9gk" Ids="IQYlXyVFprKO3ZdMOwc0Ah,EnBFQVjC0exMRfv5EcEu5X" IsFeedback="true" />
-        <Link Id="UK6sOQYYuFZOdTmmN1mJD5" Ids="VUrPyWRj0FDMwyUtSEag3p,EnBFQVjC0exMRfv5EcEu5X" />
-        <Link Id="VHVlgfoNMmmMYsoy5QQ1n1" Ids="EnBFQVjC0exMRfv5EcEu5X,MC7MWfkgKRiPGTYoCcI0lu" />
-        <Link Id="CYJccJ8vjXIPhaaCuiHhxn" Ids="IKgdULC7q6zPrLdFTNHf0s,U2sZ81KRKuDNpuZ7thH3yd" IsFeedback="true" />
-        <Link Id="HNXN3rZr7qQPDrEP5J9xYi" Ids="QZZdIvHmskAMGZ9W4AZcix,U2sZ81KRKuDNpuZ7thH3yd" />
-        <Link Id="CzjeGujC7GHORReVNKISEw" Ids="U2sZ81KRKuDNpuZ7thH3yd,Dm6rhyU2wvWOMsrlE0s2Ip" />
-        <Link Id="Ia9uEXESQNZOlPLfYx3wm3" Ids="TtPP0xyAYFvOVBlQ5G37Ie,LEpQQfbRanpQYq9QJgnafW" IsFeedback="true" />
-        <Link Id="FTs4GIoaCAWLL8JaRKEWAp" Ids="KvO3yeO0WvQNg7AldgX1i5,LEpQQfbRanpQYq9QJgnafW" />
-        <Link Id="RoRpA7I5ixNMIg9MzYMEbp" Ids="LEpQQfbRanpQYq9QJgnafW,JpFFHKSqzXcMNGMxssc2LQ" />
         <Link Id="CHFzo8SbHw9MwgQvlNIs36" Ids="NDJMVgIFF4SOcFFW0yBPkq,SfR45APcEgmQHwHaiWbbZZ" />
         <Link Id="IXqAhSwHqw5PRN2oja5Lfo" Ids="Nt1rwFNmB83Px7YsrImHFH,NECeD9B2g66MbQiXHWOWoH" />
         <Link Id="TNCn3QGLgB9NV8I8eCgccW" Ids="CTuDg3hg5sOMa1wIryVqc5,CKx6zT5dewgM3xJzHNeUeR" />
@@ -1119,7 +1129,6 @@
         <Link Id="UpStNvtNjWgNN7roWaz0LU" Ids="HrRC000000000000000037,HrRC000000000000000061" />
         <Link Id="S0M3qVPAvmHNepHmefaFoE" Ids="SCIL8pxtlTOPGN5U62Gyu3,D8hh1lZEt53QS1GT55dDmV" />
         <Link Id="O6zppHP8LZlLHTepcuc37g" Ids="Iz4FqtEx4qhLm6jnjzCSOw,Q5da7BcBeWiPVHZmnVMjA3" />
-        <Link Id="KyRc9xKqYrTMxZOVad8jUy" Ids="HxYu7ldJPSKNrlePsZ6jVt,TRfASTKz2FKL3Td9sec4VO" />
         <Link Id="OMtwvINmrFDPvTSdoxuYaN" Ids="SzZURqQL1LgMvt3A3Ifb0W,LPZ9Br4MOvxPuLb0o44Fxl" />
         <Link Id="VHpQKyQzmU1LeoROWvGuI6" Ids="AVzPRpZTv1YQXnstcz9USw,NSw3II80eJBOSadWYgOe7B" />
         <Link Id="J2IBildG0KPOStcm0HgSAB" Ids="HrRC000000000000000030,HrRC000000000000000015" />
@@ -1131,6 +1140,27 @@
         <Link Id="NTdpbF1kVAnOmuT6agvCNe" Ids="NwRndfaMZX0NhnFsFlWBhG,F8tZUp82GXvPps050gfb7E" />
         <Link Id="QzN6xLxyIPfLxrLwXu2rpw" Ids="NtzxJthErGbPcVvdTVjkTa,RiKhRtkJ2NqLWHzkzZIy9V" />
         <Link Id="SHeFgRROYxFNbG40UOVEO3" Ids="AVzPRpZTv1YQXnstcz9USw,IGwUkWCkyNUM4U2umUweKg,Q4Ixh0aAsHFMGXsvSiwmrO" />
+        <Link Id="MhUtvBHAZJsOIbJsMnfV26" Ids="FXxWfZMk6tzNkzu6oT4UvR,EIjw1L1Bn71QddcbreuaPO" />
+        <Link Id="U3VqBzz4EowNFLzpBLAr94" Ids="KvO3yeO0WvQNg7AldgX1i5,JpFFHKSqzXcMNGMxssc2LQ" />
+        <Link Id="Ry2G0nPuISlNft6teN2xKT" Ids="QZZdIvHmskAMGZ9W4AZcix,Dm6rhyU2wvWOMsrlE0s2Ip" />
+        <Link Id="TeMIGkvbojYQRJrx6YnO3b" Ids="VUrPyWRj0FDMwyUtSEag3p,MC7MWfkgKRiPGTYoCcI0lu" />
+        <Link Id="K9p6KftdeugME5akGXG9oQ" Ids="R0CNsBiLfnwOJWCvXCf21Z,Tbv48BQ7LtqPHmaE2MpmwK" />
+        <Link Id="KEw24OZxtaBO098JOM1zuz" Ids="AsbIYgde1jTNt2hyjJd1ik,F644lxtHclrPrSSRTsBeFx" />
+        <Link Id="QhTAwFOe3txLM3L4WRkqSH" Ids="NeybNF4ae53Ocxl93EvuqD,Q7pkoPOCmgAO9aWD0IxPkc" />
+        <Link Id="L1BWiUEasyELogQ5xawNFs" Ids="QFv76tbxHwAOtbAnlP2kyV,HcITFxDihxjLjjdApEmxhT" />
+        <Link Id="Aqw3Wkvx3e5MVZSUX7eUZI" Ids="Pz1a0SnvgpgN6KTc2uFStd,NU0T5S9dliPNNkaVS8I6oa" />
+        <Link Id="FVQ9ELwiZodL5Hkqq7B9GF" Ids="P2dDL3eCraZOwaJNCZas1f,NfdQfxAgY2xLj1Oro9pgcw" />
+        <Link Id="OLnfhF5MxE0L3kekXr79y9" Ids="Qca5tVPwrIbPbSDCpcFKo0,PGg7Xm72wABL0vNh1iHkDx" />
+        <Link Id="VGv26Y8ghGUPZaCaAPiNmq" Ids="L0Mr1RH9c8uM43O50WgeCF,P2NpPFGrqxhQdxDgh4dqYf" />
+        <Link Id="EmHGA3iig8PMIudNYrylR6" Ids="GVbCRkiZOUdOg9bwGk5HdM,GAFMx2KqgctQBZznqQkLAL" />
+        <Link Id="QctHF8xS0XjOs0Vh91mL0O" Ids="HVL8xgN3TjjPUF1gu9yqHf,ASMcgo5fvgyMYrCUebFgWN" />
+        <Link Id="Vzmgf6L7x6aOzHnIGnqMod" Ids="F1LJeGQShdTOM8cROhrwDg,A4BsJGS6ilAPHCJwdB19cp" />
+        <Link Id="Juiyxgx3rtXOzYgV5ulpYU" Ids="IzORK4r7iYeOm9JoiXIHSN,Ami5LVgeFvlQd68DJuUkWM" />
+        <Link Id="SrsqqEf8cHTPd4RbdFJyEy" Ids="HHi1qrpDYT9MdwHgcEfAfW,GYtKmxdp7izMlyncY6Wqut" />
+        <Link Id="Nywdd3J36joNpZxP6Gzv2n" Ids="SBdpNrnBZdVP2psHldjMBR,DksyaZ9Cse0NCIXKj6Lw1b" />
+        <Link Id="DNwRN8DlkF0LkumgzTU497" Ids="IlUfIt1wTywPoz1zXmgGtu,UyF0iY07Bq1MrqSh9KCqQ5" />
+        <Link Id="H4WxGOcfLhVNmZYcWSSMrn" Ids="HR01vNQrijFQApbSfpTFiV,Tn3xrxuBEqRMhw3WYZeKdQ" />
+        <Link Id="NzUtDGSMdS4LbzbedOCUNV" Ids="HxYu7ldJPSKNrlePsZ6jVt,TRfASTKz2FKL3Td9sec4VO" />
       </Patch>
     </Node>
   </Patch>

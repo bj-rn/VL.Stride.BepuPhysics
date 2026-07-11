@@ -118,12 +118,14 @@ public static class CollidableOperations
     /// <param name="body">The body to read. Outputs the component defaults while null.</param>
     /// <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate.</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
     /// <param name="continuousDetection">Continuous collision detection mode of the body.</param>
     public static void BodySettings(SBepu.BodyComponent? body,
         out bool kinematic,
         out float sleepThreshold,
+        out int minimumTimestepCountUnderThreshold,
         out bool gravity,
         out SDefinitions.InterpolationMode interpolation,
         out ContinuousDetectionKind continuousDetection)
@@ -132,6 +134,7 @@ public static class CollidableOperations
         {
             kinematic = false;
             sleepThreshold = 0.01f;
+            minimumTimestepCountUnderThreshold = 32;
             gravity = true;
             interpolation = SDefinitions.InterpolationMode.Interpolated;
             continuousDetection = ContinuousDetectionKind.Discrete;
@@ -139,6 +142,7 @@ public static class CollidableOperations
         }
         kinematic = body.Kinematic;
         sleepThreshold = body.SleepThreshold;
+        minimumTimestepCountUnderThreshold = body.MinimumTimestepCountUnderThreshold;
         gravity = body.Gravity;
         interpolation = body.InterpolationMode;
         continuousDetection = (ContinuousDetectionKind)body.ContinuousDetectionMode;
@@ -188,6 +192,7 @@ public static class CollidableOperations
     /// <param name="body">The body to write to. Use CastAs (BodyComponent) to narrow a collidable.</param>
     /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away.</param>
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
     /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
@@ -196,6 +201,7 @@ public static class CollidableOperations
     public static SBepu.BodyComponent? SetBodySettings(SBepu.BodyComponent? body,
         bool kinematic = false,
         float sleepThreshold = 0.01f,
+        int minimumTimestepCountUnderThreshold = 32,
         bool gravity = true,
         SDefinitions.InterpolationMode? interpolation = null,
         ContinuousDetectionKind? continuousDetection = null,
@@ -207,6 +213,7 @@ public static class CollidableOperations
             body.Awake = true;
             body.Kinematic = kinematic;
             body.SleepThreshold = sleepThreshold;
+            body.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
             body.Gravity = gravity;
             body.InterpolationMode = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
             body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);

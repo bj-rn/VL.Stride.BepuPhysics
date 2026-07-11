@@ -35,6 +35,7 @@ public class BodyNode
     private PinValue<float> _frictionCoefficient;
     private PinValue<float> _maximumRecoveryVelocity;
     private PinValue<float> _sleepThreshold;
+    private PinValue<int> _minimumTimestepCountUnderThreshold;
     private PinValue<bool> _gravity;
     private PinValue<global::BepuPhysics.Collidables.ContinuousDetectionMode> _continuousDetection;
     private PinValue<SContacts.IContactHandler?> _contactHandler;
@@ -59,6 +60,7 @@ public class BodyNode
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough. Combined with the other collidable's coefficient on contact.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart; lower values soften deep-contact pops.</param>
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
     /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast bodies that would tunnel through thin geometry.</param>
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
@@ -79,6 +81,7 @@ public class BodyNode
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
         float sleepThreshold = 0.01f,
+        [Pin(Visibility = PinVisibility.Optional)] int minimumTimestepCountUnderThreshold = 32,
         bool gravity = true,
         ContinuousDetectionKind? continuousDetection = null,
         SContacts.IContactHandler? contactHandler = null,
@@ -115,6 +118,8 @@ public class BodyNode
             _component.MaximumRecoveryVelocity = maximumRecoveryVelocity;
         if (_sleepThreshold.Changed(sleepThreshold) | reapplyInputs)
             _component.SleepThreshold = sleepThreshold;
+        if (_minimumTimestepCountUnderThreshold.Changed(minimumTimestepCountUnderThreshold) | reapplyInputs)
+            _component.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
         if (_gravity.Changed(gravity) | reapplyInputs)
             _component.Gravity = gravity;
         var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
