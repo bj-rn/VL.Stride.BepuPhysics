@@ -52,13 +52,14 @@
             <Pin Id="HbSU000000000000000031" Name="Colliders" Kind="InputPin" />
             <Pin Id="HbSU000000000000000032" Name="Output" Kind="OutputPin" />
             <Pin Id="CqZ8J6FPVAgOMFqFbbtOgx" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="EHg4qfPLGQdOep73LR885l" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="Pkg6BeJ74RWO90F9O757wm" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="IBJ5cqc6EtaOvJ7mmYbHAx" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="JbmLcJROzCGM5nFsOuPvOC" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="ISwzroOr1fjMF5YLc9Q0gP" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="Bf5gFugV2O6LPTvcvEwMFB" Name="Contact Handler" Kind="InputPin" />
-            <Pin Id="P3RqJMDEoYEOjoOCAAn9Cb" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
             <Pin Id="D1Lybq9UTqiP3eeGO39noK" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="P3RqJMDEoYEOjoOCAAn9Cb" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="269,460,230,19" Id="HbSU000000000000000033">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
@@ -155,19 +156,21 @@
             <Pin Id="IomPcufwijRP7UYQuwz2qH" Name="Kinematic" Kind="InputPin" />
             <Pin Id="EHgblYvytzeQMMaldXlE84" Name="Interpolation" Kind="InputPin" />
             <Pin Id="UywEZvllFHBPKhvFD12XpO" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="KZyZF9NGs9TQdx9SfV4Ejw" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="QC0M6DerC8IM2YbtrDJGBk" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="J7PdhZkfholMv2edAd1ki2" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="UFlHwTfplk4MRdUh0hhDvw" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="PQ43Xpgl0zpMqc2tCHWJpE" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="LnMO5Xz7DGIQJY60Cj2I4t" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="FML0yVbBoM1PXmZCmjpJDk" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="E9px7BWQKuCPNDphWVrNmn" Name="Gravity" Kind="InputPin" />
             <Pin Id="PFxJK2zDL0nLH4RGlnKLf6" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="AKS4aISiiVfPVmwLgdb6OE" Name="Contact Handler" Kind="InputPin" />
+            <Pin Id="VvhuYjGM0ooPF85yyREzRl" Name="Collider Override" Kind="InputPin" IsHidden="true" />
             <Pin Id="HbSU000000000000000067" Name="Teleport To" Kind="InputPin" />
             <Pin Id="HbSU000000000000000068" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="HbSU000000000000000069" Name="Output" Kind="OutputPin" />
             <Pin Id="Gxqacgnu9R0M4qVBDpK3aG" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
-            <Pin Id="VvhuYjGM0ooPF85yyREzRl" Name="Collider Override" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="863,230,58,19" Id="HbSU000000000000000083">
             <p:NodeReference LastCategoryFullName="3D.Transform" LastDependency="CoreLibBasics.vl">
@@ -297,14 +300,14 @@
             <Pin Id="JmKy8FBmd8JMLbUQrjgyeT" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="Npmn4RxTpb7PFnF6SlINyO" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="483,970,225,19" Id="HbSU000000000000000185">
+          <Node Bounds="463,970,225,19" Id="HbSU000000000000000185">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="Eo4ZhQhl5XxMD8gz69DuuV" Name="Bounds" Kind="InputPin" DefaultValue="1000, 40, 786, 432" IsHidden="true" />
-            <Pin Id="KCMCNzU1YB5LrlSITneRfP" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="KCMCNzU1YB5LrlSITneRfP" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="L6UdlopkraeOJazlZEOZx5" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="J3Wbr6SNn1hLQcY7sa1HI9" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="QI5ptKWDImpLLnbCNeM3rr" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
@@ -387,6 +390,8 @@
                 <Pin Id="HbSU000000000000000133" Name="Orientation" Kind="OutputPin" />
                 <Pin Id="HbSU000000000000000134" Name="Linear Velocity" Kind="OutputPin" />
                 <Pin Id="HbSU000000000000000135" Name="Angular Velocity" Kind="OutputPin" />
+                <Pin Id="QEWrpYNhP3qMFKN7NLBQzG" Name="Previous Linear Velocity" Kind="OutputPin" />
+                <Pin Id="MptSHRXXTv9L8mqWbny0ni" Name="Previous Angular Velocity" Kind="OutputPin" />
                 <Pin Id="HbSU000000000000000136" Name="Awake" Kind="OutputPin" />
               </Node>
               <Pad Id="HbSU000000000000000140" Comment="Attractor Target" Bounds="1009,604,50,43" ShowValueBox="true" isIOBox="true" Value="0, 4, 0">

@@ -120,11 +120,13 @@
             <Pin Id="IMlyzclq6prNNNvxs4alpX" Name="Kinematic" Kind="InputPin" />
             <Pin Id="DjvlUcoXb2GNtkmRlmMBUL" Name="Interpolation" Kind="InputPin" />
             <Pin Id="HjpPBkSl0ZuLDJFx21ARRL" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="JyvjenGVVEqL7DATyNIGVy" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="UIyOBdscVGGN9A3vRrvZZy" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="DRCycfHBATqLbUx0vO89fB" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="QkK9Sxe0BNFOtSUJdUCwA0" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="K8vdCC9FCswPATnmEEF7CP" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="Ddz43iwEpRpOq2BTlzYitW" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="SZymVUZSxTmNOVGqSKyk3O" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="GKtuHisSm90MpHDAUJD0RK" Name="Gravity" Kind="InputPin" />
             <Pin Id="RbXQYwGYhyKPcqxLZYiWHy" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="A85gqIlpthKPp4qgxEvCmR" Name="Contact Handler" Kind="InputPin" />
@@ -211,11 +213,13 @@
             <Pin Id="J4GiPcdTGLTPFMV3pKm4p2" Name="Kinematic" Kind="InputPin" />
             <Pin Id="Bu4awIO1cGwQRTViZ52MEN" Name="Interpolation" Kind="InputPin" />
             <Pin Id="VkfhQfTKzQeO6CqCCLOhYk" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="EokqdBGr6ZpLBXU0hkKB2u" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="VuNlMsJ93gJPvhGl5XvVmw" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="IU6ai11oQdLOW0Pqqr0KOC" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="TiTYx9Jsi9rQZOpqO1MDVG" Name="Friction Coefficient" Kind="InputPin" />
             <Pin Id="LVV8bFt3jzxL4gxSIveB1M" Name="Maximum Recovery Velocity" Kind="InputPin" />
             <Pin Id="EZCVzEfXNRDP8puAhIJvH5" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="KkohBc72Vj6OuTajXWsDHy" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
             <Pin Id="H8I1L0od3x9NS4XxcD2YUU" Name="Gravity" Kind="InputPin" />
             <Pin Id="NNjLtZOCtlnOuOD2whOhdj" Name="Continuous Detection" Kind="InputPin" />
             <Pin Id="MBMBD83LngTQMeQEnNUUe4" Name="Contact Handler" Kind="InputPin" />
@@ -336,6 +340,7 @@
             <Pin Id="HbCX000000000000000171" Name="Colliders" Kind="InputPin" />
             <Pin Id="HbCX000000000000000172" Name="Output" Kind="OutputPin" />
             <Pin Id="BHK5YqjI3iAMHQMc2EIWcx" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="GzR6vuW3VNmNcO75HPlMBU" Name="Collision Group" Kind="InputPin" IsHidden="true" />
             <Pin Id="CnJ5gQUCTRnPdLBcqpzH3M" Name="Spring Frequency" Kind="InputPin" />
             <Pin Id="Gsm58PvxDA4OXBGgWAxRqe" Name="Spring Damping Ratio" Kind="InputPin" />
             <Pin Id="Q73ZCK7ExNROSNALPdCFC7" Name="Friction Coefficient" Kind="InputPin" />
@@ -445,14 +450,14 @@
             <Pin Id="LjxAcgmATGgOnACLGDXKdw" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="T9LROsLIWtZMUe4j08mFXU" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="754,1270,225,19" Id="HbCX000000000000000205">
+          <Node Bounds="734,1270,225,19" Id="HbCX000000000000000205">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="GOTudssppKBL2d2RKgHi7k" Name="Bounds" Kind="InputPin" DefaultValue="1000, 40, 786, 432" IsHidden="true" />
-            <Pin Id="Mqrmfu0glrIOuib5xVBcdv" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="Mqrmfu0glrIOuib5xVBcdv" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="JAFoQmQzvLyNXchekYr3gS" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="CSeLnWDld66NJOETaJlOCH" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="QLh312aiLvtMFnUw8eYAQQ" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
@@ -647,11 +652,13 @@
                 <Pin Id="JnOgN8i4h0KMrluLO6Lq1p" Name="Kinematic" Kind="InputPin" />
                 <Pin Id="RVCZoyBUmtdLF5B4jjZXrt" Name="Interpolation" Kind="InputPin" />
                 <Pin Id="Lpd89Y8RHXjM5jKOtR2NI8" Name="Collision Layer" Kind="InputPin" />
+                <Pin Id="Spb98TmAq2MMFW6RmxINyu" Name="Collision Group" Kind="InputPin" IsHidden="true" />
                 <Pin Id="Hny82G2Gk03LuGn8DTgD8D" Name="Spring Frequency" Kind="InputPin" />
                 <Pin Id="Qo12iNkNDnTOFtxoS7DuFA" Name="Spring Damping Ratio" Kind="InputPin" />
                 <Pin Id="CHta0UvfzhLQJCFqxuaZHa" Name="Friction Coefficient" Kind="InputPin" />
                 <Pin Id="V6iH5wnP6jsLF8pIAhGemA" Name="Maximum Recovery Velocity" Kind="InputPin" />
                 <Pin Id="Av1sLsFJdSvP8QFDTrKSjB" Name="Sleep Threshold" Kind="InputPin" />
+                <Pin Id="BjvwqxkUvbFP1l5LCtF4EE" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
                 <Pin Id="IePktYKo5oVPROcuPI7aMS" Name="Gravity" Kind="InputPin" />
                 <Pin Id="GbOrpaKFIE9NmHmXE9pvMq" Name="Continuous Detection" Kind="InputPin" />
                 <Pin Id="TKLtimiLAd6OrOB0drF4Oa" Name="Contact Handler" Kind="InputPin" />
