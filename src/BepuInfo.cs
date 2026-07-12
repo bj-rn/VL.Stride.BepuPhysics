@@ -65,8 +65,21 @@ public class BepuInfo : IDisposable
         var bepu = sim.Simulation;
         sb.Append($"Config OK | PhysicsGameSystem: {hasGameSystem} | Sim Enabled: {sim.Enabled}, TimeScale: {sim.TimeScale} " +
                   $"| Gravity: {sim.PoseGravity} | Active bodies: {bepu.Bodies.ActiveSet.Count} " +
-                  $"| Statics: {bepu.Statics.Count}");
+                  $"| Statics: {bepu.Statics.Count} | Threads: {GetThreadCount(sim)}");
     }
+
+    // The engine's ThreadCount property is dead code (read once in the constructor where it
+    // is always the default -1, upstream bug), the real count lives in the private readonly
+    // ThreadDispatcher: always the automatic pick, ProcessorCount - 2 on machines with more
+    // than 4 cores, otherwise ProcessorCount - 1, minimum 1.
+    private static readonly System.Reflection.FieldInfo? ThreadDispatcherField =
+        typeof(SBepu.BepuSimulation).GetField("_threadDispatcher",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+    private static int GetThreadCount(SBepu.BepuSimulation sim)
+        => ThreadDispatcherField?.GetValue(sim) is global::BepuUtilities.IThreadDispatcher dispatcher
+            ? dispatcher.ThreadCount
+            : -1;
 
     private static void AppendComponentInfo(StringBuilder sb, SBepu.CollidableComponent collidable)
     {

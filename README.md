@@ -221,6 +221,12 @@ Wrapper impact when upgrading:
 - `CollisionGroup` indices are `ushort` in 4.2.1 but `short` on master. The
   CollisionGroup create operation clamps its int inputs, adjust the clamp range and the
   pin docs at upgrade time.
+- `BepuSimulation.ThreadCount` is dead code in 4.2.1 AND on master: the property is read
+  once in the constructor, where it can only ever hold its initializer value -1, so the
+  thread count is always the automatic pick (upstream bug, report candidate). The wrapper
+  therefore exposes no ThreadCount pin; BepuInfo reads the real count from the private
+  ThreadDispatcher via reflection. If upstream fixes the property, expose it and drop the
+  reflection.
 
 ## License
 
