@@ -58,7 +58,7 @@ public class HullFromModelNode : IDisposable
     // Mirrors the engine's internal ShapeCacheSystem.ExtractMeshBuffers (MIT licensed), the
     // same path MeshCollider uses; the system itself is not public. Recheck at upgrade time.
     // Source: https://github.com/stride3d/stride/blob/releases/4.2.1.2487/sources/engine/Stride.BepuPhysics/Stride.BepuPhysics/Systems/ShapeCacheSystem.cs#L165
-    private static void ExtractMeshBuffers(SModel model, IServiceRegistry services, out Vector3[] vertices, out int[] indices)
+    internal static void ExtractMeshBuffers(SModel model, IServiceRegistry services, out Vector3[] vertices, out int[] indices)
     {
         int totalVertices = 0, totalIndices = 0;
         foreach (var mesh in model.Meshes)

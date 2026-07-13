@@ -68,6 +68,7 @@ public class BepuInfo : IDisposable
                   $"| Statics: {bepu.Statics.Count} | Threads: {GetThreadCount(sim)}");
     }
 
+
     // The engine's ThreadCount property is dead code (read once in the constructor where it
     // is always the default -1, upstream bug), the real count lives in the private readonly
     // ThreadDispatcher: always the automatic pick, ProcessorCount - 2 on machines with more

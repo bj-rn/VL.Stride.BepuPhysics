@@ -19,6 +19,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
 - Collision filtering: per collidable layer (32 layers, pair matrix) plus collision groups for fine grained rules like chain links ignoring their neighbours
 - Per step hooks: the SimulationUpdate node reports every physics step (counts and observables) for frame rate independent forces
+- Debug view: the ColliderShapes node builds translucent wireframed shape entities for every collider in the simulation, following the raw physics poses, rendered through the normal pipeline (works with the default SceneWindow)
 - Transform interpolation enabled by default for smooth visuals at any frame rate
 
 ## Installation
