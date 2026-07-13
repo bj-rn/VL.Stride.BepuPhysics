@@ -472,6 +472,49 @@
             <Pin Id="EdB3x2iAy7RN4ctN5aidac" Name="Value" Kind="InputPin" />
             <Pin Id="DoOkimQ0xenLxFD7ezuDjI" Name="Value" Kind="OutputPin" />
           </Node>
+          <Node Bounds="900,820,95,19" Id="2UzdJXJWqZta8LDkdRExB7">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="HingeSettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="0BHd47twbXtSHugMbjABAA" Name="Constraint" Kind="InputPin" />
+            <Pin Id="0rsRJO88ZUqiKEO05oyFsa" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="1k3tdkX193RQ8WwCHIItfv" Name="Local Hinge Axis A" Kind="OutputPin" />
+            <Pin Id="6VlBBoJhVP84BhDaeT5sv4" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="4XZP4HKPyNPfp0geNEBKj1" Name="Local Hinge Axis B" Kind="OutputPin" />
+            <Pin Id="0tJcLFW03iGcyWRak11xAC" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="0TWEO7fsbs1xgX2tklubWh" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="880,940,115,19" Id="4bIOvQwUTLKHaqd0MwKV9N">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="SetHingeSettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="27OtDc87WIB93mz0ffKVjb" Name="Constraint" Kind="InputPin" />
+            <Pin Id="0In1M1ErNVePGyQx1RxHF4" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="3lRSaDtJu5OzY5poLHoSBd" Name="Local Hinge Axis A" Kind="InputPin" />
+            <Pin Id="4q7rCOGfCYYEgu3s4v1A1h" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="4ngESDpKylBbjn4NBA3q3G" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="62QlRr5P8m1laHyTQxFgdG" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="5BnglQOS5ibdBC7Q1veV2N" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="77ewRHEEUJGQGNxqjmTeFE" Name="Apply" Kind="InputPin" />
+            <Pin Id="2aY5Mak0RrzAEbceMX9E8P" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="17RvnOad0WEi7TguE36aQQ" Comment="Local Offset B" Bounds="935,880,35,43" ShowValueBox="true" isIOBox="true" Value="3, 0, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="3w4jGRufKXqyiLWiGx0TJF" Comment="Apply" Bounds="1030,895,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="HcCN000000000000000070" Name="Create" />
         <Patch Id="HcCN000000000000000071" Name="Update" />
@@ -515,6 +558,15 @@
         <Link Id="I2bE1JwMLNvOmP9TawF51p" Ids="DEP8r6Saj9mLthiuVJ1yXk,N9jWiEQu4cJLdT4UHnGOGa" />
         <Link Id="DNObQSasTKNPchjKSYHx5h" Ids="PYLSD1JXZk6NLT98LgqJfu,EdB3x2iAy7RN4ctN5aidac" />
         <Link Id="G92KgALCeVTNDXaACMmrUv" Ids="DoOkimQ0xenLxFD7ezuDjI,V1ZCxpJFQ75PvkNXwqdw7E" />
+        <Link Id="6jPcaGjY77rg7h8y83VmTw" Ids="HcCN000000000000000037,0BHd47twbXtSHugMbjABAA" />
+        <Link Id="1zUDD20iyE2pVrT7VusWih" Ids="HcCN000000000000000037,27OtDc87WIB93mz0ffKVjb" />
+        <Link Id="4LHpCQ4vvxmG8FrfY5bI3G" Ids="0rsRJO88ZUqiKEO05oyFsa,0In1M1ErNVePGyQx1RxHF4" />
+        <Link Id="1FdPyGS05IeWOuXnKhE4uS" Ids="1k3tdkX193RQ8WwCHIItfv,3lRSaDtJu5OzY5poLHoSBd" />
+        <Link Id="2p7RnLfDq4yQbd3ARUth83" Ids="4XZP4HKPyNPfp0geNEBKj1,4ngESDpKylBbjn4NBA3q3G" />
+        <Link Id="6A4coQmL6q4gafC0DWDDn7" Ids="0tJcLFW03iGcyWRak11xAC,62QlRr5P8m1laHyTQxFgdG" />
+        <Link Id="319yRjV26OeGDzijFxsbUD" Ids="0TWEO7fsbs1xgX2tklubWh,5BnglQOS5ibdBC7Q1veV2N" />
+        <Link Id="4E761IplBvbqRJFrijb5PO" Ids="17RvnOad0WEi7TguE36aQQ,4q7rCOGfCYYEgu3s4v1A1h" />
+        <Link Id="6jhcFbJljzVrAO0nClrqZd" Ids="3w4jGRufKXqyiLWiGx0TJF,77ewRHEEUJGQGNxqjmTeFE" />
       </Patch>
     </Node>
   </Patch>
