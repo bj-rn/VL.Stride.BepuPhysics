@@ -27,6 +27,9 @@ mono_crash.*
 
 # Build results
 [Dd]ebug/
+# but not the Debug node sources
+!src/Debug/
+
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
