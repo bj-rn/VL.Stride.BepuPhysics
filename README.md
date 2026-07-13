@@ -71,8 +71,10 @@ Notes:
   node re-applies it every frame and overrides the physics. Use the Body node's `TeleportTo`
   pin instead: it places the body only when the value changes.
 - `Body.ResetPose` (bang) re-drops a single body; the `SimulationReset` node snapshots and
-  restores **all** bodies at once (auto-captures the first frame, `Capture` for a new
-  start state, `Reset` to restore).
+  restores many bodies at once (auto-captures the first frame with matching bodies,
+  `Capture` for a new start state, `Reset` to restore). By default it captures **all**
+  bodies; the optional Collision Mask and Collision Group Id pins narrow the capture to
+  a layer set and/or group.
 - The simulation starts ticking during vvvv startup, before the render window opens,
   use `SimulationSettings.Enabled` to stage a scene frozen, or bang `Reset` once visible.
 - Fast bodies (long drops) can tunnel through thin geometry in `Discrete` mode, set the
