@@ -16,7 +16,7 @@ using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SModel = global::Stride.Rendering.Model;
 using Buffer = Stride.Graphics.Buffer;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Debug;
 
 /// <summary>
 /// Debug view of the physics world: builds an entity with one child per collider shape in
@@ -26,6 +26,9 @@ namespace VL.Stride.BepuPhysics;
 /// their raw physics poses, revealing discrepancies between the simulation and the rendered
 /// entities; statics follow their entity transforms. Convex hulls baked with HullFromPoints
 /// carry no triangle data and are skipped, hulls from HullFromModel are drawn.
+/// For very large simulations the Instanced mode collapses all shapes sharing a mesh into
+/// one draw call each, at the cost of the wireframe lines: vvvv's wireframe render feature
+/// does not support instancing, so only the shape fill remains.
 /// </summary>
 [ProcessNode(Name = "ColliderShapes")]
 public class ColliderShapesNode : IDisposable
@@ -39,9 +42,21 @@ public class ColliderShapesNode : IDisposable
         public Material? CurrentMaterial;
     }
 
+    // One entity per distinct mesh in instanced mode, all its shapes are drawn in a single
+    // instanced draw call. The world matrices array is pooled and grows on demand.
+    private sealed class InstanceGroup
+    {
+        public required ModelComponent ModelComponent;
+        public required InstancingUserArray Instances;
+        public Material? CurrentMaterial;
+        public Matrix[] Matrices = new Matrix[64];
+        public int Count;
+    }
+
     private readonly IResourceHandle<Game> _gameHandle = AppHost.Current.Services.GetGameHandle();
     private readonly Entity _root = new("Collider Shapes");
     private readonly List<ShapeSlot> _slots = new();
+    private readonly Dictionary<SModel, InstanceGroup> _groups = new();
     // Typed caches: value tuple keys stay unboxed, the object keyed cache only holds
     // reference keys (DecomposedHulls and Model instances), so no per frame boxing occurs.
     private SModel? _boxModel;
@@ -61,8 +76,9 @@ public class ColliderShapesNode : IDisposable
     /// <param name="simulation">The simulation whose colliders are shown, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="visible">Shows or hides all collider shapes.</param>
     /// <param name="material">Material for the shape surfaces. Null = a translucent default. Connect an opaque material if the wireframe lines should always win over the fill.</param>
-    /// <param name="lineWidth">Width of the wireframe lines.</param>
-    /// <param name="lineColor">Color of the wireframe lines. Null = white.</param>
+    /// <param name="lineWidth">Width of the wireframe lines. Ignored in Instanced mode.</param>
+    /// <param name="lineColor">Color of the wireframe lines. Null = white. Ignored in Instanced mode.</param>
+    /// <param name="instanced">Draws all shapes sharing a mesh in one instanced draw call, for very large simulations. CAVEAT: wireframe lines are not drawn in this mode, vvvv's wireframe render feature does not support instancing, only the shape fill remains.</param>
     /// <returns>The debug entity, connect directly to the RootScene's Children input.</returns>
     [return: Pin(Name = "Output")]
     public Entity Update(
@@ -70,11 +86,15 @@ public class ColliderShapesNode : IDisposable
         bool visible = true,
         Material? material = null,
         float lineWidth = 1f,
-        Color4? lineColor = null)
+        Color4? lineColor = null,
+        bool instanced = false)
     {
         var device = _gameHandle.Resource.GraphicsDevice;
         var effectiveMaterial = material ?? GetDefaultMaterial(device);
         var effectiveLineColor = lineColor ?? new Color4(1f, 1f, 1f, 1f);
+
+        foreach (var group in _groups.Values)
+            group.Count = 0;
 
         var used = 0;
         if (simulation is not null && visible)
@@ -89,7 +109,7 @@ public class ColliderShapesNode : IDisposable
                 {
                     var component = simulation.GetComponent(set.IndexToHandle[i]);
                     if (component is not null)
-                        used = SyncCollidable(device, component, used, effectiveMaterial, lineWidth, effectiveLineColor);
+                        used = SyncCollidable(device, component, used, instanced, effectiveMaterial, lineWidth, effectiveLineColor);
                 }
             }
             var statics = simulation.Simulation.Statics;
@@ -97,22 +117,41 @@ public class ColliderShapesNode : IDisposable
             {
                 var component = simulation.GetComponent(statics.IndexToHandle[i]);
                 if (component is not null)
-                    used = SyncCollidable(device, component, used, effectiveMaterial, lineWidth, effectiveLineColor);
+                    used = SyncCollidable(device, component, used, instanced, effectiveMaterial, lineWidth, effectiveLineColor);
             }
         }
 
         // Disable leftover slots instead of destroying them, they are reused when shapes return.
+        // In instanced mode nothing marks a slot used, so this disables all of them.
         for (var i = used; i < _slots.Count; i++)
         {
             _slots[i].ModelComponent.Enabled = false;
             _slots[i].Wireframe.Enabled = false;
         }
 
+        // Push the collected matrices; groups that received no shapes this frame (including
+        // all of them when Instanced is off) are disabled, not destroyed.
+        foreach (var group in _groups.Values)
+        {
+            if (group.Count == 0)
+            {
+                group.ModelComponent.Enabled = false;
+                continue;
+            }
+            group.ModelComponent.Enabled = true;
+            if (!ReferenceEquals(group.CurrentMaterial, effectiveMaterial))
+            {
+                group.CurrentMaterial = effectiveMaterial;
+                group.ModelComponent.Materials[0] = effectiveMaterial;
+            }
+            group.Instances.UpdateWorldMatrices(group.Matrices, group.Count);
+        }
+
         return _root;
     }
 
     private int SyncCollidable(GraphicsDevice device, SBepu.CollidableComponent collidable, int slotIndex,
-        Material material, float lineWidth, Color4 lineColor)
+        bool instanced, Material material, float lineWidth, Color4 lineColor)
     {
         GetCollidablePose(collidable, out var worldPosition, out var worldRotation);
 
@@ -128,7 +167,7 @@ public class ColliderShapesNode : IDisposable
                         continue;
                     var position = worldPosition + Vector3.Transform(shape.PositionLocal, worldRotation);
                     var rotation = worldRotation * shape.RotationLocal;
-                    Apply(slotIndex++, model, position, rotation, scale, material, lineWidth, lineColor);
+                    slotIndex = Emit(slotIndex, instanced, model, position, rotation, scale, material, lineWidth, lineColor);
                 }
                 break;
             case SColliders.MeshCollider { Model: not null } meshCollider:
@@ -137,12 +176,44 @@ public class ColliderShapesNode : IDisposable
                 if (model is not null)
                 {
                     var scale = SColliders.MeshCollider.ComputeMeshScale(collidable);
-                    Apply(slotIndex++, model, worldPosition, worldRotation, scale, material, lineWidth, lineColor);
+                    slotIndex = Emit(slotIndex, instanced, model, worldPosition, worldRotation, scale, material, lineWidth, lineColor);
                 }
                 break;
             }
         }
         return slotIndex;
+    }
+
+    private int Emit(int slotIndex, bool instanced, SModel model, Vector3 position, Quaternion rotation, Vector3 scale,
+        Material material, float lineWidth, Color4 lineColor)
+    {
+        if (instanced)
+        {
+            AddInstance(model, position, rotation, scale);
+            return slotIndex;
+        }
+        Apply(slotIndex, model, position, rotation, scale, material, lineWidth, lineColor);
+        return slotIndex + 1;
+    }
+
+    private void AddInstance(SModel model, Vector3 position, Quaternion rotation, Vector3 scale)
+    {
+        if (!_groups.TryGetValue(model, out var group))
+        {
+            var entity = new Entity("Collider Shapes Instanced");
+            var modelComponent = new ModelComponent { Model = model };
+            // ModelTransformUsage stays at Ignore, the matrices are absolute world transforms
+            // (the node is documented to sit untransformed under the RootScene).
+            var instances = new InstancingUserArray();
+            entity.Add(modelComponent);
+            entity.Add(new InstancingComponent { Type = instances });
+            _root.AddChild(entity);
+            group = new InstanceGroup { ModelComponent = modelComponent, Instances = instances };
+            _groups.Add(model, group);
+        }
+        if (group.Count == group.Matrices.Length)
+            Array.Resize(ref group.Matrices, group.Matrices.Length * 2);
+        Matrix.Transformation(ref scale, ref rotation, ref position, out group.Matrices[group.Count++]);
     }
 
     private static void GetCollidablePose(SBepu.CollidableComponent collidable, out Vector3 position, out Quaternion rotation)
