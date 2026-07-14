@@ -7,7 +7,7 @@ using VL.Lib.Basics.Resources;
 using SBepu = global::Stride.BepuPhysics;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Debug;
 
 /// <summary>
 /// Diagnostic: reports the state of the Bepu integration (configuration, game system, simulation, body counts).
