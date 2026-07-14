@@ -4,16 +4,6 @@
         <name>VL.Stride.BepuPhysics</name>
     </assembly>
     <members>
-        <member name="T:VL.Stride.BepuPhysics.BepuInfo">
-            <summary>
-            Diagnostic: reports the state of the Bepu integration (configuration, game system, simulation, body counts).
-            Optionally connect a Body/Static component to diagnose its attachment chain.
-            </summary>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.BepuInfo.Update(System.String@,Stride.BepuPhysics.CollidableComponent)">
-            <param name="info">Human-readable state of the physics integration and, if connected, the component.</param>
-            <param name="collidable">Optional: a Body or Static component to diagnose (attachment, collider, pose, sleep state).</param>
-        </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.Operations">
             <summary>
             Read and write access to collider shapes, for example from a GetColliders node.
@@ -1968,6 +1958,39 @@
         <member name="F:VL.Stride.BepuPhysics.Constraints.ConstraintKind.Volume">
             <summary>A Volume constraint.</summary>
         </member>
+        <member name="T:VL.Stride.BepuPhysics.Debug.BepuInfo">
+            <summary>
+            Diagnostic: reports the state of the Bepu integration (configuration, game system, simulation, body counts).
+            Optionally connect a Body/Static component to diagnose its attachment chain.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Debug.BepuInfo.Update(System.String@,Stride.BepuPhysics.CollidableComponent)">
+            <param name="info">Human-readable state of the physics integration and, if connected, the component.</param>
+            <param name="collidable">Optional: a Body or Static component to diagnose (attachment, collider, pose, sleep state).</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Debug.ColliderShapesNode">
+            <summary>
+            Debug view of the physics world: builds an entity with one child per collider shape in
+            the simulation, rendered through the normal Stride pipeline with a translucent material
+            and wireframe lines (vvvv's Wireframe render feature). Connect the Output directly to the
+            RootScene's Children input; a transformed parent would offset the shapes. Bodies follow
+            their raw physics poses, revealing discrepancies between the simulation and the rendered
+            entities; statics follow their entity transforms. Convex hulls baked with HullFromPoints
+            carry no triangle data and are skipped, hulls from HullFromModel are drawn.
+            For very large simulations the Instanced mode collapses all shapes sharing a mesh into
+            one draw call each, at the cost of the wireframe lines: vvvv's wireframe render feature
+            does not support instancing, so only the shape fill remains.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Debug.ColliderShapesNode.Update(Stride.BepuPhysics.BepuSimulation,System.Boolean,Stride.Rendering.Material,System.Single,System.Nullable{Stride.Core.Mathematics.Color4},System.Boolean)">
+            <param name="simulation">The simulation whose colliders are shown, from a SimulationSettings or GetSimulation node.</param>
+            <param name="visible">Shows or hides all collider shapes.</param>
+            <param name="material">Material for the shape surfaces. Null = a translucent default. Connect an opaque material if the wireframe lines should always win over the fill.</param>
+            <param name="lineWidth">Width of the wireframe lines. Ignored in Instanced mode.</param>
+            <param name="lineColor">Color of the wireframe lines. Null = white. Ignored in Instanced mode.</param>
+            <param name="instanced">Draws all shapes sharing a mesh in one instanced draw call, for very large simulations. CAVEAT: wireframe lines are not drawn in this mode, vvvv's wireframe render feature does not support instancing, only the shape fill remains.</param>
+            <returns>The debug entity, connect directly to the RootScene's Children input.</returns>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Events.ContactInfo">
             <summary>
             One contact point between two collidables.
@@ -2260,18 +2283,21 @@
         </member>
         <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationResetNode">
             <summary>
-            Captures the pose and velocity of every body in the simulation and restores them on demand —
-            a whole-simulation reset without wiring individual bodies.
-            By default the first frame with bodies present is captured automatically; bang Capture to
-            take a new snapshot (e.g. after spawning more bodies or arranging a new start state).
+            Captures the pose and velocity of bodies in the simulation and restores them on demand,
+            a simulation reset without wiring individual bodies. Which bodies are captured can be
+            narrowed with the Collision Mask and Collision Group Id filters; by default all bodies
+            are captured. Use several SimulationReset nodes with different filters to reset different
+            sets of bodies independently, each node keeps its own snapshot.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationResetNode.Update(System.Int32@,Stride.BepuPhysics.BepuSimulation,System.Boolean,System.Boolean,System.Boolean)">
-            <param name="capturedBodies">Number of bodies in the current snapshot.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SimulationResetNode.Update(System.Int32@,Stride.BepuPhysics.BepuSimulation,System.Boolean,System.Boolean,System.Boolean,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Int32)">
+            <param name="capturedBodies">Number of bodies in the current snapshot. Staying at 0 with Auto Capture enabled means no body matching the filters has existed yet.</param>
             <param name="simulation">The simulation to snapshot, from a SimulationSettings or GetSimulation node.</param>
-            <param name="capture">Takes a new snapshot of all body poses and velocities. Connect a Bang.</param>
-            <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang.</param>
-            <param name="autoCapture">Automatically captures the first frame in which any bodies exist.</param>
+            <param name="capture">Takes a new snapshot of the poses and velocities of all bodies matching the filters. Connect a Bang. The filter pins are read at this moment; changing them later does not re-capture.</param>
+            <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang. Restores the captured set as is: the filters are NOT re-checked, a body whose layer or group changed since the capture is still restored.</param>
+            <param name="autoCapture">Automatically captures the first frame in which at least one body matching the filters exists: the capture is attempted every frame and keeps retrying while it catches nothing, then stays off. A manual Capture bang also ends the automatic attempts. With filters that never match anything the attempts continue indefinitely (cheap, but watch Captured Bodies staying at 0).</param>
+            <param name="collisionMask">Which collision layers are captured; null = all layers. A body is captured when its layer is contained in this mask AND its group passes Collision Group Id, both filters must agree. Read when a capture happens (bang or auto), never at reset.</param>
+            <param name="collisionGroupId">Only bodies whose collision group Id matches are captured, combined with Collision Mask (both must agree). -1 = all groups. Note that 0 selects exactly the bodies WITHOUT a group, since Id 0 is the no group default; this is why -1 is the off value. The group's index values are ignored on purpose: members of one group (for example chain links) carry different indices by design, the Id alone says which set a body belongs to. Read when a capture happens, never at reset.</param>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Simulation.SimulationStepInfo">
             <summary>
