@@ -417,7 +417,7 @@
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Py3VXQh6BDKL23309vPXVv" Comment="Local Axis B" Bounds="661,471,35,43" ShowValueBox="true" isIOBox="true" Value="0.0, 1.0, 0.0">
+          <Pad Id="Py3VXQh6BDKL23309vPXVv" Comment="Local Axis B" Bounds="661,471,35,43" ShowValueBox="true" isIOBox="true" Value="0, 1, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
@@ -494,7 +494,7 @@
             <Pin Id="BJ5aV7xyx2QO7oXRAa2h2g" Name="Apply" Kind="InputPin" />
             <Pin Id="Iz1VWU7tZlgPGHELoFRk1t" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="745,755,120,19" Id="P90OGDxvgQqOM7Izk6gwSt">
+          <Node Bounds="752,750,120,19" Id="P90OGDxvgQqOM7Izk6gwSt">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="TwistMotorSettings" />

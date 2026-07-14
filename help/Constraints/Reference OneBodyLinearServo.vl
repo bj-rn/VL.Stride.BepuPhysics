@@ -41,7 +41,7 @@
             <Pin Id="N9jWiEQu4cJLdT4UHnGOGa" Name="Reset Pose" Kind="InputPin" />
             <Pin Id="O2wx90YBnpFOtBPkiTGCcH" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="357,670,315,19" Id="HcCN000000000000000033">
+          <Node Bounds="357,715,315,19" Id="HcCN000000000000000033">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="OneBodyLinearServo" />
@@ -64,7 +64,7 @@
             <Pin Id="Dm14PguihI8OM6dICoD8du" Name="Attached" Kind="OutputPin" />
             <Pin Id="Jl5Q8RU7km6LBIK5Q6Oiqf" Name="Reapply Inputs" Kind="InputPin" />
           </Node>
-          <Node Bounds="297,710,65,19" Id="HcCN000000000000000038">
+          <Node Bounds="297,755,65,19" Id="HcCN000000000000000038">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.Collections.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="Cons" />
@@ -74,7 +74,7 @@
             <Pin Id="HcCN000000000000000040" Name="Input 2" Kind="InputPin" />
             <Pin Id="HcCN000000000000000041" Name="Result" Kind="OutputPin" />
           </Node>
-          <Node Bounds="197,740,165,19" Id="HcCN000000000000000042">
+          <Node Bounds="197,785,165,19" Id="HcCN000000000000000042">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Sphere" />
@@ -109,7 +109,7 @@
             <Pin Id="HcCN000000000000000049" Name="Translation" Kind="InputPin" />
             <Pin Id="HcCN000000000000000050" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="310,940,185,19" Id="HcCN000000000000000051">
+          <Node Bounds="310,985,185,19" Id="HcCN000000000000000051">
             <p:NodeReference LastCategoryFullName="Stride.Lights" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="DirectionalLight" />
@@ -129,7 +129,7 @@
             <Pin Id="SesgqNLffqHMGdmCfQOPNS" Name="Enabled" Kind="InputPin" />
             <Pin Id="DyZ6eACLe39PXo471CerT2" Name="Show Helper" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="82,1120,575,19" Id="HcCN000000000000000053">
+          <Node Bounds="82,1165,575,19" Id="HcCN000000000000000053">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
@@ -145,7 +145,7 @@
             <Pin Id="QuemSBDk8H2LUNpyOBp5K7" Name="Child Scenes" Kind="InputPin" IsHidden="true" />
             <Pin Id="SjjkjDoSV0EPbQxt5WdW8W" Name="Enabled" Kind="InputPin" />
           </Node>
-          <Node Bounds="62,1190,225,19" Id="HcCN000000000000000058">
+          <Node Bounds="62,1235,225,19" Id="HcCN000000000000000058">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
@@ -203,12 +203,12 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="DzH5Zyiag1aLnUAE086kLp" Comment="Spring Frequency" Bounds="462,455,35,15" ShowValueBox="true" isIOBox="true" Value="30">
+          <Pad Id="DzH5Zyiag1aLnUAE086kLp" Comment="Spring Frequency" Bounds="462,500,35,15" ShowValueBox="true" isIOBox="true" Value="30">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="MqwWLQbMBA3PQ3R67FExyr" Comment="Reapply Inputs" Bounds="669,640,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="MqwWLQbMBA3PQ3R67FExyr" Comment="Reapply Inputs" Bounds="669,685,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -216,7 +216,7 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="IUUqOAb4fBfN42hnxwLY5i" Comment="Target" Bounds="428,405,35,43" ShowValueBox="true" isIOBox="true" Value="0, 3, 4">
+          <Pad Id="IUUqOAb4fBfN42hnxwLY5i" Comment="Target" Bounds="428,450,35,43" ShowValueBox="true" isIOBox="true" Value="0, 2, 4">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
@@ -230,7 +230,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="424,990,105,19" Id="AihfGZ9vdfbLxfvu8h16mW">
+          <Node Bounds="424,1035,105,19" Id="AihfGZ9vdfbLxfvu8h16mW">
             <p:NodeReference LastCategoryFullName="Stride.Models" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="AxisAndGrid" />
@@ -244,7 +244,7 @@
             <Pin Id="NV7FrYBkAVJP90bKqkg1Kj" Name="Enabled" Kind="InputPin" />
             <Pin Id="UmvbNSFubjJMPqPEai8MGP" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="538,1030,285,19" Id="K8r7yAmFgbCLJzcMPXuOXM">
+          <Node Bounds="538,1075,285,19" Id="K8r7yAmFgbCLJzcMPXuOXM">
             <p:NodeReference LastCategoryFullName="Stride.Cameras" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="Cameras" />
@@ -287,7 +287,7 @@
             <Pin Id="PDk1EImrkRUNpUl9LeSHa1" Name="Output" Kind="OutputPin" />
             <Pin Id="DZyfVCn7knvLTMTtMn0QBx" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Pad Id="QrKSiE8SteaQLVvXi66DZl" Comment="Enabled" Bounds="635,600,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+          <Pad Id="QrKSiE8SteaQLVvXi66DZl" Comment="Enabled" Bounds="635,645,35,35" ShowValueBox="true" isIOBox="true" Value="True">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -295,12 +295,12 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="JJ4TEO0cT1ILFsfK4JcSe5" Comment="Local Offset" Bounds="393,355,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0, 0">
+          <Pad Id="JJ4TEO0cT1ILFsfK4JcSe5" Comment="Local Offset" Bounds="393,400,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="GRkDHGAkhN7NtdHOailztd" Comment="Spring Damping Ratio" Bounds="497,485,35,15" ShowValueBox="true" isIOBox="true" Value="5">
+          <Pad Id="GRkDHGAkhN7NtdHOailztd" Comment="Spring Damping Ratio" Bounds="497,530,35,15" ShowValueBox="true" isIOBox="true" Value="5">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
@@ -314,7 +314,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="508,770,160,19" Id="Mlqkxtd2qUKM0dXNOzagsV">
+          <Node Bounds="508,815,160,19" Id="Mlqkxtd2qUKM0dXNOzagsV">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="OneBodyLinearServoSettings" />
@@ -329,7 +329,7 @@
             <Pin Id="2SIWo8c0MIwAowq3IfzDye" Name="Servo Base Speed" Kind="OutputPin" />
             <Pin Id="28rcyiOUTZ6MR8UmCxhBB3" Name="Servo Maximum Force" Kind="OutputPin" />
           </Node>
-          <Node Bounds="485,870,190,19" Id="PuccM66eWOgOZ7WHKelaYd">
+          <Node Bounds="485,915,190,19" Id="PuccM66eWOgOZ7WHKelaYd">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="SetOneBodyLinearServoSettings" />
@@ -346,12 +346,12 @@
             <Pin Id="F1itB0DvDuiOWUA1wyMYH8" Name="Apply" Kind="InputPin" />
             <Pin Id="MEu2LtMKInsPkK7C0lVHZk" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="ODVNZ8kf7kdPoLhpu6yxX2" Comment="Target" Bounds="533,810,35,43" ShowValueBox="true" isIOBox="true" Value="2, 3, 0">
+          <Pad Id="ODVNZ8kf7kdPoLhpu6yxX2" Comment="Target" Bounds="533,855,35,43" ShowValueBox="true" isIOBox="true" Value="2, 2, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="UQYtt40RavLL4LjxY0S02p" Comment="Apply" Bounds="672,821,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="UQYtt40RavLL4LjxY0S02p" Comment="Apply" Bounds="672,866,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -359,17 +359,17 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="REI6rfWyBXDMU4MyxzV5js" Comment="Servo Maximum Speed" Bounds="531,511,35,15" ShowValueBox="true" isIOBox="true" Value="10">
+          <Pad Id="REI6rfWyBXDMU4MyxzV5js" Comment="Servo Maximum Speed" Bounds="531,556,35,15" ShowValueBox="true" isIOBox="true" Value="10">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="La8iG22fvN7PCuv3STMXze" Comment="Servo Base Speed" Bounds="566,541,35,15" ShowValueBox="true" isIOBox="true" Value="1">
+          <Pad Id="La8iG22fvN7PCuv3STMXze" Comment="Servo Base Speed" Bounds="566,586,35,15" ShowValueBox="true" isIOBox="true" Value="1">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="D2jTpBZduBNOlenpIcPETW" Comment="Servo Maximum Force" Bounds="600,571,47,15" ShowValueBox="true" isIOBox="true" Value="1000">
+          <Pad Id="D2jTpBZduBNOlenpIcPETW" Comment="Servo Maximum Force" Bounds="600,616,47,15" ShowValueBox="true" isIOBox="true" Value="1000">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>

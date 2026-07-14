@@ -472,7 +472,7 @@
             <Pin Id="EdB3x2iAy7RN4ctN5aidac" Name="Value" Kind="InputPin" />
             <Pin Id="DoOkimQ0xenLxFD7ezuDjI" Name="Value" Kind="OutputPin" />
           </Node>
-          <Node Bounds="900,820,95,19" Id="2UzdJXJWqZta8LDkdRExB7">
+          <Node Bounds="901,810,105,19" Id="2UzdJXJWqZta8LDkdRExB7">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="HingeSettings" />
@@ -486,7 +486,7 @@
             <Pin Id="0tJcLFW03iGcyWRak11xAC" Name="Spring Frequency" Kind="OutputPin" />
             <Pin Id="0TWEO7fsbs1xgX2tklubWh" Name="Spring Damping Ratio" Kind="OutputPin" />
           </Node>
-          <Node Bounds="880,940,115,19" Id="4bIOvQwUTLKHaqd0MwKV9N">
+          <Node Bounds="881,930,145,19" Id="4bIOvQwUTLKHaqd0MwKV9N">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="SetHingeSettings" />
@@ -502,12 +502,12 @@
             <Pin Id="77ewRHEEUJGQGNxqjmTeFE" Name="Apply" Kind="InputPin" />
             <Pin Id="2aY5Mak0RrzAEbceMX9E8P" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="17RvnOad0WEi7TguE36aQQ" Comment="Local Offset B" Bounds="935,880,35,43" ShowValueBox="true" isIOBox="true" Value="3, 0, 0">
+          <Pad Id="17RvnOad0WEi7TguE36aQQ" Comment="Local Offset B" Bounds="943,861,35,43" ShowValueBox="true" isIOBox="true" Value="3, 0, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="3w4jGRufKXqyiLWiGx0TJF" Comment="Apply" Bounds="1030,895,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="3w4jGRufKXqyiLWiGx0TJF" Comment="Apply" Bounds="1023,890,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
