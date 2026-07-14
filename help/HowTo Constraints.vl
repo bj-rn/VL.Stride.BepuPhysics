@@ -320,7 +320,7 @@
             <Pin Id="R1hMcaHAYC8L4Cx4U2XaaX" Name="Depth Buffer" Kind="OutputPin" IsHidden="true" />
           </Node>
           <Node Bounds="906,300,56,19" Id="TRhsaeCGet5PmP6BYbWAN4">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Debug" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="BepuInfo" />
             </p:NodeReference>

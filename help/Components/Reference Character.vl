@@ -16,7 +16,7 @@
       </p:NodeReference>
       <Patch Id="HbCH000000000000000008">
         <Canvas Id="HbCH000000000000000009" CanvasType="Group">
-          <Pad Id="HbCH000000000000000015" Bounds="153,58,700,30" ShowValueBox="true" isIOBox="true" Value="A Character (Bepu) walks and jumps on a Static ground. Set a Move Direction, bang Jump. ">
+          <Pad Id="HbCH000000000000000015" Bounds="72,129,608,21" ShowValueBox="true" isIOBox="true" Value="A Character walks and jumps on a Static ground. Use WASD to move and SPACE to jump.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -30,7 +30,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="CapsuleCollider" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbCH000000000000000021" Name="Radius" Kind="InputPin" />
             <Pin Id="HbCH000000000000000022" Name="Length" Kind="InputPin" />
             <Pin Id="HbCH000000000000000023" Name="Position Local" Kind="InputPin" />
@@ -214,7 +213,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BoxCollider" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbCH000000000000000112" Name="Size" Kind="InputPin" />
             <Pin Id="HbCH000000000000000113" Name="Position Local" Kind="InputPin" />
             <Pin Id="HbCH000000000000000114" Name="Rotation Local" Kind="InputPin" />
@@ -227,7 +225,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="Static" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbCH000000000000000121" Name="Colliders" Kind="InputPin" />
             <Pin Id="HbCH000000000000000122" Name="Output" Kind="OutputPin" />
             <Pin Id="QJKtzLE8k7yNc4p0yherkz" Name="Collision Layer" Kind="InputPin" />
@@ -758,6 +755,7 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="BodyState" />
             </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="PrG4xnI8Ed1MiA9jr2ImPY" Name="Body" Kind="InputPin" />
             <Pin Id="CaJOaQpCOpgMKj1fuKBhhb" Name="Position" Kind="OutputPin" />
             <Pin Id="CbHVYGhUTgMLGhm4o0tQgU" Name="Orientation" Kind="OutputPin" />
@@ -804,6 +802,24 @@
           </Pad>
           <Pad Id="Rnbk4GDiK40N0YMbMIf2vD" Comment="Previous Linear Velocity" Bounds="953,1075,35,43" ShowValueBox="true" isIOBox="true" />
           <Pad Id="VHunJ3fQR0jP8kzysa8mRO" Comment="Previous Angular Velocity" Bounds="1002,1020,35,43" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="GOAv7q1jCIULq6rUG1FEjT" Bounds="72,87,125,33" ShowValueBox="true" isIOBox="true" Value="Character">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">16</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="DMPMHoPG4UQP67FhhQrGGY" Bounds="72,159,515,19" ShowValueBox="true" isIOBox="true" Value="https://doc.stride3d.net/latest/en/api/Stride.BepuPhysics.CharacterComponent.html">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="HbCH000000000000000010" Name="Create" />
         <Patch Id="HbCH000000000000000011" Name="Update" />
