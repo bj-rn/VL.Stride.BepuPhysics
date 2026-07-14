@@ -404,7 +404,7 @@
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="6qhfAG8WDk4wLDCpnpqEjA" Comment="Target Velocity Local A" Bounds="674,410,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0, 0">
+          <Pad Id="6qhfAG8WDk4wLDCpnpqEjA" Comment="Target Velocity Local A" Bounds="674,410,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0.98, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
@@ -440,18 +440,23 @@
             <Pin Id="5b8wsHv3sF92hclfYge9bU" Name="Apply" Kind="InputPin" />
             <Pin Id="0U0d4H4safuY3IaEXt6WeX" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="4J03lGm6GLcmS1QXSLSBWm" Comment="Target Velocity Local A" Bounds="727,730,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0, 2">
+          <Pad Id="4J03lGm6GLcmS1QXSLSBWm" Comment="Target Velocity Local A" Bounds="745,730,35,43" ShowValueBox="true" isIOBox="true" Value="0, 1.22, 0">
             <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="1qWNodwpaVCizeOf1dnL1B" Comment="Apply" Bounds="815,750,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="1qWNodwpaVCizeOf1dnL1B" Comment="Apply" Bounds="858,750,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
             <p:ValueBoxSettings>
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GbYU3iFLUGKLD1OPZILHuF" Comment="Motor Maximum Force" Bounds="762,490,47,15" ShowValueBox="true" isIOBox="true" Value="1000">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
           </Pad>
         </Canvas>
         <Patch Id="HcCN000000000000000070" Name="Create" />
@@ -495,6 +500,7 @@
         <Link Id="628SyVqaX2fetp7PlWhJ1L" Ids="18zw3MPqwxLNgEneckUrR9,1IvSdUYH0d5pfSmr5DIn6o" />
         <Link Id="6Zw36gtCxO9yGMOCGquSuT" Ids="6ERrLrr2IADnSwCENnCHxx,4CTXCvugdb96LZI8Byus4R" />
         <Link Id="1jSCkpEzHnCgm70IB3X34a" Ids="2251nnsgNJozh7Gj5foI1N,0MsP60y8cF6VRFKuLdGvKQ" />
+        <Link Id="QK11NPEH5WtLa8jGTK20V0" Ids="GbYU3iFLUGKLD1OPZILHuF,6Zjy6SEL9LtibKdNuX2Fkv" />
       </Patch>
     </Node>
   </Patch>
