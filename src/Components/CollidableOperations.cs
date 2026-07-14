@@ -102,6 +102,7 @@ public static partial class Bodies
     /// <param name="indexA">Index of the collidable within the group.</param>
     /// <param name="indexB">Second index.</param>
     /// <param name="indexC">Third index.</param>
+    [Name("Split (CollisionGroup)")]
     public static void Split(SDefinitions.CollisionGroup? input,
         out int id, out int indexA, out int indexB, out int indexC)
     {
