@@ -35,7 +35,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="BoxCollider" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbSU000000000000000022" Name="Size" Kind="InputPin" />
             <Pin Id="HbSU000000000000000023" Name="Position Local" Kind="InputPin" />
             <Pin Id="HbSU000000000000000024" Name="Rotation Local" Kind="InputPin" />
@@ -48,7 +47,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="Static" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbSU000000000000000031" Name="Colliders" Kind="InputPin" />
             <Pin Id="HbSU000000000000000032" Name="Output" Kind="OutputPin" />
             <Pin Id="CqZ8J6FPVAgOMFqFbbtOgx" Name="Collision Layer" Kind="InputPin" />
@@ -140,7 +138,6 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="SphereCollider" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="HbSU000000000000000061" Name="Radius" Kind="InputPin" />
             <Pin Id="HbSU000000000000000062" Name="Position Local" Kind="InputPin" />
             <Pin Id="HbSU000000000000000063" Name="Mass" Kind="InputPin" />
