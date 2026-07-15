@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="FHsID2KEoyJLcJogeohNqN" LanguageVersion="2025.7.3" Version="0.128">
+  <NugetDependency Id="Saem1tReQZ6MhI1rBmCHVN" Location="VL.CoreLib" Version="2025.7.3" />
+  <Patch Id="PgrWXB5oy4ANf4HuVrxP0l">
+    <Canvas Id="UG4XGPFq7VfPLAsk6dvJrr" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="Jpl5NTUN4uKODzXRX5ZBut">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <CategoryReference Kind="Category" Name="Primitive" />
+      </p:NodeReference>
+      <Patch Id="F3RVXQZp21MNi1RzAHdw8X">
+        <Canvas Id="Ln9ymibcWw5MciE02kGXgp" CanvasType="Group">
+          <Node Bounds="88,259,185,19" Id="AtXVdusmX7LPupMAw9E950">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="BoxCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="Brgwh5RFfTtO1XcPEPsgD9" Name="Output" Kind="OutputPin" />
+            <Pin Id="EFLKStQDl9qPoCfyV4T5XX" Name="Size" Kind="InputPin" />
+            <Pin Id="LZBcr9QHN2WOAq3bWTvlVO" Name="Position Local" Kind="InputPin" />
+            <Pin Id="Uvmj3C2adBIMwBxDJtjjT5" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="G5RKJrVm6q0Nf09erAxRMl" Name="Mass" Kind="InputPin" />
+            <Pin Id="B7HkTRF102dM0vsIwgU1b6" Name="Reapply Inputs" Kind="InputPin" />
+          </Node>
+          <Pad Id="BhkGxuFACesQdrVTH8Hbbj" Bounds="73,86,265,33" ShowValueBox="true" isIOBox="true" Value="Overview Colliders">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">16</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="KpFzCtK4je9QS1vEOvdbPO" Bounds="73,123,588,19" ShowValueBox="true" isIOBox="true" Value="https://doc.stride3d.net/latest/en/api/Stride.BepuPhysics.Definitions.Colliders.html">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="335,259,185,19" Id="UaELlp3vhuBL14432LSign">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="CapsuleCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="CEVW1pSSHSaOsj9i5w2xVa" Name="Output" Kind="OutputPin" />
+            <Pin Id="InFuEjgwdoKPBBO3rIemqr" Name="Radius" Kind="InputPin" />
+            <Pin Id="ILsGanTwgnELkzNyyK0qR7" Name="Length" Kind="InputPin" />
+            <Pin Id="MzletTKYpgpLsXanlGjJcq" Name="Position Local" Kind="InputPin" />
+            <Pin Id="P0t2Zh0Cqy7OPJAphvV4Ja" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="TjFgVcb2uP0P8uzXOoz4Ur" Name="Mass" Kind="InputPin" />
+            <Pin Id="TFb6SSdHrwnN5vqR9sR6YR" Name="Reapply Inputs" Kind="InputPin" />
+          </Node>
+          <Node Bounds="582,259,185,19" Id="IxpnqC4AyyfNg7uGgD29IR">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="CylinderCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="DMuc1UxawzoQF8NVLTUje4" Name="Output" Kind="OutputPin" />
+            <Pin Id="LOpVc9g792wNLNdIa3fPxq" Name="Radius" Kind="InputPin" />
+            <Pin Id="IY98GECiP95N3T6ueyJD3Z" Name="Length" Kind="InputPin" />
+            <Pin Id="IsmDGqot00GN7AH2gzho4N" Name="Position Local" Kind="InputPin" />
+            <Pin Id="EGMKu6oiR3BPSc0exLN4Lb" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="TQAlpIxYiG4N7sAW6PEwZd" Name="Mass" Kind="InputPin" />
+            <Pin Id="ANXKc1ek2BTQcbExh5FEQh" Name="Reapply Inputs" Kind="InputPin" />
+          </Node>
+          <Node Bounds="829,259,185,19" Id="AQyIWyHjy9gMsF82xL2HnC">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="SphereCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="PsRCHdmrnnYPoLJewBjzKC" Name="Output" Kind="OutputPin" />
+            <Pin Id="UEz7wsF4FfhPwmcuOKTCPD" Name="Radius" Kind="InputPin" />
+            <Pin Id="OhYuQ3AtayHNOflMPkZ71U" Name="Position Local" Kind="InputPin" />
+            <Pin Id="KqSX5G8mv5nOWiQs0FKUGL" Name="Mass" Kind="InputPin" />
+            <Pin Id="JaidFws2WM7MnKnpDKp4z2" Name="Reapply Inputs" Kind="InputPin" />
+          </Node>
+          <Node Bounds="1076,259,185,19" Id="GUBc3B2ffwhPrvn1UvjDN3">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="TriangleCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="PlGDkK3Ik25M5Ha4aEiaiT" Name="Output" Kind="OutputPin" />
+            <Pin Id="Sk2pyiCfgHxOQ7WfsvVAuw" Name="A" Kind="InputPin" />
+            <Pin Id="OdLCX0ZtJXvNaivEAsn4Oc" Name="B" Kind="InputPin" />
+            <Pin Id="CpSBn1dJQo1MOP3V4rJ5YQ" Name="C" Kind="InputPin" />
+            <Pin Id="FdHBAHd9LKiPkq1GyJ8ZZn" Name="Position Local" Kind="InputPin" />
+            <Pin Id="N8ws0JggzwDMLprxKaRtqd" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="FQIx28xcgxyLx2zZGMVaI6" Name="Mass" Kind="InputPin" />
+            <Pin Id="CVoO4UmKeyjPynqMmfi5Aa" Name="Reapply Inputs" Kind="InputPin" />
+          </Node>
+          <Node Bounds="88,350,85,19" Id="HSw9NbHWAZcP1ifUT0EqDx">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="HullFromModel" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="FjKU4oSbMHXMfQ7GPsoGA7" Name="Model" Kind="InputPin" />
+            <Pin Id="MjQqVHpkEzVMb9v8U3CUDP" Name="Rebake" Kind="InputPin" />
+            <Pin Id="IoVNtBL2hApMZF8dVPdWT9" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="88,390,103,19" Id="Hnz1Y80AfCRN620MixKzCH">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="ConvexHullCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="DgEqNoOYCL5LgxPTOrPzCs" Name="Hull" Kind="InputPin" />
+            <Pin Id="IyvESxAQsHMLF7pURaja6x" Name="Mass" Kind="InputPin" />
+            <Pin Id="N6EBUIOckRcLOznhQS5gb2" Name="Output" Kind="OutputPin" />
+            <Pin Id="APA276NiK9bLHtLkNYRetv" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="88,490,75,19" Id="Mu6eWt4TSmFPDwC4hS0Ged">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="MeshCollider" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+            <Pin Id="NX9iJkD5EU5MjFb6a7v231" Name="Model" Kind="InputPin" />
+            <Pin Id="TZrg9laxOmgNUyd5J6mZVu" Name="Closed" Kind="InputPin" />
+            <Pin Id="G8gSjDMF9N2QGe5pNt6oEL" Name="Mass" Kind="InputPin" />
+            <Pin Id="AJVzE9dbBFvOEqFLuiOMdM" Name="Output" Kind="OutputPin" />
+            <Pin Id="VIVQv98OqRXLFOEps95vex" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Pad Id="O0Uv21qrxw1P8sfwxvk7r6" Bounds="321,329,690,210" ShowValueBox="true" isIOBox="true" Value="Every collidable (Body, Static, Character) carries exactly one ICollider, which describes its complete shape.&#xD;&#xA;Only three types implement ICollider: CompoundCollider, MeshCollider and EmptyCollider.&#xD;&#xA;&#xD;&#xA;The shape colliders (Box, Sphere, Capsule, Cylinder, Triangle, ConvexHull) are of type ColliderBase.&#xD;&#xA;They are convex shapes that only exist as children of a compound, which is why they have Position Local,&#xD;&#xA;Rotation Local and Mass pins. The Colliders pin wraps them into a component owned CompoundCollider&#xD;&#xA;automatically, even a single shape. Mass and center of mass are computed from the children.&#xD;&#xA;&#xD;&#xA;A mesh cannot be part of a compound: it is not convex and brings its own triangle acceleration structure,&#xD;&#xA;so it is a complete shape by itself. MeshCollider and EmptyCollider therefore connect to the&#xD;&#xA;Collider Override pin instead of the Colliders pin.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="428,640,285,19" Id="HKN04FOSd6QOfv16Cfq7tT">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Body" />
+            </p:NodeReference>
+            <Pin Id="DgXrPQ6CSqELEmh1PQJk9m" Name="Colliders" Kind="InputPin" />
+            <Pin Id="AWhyrRTskiMLIp3u9Zprfk" Name="Kinematic" Kind="InputPin" />
+            <Pin Id="HPf1iNSXEB0QUxS2vtD2WV" Name="Interpolation" Kind="InputPin" />
+            <Pin Id="Dj2SwlodAibLwFmh359vLP" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="KSNAtwDbYmbLzehn3j5r2i" Name="Collision Group" Kind="InputPin" IsHidden="true" />
+            <Pin Id="TZ6SOyw1pQzPtnUJTYyGja" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="RUbXHSa52v2OYkNXD6gG52" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="ETuCdGNYY3KL8IXC6uFFJB" Name="Friction Coefficient" Kind="InputPin" />
+            <Pin Id="Nsi9tEBk9yKPNYWBjd1PzD" Name="Maximum Recovery Velocity" Kind="InputPin" />
+            <Pin Id="GYvXg4JdODpQa7MadT2XbF" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="OyjallTXzq3OccnROVXLTd" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
+            <Pin Id="PVfPSDYYIkRLFlAXh6FRKt" Name="Gravity" Kind="InputPin" />
+            <Pin Id="KJkuoEb10H6O8XNVepcXUa" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="Mic80dO5HoDLm0Mss4uaDr" Name="Contact Handler" Kind="InputPin" />
+            <Pin Id="FfBSnb8sImvOqo3cOSLDwm" Name="Collider Override" Kind="InputPin" />
+            <Pin Id="QWk8ZaZAiVgPMnard0jHEH" Name="Teleport To" Kind="InputPin" />
+            <Pin Id="IOMr8nvq7dSOIj81tDClIH" Name="Reset Pose" Kind="InputPin" />
+            <Pin Id="Rx6sf4diuEUOYwNZxhYcCk" Name="Output" Kind="OutputPin" />
+            <Pin Id="E52UKfPTzKXMUxYYx8UaBS" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Pad Id="LZokYNjVFFVN9G78WvQk9d" Comment="Colliders" SlotId="D3wqLjFErIeMacgRTfwSO6" Bounds="430,600" />
+          <Pad Id="Gc34svhvBzrLIJwIr0T9JA" Comment="Collider Override" SlotId="Vln12GpkEa1NASwrocmqbk" Bounds="670,600">
+            <p:Value r:IsNull="true" />
+          </Pad>
+          <Node Bounds="327,640,61,26" Id="TXmSZdtIcXaN5i0c2rBVTN">
+            <p:NodeReference LastCategoryFullName="Primitive.TypeHelpers" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="TypeOf" />
+            </p:NodeReference>
+            <Pin Id="CL1jUbdXpJ2PrumAU5Ctw7" Name="Input" Kind="InputPin" />
+            <Pin Id="HUxNCxt4kHVLlIeJ7ydy0y" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Pad Id="HbRPs4XeCFQLbhdm3IuMDT" Comment="" Bounds="329,720,321,27" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="746,640,61,26" Id="DFEh5le7yBcOD4plqwP0yy">
+            <p:NodeReference LastCategoryFullName="Primitive.TypeHelpers" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="TypeOf" />
+            </p:NodeReference>
+            <Pin Id="LvXWMXqaBiUMTbTfCu4ifG" Name="Input" Kind="InputPin" />
+            <Pin Id="KvXZBJ1RKPWMXlh6WZ1OT8" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Pad Id="Twrid6P6dDBLIjrnvM2VzI" Comment="" Bounds="748,720,321,27" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="GPC0AktqyatN4XbDo0D1Ez" Bounds="73,170,350,19" ShowValueBox="true" isIOBox="true" Value="Select a node and hit F1 to get to the individual help patch">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
+        <Patch Id="KFrzLfuelFnMIsKxD1LMfA" Name="Create" />
+        <Patch Id="DA8xP8fH2xcLk9aMVl6czd" Name="Update" />
+        <ProcessDefinition Id="Mk30is3eaeiNJKVu4aaCKc">
+          <Fragment Id="JndzKVLGd5kNkQxeVJEWoP" Patch="KFrzLfuelFnMIsKxD1LMfA" Enabled="true" />
+          <Fragment Id="QC8Yp4VittzP9VQLb9Q8q3" Patch="DA8xP8fH2xcLk9aMVl6czd" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="Pd0f6VdtHehPNo8ezprOH5" Ids="IoVNtBL2hApMZF8dVPdWT9,DgEqNoOYCL5LgxPTOrPzCs" />
+        <Link Id="VtEyizJH4goNyB59peemN4" Ids="LZokYNjVFFVN9G78WvQk9d,DgXrPQ6CSqELEmh1PQJk9m" />
+        <Slot Id="D3wqLjFErIeMacgRTfwSO6" Name="Colliders">
+          <p:TypeAnnotation p:Type="TypeReference" LastCategoryFullName="Stride.BepuPhysics.Definitions.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+            <Choice Kind="TypeFlag" Name="ColliderBase" />
+          </p:TypeAnnotation>
+        </Slot>
+        <Link Id="RqPoCLL9o0vPA9cnsB8zGj" Ids="Gc34svhvBzrLIJwIr0T9JA,FfBSnb8sImvOqo3cOSLDwm" />
+        <Slot Id="Vln12GpkEa1NASwrocmqbk" Name="Collider Override">
+          <p:TypeAnnotation p:Type="TypeReference" LastCategoryFullName="Stride.BepuPhysics.Definitions.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+            <Choice Kind="TypeFlag" Name="ICollider" />
+          </p:TypeAnnotation>
+          <p:Value r:IsNull="true" />
+        </Slot>
+        <Link Id="I4C3lUn97XIP73aFMCKeKF" Ids="LZokYNjVFFVN9G78WvQk9d,CL1jUbdXpJ2PrumAU5Ctw7" />
+        <Link Id="SFLFSdQUahnQdfIsceFNLO" Ids="HUxNCxt4kHVLlIeJ7ydy0y,HbRPs4XeCFQLbhdm3IuMDT" />
+        <Link Id="AFtUucRLnlEMRkbWlQm2hx" Ids="KvXZBJ1RKPWMXlh6WZ1OT8,Twrid6P6dDBLIjrnvM2VzI" />
+        <Link Id="EFz1yrplpnxOzad4zaIFIE" Ids="Gc34svhvBzrLIJwIr0T9JA,LvXWMXqaBiUMTbTfCu4ifG" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="LMN85XmadQFOP5cAcYhUi3" Location="VL.Stride" Version="2025.7.3" />
+  <NugetDependency Id="HiTqc2WSAJKPe5jYXVN6XN" Location="VL.Stride.BepuPhysics" Version="0.0.0" />
+</Document>
