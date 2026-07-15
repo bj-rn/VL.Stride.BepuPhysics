@@ -277,7 +277,7 @@
         <member name="F:VL.Stride.BepuPhysics.Colliders.ColliderKind.ConvexHull">
             <summary>A ConvexHullCollider.</summary>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.BodyNode">
+        <member name="T:VL.Stride.BepuPhysics.Components.BodyNode">
             <summary>
             A dynamic or kinematic rigid body simulated by BepuPhysics.
             Connect the output to an Entity (like a ModelComponent); the body drives the entity's transform.
@@ -285,7 +285,7 @@
             Connect one or more collider shapes; each shape instance can only be used by one body.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.Components.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
             <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
@@ -306,7 +306,7 @@
             <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <returns>The body component — connect to an Entity's Components input.</returns>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.Bodies">
+        <member name="T:VL.Stride.BepuPhysics.Components.Body">
             <summary>
             Operations on Body, Static and Character components: state and settings readers,
             impulses, teleports, character movement, collision groups and single target raycasts.
@@ -314,52 +314,52 @@
             Mutating operations run while Apply is true, connect a Bang for one-shot application.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.ApplyLinearImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.ApplyLinearImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
             <summary>Applies a one-frame impulse at the center of mass while Apply is true.</summary>
             <param name="body">The body to apply the impulse to.</param>
             <param name="impulse">Impulse in world space (mass times velocity change).</param>
             <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot push.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.ApplyAngularImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.ApplyAngularImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
             <summary>Applies a one-frame angular impulse while Apply is true.</summary>
             <param name="body">The body to apply the impulse to.</param>
             <param name="impulse">Angular impulse in world space (spin around each axis).</param>
             <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot spin.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.ApplyImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.ApplyImpulse(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Boolean)">
             <summary>Applies an impulse at an offset from the center of mass while Apply is true.</summary>
             <param name="body">The body to apply the impulse to.</param>
             <param name="impulse">Impulse in world space (mass times velocity change).</param>
             <param name="impulseOffset">Application point relative to the center of mass — off-center impulses add spin.</param>
             <param name="apply">Applies the impulse each frame while true. Connect a Bang for a one-shot push.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.Teleport(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.Teleport(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
             <summary>Instantly moves the body while Apply is true (no sweep, no collision on the way).</summary>
             <param name="body">The body to move.</param>
             <param name="position">Target position in world space.</param>
             <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="apply">Teleports each frame while true. Connect a Bang. Collisions along the way are ignored.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetTargetPose(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.SetTargetPose(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Boolean)">
             <summary>Sets the target pose for a kinematic body while Apply is true — the body moves there with proper sweep.</summary>
             <param name="body">The kinematic body to move.</param>
             <param name="position">Target position in world space.</param>
             <param name="orientation">Target orientation in world space. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="apply">Moves towards the target with proper sweep each frame while true — pushes dynamic bodies out of the way.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetLinearVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.SetLinearVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
             <summary>Overwrites the linear velocity while Apply is true.</summary>
             <param name="body">The body whose velocity is overwritten.</param>
             <param name="velocity">New linear velocity in units per second, world space.</param>
             <param name="apply">Overwrites each frame while true. Connect a Bang for a one-shot set.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetAngularVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.SetAngularVelocity(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
             <summary>Overwrites the angular velocity while Apply is true.</summary>
             <param name="body">The body whose velocity is overwritten.</param>
             <param name="velocity">New angular velocity in radians per second around each world axis.</param>
             <param name="apply">Overwrites each frame while true. Connect a Bang for a one-shot set.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.BodyState(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Boolean@)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.BodyState(Stride.BepuPhysics.BodyComponent,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Quaternion@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Boolean@)">
             <summary>Reads the current physics state of a body.</summary>
             <param name="body">The body to read. Outputs defaults while not attached to a simulation.</param>
             <param name="position">Current position in world space.</param>
@@ -370,7 +370,7 @@
             <param name="previousAngularVelocity">Angular velocity during the previous physics tick.</param>
             <param name="awake">True while the body is actively simulated (not sleeping).</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.BodyMassProperties(Stride.BepuPhysics.BodyComponent,System.Single@,System.Single@,Stride.Core.Mathematics.Vector3@,System.Single@)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.BodyMassProperties(Stride.BepuPhysics.BodyComponent,System.Single@,System.Single@,Stride.Core.Mathematics.Vector3@,System.Single@)">
             <summary>
             Reads the mass properties of a body. Mass and center of mass derive from the collider
             shapes and their Mass pins, they are read only here.
@@ -381,103 +381,7 @@
             <param name="centerOfMass">Center of mass in the body's local space, computed from the collider shapes.</param>
             <param name="speculativeMargin">Diagnostic: size of the margin around the shape in which contacts can be generated, recomputed by the engine every frame from the body's velocity.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.Awaken(Stride.BepuPhysics.BodyComponent,System.Boolean)">
-            <summary>Wakes the body up while Apply is true.</summary>
-            <param name="body">The body to wake up.</param>
-            <param name="apply">Wakes the body each frame while true.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.Move(Stride.BepuPhysics.CharacterComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
-            <summary>Sets the character's movement velocity from Direction times its Speed while Apply is true.</summary>
-            <param name="character">The character to move.</param>
-            <param name="direction">Movement direction in world space. The length scales the speed (2 = twice as fast). The last velocity persists, write a zero direction to stop.</param>
-            <param name="apply">Applies the movement each frame while true. Hold true while driving the character with an input direction.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.TryJump(Stride.BepuPhysics.CharacterComponent,System.Boolean)">
-            <summary>Queues a jump for the next physics tick while Apply is true. Fails silently when the character is not grounded.</summary>
-            <param name="character">The character that should jump.</param>
-            <param name="apply">Tries to jump each frame while true. Connect a Bang for a single jump.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.CharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single@,System.Single@)">
-            <summary>Reads the character specific settings, mirroring the Character node's inputs. Use CollidableInfo for identity and BodySettings for the body settings.</summary>
-            <param name="character">The character to read. Outputs the defaults while null.</param>
-            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
-            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetCharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single,System.Single,System.Boolean)">
-            <summary>
-            Writes the character specific settings while Apply is true.
-            A written property is overwritten again once the owning Character node's pin value changes.
-            </summary>
-            <param name="character">The character to write to.</param>
-            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
-            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
-            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.CharacterState(Stride.BepuPhysics.CharacterComponent,System.Boolean@,System.Boolean@,Stride.Core.Mathematics.Vector3@)">
-            <summary>Reads the character specific state. Use BodyState for pose and actual body velocities.</summary>
-            <param name="character">The character to read. Outputs defaults while not attached to a simulation.</param>
-            <param name="isGrounded">True while the character stands on a support surface.</param>
-            <param name="isJumping">True while a jump is in progress.</param>
-            <param name="movementVelocity">The desired movement velocity set via Move, in world space.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.CollidableInfo(Stride.BepuPhysics.CollidableComponent,Stride.Engine.Entity@,System.String@,VL.Stride.BepuPhysics.Bodies.CollidableKind@,System.Boolean@)">
-            <summary>Identifies a collidable: its entity and whether it is a body or a static.</summary>
-            <param name="collidable">The collidable to identify, for example from a RayCast hit or a ContactEvents contact.</param>
-            <param name="entity">The entity the collidable is attached to. Null while not attached or no input.</param>
-            <param name="entityName">Name of that entity. Empty while not attached or no input.</param>
-            <param name="kind">Whether the collidable is a Body, a Static or nothing is connected.</param>
-            <param name="attached">True while the collidable is part of a simulation.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.CollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single@,System.Single@,System.Single@,System.Single@,Stride.BepuPhysics.CollisionLayer@,Stride.BepuPhysics.Definitions.CollisionGroup@)">
-            <summary>Reads the contact material settings shared by bodies and statics.</summary>
-            <param name="collidable">The collidable to read. Outputs the component defaults while null.</param>
-            <param name="springFrequency">Contact spring stiffness in Hz.</param>
-            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
-            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
-            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
-            <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
-            <param name="collisionGroup">The collision group of this collidable. Use Split (CollisionGroup) to access its parts.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.CollisionGroup(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Creates a collision group, a fine grained filter on top of the collision layer:
-            collidables sharing the same non zero Id do not collide while the absolute difference
-            of their IndexA, IndexB and IndexC is less than two.
-            Example teams: characters A, B, C, D on one layer, split into teams {A, B} and {C, D};
-            to stop team members from colliding with each other, give A and B the Id 1 and give
-            C and D the Id 2 (all indices 0).
-            Example chain: colliders A, B, C attached in a row; B should not collide with its
-            neighbours A and C, but A and C should collide with each other. Give all three the
-            same Id and set Index A to 0, 1 and 2: A and C collide since their difference is two,
-            neither collides with B since both are only one away from B's index.
-            </summary>
-            <param name="id">The group identification number; 0 = no filtering beyond the collision layer (0..65535).</param>
-            <param name="indexA">Index of this collidable within the group; same or adjacent values ignore each other, values two or more apart collide (0..65535).</param>
-            <param name="indexB">Second index, same rule as Index A. All three index differences must be less than two to suppress a collision.</param>
-            <param name="indexC">Third index, same rule as Index A.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.Split(System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <summary>Splits a collision group into its parts.</summary>
-            <param name="input">The collision group to split.</param>
-            <param name="id">The group identification number; 0 = no filtering beyond the collision layer.</param>
-            <param name="indexA">Index of the collidable within the group.</param>
-            <param name="indexB">Second index.</param>
-            <param name="indexC">Third index.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.RayCast(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single)">
-            <summary>
-            Casts a ray against a single collidable, ignoring everything else in the simulation.
-            Cheaper and more precise than a scene wide query when only one object matters,
-            for example picking against a specific body.
-            </summary>
-            <param name="collidable">The collidable to test. No hit while null or not attached to a simulation.</param>
-            <param name="hit">The closest hit: point, normal, distance and child index.</param>
-            <param name="didHit">True when the ray hit the collidable within Max Distance.</param>
-            <param name="origin">Ray start position in world space.</param>
-            <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
-            <param name="maxDistance">Maximum travel distance of the ray.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.BodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean@,System.Single@,System.Int32@,System.Boolean@,Stride.BepuPhysics.Definitions.InterpolationMode@,VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind@)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.BodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean@,System.Single@,System.Int32@,System.Boolean@,Stride.BepuPhysics.Definitions.InterpolationMode@,VL.Stride.BepuPhysics.Components.ContinuousDetectionKind@)">
             <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
             <param name="body">The body to read. Outputs the component defaults while null.</param>
             <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
@@ -487,21 +391,7 @@
             <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
             <param name="continuousDetection">Continuous collision detection mode of the body.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single,System.Single,System.Single,System.Single,System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Boolean)">
-            <summary>
-            Writes the contact material settings shared by bodies and statics while Apply is true.
-            A written property is overwritten again once the owning Body or Static node's pin value changes.
-            </summary>
-            <param name="collidable">The collidable to write to, for example from a RayCast hit or a ContactEvents contact.</param>
-            <param name="springFrequency">Contact spring stiffness in Hz.</param>
-            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
-            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
-            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
-            <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
-            <param name="collisionGroup">Fine grained filter on top of the collision layer. Create with the CollisionGroup operation. Null = no group.</param>
-            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
-        </member>
-        <member name="M:VL.Stride.BepuPhysics.Bodies.SetBodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean,System.Single,System.Int32,System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind},System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.SetBodySettings(Stride.BepuPhysics.BodyComponent,System.Boolean,System.Single,System.Int32,System.Boolean,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{VL.Stride.BepuPhysics.Components.ContinuousDetectionKind},System.Boolean)">
             <summary>
             Writes the body specific settings while Apply is true.
             A written property is overwritten again once the owning Body node's pin value changes.
@@ -515,34 +405,12 @@
             <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
             <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind">
-            <summary>
-            Continuous collision detection mode. Mirrors BepuPhysics.Collidables.ContinuousDetectionMode —
-            defined here so the pin default resolves from a VL-imported assembly.
-            </summary>
+        <member name="M:VL.Stride.BepuPhysics.Components.Body.Awaken(Stride.BepuPhysics.BodyComponent,System.Boolean)">
+            <summary>Wakes the body up while Apply is true.</summary>
+            <param name="body">The body to wake up.</param>
+            <param name="apply">Wakes the body each frame while true.</param>
         </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind.Discrete">
-            <summary>No sweep tests — fast objects may tunnel through thin geometry.</summary>
-        </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind.Passive">
-            <summary>No sweeps of its own, but other continuous collidables can see it.</summary>
-        </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind.Continuous">
-            <summary>Sweep tests prevent tunneling at higher cost.</summary>
-        </member>
-        <member name="T:VL.Stride.BepuPhysics.Bodies.CollidableKind">
-            <summary>What kind of collidable a CollidableComponent is.</summary>
-        </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.CollidableKind.None">
-            <summary>No collidable connected.</summary>
-        </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.CollidableKind.Body">
-            <summary>A dynamic or kinematic body (BodyComponent).</summary>
-        </member>
-        <member name="F:VL.Stride.BepuPhysics.Bodies.CollidableKind.Static">
-            <summary>Immovable collision geometry (StaticComponent).</summary>
-        </member>
-        <member name="T:VL.Stride.BepuPhysics.CharacterNode">
+        <member name="T:VL.Stride.BepuPhysics.Components.CharacterNode">
             <summary>
             A physics driven character: a dynamic body that walks and jumps.
             Connect the output to an Entity (like a ModelComponent); a capsule is the typical collider.
@@ -551,7 +419,7 @@
             ContactHandler pin. Use Trigger or ContactEvents on the collidables it interacts with instead.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.Bodies.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,System.Nullable{Stride.BepuPhysics.Definitions.InterpolationMode},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,System.Nullable{VL.Stride.BepuPhysics.Components.ContinuousDetectionKind},Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
             <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
             <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
             <param name="jumpForce">Force of the impulse applied by TryJump.</param>
@@ -572,39 +440,146 @@
             <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <returns>The character component, connect to an Entity's Components input.</returns>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.GetCollidersNode">
+        <member name="M:VL.Stride.BepuPhysics.Components.Character.Move(Stride.BepuPhysics.CharacterComponent,Stride.Core.Mathematics.Vector3,System.Boolean)">
+            <summary>Sets the character's movement velocity from Direction times its Speed while Apply is true.</summary>
+            <param name="character">The character to move.</param>
+            <param name="direction">Movement direction in world space. The length scales the speed (2 = twice as fast). The last velocity persists, write a zero direction to stop.</param>
+            <param name="apply">Applies the movement each frame while true. Hold true while driving the character with an input direction.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Character.TryJump(Stride.BepuPhysics.CharacterComponent,System.Boolean)">
+            <summary>Queues a jump for the next physics tick while Apply is true. Fails silently when the character is not grounded.</summary>
+            <param name="character">The character that should jump.</param>
+            <param name="apply">Tries to jump each frame while true. Connect a Bang for a single jump.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Character.CharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single@,System.Single@)">
+            <summary>Reads the character specific settings, mirroring the Character node's inputs. Use CollidableInfo for identity and BodySettings for the body settings.</summary>
+            <param name="character">The character to read. Outputs the defaults while null.</param>
+            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
+            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Character.SetCharacterSettings(Stride.BepuPhysics.CharacterComponent,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Writes the character specific settings while Apply is true.
+            A written property is overwritten again once the owning Character node's pin value changes.
+            </summary>
+            <param name="character">The character to write to.</param>
+            <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
+            <param name="jumpForce">Force of the impulse applied by TryJump.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Character.CharacterState(Stride.BepuPhysics.CharacterComponent,System.Boolean@,System.Boolean@,Stride.Core.Mathematics.Vector3@)">
+            <summary>Reads the character specific state. Use BodyState for pose and actual body velocities.</summary>
+            <param name="character">The character to read. Outputs defaults while not attached to a simulation.</param>
+            <param name="isGrounded">True while the character stands on a support surface.</param>
+            <param name="isJumping">True while a jump is in progress.</param>
+            <param name="movementVelocity">The desired movement velocity set via Move, in world space.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.CollidableInfo(Stride.BepuPhysics.CollidableComponent,Stride.Engine.Entity@,System.String@,VL.Stride.BepuPhysics.Components.CollidableKind@,System.Boolean@)">
+            <summary>Identifies a collidable: its entity and whether it is a body or a static.</summary>
+            <param name="collidable">The collidable to identify, for example from a RayCast hit or a ContactEvents contact.</param>
+            <param name="entity">The entity the collidable is attached to. Null while not attached or no input.</param>
+            <param name="entityName">Name of that entity. Empty while not attached or no input.</param>
+            <param name="kind">Whether the collidable is a Body, a Static or nothing is connected.</param>
+            <param name="attached">True while the collidable is part of a simulation.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.CollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single@,System.Single@,System.Single@,System.Single@,Stride.BepuPhysics.CollisionLayer@,Stride.BepuPhysics.Definitions.CollisionGroup@)">
+            <summary>Reads the contact material settings shared by bodies and statics.</summary>
+            <param name="collidable">The collidable to read. Outputs the component defaults while null.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
+            <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
+            <param name="collisionGroup">The collision group of this collidable. Use Split (CollisionGroup) to access its parts.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.CollisionGroup(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a collision group, a fine grained filter on top of the collision layer:
+            collidables sharing the same non zero Id do not collide while the absolute difference
+            of their IndexA, IndexB and IndexC is less than two.
+            Example teams: characters A, B, C, D on one layer, split into teams {A, B} and {C, D};
+            to stop team members from colliding with each other, give A and B the Id 1 and give
+            C and D the Id 2 (all indices 0).
+            Example chain: colliders A, B, C attached in a row; B should not collide with its
+            neighbours A and C, but A and C should collide with each other. Give all three the
+            same Id and set Index A to 0, 1 and 2: A and C collide since their difference is two,
+            neither collides with B since both are only one away from B's index.
+            </summary>
+            <param name="id">The group identification number; 0 = no filtering beyond the collision layer (0..65535).</param>
+            <param name="indexA">Index of this collidable within the group; same or adjacent values ignore each other, values two or more apart collide (0..65535).</param>
+            <param name="indexB">Second index, same rule as Index A. All three index differences must be less than two to suppress a collision.</param>
+            <param name="indexC">Third index, same rule as Index A.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.Split(System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Splits a collision group into its parts.</summary>
+            <param name="input">The collision group to split.</param>
+            <param name="id">The group identification number; 0 = no filtering beyond the collision layer.</param>
+            <param name="indexA">Index of the collidable within the group.</param>
+            <param name="indexB">Second index.</param>
+            <param name="indexC">Third index.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.RayCast(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single)">
+            <summary>
+            Casts a ray against a single collidable, ignoring everything else in the simulation.
+            Cheaper and more precise than a scene wide query when only one object matters,
+            for example picking against a specific body. The direction is normalized internally,
+            Max Distance and the reported hit distances are always plain world units, independent
+            of the length of the connected vector.
+            </summary>
+            <param name="collidable">The collidable to test. No hit while null or not attached to a simulation.</param>
+            <param name="hit">The closest hit: point, normal, distance and child index.</param>
+            <param name="didHit">True when the ray hit the collidable within Max Distance.</param>
+            <param name="origin">Ray start position in world space.</param>
+            <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
+            <param name="maxDistance">Maximum travel distance of the ray.</param>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Components.Collidable.SetCollidableSettings(Stride.BepuPhysics.CollidableComponent,System.Single,System.Single,System.Single,System.Single,System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Boolean)">
+            <summary>
+            Writes the contact material settings shared by bodies and statics while Apply is true.
+            A written property is overwritten again once the owning Body or Static node's pin value changes.
+            </summary>
+            <param name="collidable">The collidable to write to, for example from a RayCast hit or a ContactEvents contact.</param>
+            <param name="springFrequency">Contact spring stiffness in Hz.</param>
+            <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
+            <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
+            <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
+            <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+            <param name="collisionGroup">Fine grained filter on top of the collision layer. Create with the CollisionGroup operation. Null = no group.</param>
+            <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Components.GetCollidersNode">
             <summary>
             Reads the collider shapes of a collidable's compound.
             Connect a RayCast hit's ChildIndex to pick the exact shape that was hit.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.GetCollidersNode.Update(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.Definitions.Colliders.ColliderBase@,System.Int32)">
+        <member name="M:VL.Stride.BepuPhysics.Components.GetCollidersNode.Update(Stride.BepuPhysics.CollidableComponent,Stride.BepuPhysics.Definitions.Colliders.ColliderBase@,System.Int32)">
             <param name="collidable">The collidable whose shapes are read, for example from a RayCast hit or a ContactEvents contact.</param>
             <param name="child">The shape at Child Index. Null while the index is out of range. Use CastAs (BoxCollider) to access shape properties.</param>
             <param name="childIndex">Index of the shape to output on the Child pin. A HitInfo's ChildIndex connects here.</param>
             <returns>All collider shapes of the collidable's compound. Empty for mesh, empty and unconnected collidables.</returns>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.CollidableRayCastPenetratingNode">
+        <member name="T:VL.Stride.BepuPhysics.Components.CollidableRayCastPenetratingNode">
             <summary>
             Casts a ray against a single collidable and reports all hits along it, for example the
-            entry and exit points through its shapes. Everything else in the simulation is ignored.
+            entry and exit points through its shapes. Everything else in the simulation is ignored. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.CollidableRayCastPenetratingNode.Update(Stride.BepuPhysics.CollidableComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.CollidableRayCastPenetratingNode.Update(Stride.BepuPhysics.CollidableComponent,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Boolean)">
             <param name="collidable">The collidable to test. Empty while null or not attached to a simulation.</param>
             <param name="origin">Ray start position in world space.</param>
             <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
             <param name="maxDistance">Maximum travel distance of the ray.</param>
             <param name="enabled">Skips the query and outputs an empty spread when false.</param>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.StaticNode">
+        <member name="T:VL.Stride.BepuPhysics.Components.StaticNode">
             <summary>
             Immovable collision geometry (ground, walls, level geometry).
             Connect the output to an Entity; the entity's transform places the static shape.
             Connect one or more collider shapes; each shape instance can only be used by one collidable.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Components.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Nullable{Stride.BepuPhysics.CollisionLayer},System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
             <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
             <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
             <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
@@ -616,6 +591,33 @@
             <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
             <param name="reapplyInputs">While true, writes all input values to the component again, overriding values written by setter nodes. Connect a Bang.</param>
             <returns>The static component — connect to an Entity's Components input.</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Components.ContinuousDetectionKind">
+            <summary>
+            Continuous collision detection mode. Mirrors BepuPhysics.Collidables.ContinuousDetectionMode —
+            defined here so the pin default resolves from a VL-imported assembly.
+            </summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.ContinuousDetectionKind.Discrete">
+            <summary>No sweep tests — fast objects may tunnel through thin geometry.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.ContinuousDetectionKind.Passive">
+            <summary>No sweeps of its own, but other continuous collidables can see it.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.ContinuousDetectionKind.Continuous">
+            <summary>Sweep tests prevent tunneling at higher cost.</summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Components.CollidableKind">
+            <summary>What kind of collidable a CollidableComponent is.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.CollidableKind.None">
+            <summary>No collidable connected.</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.CollidableKind.Body">
+            <summary>A dynamic or kinematic body (BodyComponent).</summary>
+        </member>
+        <member name="F:VL.Stride.BepuPhysics.Components.CollidableKind.Static">
+            <summary>Immovable collision geometry (StaticComponent).</summary>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Constraints.AngularHingeNode">
             <summary>Aligns two local axes on two bodies, like a hinge without position lock.</summary>
@@ -2147,15 +2149,15 @@
             main thread.
             </summary>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.Queries">
+        <member name="T:VL.Stride.BepuPhysics.Simulation.Queries">
             <summary>
             Stateless physics queries against the whole simulation.
             </summary>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.Queries.SweepShape">
+        <member name="T:VL.Stride.BepuPhysics.Simulation.Queries.SweepShape">
             <summary>Shape used by sweep and overlap queries.</summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Queries.Split(System.Nullable{Stride.BepuPhysics.HitInfo},Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Single@,Stride.BepuPhysics.CollidableComponent@,System.Int32@)">
+        <member name="M:VL.Stride.BepuPhysics.Simulation.Queries.Split(System.Nullable{Stride.BepuPhysics.HitInfo},Stride.Core.Mathematics.Vector3@,Stride.Core.Mathematics.Vector3@,System.Single@,Stride.BepuPhysics.CollidableComponent@,System.Int32@)">
             <summary>Splits a query hit into its parts.</summary>
             <param name="input">The hit to split.</param>
             <param name="point">The position where the intersection occurred, in world space.</param>
@@ -2164,16 +2166,16 @@
             <param name="collidable">The Body or Static component that was hit.</param>
             <param name="childIndex">Index of the child shape that was hit when the collidable uses a compound collider.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Queries.Split(System.Nullable{Stride.BepuPhysics.OverlapInfo},Stride.BepuPhysics.CollidableComponent@,Stride.Core.Mathematics.Vector3@,System.Single@)">
+        <member name="M:VL.Stride.BepuPhysics.Simulation.Queries.Split(System.Nullable{Stride.BepuPhysics.OverlapInfo},Stride.BepuPhysics.CollidableComponent@,Stride.Core.Mathematics.Vector3@,System.Single@)">
             <summary>Splits an overlap query result into its parts.</summary>
             <param name="input">The overlap to split.</param>
             <param name="collidable">The Body or Static component the test shape overlaps with.</param>
             <param name="penetrationDirection">Direction the test shape has to move along to separate from this overlap.</param>
             <param name="penetrationLength">Distance the test shape has to move to separate from this overlap.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Queries.RayCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask})">
-            <summary>Casts a ray and reports the closest hit.</summary>
-            <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.Queries.RayCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask})">
+            <summary>Casts a ray and reports the closest hit. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.</summary>
+            <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
             <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
             <param name="didHit">True when the ray hit anything within Max Distance.</param>
             <param name="origin">Ray start position in world space.</param>
@@ -2181,9 +2183,9 @@
             <param name="maxDistance">Maximum travel distance of the ray.</param>
             <param name="collisionMask">Which collision layers the ray tests against. Null = Everything.</param>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Queries.SweepCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{VL.Stride.BepuPhysics.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,System.Nullable{Stride.BepuPhysics.CollisionMask})">
-            <summary>Sweeps a shape along a direction and reports the closest hit.</summary>
-            <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.Queries.SweepCast(Stride.BepuPhysics.BepuSimulation,Stride.BepuPhysics.HitInfo@,System.Boolean@,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{VL.Stride.BepuPhysics.Simulation.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,Stride.Core.Mathematics.Vector3,System.Nullable{Stride.BepuPhysics.CollisionMask})">
+            <summary>Sweeps a shape along a direction and reports the closest hit. The direction is normalized internally, Max Distance, the reported hit distances and the Angular Velocity&#39;s per-distance unit are always based on plain world units, independent of the length of the connected vector.</summary>
+            <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
             <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
             <param name="didHit">True when the sweep hit anything within Max Distance.</param>
             <param name="origin">Sweep start position in world space.</param>
@@ -2194,28 +2196,29 @@
             <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
             <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
             <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="angularVelocity">Rotation of the shape WHILE it travels, the sweep tests the resulting tumbling volume. Axis times angle, in radians per unit of traveled distance since the sweep speed is normalized (a magnitude of 6.28 completes a full turn per meter). Zero = the shape keeps its orientation.</param>
             <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.RayCastPenetratingNode">
+        <member name="T:VL.Stride.BepuPhysics.Simulation.RayCastPenetratingNode">
             <summary>
-            Casts a ray and reports all hits along it, sorted by distance.
+            Casts a ray and reports all hits along it, sorted by distance. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.RayCastPenetratingNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
-            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.RayCastPenetratingNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
             <param name="origin">Ray start position in world space.</param>
             <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
             <param name="maxDistance">Maximum travel distance of the query.</param>
             <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
             <param name="enabled">Skips the query and outputs an empty spread when false.</param>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.SweepCastPenetratingNode">
+        <member name="T:VL.Stride.BepuPhysics.Simulation.SweepCastPenetratingNode">
             <summary>
-            Sweeps a shape along a direction and reports all hits.
+            Sweeps a shape along a direction and reports all hits. The direction is normalized internally, Max Distance, the reported hit distances and the Angular Velocity&#39;s per-distance unit are always based on plain world units, independent of the length of the connected vector.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.SweepCastPenetratingNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{VL.Stride.BepuPhysics.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
-            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.SweepCastPenetratingNode.Update(Stride.BepuPhysics.BepuSimulation,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Vector3,System.Single,System.Nullable{VL.Stride.BepuPhysics.Simulation.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,Stride.Core.Mathematics.Vector3,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
             <param name="origin">Sweep start position in world space.</param>
             <param name="direction">Sweep direction in world space; its length does not matter (normalized internally, distances are world units).</param>
             <param name="maxDistance">Maximum travel distance of the query.</param>
@@ -2224,18 +2227,19 @@
             <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
             <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
             <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+            <param name="angularVelocity">Rotation of the shape WHILE it travels, the sweep tests the resulting tumbling volume. Axis times angle, in radians per unit of traveled distance since the sweep speed is normalized (a magnitude of 6.28 completes a full turn per meter). Zero = the shape keeps its orientation.</param>
             <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
             <param name="enabled">Skips the query and outputs an empty spread when false.</param>
         </member>
-        <member name="T:VL.Stride.BepuPhysics.OverlapNode">
+        <member name="T:VL.Stride.BepuPhysics.Simulation.OverlapNode">
             <summary>
             Reports all overlaps of a shape placed at a position: the overlapping collidables plus
             the direction and distance needed to separate. A compound collidable can produce several
             overlaps, one per overlapping child shape. Use Split to access an overlap's parts.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.OverlapNode.Update(Stride.BepuPhysics.BepuSimulation,VL.Lib.Collections.Spread{Stride.BepuPhysics.CollidableComponent}@,Stride.Core.Mathematics.Vector3,System.Nullable{VL.Stride.BepuPhysics.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
-            <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+        <member name="M:VL.Stride.BepuPhysics.Simulation.OverlapNode.Update(Stride.BepuPhysics.BepuSimulation,VL.Lib.Collections.Spread{Stride.BepuPhysics.CollidableComponent}@,Stride.Core.Mathematics.Vector3,System.Nullable{VL.Stride.BepuPhysics.Simulation.Queries.SweepShape},System.Single,Stride.Core.Mathematics.Vector3,System.Single,Stride.Core.Mathematics.Quaternion,System.Nullable{Stride.BepuPhysics.CollisionMask},System.Boolean)">
+            <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
             <param name="collidables">The collidable of each overlap, in the same order as the Output. May contain a collidable several times when it uses a compound collider.</param>
             <param name="position">Center of the test shape in world space.</param>
             <param name="shape">Shape used by the query. Null = Sphere.</param>
