@@ -29,6 +29,7 @@ public static class Queries
     /// <param name="distance">The distance along the ray or sweep where the hit occurred.</param>
     /// <param name="collidable">The Body or Static component that was hit.</param>
     /// <param name="childIndex">Index of the child shape that was hit when the collidable uses a compound collider.</param>
+    [Name("Split (HitInfo)")]
     public static void Split(SBepu.HitInfo? input,
         out Vector3 point,
         out Vector3 normal,
@@ -48,6 +49,7 @@ public static class Queries
     /// <param name="collidable">The Body or Static component the test shape overlaps with.</param>
     /// <param name="penetrationDirection">Direction the test shape has to move along to separate from this overlap.</param>
     /// <param name="penetrationLength">Distance the test shape has to move to separate from this overlap.</param>
+    [Name("Split (OverlapInfo)")]
     public static void Split(SBepu.OverlapInfo? input,
         out SBepu.CollidableComponent? collidable,
         out Vector3 penetrationDirection,
