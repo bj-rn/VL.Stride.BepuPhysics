@@ -61,7 +61,7 @@ public static class Queries
     }
 
     /// <summary>Casts a ray and reports the closest hit.</summary>
-    /// <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the ray hit anything within Max Distance.</param>
     /// <param name="origin">Ray start position in world space.</param>
@@ -90,7 +90,7 @@ public static class Queries
     }
 
     /// <summary>Sweeps a shape along a direction and reports the closest hit.</summary>
-    /// <param name="simulation">The simulation to query - from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the sweep hit anything within Max Distance.</param>
     /// <param name="origin">Sweep start position in world space.</param>
@@ -101,6 +101,7 @@ public static class Queries
     /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
     /// <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="angularVelocity">Rotation of the shape WHILE it travels, the sweep tests the resulting tumbling volume. Axis times angle, in radians per unit of traveled distance since the sweep speed is normalized (a magnitude of 6.28 completes a full turn per meter). Zero = the shape keeps its orientation.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     public static void SweepCast(
         SBepu.BepuSimulation? simulation,
@@ -114,6 +115,7 @@ public static class Queries
         [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
         Quaternion orientation,
+        Vector3 angularVelocity,
         SBepu.CollisionMask? collisionMask)
     {
         if (simulation is null || direction == Vector3.Zero)
@@ -127,7 +129,7 @@ public static class Queries
         // normalize so both are plain world units no matter what is connected.
         direction.Normalize();
         var pose = new SDefinitions.RigidPose(origin, orientation);
-        var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
+        var velocity = new SDefinitions.BodyVelocity(direction, angularVelocity);
         switch (shape ?? SweepShape.Sphere)
         {
             case SweepShape.Sphere:
@@ -157,7 +159,7 @@ public class RayCastPenetratingNode
     private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
     private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
 
-    /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="origin">Ray start position in world space.</param>
     /// <param name="direction">Ray direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the query.</param>
@@ -194,7 +196,7 @@ public class SweepCastPenetratingNode
     private readonly SpreadBuilder<SBepu.HitInfo> _builder = new();
     private Spread<SBepu.HitInfo> _result = Spread<SBepu.HitInfo>.Empty;
 
-    /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="origin">Sweep start position in world space.</param>
     /// <param name="direction">Sweep direction in world space; its length does not matter (normalized internally, distances are world units).</param>
     /// <param name="maxDistance">Maximum travel distance of the query.</param>
@@ -203,6 +205,7 @@ public class SweepCastPenetratingNode
     /// <param name="boxSize">Extents of the box shape. Every dimension must be greater than zero.</param>
     /// <param name="capsuleLength">Length of the capsule shape between the cap centers.</param>
     /// <param name="orientation">Orientation of the swept shape. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
+    /// <param name="angularVelocity">Rotation of the shape WHILE it travels, the sweep tests the resulting tumbling volume. Axis times angle, in radians per unit of traveled distance since the sweep speed is normalized (a magnitude of 6.28 completes a full turn per meter). Zero = the shape keeps its orientation.</param>
     /// <param name="collisionMask">Which collision layers the query tests against. Null = Everything.</param>
     /// <param name="enabled">Skips the query and outputs an empty spread when false.</param>
     [return: Pin(Name = "Output")]
@@ -216,6 +219,7 @@ public class SweepCastPenetratingNode
         [Pin(Name = "Box Size"), DefaultValue("1.0, 1.0, 1.0")] Vector3 boxSize,
         [DefaultValue(1f)] float capsuleLength,
         Quaternion orientation,
+        Vector3 angularVelocity,
         SBepu.CollisionMask? collisionMask,
         bool enabled = true)
     {
@@ -229,7 +233,7 @@ public class SweepCastPenetratingNode
         direction.Normalize();
         _builder.Clear();
         var pose = new SDefinitions.RigidPose(origin, orientation);
-        var velocity = new SDefinitions.BodyVelocity(direction, Vector3.Zero);
+        var velocity = new SDefinitions.BodyVelocity(direction, angularVelocity);
         switch (shape ?? SweepShape.Sphere)
         {
             case SweepShape.Sphere:
@@ -260,7 +264,7 @@ public class OverlapNode
     private Spread<SBepu.OverlapInfo> _result = Spread<SBepu.OverlapInfo>.Empty;
     private Spread<SBepu.CollidableComponent> _collidables = Spread<SBepu.CollidableComponent>.Empty;
 
-    /// <param name="simulation">The simulation to query — from a SimulationSettings or GetSimulation node.</param>
+    /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="collidables">The collidable of each overlap, in the same order as the Output. May contain a collidable several times when it uses a compound collider.</param>
     /// <param name="position">Center of the test shape in world space.</param>
     /// <param name="shape">Shape used by the query. Null = Sphere.</param>
