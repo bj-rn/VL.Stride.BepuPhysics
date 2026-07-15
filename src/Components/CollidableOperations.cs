@@ -116,7 +116,9 @@ public static partial class Bodies
     /// <summary>
     /// Casts a ray against a single collidable, ignoring everything else in the simulation.
     /// Cheaper and more precise than a scene wide query when only one object matters,
-    /// for example picking against a specific body.
+    /// for example picking against a specific body. The direction is normalized internally,
+    /// Max Distance and the reported hit distances are always plain world units, independent
+    /// of the length of the connected vector.
     /// </summary>
     /// <param name="collidable">The collidable to test. No hit while null or not attached to a simulation.</param>
     /// <param name="hit">The closest hit: point, normal, distance and child index.</param>
@@ -305,7 +307,7 @@ public class GetCollidersNode
 
 /// <summary>
 /// Casts a ray against a single collidable and reports all hits along it, for example the
-/// entry and exit points through its shapes. Everything else in the simulation is ignored.
+/// entry and exit points through its shapes. Everything else in the simulation is ignored. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
 /// </summary>
 [ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Bodies")]
 public class CollidableRayCastPenetratingNode

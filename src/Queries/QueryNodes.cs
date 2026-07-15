@@ -60,7 +60,7 @@ public static class Queries
         penetrationLength = input?.PenetrationLength ?? default;
     }
 
-    /// <summary>Casts a ray and reports the closest hit.</summary>
+    /// <summary>Casts a ray and reports the closest hit. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.</summary>
     /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the ray hit anything within Max Distance.</param>
@@ -89,7 +89,7 @@ public static class Queries
         didHit = simulation.RayCast(origin, direction, maxDistance, out hit, collisionMask ?? SBepu.CollisionMask.Everything);
     }
 
-    /// <summary>Sweeps a shape along a direction and reports the closest hit.</summary>
+    /// <summary>Sweeps a shape along a direction and reports the closest hit. The direction is normalized internally, Max Distance, the reported hit distances and the Angular Velocity&#39;s per-distance unit are always based on plain world units, independent of the length of the connected vector.</summary>
     /// <param name="simulation">The simulation to query, from a SimulationSettings or GetSimulation node.</param>
     /// <param name="hit">The closest hit: point, normal, distance and the collidable that was hit.</param>
     /// <param name="didHit">True when the sweep hit anything within Max Distance.</param>
@@ -150,7 +150,7 @@ public static class Queries
 }
 
 /// <summary>
-/// Casts a ray and reports all hits along it, sorted by distance.
+/// Casts a ray and reports all hits along it, sorted by distance. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
 /// </summary>
 [ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
 public class RayCastPenetratingNode
@@ -187,7 +187,7 @@ public class RayCastPenetratingNode
 }
 
 /// <summary>
-/// Sweeps a shape along a direction and reports all hits.
+/// Sweeps a shape along a direction and reports all hits. The direction is normalized internally, Max Distance, the reported hit distances and the Angular Velocity&#39;s per-distance unit are always based on plain world units, independent of the length of the connected vector.
 /// </summary>
 [ProcessNode(Name = "SweepCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
 public class SweepCastPenetratingNode
