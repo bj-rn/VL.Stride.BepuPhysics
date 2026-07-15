@@ -2,10 +2,10 @@ using Stride.Core.Mathematics;
 using VL.Core.Import;
 using SBepu = global::Stride.BepuPhysics;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Components;
 
-// Character level operations of the Bodies category (see BodyOperations.cs for the summary).
-public static partial class Bodies
+// Character level operations of the Components category (see BodyOperations.cs for the summary).
+public static class Character
 {
     /// <summary>Sets the character's movement velocity from Direction times its Speed while Apply is true.</summary>
     /// <param name="character">The character to move.</param>

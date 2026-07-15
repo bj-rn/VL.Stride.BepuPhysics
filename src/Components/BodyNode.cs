@@ -3,13 +3,12 @@ using VL.Core.Import;
 using VL.Lib.Collections;
 using VL.Model;
 using VL.Stride.BepuPhysics.Internal;
-using static VL.Stride.BepuPhysics.Bodies;
 using SBepu = global::Stride.BepuPhysics;
 using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SContacts = global::Stride.BepuPhysics.Definitions.Contacts;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Components;
 
 /// <summary>
 /// A dynamic or kinematic rigid body simulated by BepuPhysics.

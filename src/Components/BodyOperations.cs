@@ -2,8 +2,9 @@ using System.ComponentModel;
 using Stride.Core.Mathematics;
 using VL.Core.Import;
 using SBepu = global::Stride.BepuPhysics;
+using SDefinitions = global::Stride.BepuPhysics.Definitions;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Components;
 
 /// <summary>
 /// Operations on Body, Static and Character components: state and settings readers,
@@ -11,7 +12,7 @@ namespace VL.Stride.BepuPhysics;
 /// The Character is also a Body, so the Body operations work on it as well.
 /// Mutating operations run while Apply is true, connect a Bang for one-shot application.
 /// </summary>
-public static partial class Bodies
+public static class Body
 {
     /// <summary>Applies a one-frame impulse at the center of mass while Apply is true.</summary>
     /// <param name="body">The body to apply the impulse to.</param>
@@ -187,6 +188,76 @@ public static partial class Bodies
         mass = inverseMass > 0f ? 1f / inverseMass : 0f;
         centerOfMass = body.CenterOfMass;
         speculativeMargin = body.SpeculativeMargin;
+    }
+
+    /// <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
+    /// <param name="body">The body to read. Outputs the component defaults while null.</param>
+    /// <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
+    /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate.</param>
+    /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+    /// <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
+    /// <param name="continuousDetection">Continuous collision detection mode of the body.</param>
+    public static void BodySettings(SBepu.BodyComponent? body,
+        out bool kinematic,
+        out float sleepThreshold,
+        out int minimumTimestepCountUnderThreshold,
+        out bool gravity,
+        out SDefinitions.InterpolationMode interpolation,
+        out ContinuousDetectionKind continuousDetection)
+    {
+        if (body is null)
+        {
+            kinematic = false;
+            sleepThreshold = 0.01f;
+            minimumTimestepCountUnderThreshold = 32;
+            gravity = true;
+            interpolation = SDefinitions.InterpolationMode.Interpolated;
+            continuousDetection = ContinuousDetectionKind.Discrete;
+            return;
+        }
+        kinematic = body.Kinematic;
+        sleepThreshold = body.SleepThreshold;
+        minimumTimestepCountUnderThreshold = body.MinimumTimestepCountUnderThreshold;
+        gravity = body.Gravity;
+        interpolation = body.InterpolationMode;
+        continuousDetection = (ContinuousDetectionKind)body.ContinuousDetectionMode;
+    }
+
+    /// <summary>
+    /// Writes the body specific settings while Apply is true.
+    /// A written property is overwritten again once the owning Body node's pin value changes.
+    /// </summary>
+    /// <param name="body">The body to write to. Use CastAs (BodyComponent) to narrow a collidable.</param>
+    /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away.</param>
+    /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
+    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
+    /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
+    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
+    /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
+    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
+    [return: Pin(Name = "Output")]
+    public static SBepu.BodyComponent? SetBodySettings(SBepu.BodyComponent? body,
+        bool kinematic = false,
+        float sleepThreshold = 0.01f,
+        int minimumTimestepCountUnderThreshold = 32,
+        bool gravity = true,
+        SDefinitions.InterpolationMode? interpolation = null,
+        ContinuousDetectionKind? continuousDetection = null,
+        bool apply = false)
+    {
+        if (apply && body is not null)
+        {
+            // Wake first — mutating a sleeping body writes into sleeping-set memory.
+            body.Awake = true;
+            body.Kinematic = kinematic;
+            body.SleepThreshold = sleepThreshold;
+            body.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
+            body.Gravity = gravity;
+            body.InterpolationMode = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
+            body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
+        }
+        return body;
     }
 
     /// <summary>Wakes the body up while Apply is true.</summary>

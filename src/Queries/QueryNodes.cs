@@ -3,11 +3,11 @@ using BepuPhysics.Collidables;
 using Stride.Core.Mathematics;
 using VL.Core.Import;
 using VL.Lib.Collections;
-using static VL.Stride.BepuPhysics.Queries;
+using static VL.Stride.BepuPhysics.Simulation.Queries;
 using SBepu = global::Stride.BepuPhysics;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Simulation;
 
 /// <summary>
 /// Stateless physics queries against the whole simulation.

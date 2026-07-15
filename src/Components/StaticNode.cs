@@ -7,7 +7,7 @@ using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SContacts = global::Stride.BepuPhysics.Definitions.Contacts;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Components;
 
 /// <summary>
 /// Immovable collision geometry (ground, walls, level geometry).

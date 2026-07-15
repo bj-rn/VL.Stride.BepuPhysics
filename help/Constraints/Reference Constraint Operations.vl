@@ -501,9 +501,8 @@
             <Pin Id="AmPoFrc3VZAOaAqlerIr9M" Name="Child" Kind="OutputPin" />
           </Node>
           <Node Bounds="1871,710,114,19" Id="GS3HnYxftuaMHEi9iJshqI">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="ApplyAngularImpulse" />
             </p:NodeReference>
             <Pin Id="PSBC2Cw64MMM4GPjHscto8" Name="Body" Kind="InputPin" />

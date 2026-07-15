@@ -436,9 +436,8 @@
             </p:TypeAnnotation>
           </Pad>
           <Node Bounds="472,550,78,19" Id="OVCIvYNtZXqLnX8mLbLXRY">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="ApplyImpulse" />
             </p:NodeReference>
             <Pin Id="QJTgjqafvOHOcG0VQjZNpL" Name="Body" Kind="InputPin" />

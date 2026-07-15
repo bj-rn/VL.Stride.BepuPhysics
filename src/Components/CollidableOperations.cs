@@ -6,11 +6,11 @@ using SColliders = global::Stride.BepuPhysics.Definitions.Colliders;
 using SDefinitions = global::Stride.BepuPhysics.Definitions;
 using SEngine = global::Stride.Engine;
 
-namespace VL.Stride.BepuPhysics;
+namespace VL.Stride.BepuPhysics.Components;
 
-// Collidable level operations of the Bodies category (see BodyOperations.cs for the summary).
+// Collidable level operations of the Components category (see BodyOperations.cs for the summary).
 // Use CastAs (BodyComponent) to narrow a CollidableComponent for the Body operations.
-public static partial class Bodies
+public static class Collidable
 {
     /// <summary>Identifies a collidable: its entity and whether it is a body or a static.</summary>
     /// <param name="collidable">The collidable to identify, for example from a RayCast hit or a ContactEvents contact.</param>
@@ -145,40 +145,7 @@ public static partial class Bodies
         didHit = collidable.RayCast(origin, direction, maxDistance, out hit);
     }
 
-    /// <summary>Reads the body specific settings. Use BodyState for pose and velocities.</summary>
-    /// <param name="body">The body to read. Outputs the component defaults while null.</param>
-    /// <param name="kinematic">Whether the body is kinematic (unaffected by forces and collisions).</param>
-    /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
-    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate.</param>
-    /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
-    /// <param name="interpolation">How the rendered motion is smoothed between fixed physics steps.</param>
-    /// <param name="continuousDetection">Continuous collision detection mode of the body.</param>
-    public static void BodySettings(SBepu.BodyComponent? body,
-        out bool kinematic,
-        out float sleepThreshold,
-        out int minimumTimestepCountUnderThreshold,
-        out bool gravity,
-        out SDefinitions.InterpolationMode interpolation,
-        out ContinuousDetectionKind continuousDetection)
-    {
-        if (body is null)
-        {
-            kinematic = false;
-            sleepThreshold = 0.01f;
-            minimumTimestepCountUnderThreshold = 32;
-            gravity = true;
-            interpolation = SDefinitions.InterpolationMode.Interpolated;
-            continuousDetection = ContinuousDetectionKind.Discrete;
-            return;
-        }
-        kinematic = body.Kinematic;
-        sleepThreshold = body.SleepThreshold;
-        minimumTimestepCountUnderThreshold = body.MinimumTimestepCountUnderThreshold;
-        gravity = body.Gravity;
-        interpolation = body.InterpolationMode;
-        continuousDetection = (ContinuousDetectionKind)body.ContinuousDetectionMode;
-    }
-
+   
     /// <summary>
     /// Writes the contact material settings shared by bodies and statics while Apply is true.
     /// A written property is overwritten again once the owning Body or Static node's pin value changes.
@@ -216,48 +183,13 @@ public static partial class Bodies
         return collidable;
     }
 
-    /// <summary>
-    /// Writes the body specific settings while Apply is true.
-    /// A written property is overwritten again once the owning Body node's pin value changes.
-    /// </summary>
-    /// <param name="body">The body to write to. Use CastAs (BodyComponent) to narrow a collidable.</param>
-    /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away.</param>
-    /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
-    /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
-    /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
-    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
-    /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
-    /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
-    [return: Pin(Name = "Output")]
-    public static SBepu.BodyComponent? SetBodySettings(SBepu.BodyComponent? body,
-        bool kinematic = false,
-        float sleepThreshold = 0.01f,
-        int minimumTimestepCountUnderThreshold = 32,
-        bool gravity = true,
-        SDefinitions.InterpolationMode? interpolation = null,
-        ContinuousDetectionKind? continuousDetection = null,
-        bool apply = false)
-    {
-        if (apply && body is not null)
-        {
-            // Wake first — mutating a sleeping body writes into sleeping-set memory.
-            body.Awake = true;
-            body.Kinematic = kinematic;
-            body.SleepThreshold = sleepThreshold;
-            body.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
-            body.Gravity = gravity;
-            body.InterpolationMode = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
-            body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
-        }
-        return body;
-    }
 }
 
 /// <summary>
 /// Reads the collider shapes of a collidable's compound.
 /// Connect a RayCast hit's ChildIndex to pick the exact shape that was hit.
 /// </summary>
-[ProcessNode(Name = "GetColliders", Category = "Stride.Physics.Bepu.Bodies")]
+[ProcessNode(Name = "GetColliders", Category = "Stride.Physics.Bepu.Components.Collidable")]
 public class GetCollidersNode
 {
     private readonly SpreadBuilder<SColliders.ColliderBase> _builder = new();
@@ -309,7 +241,7 @@ public class GetCollidersNode
 /// Casts a ray against a single collidable and reports all hits along it, for example the
 /// entry and exit points through its shapes. Everything else in the simulation is ignored. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
 /// </summary>
-[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Bodies")]
+[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Components.Collidable")]
 public class CollidableRayCastPenetratingNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
