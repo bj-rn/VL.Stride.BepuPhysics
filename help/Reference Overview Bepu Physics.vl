@@ -1,0 +1,2571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="Vfp26pdeNw3QEHU8Odjatr" LanguageVersion="2025.7.3" Version="0.128">
+  <NugetDependency Id="QhPNFrtHuz4O0hrHSXlnnN" Location="VL.CoreLib" Version="2025.7.3" />
+  <Patch Id="J473MwGHKazPcKmGRnqATy">
+    <Canvas Id="N2BQ8vElregNdHdDFDrtk2" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="JiVhZmpEu6SMuKOiC0x60C">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <CategoryReference Kind="Category" Name="Primitive" />
+      </p:NodeReference>
+      <Patch Id="TGxQMzf1XYtNPbmkXWO3ls">
+        <Canvas Id="L4fPE9SpO7HP0e5ATX5rZc" CanvasType="Group">
+          <Pad Id="I8PQCkAvF8cNg1NC2BD51P" Bounds="73,85,265,33" ShowValueBox="true" isIOBox="true" Value="Bepu Physics">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">16</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GLkjXWYfXo2L2WBGrgbGwF" Bounds="73,126,264,19" ShowValueBox="true" isIOBox="true" Value="https://docs.bepuphysics.com/index.html">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="OyI4Sb2r3iCQRIp1guaFDb" Bounds="73,153,385,19" ShowValueBox="true" isIOBox="true" Value="https://doc.stride3d.net/latest/en/api/Stride.BepuPhysics.html">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="349,575,80,19" Id="SbNWBsCIPvOQZcEV9YfYmQ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="GetSimulation" />
+            </p:NodeReference>
+            <Pin Id="KvOh6zAsULKPxpuC2dsoZ3" Name="Simulation Index" Kind="InputPin" />
+            <Pin Id="QhSXPsG3T4INcu3N3q9RD3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="109,655,89,19" Id="SeQGXiGHmpbNjm3pxEsFHo">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="SimulationReset" />
+            </p:NodeReference>
+            <Pin Id="VccDNYXKJBJOLrALiL36I7" Name="Simulation" Kind="InputPin" />
+            <Pin Id="LiQWisGYHjPNFqwD5K29I3" Name="Capture" Kind="InputPin" />
+            <Pin Id="SBRa1DDuOrMOBB6Ir7cXiQ" Name="Reset" Kind="InputPin" />
+            <Pin Id="MdnuKcbM8IeO5BEqH783NV" Name="Auto Capture" Kind="InputPin" />
+            <Pin Id="HSuOP3FplT4LbtPPbnHrtX" Name="Collision Mask" Kind="InputPin" IsHidden="true" />
+            <Pin Id="QhJ3GzvKJMAOEfANYoe0ok" Name="Collision Group Id" Kind="InputPin" IsHidden="true" />
+            <Pin Id="P14VkwV3yq2NnuIMfmWyfi" Name="Captured Bodies" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="109,575,205,19" Id="Jq8U8rnmZYtNRJm7moKMhB">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="SimulationSettings" />
+            </p:NodeReference>
+            <Pin Id="EljzduzEW1JPm2p4TsOH6m" Name="Gravity" Kind="InputPin" />
+            <Pin Id="O8iSZySDx3vLtoBDUFqIbd" Name="Linear Damping" Kind="InputPin" />
+            <Pin Id="Gr4V6HcKrARPsf7FTxNSdO" Name="Angular Damping" Kind="InputPin" />
+            <Pin Id="LBFIjpg5XAYNQYBpuyI0nY" Name="Time Scale" Kind="InputPin" />
+            <Pin Id="OBUzAJsn3SmMfEgXXrFKlo" Name="Fixed Time Step Seconds" Kind="InputPin" />
+            <Pin Id="TSoS42m4WlfQYStwNtzDLD" Name="Max Step Per Frame" Kind="InputPin" />
+            <Pin Id="ShgGUwd66BcOhSVnIHxHZl" Name="Parallel Update" Kind="InputPin" />
+            <Pin Id="UyAOkJXfJ02MKe7A9pAKGj" Name="Use Per Body Attributes" Kind="InputPin" />
+            <Pin Id="TXcbop3AWEiL3nuCuv9qs2" Name="Solver Velocity Iterations" Kind="InputPin" />
+            <Pin Id="RxpDLGXJr1bQZY4KNpixzp" Name="Solver Sub Steps" Kind="InputPin" />
+            <Pin Id="IEWZEeop27mL5jtxc57T3i" Name="Soft Start Duration Seconds" Kind="InputPin" IsHidden="true" />
+            <Pin Id="GCz9IEfF10MPiRpIa4cEKT" Name="Soft Start Substep Factor" Kind="InputPin" IsHidden="true" />
+            <Pin Id="UrDP8iPTFS4PrSETc5ENpq" Name="Collision Matrix" Kind="InputPin" IsHidden="true" />
+            <Pin Id="DWIJETDqMttOLCSlmfempp" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Krma6YJd4RaOn2uQZuwuXh" Name="Simulation Index" Kind="InputPin" IsHidden="true" />
+            <Pin Id="VJLxQhwxdUpLk85nmqZAv2" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="109,735,205,19" Id="OeFMO6uJE3SOWPByqi0JT6">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="SimulationUpdate" />
+            </p:NodeReference>
+            <Pin Id="FIaWE4P9KMsNggv3x0rhg8" Name="Output" Kind="OutputPin" />
+            <Pin Id="FJCbjTADnw8OlpKdHEp0XK" Name="Steps Last Frame" Kind="OutputPin" />
+            <Pin Id="B5pmHNfn8jMNPJjE446F7R" Name="Step Count" Kind="OutputPin" />
+            <Pin Id="PcWO1kEUx6TQDCPLUHZ4nd" Name="Time Step" Kind="OutputPin" />
+            <Pin Id="GC05Hx6MFT2P2V4hl8dXCj" Name="On Simulation Update" Kind="OutputPin" />
+            <Pin Id="Akvx8xok8XKNxSJxF5MiIJ" Name="On After Simulation Update" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="NL9SZe4krb1NgA2IoCFxxx" Name="Constraints" Bounds="1330,526,1293,1712">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="530,655,85,19" Id="RZeLuAlwDSQO4foHQcatRU">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <CategoryReference Kind="ClassType" Name="Queries" />
+              <Choice Kind="OperationCallFlag" Name="RayCast" />
+            </p:NodeReference>
+            <Pin Id="KZBjJssgNIiPzhLw1BiKVP" Name="Simulation" Kind="InputPin" />
+            <Pin Id="C0JFECNm2GYLX5lLU6nfov" Name="Origin" Kind="InputPin" />
+            <Pin Id="MuWb8ABRpbKMDtN5DMgFSZ" Name="Direction" Kind="InputPin" />
+            <Pin Id="IMFpflrVhM0NSMKMkZjNjx" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="FoYPUj6f9riLknZLcUvuvY" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="PY7ffH3wJohMtoGi7ZrRZL" Name="Hit" Kind="OutputPin" />
+            <Pin Id="OcTLXFr8ezAP446KUg7Mop" Name="Did Hit" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="663,655,205,19" Id="C8iXhXLzjXxPSJOXcZMc52">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <CategoryReference Kind="ClassType" Name="Queries" />
+              <Choice Kind="OperationCallFlag" Name="SweepCast" />
+            </p:NodeReference>
+            <Pin Id="Ux9L3rqU2vzN9h963aS0Tf" Name="Simulation" Kind="InputPin" />
+            <Pin Id="TFX1RUUjypkQKWnmYyJ7bp" Name="Origin" Kind="InputPin" />
+            <Pin Id="AlTJDqbjhyMNszs3fgvyaI" Name="Direction" Kind="InputPin" />
+            <Pin Id="IHO8RCRdXTwLyb1s1DASMa" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="O9nvqBfYmjoO66bgJmK5YE" Name="Shape" Kind="InputPin" />
+            <Pin Id="DCAUcycBbSAOIA8LlrCL29" Name="Radius" Kind="InputPin" />
+            <Pin Id="Hb3fa64U80bOVPXxYp8R2S" Name="Box Size" Kind="InputPin" />
+            <Pin Id="IAHfM6EHgnUQdvwJx8KPDh" Name="Capsule Length" Kind="InputPin" />
+            <Pin Id="LrNGfwHZmFVOLn4mozfZEn" Name="Orientation" Kind="InputPin" />
+            <Pin Id="BnqaVPhjP4nLnoSrLLcJpo" Name="Angular Velocity" Kind="InputPin" />
+            <Pin Id="FGWQrc7UzhoMI1eDBvFill" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="HxRtxNrAESGMtq9YRMCuyY" Name="Hit" Kind="OutputPin" />
+            <Pin Id="ULr9gdIMhb3Ns4QOlJ6lCE" Name="Did Hit" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="530,705,85,19" Id="Uz7S7rdnyOhPNjcgLK1LPY">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <CategoryReference Kind="ClassType" Name="Queries" />
+              <Choice Kind="OperationCallFlag" Name="Split (HitInfo)" />
+            </p:NodeReference>
+            <Pin Id="KUd8KgwEnmfNASPHHX2fbC" Name="Input" Kind="InputPin" />
+            <Pin Id="K0CuFxtx6pHNOeXGZiH3so" Name="Point" Kind="OutputPin" />
+            <Pin Id="KWGqfGbJVGaMpwIdxji84k" Name="Normal" Kind="OutputPin" />
+            <Pin Id="OQP5egt67JuMXgxhkPTiuc" Name="Distance" Kind="OutputPin" />
+            <Pin Id="JjgilMLRFBQLZrKxt6eSxc" Name="Collidable" Kind="OutputPin" />
+            <Pin Id="ANKdi02BkDeOklPsebDKPc" Name="Child Index" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="932,715,45,19" Id="KwaUtTaVbtXOLsuYzekktO">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <CategoryReference Kind="ClassType" Name="Queries" />
+              <Choice Kind="OperationCallFlag" Name="Split (OverlapInfo)" />
+            </p:NodeReference>
+            <Pin Id="UvdLB64yx6PNuQAbWhFkLM" Name="Input" Kind="InputPin" />
+            <Pin Id="BZFPIcPKRFtOTTgFLOZJf9" Name="Collidable" Kind="OutputPin" />
+            <Pin Id="N35huM0DscnO9lbAGEonhf" Name="Penetration Direction" Kind="OutputPin" />
+            <Pin Id="CVBxd8QUyP2P70tKIHRhdy" Name="Penetration Length" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="932,655,205,19" Id="K2y98UxLWhyNTPJxJQEgAs">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Overlap" />
+            </p:NodeReference>
+            <Pin Id="MxyEUhueSZnMWSp7PXTpN4" Name="Simulation" Kind="InputPin" />
+            <Pin Id="QtSpS7ZA7VUP1JuLCo1jgi" Name="Position" Kind="InputPin" />
+            <Pin Id="EBSqDjzVYQmO3yEM0IRTN0" Name="Shape" Kind="InputPin" />
+            <Pin Id="J67PvntP8CcPydwIk77KHM" Name="Radius" Kind="InputPin" />
+            <Pin Id="HfnV6yX0aR3OEcrOCIT93e" Name="Box Size" Kind="InputPin" />
+            <Pin Id="VvJ77u76AxGO3Efl1qHOws" Name="Capsule Length" Kind="InputPin" />
+            <Pin Id="Np2qrHfjp1QLTO9C6j3lRK" Name="Orientation" Kind="InputPin" />
+            <Pin Id="EEgubPJrfboQB57l6KBt0d" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="LRVdUtKHnWNPv4F3Jto1uF" Name="Enabled" Kind="InputPin" />
+            <Pin Id="NmsWGoKR2PuLpDH2CCzPHd" Name="Output" Kind="OutputPin" />
+            <Pin Id="K4bPjAufChdPggadyoPrCz" Name="Collidables" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="932,685,52,19" Id="SJeqjij8cMcOycOQzvkG4P">
+            <p:NodeReference LastCategoryFullName="Collections.Interfaces.IReadOnlyList" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="MutableInterfaceType" Name="IReadOnlyList" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="GetSlice" />
+            </p:NodeReference>
+            <Pin Id="BJUCDfIDNkZOpJW7krnzkm" Name="Input" Kind="StateInputPin" />
+            <Pin Id="RRZLA7icwl3NzY7DHKMrbL" Name="Default Value" Kind="InputPin" />
+            <Pin Id="P6dRkd1HzjNLq3YSJcP0fZ" Name="Result" Kind="OutputPin" />
+            <Pin Id="MEhHcNBDINtLxKVp9M8ggS" Name="Index" Kind="InputPin" />
+          </Node>
+          <Node Bounds="530,755,105,19" Id="CHmcyDFhBYINiPoNFEpzKZ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <CategoryReference Kind="ClassType" Name="Queries" />
+              <Choice Kind="ProcessAppFlag" Name="RayCastPenetrating" />
+            </p:NodeReference>
+            <Pin Id="KhFabGz2SznM4sLhvOo8W2" Name="Simulation" Kind="InputPin" />
+            <Pin Id="NroSazmBk2oM3VG0fQW9i6" Name="Origin" Kind="InputPin" />
+            <Pin Id="JbHR6MhJIUBM0edxUb88Y0" Name="Direction" Kind="InputPin" />
+            <Pin Id="VwqPvzK60kMP8YuGiump40" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="M7kJHZWK8ZaOSUlBa7R9xV" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="IrOwKYKauZyLsAnfWvBr11" Name="Enabled" Kind="InputPin" />
+            <Pin Id="QFcVSPvxl2TLnGvSJSSORB" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="663,755,225,19" Id="OtqbVeAZyBELM3pih2LsTt">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Queries" NeedsToBeDirectParent="true" />
+              <Choice Kind="ProcessAppFlag" Name="SweepCastPenetrating" />
+            </p:NodeReference>
+            <Pin Id="Qj1XEatHloyNUGRKQtdWN4" Name="Simulation" Kind="InputPin" />
+            <Pin Id="APnrxXJYKvOM4RzHvC2T7B" Name="Origin" Kind="InputPin" />
+            <Pin Id="TrHkMi3mdHbP5s4YVpLkuk" Name="Direction" Kind="InputPin" />
+            <Pin Id="SaqlxIMypfwPAiHWeRfzjm" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="MCVI8BuQd4HOOXmW4uavyF" Name="Shape" Kind="InputPin" />
+            <Pin Id="TEXlFLjqTgCPuL3qTmRQW9" Name="Radius" Kind="InputPin" />
+            <Pin Id="ACF2bYKbA4oLNVdRrZ8Ybd" Name="Box Size" Kind="InputPin" />
+            <Pin Id="Is8FR0PMxn7M9zMbQGkYWH" Name="Capsule Length" Kind="InputPin" />
+            <Pin Id="NAJM1wBysUFNThFsHzGrBH" Name="Orientation" Kind="InputPin" />
+            <Pin Id="Isazqa1UiBPQGNHskPoRuF" Name="Angular Velocity" Kind="InputPin" />
+            <Pin Id="CCbUo5bu07IOfPvSIY5cT1" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="MEMayla6WiFPHfOgIBP25W" Name="Enabled" Kind="InputPin" />
+            <Pin Id="SWkpyyYWMGbLDD5QmMKxyG" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="TPM7FTaYWn8LwhWuiSiwof" Name="Queries" Bounds="482,602,707,222">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Overlay Id="Al6APzGL8gqOqFMI27MAy1" Name="Components" Bounds="79,855,1217,862">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="109,905,265,19" Id="Gx2mDV8wAQLMe0XI5jUolb">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Body" />
+            </p:NodeReference>
+            <Pin Id="UtvomZgahVkMuylAgqMgsW" Name="Colliders" Kind="InputPin" />
+            <Pin Id="IjStpAOojzBQARiHLBjJu2" Name="Kinematic" Kind="InputPin" />
+            <Pin Id="JMTqzASEyLbQPqz961ojNp" Name="Interpolation" Kind="InputPin" />
+            <Pin Id="TiFhIRUriKGMpwUyxl3vnz" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="QAEdCua0JccQN8F0SJS48u" Name="Collision Group" Kind="InputPin" IsHidden="true" />
+            <Pin Id="T1D3UQs5y58PymgpGf7nA4" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="P4LY7yv83oyQT0sLMItEXW" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Mj4Pb6yQfhyLHlaq3YB0UU" Name="Friction Coefficient" Kind="InputPin" />
+            <Pin Id="AeePJAEiLuGOpXfOLJ9D54" Name="Maximum Recovery Velocity" Kind="InputPin" />
+            <Pin Id="QjBG6ux32iVLkIKrmcPfw5" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="FG8kAP7ePqELUTaHNSBX68" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
+            <Pin Id="CtfQtjnXbVoNECs97WV2WF" Name="Gravity" Kind="InputPin" />
+            <Pin Id="T4k3pOBsilVONCNLWrPpPL" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="QKl4G7XOfG5NpiKTg8DpAc" Name="Contact Handler" Kind="InputPin" />
+            <Pin Id="EG1MMySzMwqPeK0bW6tEWL" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="NTeDfQNv2DbPfKRVvLzzsY" Name="Teleport To" Kind="InputPin" />
+            <Pin Id="U2mJa05ttMGPd7J7snXwZM" Name="Reset Pose" Kind="InputPin" />
+            <Pin Id="M4yOLj3EX60N8jEnUjSHoI" Name="Output" Kind="OutputPin" />
+            <Pin Id="LSRKFEsqzypPHk8gtQbqoV" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="481,905,265,19" Id="ARFdYIZNplDPAKosL3NB4r">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Character" />
+            </p:NodeReference>
+            <Pin Id="PurPd8wnDdqP77TVtLZy3U" Name="Colliders" Kind="InputPin" />
+            <Pin Id="VSeEnnpDVCgPPA1E26j2Pn" Name="Speed" Kind="InputPin" />
+            <Pin Id="G3tgEhbw0m2Qas4Stxtjn0" Name="Jump Force" Kind="InputPin" />
+            <Pin Id="KMdaI3zR2XRMD88g0oYGfc" Name="Interpolation" Kind="InputPin" />
+            <Pin Id="Pog33a4CT30QMDEJXTAUcu" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="Dny3KVckOQyOGV1MTz0nM3" Name="Collision Group" Kind="InputPin" IsHidden="true" />
+            <Pin Id="Pc2jFdMTCD9Mi27tTaoFtD" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Fi5fe5sQ7yiMqpRJsPYQBZ" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="QGWJoHDbUtSNWTFgYuNo01" Name="Friction Coefficient" Kind="InputPin" />
+            <Pin Id="FKzUmsp2fD4L5QB3m2CbtU" Name="Maximum Recovery Velocity" Kind="InputPin" />
+            <Pin Id="GX4wlAdJ6CjPCzuYThStf5" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="Kv9z65pAM0XLK7xnw4bVf8" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" IsHidden="true" />
+            <Pin Id="DxjnK7CavbNMNbd2B6Gcav" Name="Gravity" Kind="InputPin" />
+            <Pin Id="L7ujzUpBKP2Nw3P8KXIlt4" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="HOhJsQHQqVZQDU9C0uArmN" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="M9VRQhstFGBOEzDHF2CRPj" Name="Teleport To" Kind="InputPin" />
+            <Pin Id="K0fS1Ztkm1JMt240870On8" Name="Reset Pose" Kind="InputPin" />
+            <Pin Id="Mljb056t3X8NM6Tu7DOO3F" Name="Output" Kind="OutputPin" />
+            <Pin Id="MUO5CdwCenNODvyTdh329R" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="879,905,125,19" Id="Tx2n9nBylurMJowyWbeWaB">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Static" />
+            </p:NodeReference>
+            <Pin Id="E2N5DywJ9nuQSK8ytm1TOs" Name="Colliders" Kind="InputPin" />
+            <Pin Id="MDGBa3w6dGUN1JuNyjpM5l" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="VfYXfTKEQ0IQWacxKr2qCK" Name="Collision Group" Kind="InputPin" IsHidden="true" />
+            <Pin Id="MHiQfCgfC4vOSejhLsfyxf" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="LjzfFdGBfBOP50scHV3nPd" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HjdjM2ietTIPuiNuLyzFPr" Name="Friction Coefficient" Kind="InputPin" />
+            <Pin Id="IzcKdTHsm80PrOnjbl5KM9" Name="Maximum Recovery Velocity" Kind="InputPin" />
+            <Pin Id="RxdCoScp1yZMNBEuuPNEYK" Name="Contact Handler" Kind="InputPin" />
+            <Pin Id="U40MhEG2x2ENTkuOoaEfZN" Name="Collider Override" Kind="InputPin" IsHidden="true" />
+            <Pin Id="UQTMIoz83VLNUyRqwjEVmr" Name="Output" Kind="OutputPin" />
+            <Pin Id="O0uEl69UKIFLjvFKuOuGqr" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="132,965,114,19" Id="V1SshZR8gi9M7jQ229oR6g">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyAngularImpulse" />
+            </p:NodeReference>
+            <Pin Id="Tti00tf7UOVNbXwE8I91ZS" Name="Body" Kind="InputPin" />
+            <Pin Id="F1PmMdWH8YGOMPVI9N7Unv" Name="Impulse" Kind="InputPin" />
+            <Pin Id="VnwCJaTQGGSOIQMDdKy5mD" Name="Apply" Kind="InputPin" />
+            <Pin Id="B3qrVvHSvcDQTTnzosTkaE" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1005,114,19" Id="VmXkuLbByfwPAXkL82eGgU">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyImpulse" />
+            </p:NodeReference>
+            <Pin Id="MyGILOEoLQ4LRFRp9THFm9" Name="Body" Kind="InputPin" />
+            <Pin Id="UpTuJtKJwfILv81OeWZEyu" Name="Impulse" Kind="InputPin" />
+            <Pin Id="P0Mjmt4LXWTLRTCgiLwGqd" Name="Impulse Offset" Kind="InputPin" />
+            <Pin Id="AZ0zHguaZS2O418AOhSzWe" Name="Apply" Kind="InputPin" />
+            <Pin Id="BFGj74u4oyyMHmAd59Q5l0" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1045,114,19" Id="IP5iZhWglmCOyJSwfbnLUx">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyLinearImpulse" />
+            </p:NodeReference>
+            <Pin Id="AS47u0SHiJnLK06v8WrLAw" Name="Body" Kind="InputPin" />
+            <Pin Id="Epn3ATmEd7jMukMVgP2Apv" Name="Impulse" Kind="InputPin" />
+            <Pin Id="SpoPi4SR45GLPSdkOUfwbp" Name="Apply" Kind="InputPin" />
+            <Pin Id="LqQuEkmmWugLy5T0TshnXo" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1085,114,19" Id="InTSmcO9q4bLK5EkX9yXwQ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="Awaken" />
+            </p:NodeReference>
+            <Pin Id="Go1HeVwdWjEO5GIlQZhvkH" Name="Body" Kind="InputPin" />
+            <Pin Id="BLaZIHW4IMDMLAfU3sNNm3" Name="Apply" Kind="InputPin" />
+            <Pin Id="SHBGqMozX5vPan5xCKuBw3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1125,114,19" Id="RmX1puM5uCcLtTrFFJSYZ5">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="BodyMassProperties" />
+            </p:NodeReference>
+            <Pin Id="NqDJCuh5YFjObPtmweHpAa" Name="Body" Kind="InputPin" />
+            <Pin Id="T6349WIONvcLNwB9ZV6CAN" Name="Mass" Kind="OutputPin" />
+            <Pin Id="EByeKQ87a3sOORvIjbFHwz" Name="Inverse Mass" Kind="OutputPin" />
+            <Pin Id="DnNxy9H0vFqMRPveEqcHrc" Name="Center Of Mass" Kind="OutputPin" />
+            <Pin Id="Hbdzk2YenN1QGHvIoHPPuW" Name="Speculative Margin" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1165,114,19" Id="LiaBeNaB53SLLcEU6TTJfj">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="BodySettings" />
+            </p:NodeReference>
+            <Pin Id="EzbZPLqcnlPOjVV8NPFbWl" Name="Body" Kind="InputPin" />
+            <Pin Id="ByYI7jF2wzvMrwRlBDlY0Y" Name="Kinematic" Kind="OutputPin" />
+            <Pin Id="FHGHNf9R4uVM6ebdq2e46r" Name="Sleep Threshold" Kind="OutputPin" />
+            <Pin Id="CeoSDsWUQUqMoq95UpNx5O" Name="Minimum Timestep Count Under Threshold" Kind="OutputPin" />
+            <Pin Id="O44QNQTQfkcNMsQsHvqYrw" Name="Gravity" Kind="OutputPin" />
+            <Pin Id="C3K3M1UGikXPEXQ1isIcUQ" Name="Interpolation" Kind="OutputPin" />
+            <Pin Id="TOMXfgDRtbaO56y2qwZ46v" Name="Continuous Detection" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1205,125,19" Id="KQePSOW41jXL7KuTuPhcEM">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="BodyState" />
+            </p:NodeReference>
+            <Pin Id="Nn3X5aQn96GLqLrNJxFVLd" Name="Body" Kind="InputPin" />
+            <Pin Id="AL6lLeeaWqtQb50X6Hd4id" Name="Position" Kind="OutputPin" />
+            <Pin Id="NJS3hFhlkoELn123RyJQNW" Name="Orientation" Kind="OutputPin" />
+            <Pin Id="UJHxMJvOvXbNtBNBkjBamY" Name="Linear Velocity" Kind="OutputPin" />
+            <Pin Id="Vg9Ob0NefjvNcTUkJQgO2r" Name="Angular Velocity" Kind="OutputPin" />
+            <Pin Id="QpWcGCiuKdrPMlK5ZCRRWo" Name="Previous Linear Velocity" Kind="OutputPin" />
+            <Pin Id="M2Rpo39AOr7QaLTY3l2kcb" Name="Previous Angular Velocity" Kind="OutputPin" />
+            <Pin Id="FMcTRwA2xByOE2kir3e0Td" Name="Awake" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1245,125,19" Id="LkdGjQ7i2tqOAYkA7Esvam">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularVelocity" />
+            </p:NodeReference>
+            <Pin Id="MQDYWUb8DBpNNTSmuUnGTa" Name="Body" Kind="InputPin" />
+            <Pin Id="SDhgp3X0McbL0MTooPxwot" Name="Velocity" Kind="InputPin" />
+            <Pin Id="Vkaotesd3lhMNZJZt1Decc" Name="Apply" Kind="InputPin" />
+            <Pin Id="CgfsLm3iFkVOWbaDTSyNa4" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1285,145,19" Id="EgSMC54idUzNDibwd1Mbuk">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetBodySettings" />
+            </p:NodeReference>
+            <Pin Id="MZDRpJa1bd9P5t8H04DFWC" Name="Body" Kind="InputPin" />
+            <Pin Id="CoFuKMKSwvSP9q8keS2OpN" Name="Kinematic" Kind="InputPin" />
+            <Pin Id="NIkM11a5EwkLszt1AQZNWJ" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="BNlJKKx0N9iQEI58qaDwEG" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" />
+            <Pin Id="FtL4M7SM7MUL6q11qshuKm" Name="Gravity" Kind="InputPin" />
+            <Pin Id="MplL4CRflijPlowWXPq2CR" Name="Interpolation" Kind="InputPin" />
+            <Pin Id="UuYmfJafdCWMwWQN2z7wzx" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="QCidTOftHuDMyrVIvihq6o" Name="Apply" Kind="InputPin" />
+            <Pin Id="KRvTilhhJb1Ojln1IMKHi8" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1325,125,19" Id="Tqnj8Z4L3xFOadS2IqlnVw">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetLinearVelocity" />
+            </p:NodeReference>
+            <Pin Id="VTDu05ipVd2Na8SH48mSVO" Name="Body" Kind="InputPin" />
+            <Pin Id="Ghr8KcWhTbWLIGAmwfGuTq" Name="Velocity" Kind="InputPin" />
+            <Pin Id="EqJLqIcYzrVLENh7iyejQw" Name="Apply" Kind="InputPin" />
+            <Pin Id="VsVzKEhZCnBNAK1DwBgYOR" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1365,125,19" Id="IdQQlUB4cLkO5fXFgPXdEk">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetTargetPose" />
+            </p:NodeReference>
+            <Pin Id="G9XfEs23bmCMxb2F7TeO3s" Name="Body" Kind="InputPin" />
+            <Pin Id="IKRhos0wct0LMoZj6491Ob" Name="Position" Kind="InputPin" />
+            <Pin Id="F0b9eo2lv7IPGwmZYgIfen" Name="Orientation" Kind="InputPin" />
+            <Pin Id="AgxeJPLa2yOOPL1kEGddDc" Name="Apply" Kind="InputPin" />
+            <Pin Id="C8XjMLZKZzmPfNqdSh1TsK" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="132,1405,125,19" Id="VxoeTYIvWyPP5j6UeD7v9y">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="Teleport" />
+            </p:NodeReference>
+            <Pin Id="PeFy7kLSQr8MCftEyzdIJz" Name="Body" Kind="InputPin" />
+            <Pin Id="CkVi91ll60HOkfj7h62kaU" Name="Position" Kind="InputPin" />
+            <Pin Id="ENMa0K0YsFbMkG05VXsW9d" Name="Orientation" Kind="InputPin" />
+            <Pin Id="LKDof2tc9u9NmzXkhelneV" Name="Apply" Kind="InputPin" />
+            <Pin Id="EGKvL58LaBXQLweKNTc8o3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="495,965,96,19" Id="HkKdNHCx1ITO0ZA5dMXaMt">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Character" />
+              <Choice Kind="OperationCallFlag" Name="CharacterSettings" />
+            </p:NodeReference>
+            <Pin Id="NyMOgbl2RLaO9NNPmDLpRF" Name="Character" Kind="InputPin" />
+            <Pin Id="Qq0dlMRP4KqPpTM6txQNX0" Name="Speed" Kind="OutputPin" />
+            <Pin Id="Ha4MOautErYPEbgRMxOW2L" Name="Jump Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="495,1005,96,19" Id="L1WENUdcjQnQGMaN6SzVPA">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Character" />
+              <Choice Kind="OperationCallFlag" Name="CharacterState" />
+            </p:NodeReference>
+            <Pin Id="Vs1CN1O9aqYNE5UFi8Bcn0" Name="Character" Kind="InputPin" />
+            <Pin Id="CJNRWRT9BRDPryay3sY7pC" Name="Is Grounded" Kind="OutputPin" />
+            <Pin Id="TRrlm5qQc9PPcpYZ720C5x" Name="Is Jumping" Kind="OutputPin" />
+            <Pin Id="GWGfrBQPFKYNLqusKbsz5V" Name="Movement Velocity" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="495,1045,110,19" Id="RPYKbCWECa3Nr64zGJ7y5h">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Character" />
+              <Choice Kind="OperationCallFlag" Name="Move" />
+            </p:NodeReference>
+            <Pin Id="GgxNhSAL9I3P3uaQM79e55" Name="Character" Kind="InputPin" />
+            <Pin Id="LlLRHyhTV7zOCxpdszIuqr" Name="Direction" Kind="InputPin" />
+            <Pin Id="Ex0hNKbpN6eLLfHmv7AzKD" Name="Apply" Kind="InputPin" />
+            <Pin Id="PfFG4iqEzJKMSBdeRS3eh6" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="495,1085,110,19" Id="Ckdex1PsumxNWVMHYJpqR2">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Character" />
+              <Choice Kind="OperationCallFlag" Name="SetCharacterSettings" />
+            </p:NodeReference>
+            <Pin Id="C4aJUxOyQV9NKRzA5AjiHL" Name="Character" Kind="InputPin" />
+            <Pin Id="NR6Vy71Tn3FLlMUtp7VIQv" Name="Speed" Kind="InputPin" />
+            <Pin Id="KzIAXo5o4JqON9lUFZt5ht" Name="Jump Force" Kind="InputPin" />
+            <Pin Id="V5TfxZMMx33Qd28Gji4X2S" Name="Apply" Kind="InputPin" />
+            <Pin Id="BuK7CkI2iFzL2IXxHWM4Ad" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="495,1125,110,19" Id="Tz5V0paIOmaLS76rgjllO1">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Character" />
+              <Choice Kind="OperationCallFlag" Name="TryJump" />
+            </p:NodeReference>
+            <Pin Id="F3C7CAZhCb1Nt8fYeLdzvK" Name="Character" Kind="InputPin" />
+            <Pin Id="P27Upny9GKpNttjKHCQMS2" Name="Apply" Kind="InputPin" />
+            <Pin Id="RS7PjgofSd5MbIA6KvQh3q" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="146,1545,110,19" Id="VvPDv3G1nz8OttTV84u3aW">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="CollidableInfo" />
+            </p:NodeReference>
+            <Pin Id="A5jG5AvlAJZPhTwLHzbkmM" Name="Collidable" Kind="InputPin" />
+            <Pin Id="V6A7sgM7YrPNM2VEPGdpY1" Name="Entity" Kind="OutputPin" />
+            <Pin Id="MJJAaXJhFY8ParG3EDmuVZ" Name="Entity Name" Kind="OutputPin" />
+            <Pin Id="RXEctGFBephNWAQMyoWycQ" Name="Kind" Kind="OutputPin" />
+            <Pin Id="RwsAI9zcqxVOQ4N7CpZJPe" Name="Attached" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="285,1545,110,19" Id="SNXR40GVzTpNXLfwNSViR6">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="CollidableSettings" />
+            </p:NodeReference>
+            <Pin Id="ROTW7sUjUrhMNSy4Gkqu25" Name="Collidable" Kind="InputPin" />
+            <Pin Id="KJRJGqS76WDP1YFpx18XFv" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="CIGQXNLgG7bPs9rLUHDd0W" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="AxjmKCDYelnNmvpF2o4MvA" Name="Friction Coefficient" Kind="OutputPin" />
+            <Pin Id="NizWI1foLUvPnUgdhjX4IF" Name="Maximum Recovery Velocity" Kind="OutputPin" />
+            <Pin Id="BPLYoRGiYsXLR0eFPERdYo" Name="Collision Layer" Kind="OutputPin" />
+            <Pin Id="NAJqTyc3QSdN0bUmNHyzPw" Name="Collision Group" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="591,1545,84,19" Id="TozE6nbSCauLBULv11wmjI">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="CollisionGroup" />
+            </p:NodeReference>
+            <Pin Id="VjtbUoqh6qdOSIVwtjVD37" Name="Id" Kind="InputPin" />
+            <Pin Id="LlsDg4tr23nQa7NB0dCxwk" Name="Index A" Kind="InputPin" />
+            <Pin Id="BrXCw9P9HDDPgD19Fw1TiY" Name="Index B" Kind="InputPin" />
+            <Pin Id="ACeFesU6ecbPXX4Yp10XMw" Name="Index C" Kind="InputPin" />
+            <Pin Id="H2Q0IwNFhAWLPto0PHoqDh" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="462,1545,72,19" Id="TnDfN1fkbDuQBQnBZuKmWM">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="ProcessAppFlag" Name="GetColliders" />
+            </p:NodeReference>
+            <Pin Id="PcgN3CDKTRBOZureFsezjF" Name="Collidable" Kind="InputPin" />
+            <Pin Id="BFcDTzHU6sOMboYql5UPXr" Name="Child Index" Kind="InputPin" />
+            <Pin Id="Nw5CGxVfpYYNA5OW9wbfdQ" Name="Output" Kind="OutputPin" />
+            <Pin Id="VbX3AFrmZ3tNjDrf24aCQS" Name="Child" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="735,1545,65,19" Id="N4OOuyS7FK4NYxD5eS0fLc">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="RayCast" />
+            </p:NodeReference>
+            <Pin Id="L5ixPvD3vwXNDiP9lf9FY0" Name="Collidable" Kind="InputPin" />
+            <Pin Id="OS62dFaYHftNoD4DZsap29" Name="Origin" Kind="InputPin" />
+            <Pin Id="I9gNlxBsR4cP1ZqvWLbrbV" Name="Direction" Kind="InputPin" />
+            <Pin Id="EOs2sW0kMC9OZ3ajiweQVM" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="DAa55ZH90NiMrbqZiNnAh8" Name="Hit" Kind="OutputPin" />
+            <Pin Id="L0IEqiRWjhbOQCbh6eAmuu" Name="Did Hit" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="735,1595,104,19" Id="JZSQz6QbqMXQXhbWy0K8K8">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="ProcessAppFlag" Name="RayCastPenetrating" />
+            </p:NodeReference>
+            <Pin Id="I6jXSr8cQKfPom1fGlWWi4" Name="Collidable" Kind="InputPin" />
+            <Pin Id="ED6r4aeVnRXQHXnsy5InRs" Name="Origin" Kind="InputPin" />
+            <Pin Id="FiFr5jfFW4wMdiZTCEKnGY" Name="Direction" Kind="InputPin" />
+            <Pin Id="BtccHRqbheXO13eaxIsPoM" Name="Max Distance" Kind="InputPin" />
+            <Pin Id="ILMtHHtoJ6iLW8yyApFKaN" Name="Enabled" Kind="InputPin" />
+            <Pin Id="TRZovXQIIvpMQ760QHPeeB" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="285,1595,145,19" Id="Eew7MP67NTOQVAMyoN1MVw">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="SetCollidableSettings" />
+            </p:NodeReference>
+            <Pin Id="Hxg4ymLD8hBN4XmzaVIso7" Name="Collidable" Kind="InputPin" />
+            <Pin Id="UcfI6aL8AqPN9bzlDPnZkP" Name="Output" Kind="OutputPin" />
+            <Pin Id="R4LU5YcUyllOrX3IiYkIAI" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="GeNFqciqI9QPFQYdqYzEQK" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="NuhIC9cYqsTMsBv0Ht9F7H" Name="Friction Coefficient" Kind="InputPin" />
+            <Pin Id="KaJ23EWJ2hUNs51U13dRS2" Name="Maximum Recovery Velocity" Kind="InputPin" />
+            <Pin Id="DAJDAHt1bQ3LbRVmXeLacV" Name="Collision Layer" Kind="InputPin" />
+            <Pin Id="BJmsglnJW3TLosCuR8A1b9" Name="Collision Group" Kind="InputPin" />
+            <Pin Id="GXMcGCamOBmMK6HyozUgxG" Name="Apply" Kind="InputPin" />
+          </Node>
+          <Node Bounds="591,1595,65,19" Id="RhN955G5XC9NN8m1QNN8FP">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Components" />
+              <CategoryReference Kind="ClassType" Name="Collidable" />
+              <Choice Kind="OperationCallFlag" Name="Split (CollisionGroup)" />
+            </p:NodeReference>
+            <Pin Id="HuDEEvnhHTQPZowvKW4huY" Name="Input" Kind="InputPin" />
+            <Pin Id="QIzudDZdZ7ONyyH2kuglcN" Name="Id" Kind="OutputPin" />
+            <Pin Id="NrMHxrbYkioPJQO1IGYWFK" Name="Index A" Kind="OutputPin" />
+            <Pin Id="CQyQkqQg6CeLHmlI6ARxnZ" Name="Index B" Kind="OutputPin" />
+            <Pin Id="BvfLURDhmyEOFTvCCnIO0l" Name="Index C" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="MyXoIaWvGCENeB7UN7RXEx" Name="Collidable" Bounds="133,1465,753,222">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Overlay Id="R8rzLknYdafNzkTmr1K6kG" Name="Simulation" Bounds="79,525,1216,302">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="1363,605,125,19" Id="KhvoZMRDECEPqWXJCcl5JL">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularAxisGearMotor" />
+            </p:NodeReference>
+            <Pin Id="TTjf4B7zrhkM570WUxB3ML" Name="Body A" Kind="InputPin" />
+            <Pin Id="Rc9qYL0uzpWNH9TITuAxdz" Name="Body B" Kind="InputPin" />
+            <Pin Id="CEcVpzlUmXTLdfsuXeatHL" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="BsdJ51flT2HNxv9PRM1q5J" Name="Velocity Scale" Kind="InputPin" />
+            <Pin Id="NcPQuevDLfCLMoWF1A143L" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="QPQP7O3B2a1MqbLo4DVP03" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="DBFs9GhEGDBPc2XscT8wJL" Name="Enabled" Kind="InputPin" />
+            <Pin Id="IBMvf3VMWjlL8YwxQJYwEm" Name="Output" Kind="OutputPin" />
+            <Pin Id="JPFQh5TdXjJLW8R0zZjZNQ" Name="Attached" Kind="OutputPin" />
+            <Pin Id="KiFgO1MBw9kOUkpoGaCFF4" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,605,125,19" Id="AFjFJdswpd5On4dBioBray">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularAxisMotor" />
+            </p:NodeReference>
+            <Pin Id="JGUUfKnNwQgQPJrBMKicyf" Name="Body A" Kind="InputPin" />
+            <Pin Id="AudmpUlm4rkPgdk8ASJYAw" Name="Body B" Kind="InputPin" />
+            <Pin Id="OdQzCu9IPVnLEXbCWs9zZG" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="PYVGl5SfAMRMYowxkTrd6g" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="BHDSNjRxrJNOkgzO6SmsjD" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="PnrolCqdYAqO90KsKgROEc" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="SGzTy73acXIQE3Cda4ymMt" Name="Enabled" Kind="InputPin" />
+            <Pin Id="IujpE809oqmL2k2tuZGOKN" Name="Output" Kind="OutputPin" />
+            <Pin Id="JmZ6JE7GergQE5UKbLj4yA" Name="Attached" Kind="OutputPin" />
+            <Pin Id="AZCIXGJI6ZCPSkdEF6dkIK" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1773,605,125,19" Id="LquBzkUSkBKNhJw3VdXuiq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularHinge" />
+            </p:NodeReference>
+            <Pin Id="LqBAkEy4nsnQV2fbSYgfLz" Name="Body A" Kind="InputPin" />
+            <Pin Id="QlbMqL4ef2ML8R9EjwDG8g" Name="Body B" Kind="InputPin" />
+            <Pin Id="Es6zUBwix2fOHHt6OQHAr2" Name="Local Hinge Axis A" Kind="InputPin" />
+            <Pin Id="Jy1mUq3702NQWJm7NE4BeA" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="AabYxN3PGCYLcZIaJewVCN" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="PYqdFPY6wIOO84M8fiE8wI" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Md8FJeefkkXNw6KHUTmrwR" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Ob6HQgfcTF4QXVaFtJ2a5n" Name="Output" Kind="OutputPin" />
+            <Pin Id="HmKCIVNE47SNu8fEVdoY90" Name="Attached" Kind="OutputPin" />
+            <Pin Id="IhzVfA30ZsqQbikx5uun8A" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1978,605,125,19" Id="CG9HUGhnnt1QaXaG98gjml">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularMotor" />
+            </p:NodeReference>
+            <Pin Id="AyNsAJcvq71LTJMXPkobru" Name="Body A" Kind="InputPin" />
+            <Pin Id="AQi5T5ylNg4LBYY60VC6IH" Name="Body B" Kind="InputPin" />
+            <Pin Id="REj8InUFhvoPiqnMVNNQ5F" Name="Target Velocity Local A" Kind="InputPin" />
+            <Pin Id="IOyhcSivHBHMCVTr3mZjBB" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="U6pldjQLgb6Ph4UC0Y5dFa" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="P5O8RNavGiyPi1OH6Pz4CB" Name="Enabled" Kind="InputPin" />
+            <Pin Id="K6S3yoI0L2rM8BEjGA8H6K" Name="Output" Kind="OutputPin" />
+            <Pin Id="DKVY27J2m4hN4XGrOLGOLg" Name="Attached" Kind="OutputPin" />
+            <Pin Id="IJPy7Eks3mXMoZcdHfo6JI" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="2183,605,165,19" Id="OKcWKpFtDpNNGmZNga9yfK">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularServo" />
+            </p:NodeReference>
+            <Pin Id="H0T0DRjOhBnM3igJztMWHs" Name="Body A" Kind="InputPin" />
+            <Pin Id="R8FHm4RfoCRPlRq3WoI3L1" Name="Body B" Kind="InputPin" />
+            <Pin Id="CFqlzcCG0TwOkpqMRFHQ7r" Name="Target Relative Rotation Local A" Kind="InputPin" />
+            <Pin Id="C2nmUug5iJbNYrmkKwSciW" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="BFNmg1mC1DOL8SLp2R1NK5" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="VhUT47RX9xAM5qcmoqiFb7" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="Uif8OP6CiKlPzWAc7gyW8Y" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="J6n5Sa5rMltNuUjnRIl4E4" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="T9DJ5uOPTCaLwrBBcYsl0E" Name="Enabled" Kind="InputPin" />
+            <Pin Id="K6gYuUZ34GjLFm5aGpNSO7" Name="Output" Kind="OutputPin" />
+            <Pin Id="SU83rDFl8JgNe2J5rZi2oK" Name="Attached" Kind="OutputPin" />
+            <Pin Id="FYlO87dnQkWLc75qHEC5l2" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="2428,605,165,19" Id="QDhvDfAaELCNciU6JiW1cg">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="AngularSwivelHinge" />
+            </p:NodeReference>
+            <Pin Id="Ss37x1JPS0xMDCqGjIRItu" Name="Body A" Kind="InputPin" />
+            <Pin Id="SHzj561FHraNvdpxujYShQ" Name="Body B" Kind="InputPin" />
+            <Pin Id="SjX04lkNYPSOdvPyW3uhdh" Name="Local Swivel Axis A" Kind="InputPin" />
+            <Pin Id="RrfsgqZAT8qMELdl11rlN0" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="DNNNjraolrLLYRtca3DJmJ" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="PUDbbYqKOCLQE3Ka2Y29XY" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Eyo2VAOmrLHNDyDiqJMJCb" Name="Enabled" Kind="InputPin" />
+            <Pin Id="JNkbg8NbS6APuP6HnaH29C" Name="Output" Kind="OutputPin" />
+            <Pin Id="T3V6Ei0n6z9M45JpTjUmMN" Name="Attached" Kind="OutputPin" />
+            <Pin Id="MdMMf8Y0DyFMg2bbtKBwpT" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1364,755,125,19" Id="EFQGbJnUCP1LryHRaJ8Qat">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="Area" />
+            </p:NodeReference>
+            <Pin Id="Cw1aLomWn2nPjG2SAZyo5r" Name="Body A" Kind="InputPin" />
+            <Pin Id="TRWYmC2lKCkMOiauNnFAfj" Name="Body B" Kind="InputPin" />
+            <Pin Id="Sys1DOIAvrgOGRiwaEq5Vi" Name="Body C" Kind="InputPin" />
+            <Pin Id="DHwS1bQbTQZQYoY1CpMPxd" Name="Target Scaled Area" Kind="InputPin" />
+            <Pin Id="SM78jTtg66dO1l8GyYAG9e" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="QGuLR444g24M30TCDbEW6H" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HZLu3NoaAnMM6fBculHGCg" Name="Enabled" Kind="InputPin" />
+            <Pin Id="JnmeUJ3B36VMbX9QDfXj8j" Name="Output" Kind="OutputPin" />
+            <Pin Id="HZoJNbXXwm9NfdE6zZp9Wq" Name="Attached" Kind="OutputPin" />
+            <Pin Id="J8NRQFk3W74NkqEOS6Xhmh" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,905,125,19" Id="BP9gyXuaKWYLOPV4hXlAFI">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="BallSocket" />
+            </p:NodeReference>
+            <Pin Id="F7ZxEgzmOKrMPXsKW7OhdH" Name="Body A" Kind="InputPin" />
+            <Pin Id="OBZORyxpdEPOaAYoKY6xKe" Name="Body B" Kind="InputPin" />
+            <Pin Id="Vaf8YfvZm7dOADvHnsmSIF" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="UflPJUrNA8yNzVtgrdzVrr" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="KJJ0uPfQMY2MFyAJhicaD8" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="IQ5NViVTXXkOpBEP9hTssC" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="D0Rs44wVPbxMhuAr2f25UB" Name="Enabled" Kind="InputPin" />
+            <Pin Id="CrBAx8kDRddLWhKSyAvR2r" Name="Output" Kind="OutputPin" />
+            <Pin Id="Kbq2EyZOQhtLMOdROUKxZl" Name="Attached" Kind="OutputPin" />
+            <Pin Id="Fnfs9XgpPlBPGSpiNGNT1g" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,906,125,19" Id="HwZoQ6RPrJYL5Z9ZroqgK9">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="BallSocketMotor" />
+            </p:NodeReference>
+            <Pin Id="J2jBIrBcx2aOISglS2uaOf" Name="Body A" Kind="InputPin" />
+            <Pin Id="V2XN68a3SO0NgWXKAS6HoL" Name="Body B" Kind="InputPin" />
+            <Pin Id="BSN92rPlph2OJdqB0PX9A7" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="HTOFDXPhSsWOCDg5yjFCac" Name="Target Velocity Local A" Kind="InputPin" />
+            <Pin Id="Nk9hWLy8O6rPOWUu1NQISs" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="IpfYiybVefKOG9uICLrqZD" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="Pn7jARJgkLZPyorpiaPhmc" Name="Enabled" Kind="InputPin" />
+            <Pin Id="S7oLQN0255jLDq7JrlI32X" Name="Output" Kind="OutputPin" />
+            <Pin Id="Gfg0NcS30eHLRap1SaZuyC" Name="Attached" Kind="OutputPin" />
+            <Pin Id="DbpShBZpFT3NBu96r9H5UV" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1774,905,185,19" Id="TG2jhGpdUmhLK9J9cDC8NB">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="BallSocketServo" />
+            </p:NodeReference>
+            <Pin Id="DHK771d6nQqMLZJwNIaY2x" Name="Body A" Kind="InputPin" />
+            <Pin Id="LqJ1FxjNh7ML6dM8VPPpKK" Name="Body B" Kind="InputPin" />
+            <Pin Id="TjFHvM110hKLzzbJvRr8wU" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="QoO93K0m769PclYERc3tyT" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="KKZjvrEVmRfN1KyixWhSEn" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="FZoZEgrG0WoNLe1pDQitlS" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HsYoHXnVqD8Md4PMd6M3iS" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="QBw4o9S4skkPM9ga6Nr04D" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="NHy9XCCVHC2M6AgDdVttiQ" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="FBD369De5X5OVi9XMWQ6ip" Name="Enabled" Kind="InputPin" />
+            <Pin Id="IH7ehdpClXHNif09vA7BQM" Name="Output" Kind="OutputPin" />
+            <Pin Id="NfDHHnR50ojL9FfsumwHpC" Name="Attached" Kind="OutputPin" />
+            <Pin Id="PGXygRs9mMUOJPdjB08nEu" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1054,125,19" Id="PmmnqoqeAS9PKev1Gwvspy">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="CenterDistance" />
+            </p:NodeReference>
+            <Pin Id="V3cJag93VgVMDdZKuAseIk" Name="Body A" Kind="InputPin" />
+            <Pin Id="MZ7IvuCsfU6PIt5HzBfLeM" Name="Body B" Kind="InputPin" />
+            <Pin Id="AwPb0L7yDUdPM2AfsXdusI" Name="Target Distance" Kind="InputPin" />
+            <Pin Id="FeSbISzEE1LNzAS4tbdbHL" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="CMb9O2gdOXkOWsOpq3d2Dy" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="SMIkm2GxAG6QHjMnO01928" Name="Enabled" Kind="InputPin" />
+            <Pin Id="J36buKnfJUWQVe5VDRSXE2" Name="Output" Kind="OutputPin" />
+            <Pin Id="V2mDMU0BLghLFOl517VIHj" Name="Attached" Kind="OutputPin" />
+            <Pin Id="M87rEHZLDBsLZOUQmPvzUE" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,1055,165,19" Id="OXORiyvloI3OL8moaa50Ha">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="DistanceLimit" />
+            </p:NodeReference>
+            <Pin Id="L0i4rTtyBn0PX2BrwNCKpA" Name="Body A" Kind="InputPin" />
+            <Pin Id="QSnImb195P3OeFd5f0etQJ" Name="Body B" Kind="InputPin" />
+            <Pin Id="J9AglCQ8zFkLbGRUVcv9ey" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="AAYeN2qfqB6NDeYkt4ETEQ" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="MBaMYzL0k56OhuPpQGMJoG" Name="Minimum Distance" Kind="InputPin" />
+            <Pin Id="BCyqN7SCRIfMJJc5kBFmoO" Name="Maximum Distance" Kind="InputPin" />
+            <Pin Id="AoYnxLjRXcjMhncitMKkrh" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="FJduf8jcDnyNbeZnE6IHo9" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="JCjFSw5O8RZLtrnKm5pXzd" Name="Enabled" Kind="InputPin" />
+            <Pin Id="N7MS3DX1IUtOyM8P1auCoE" Name="Output" Kind="OutputPin" />
+            <Pin Id="DNLmwunXCRpLlcwSmydjd3" Name="Attached" Kind="OutputPin" />
+            <Pin Id="PaENA7iJiHRP0vPS1q9v4Q" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1774,1054,205,19" Id="RWzIl4f25URNrCgzFiMEg6">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="DistanceServo" />
+            </p:NodeReference>
+            <Pin Id="EYHIz2RmwTIMAhvJu84jE2" Name="Body A" Kind="InputPin" />
+            <Pin Id="Dmy1Ze8bicLPkmIMYQob7P" Name="Body B" Kind="InputPin" />
+            <Pin Id="FVUZNwqCDxSPySeXhAPs0k" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="TPlKbvd0zBrNa5vXcU6zfm" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="QsH88V2peaNN7mvN3hVXQz" Name="Target Distance" Kind="InputPin" />
+            <Pin Id="OMOl17mHbRyMaq8ZwcSsxN" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="RkvikzTQEH1LHk8b5UStQm" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Mi1K9FjAdtiQD8SeaxYMic" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="AnSwccrLwfvPcYwWgBmTeR" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="G068i7uXPcAPbGhIH7L4ty" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="RHch0DfC6BgMjUlWE2rg9e" Name="Enabled" Kind="InputPin" />
+            <Pin Id="NXTTAFP59eHMKG5dsPghmq" Name="Output" Kind="OutputPin" />
+            <Pin Id="Few7tIlyOW9Onu2oKj2AR2" Name="Attached" Kind="OutputPin" />
+            <Pin Id="B70mrmBx9wvMnAsRJ7VLCT" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1364,1205,165,19" Id="GYob8wDUSYdNV9ZC5aPZZU">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="Hinge" />
+            </p:NodeReference>
+            <Pin Id="Rl0I8FtvDSlPnInIvaXgzw" Name="Body A" Kind="InputPin" />
+            <Pin Id="Psjr92r9yHHL3qXZ19ZEz6" Name="Body B" Kind="InputPin" />
+            <Pin Id="Jq2ySngOa0SMEAPe9XzhK3" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="FeU5FI24IHcNeSX4aMO2M6" Name="Local Hinge Axis A" Kind="InputPin" />
+            <Pin Id="RKOVZ5iRy68MtrzeOnb6qn" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="IJ4NbZ0VLJ7PtAJewkBjnV" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="Uog9vxRLENyLapVwFeqZpK" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Q9nalOqizzVPpOvHGH1Anh" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="EW5plM6a5uxNsjO70NTvqu" Name="Enabled" Kind="InputPin" />
+            <Pin Id="HersCNjZhrMP5fRZuf2zVL" Name="Output" Kind="OutputPin" />
+            <Pin Id="O0qqgT4EKdTNQgkWGKDtmy" Name="Attached" Kind="OutputPin" />
+            <Pin Id="NMhmnQZyaIyM8ABBRhEbag" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1354,185,19" Id="MpsVkSRNqLLLUOee9LXzl4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="LinearAxisLimit" />
+            </p:NodeReference>
+            <Pin Id="DhaKtDTGVpnQRBPn5nkbnD" Name="Body A" Kind="InputPin" />
+            <Pin Id="SAM6udXh5x5MW55l3SH7F0" Name="Body B" Kind="InputPin" />
+            <Pin Id="R8cKRnfHi4eLCbd2wVwmR1" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="C7HD7rAsQzyMdbuPIUtMjx" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="Fpw0UJx4smzNkpQhKlXPbo" Name="Local Axis" Kind="InputPin" />
+            <Pin Id="N1CAW5IFIWgMhWW57Exqnz" Name="Minimum Offset" Kind="InputPin" />
+            <Pin Id="DvUHcytfBI7OhSgXFIrHYQ" Name="Maximum Offset" Kind="InputPin" />
+            <Pin Id="H5neKmg9QNILYQR483aGpq" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="GK2cQzsG1JUPLCgWAYjoxW" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="TM2wXEFY2KsMzbBFnn7ViE" Name="Enabled" Kind="InputPin" />
+            <Pin Id="QKu5dvfT3qDO2DYMw4M7na" Name="Output" Kind="OutputPin" />
+            <Pin Id="B2CfTokgTa1LtVKE4PiigB" Name="Attached" Kind="OutputPin" />
+            <Pin Id="M60TkYHECFyPEkrpr3qBAR" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,1355,165,19" Id="Ah5y5nIoad2NRPATZsbxv0">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="LinearAxisMotor" />
+            </p:NodeReference>
+            <Pin Id="MQh82yS3k6HLeZQtJ4CEFp" Name="Body A" Kind="InputPin" />
+            <Pin Id="KNFe9WcAAdINAvLaApPqjW" Name="Body B" Kind="InputPin" />
+            <Pin Id="R2k7d9ya81YN4QsivflIMd" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="Rf5C0Hh1AsQPcRvukQfN0w" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="Hqr6FE2Gjb9OuVDEzs0wLo" Name="Local Axis" Kind="InputPin" />
+            <Pin Id="INUj9n8n99rQAyJF1ldw1R" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="THFF4xm2FAhN9WRP3kxnou" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="Km77N2ySETHPGfxjLREQjy" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="MlcYOWtOXDYOLyaeQvC2Xl" Name="Enabled" Kind="InputPin" />
+            <Pin Id="CptFvlZnfYIQLhUnxHLaQR" Name="Output" Kind="OutputPin" />
+            <Pin Id="LbWZ4cWrQ53O93qrjDsjDx" Name="Attached" Kind="OutputPin" />
+            <Pin Id="MMVbFrcfyNyNYSMoFZbA8X" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1774,1354,225,19" Id="M4irU1EnqsSP7IRd4UJGsT">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="LinearAxisServo" />
+            </p:NodeReference>
+            <Pin Id="I4z8qaBigWxOU4eXELgQvw" Name="Body A" Kind="InputPin" />
+            <Pin Id="DuP0S3uiMsFMJon4bxWeGj" Name="Body B" Kind="InputPin" />
+            <Pin Id="FUfrKavrEghMq6d97FQrG5" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="BWbXArPdmKiOpnV01z4e8I" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="EeLtYg4N0HmNxCXmnEd9mQ" Name="Local Plane Normal" Kind="InputPin" />
+            <Pin Id="Tl5qUKz0vqWPx66wnCcyri" Name="Target Offset" Kind="InputPin" />
+            <Pin Id="PqsTB0jm86QMsy4QLHktnK" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Ru66Phia0CHL7ppvIoD4hv" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="QEji0tUHIXmNocfw4MQOHk" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="RxsT0WAFPvTMeM2xNUU7Wa" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="C7B2ObRzSOBOBomLCGgNKr" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="HepUsgp6ZI2OSQy0y2imbe" Name="Enabled" Kind="InputPin" />
+            <Pin Id="AmcMNPc24YiN2pIIR3f75U" Name="Output" Kind="OutputPin" />
+            <Pin Id="DE6AtN0ncZoLCcxLzYFb3W" Name="Attached" Kind="OutputPin" />
+            <Pin Id="VggemM5LzRqMRhQJlMFR3r" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1505,125,19" Id="IJJrefHEKXYMPLUYhpEEWH">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="OneBodyAngularMotor" />
+            </p:NodeReference>
+            <Pin Id="CWrBjDsUN6IPsSzslSaaNI" Name="Body" Kind="InputPin" />
+            <Pin Id="TJvNgD2fcaCLzorKK4HOaE" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="FkKlP7JgupwNz7ravE3174" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="HcIu7gMF2IsPJwKqwiMwfg" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="IHAHUNQKfh8QHFyxgFCLhW" Name="Enabled" Kind="InputPin" />
+            <Pin Id="GWLBW3b7PhbLzV0xSVrEuh" Name="Output" Kind="OutputPin" />
+            <Pin Id="H91X0UlGYX9MyFZxcDYtpT" Name="Attached" Kind="OutputPin" />
+            <Pin Id="L20ssX8YpvkPSN6pHxiZRE" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,1505,145,19" Id="MipViWoj80SPLHVIBzi3bg">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="OneBodyAngularServo" />
+            </p:NodeReference>
+            <Pin Id="CcNa8enP8ZQNDkZ9xHvxRf" Name="Body" Kind="InputPin" />
+            <Pin Id="GhLeixtRInGMeoLdA7gwFe" Name="Target Orientation" Kind="InputPin" />
+            <Pin Id="KJbAB9GJ0b1NQubRtkPaXC" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="TM70u0QIoDqO2mtKrJU0OM" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="KpRRRVC5PXALJi7GLWK9dM" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="V8g8sqLXGSYNvj4DXkzluE" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="Qu7I4CapLpbOvzWYRnFRxM" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="UGgGHY6poGcNJGknEFxTMH" Name="Enabled" Kind="InputPin" />
+            <Pin Id="GoTcL28IEf8LtZl36VN5wr" Name="Output" Kind="OutputPin" />
+            <Pin Id="CKG89sWTXelPZ5n1butwBp" Name="Attached" Kind="OutputPin" />
+            <Pin Id="UrgvjaLvvqhPAoNTtgezgp" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1773,1505,125,19" Id="U1lJ0Cixlw6LC3YsYwpBVD">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="OneBodyLinearMotor" />
+            </p:NodeReference>
+            <Pin Id="Rx9I3eZcGi9LV4yN2nRcJH" Name="Body" Kind="InputPin" />
+            <Pin Id="VyTFpGjhuBnMFjBsqq1IL8" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="T8d3D8Os4AiPfVuwiuq6fc" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="Kc3zf2r3vAWNCbf31r3v1w" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="T5lelT0dM9XNTroewgui6F" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="BpKzRgM9aBKPGCV2mJfabx" Name="Enabled" Kind="InputPin" />
+            <Pin Id="EN7rqxpEirAMdc0ZAtAlag" Name="Output" Kind="OutputPin" />
+            <Pin Id="NQ4g2jhqwGyOKU7DeifYPV" Name="Attached" Kind="OutputPin" />
+            <Pin Id="E3R3fgSzWM8MtW6t4Jw2Wo" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1978,1505,165,19" Id="BYnlIUYGvNSLple1rPsMwq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="OneBodyLinearServo" />
+            </p:NodeReference>
+            <Pin Id="CifSLw10pVfQEnR7iBTXdx" Name="Body" Kind="InputPin" />
+            <Pin Id="E1x71IkjJRXPd22TgPfs77" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="IYGciQsBD1pPvJYVYvI41Z" Name="Target" Kind="InputPin" />
+            <Pin Id="KxZPLFnnssRM2F4mHhmn9y" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="JEWrkBZAiwsPPT76NMrv8Y" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="EzeAiiz8uIIN8QNwOLMUVR" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="Cp150LVKFlgNmoFnBMlMUi" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="MfEgeAfnrigLyBtjRUvYqJ" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="Kci01t3NLalPtDbAQkUBsZ" Name="Enabled" Kind="InputPin" />
+            <Pin Id="VsAZn0cXnotLMoCALPgOgF" Name="Output" Kind="OutputPin" />
+            <Pin Id="CdOKGyQ5xhSLcWksuhXq43" Name="Attached" Kind="OutputPin" />
+            <Pin Id="P5Kvn3iB1EDOwV2WPMRF4l" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1655,205,19" Id="JBjptSSVJuFNpDuO6hoI8y">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="PointOnLineServo" />
+            </p:NodeReference>
+            <Pin Id="BqSyH3CafbKNyNY0Pig5hL" Name="Body A" Kind="InputPin" />
+            <Pin Id="AhP8dj7u2eJPA8Qhp3G0sj" Name="Body B" Kind="InputPin" />
+            <Pin Id="UHJnG6UtJnUNpmuYQJqsBD" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="AGrqXj3QA5tNiPY61cfMzj" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="J99cqyfX6UJQKUvYyKqz8x" Name="Local Direction" Kind="InputPin" />
+            <Pin Id="HJVhlPRfXcsNm0CLIe9Q40" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Rsbt4mRqlVWMaKussbPDpl" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="RqTDwLrqtdLLtLb5L5zM54" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="K9VJt6gajAQNSJHfX7gIFQ" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="VbH7mraTHGTLBowtzuBKBa" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="UMc18iVoCDwPyjk1sR4YJe" Name="Enabled" Kind="InputPin" />
+            <Pin Id="FmrEtUwDIKMLCJC8f8usn2" Name="Output" Kind="OutputPin" />
+            <Pin Id="IoXc9UDqaZxNUvnGC9xwyv" Name="Attached" Kind="OutputPin" />
+            <Pin Id="JeX8KL815lwOd5CLObCk1m" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1805,145,19" Id="DUaCwKQKgqrNIsHNVC6uqf">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="SwingLimit" />
+            </p:NodeReference>
+            <Pin Id="EfOhaZBOYmwONGPritJoSt" Name="Body A" Kind="InputPin" />
+            <Pin Id="KcQHzNktQfOLSvXd8NiQU2" Name="Body B" Kind="InputPin" />
+            <Pin Id="NIV2A1xY9GqPS7uMq7TPAx" Name="Axis Local A" Kind="InputPin" />
+            <Pin Id="Ay0izcOTlNDOQChRYorQYE" Name="Axis Local B" Kind="InputPin" />
+            <Pin Id="J2v74L4Z2KlLHKLe9L3rtq" Name="Maximum Swing Angle" Kind="InputPin" />
+            <Pin Id="MlWwkIWbYWIQBRDXvl2yLU" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="MNarvASLX9dLeaRLg9vKnd" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="BljuMz5xp9xMnhFRTDfFSt" Name="Enabled" Kind="InputPin" />
+            <Pin Id="HgXn5LbfL55QSIGyf9plUS" Name="Output" Kind="OutputPin" />
+            <Pin Id="KfVNflFOYvEL6r6rZ20drc" Name="Attached" Kind="OutputPin" />
+            <Pin Id="L3Uzmlp10RWLIQuEbVcbJ5" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,1205,165,19" Id="EFaAGgAld3nP6VIWqIwhuk">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="SwivelHinge" />
+            </p:NodeReference>
+            <Pin Id="GfuKwrvKymONTz4hQ5lPxg" Name="Body A" Kind="InputPin" />
+            <Pin Id="A5IPe2cukAuN7MyeZQ0Mfe" Name="Body B" Kind="InputPin" />
+            <Pin Id="IhAp6dsrskZO7dAF5Dtg2p" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="T973gZArfb7OIfP1q3FB8p" Name="Local Swivel Axis A" Kind="InputPin" />
+            <Pin Id="Ce1LKUuYF8SMkNFWykidtn" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="NcTvh7xF9pfQaawvUQmgZ7" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="G4biVzwbaT3OCV6BbHdIRL" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="BOP71YM92ogNghBZRXC9Ea" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="CRttKiBmOzXOUlaoRyOW9Y" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Ir42cBuQM1GPvCX92fNXjG" Name="Output" Kind="OutputPin" />
+            <Pin Id="CNgBNEpOgKBMUgAssP4KKK" Name="Attached" Kind="OutputPin" />
+            <Pin Id="NJcEhUs6lUwLAIwSd7RsrV" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1567,756,145,19" Id="FdMK443pbbiMEO9nMqYThQ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="Volume" />
+            </p:NodeReference>
+            <Pin Id="LblTw8zAiStNIvzpxBhV0X" Name="Body A" Kind="InputPin" />
+            <Pin Id="JjqXQCnog7UQK0rjh9ZepD" Name="Body B" Kind="InputPin" />
+            <Pin Id="JpSrCERd88jQFMzSJHLnaa" Name="Body C" Kind="InputPin" />
+            <Pin Id="K6UPdWVAFH2PhUAFXtXfOD" Name="Body D" Kind="InputPin" />
+            <Pin Id="TB5NuQ1n5qeLRCBbVKp5U8" Name="Target Scaled Volume" Kind="InputPin" />
+            <Pin Id="K8cA0HSaRvqP5JOJSKW5Lp" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="RiU2XxS2UtJLYaead879n4" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="CjDI6L7bGyfLesv7XaKuv3" Name="Enabled" Kind="InputPin" />
+            <Pin Id="VkHEd5tqeJFQL3mI0JJnuw" Name="Output" Kind="OutputPin" />
+            <Pin Id="HJuVn27hCppP3cXWJMBdsT" Name="Attached" Kind="OutputPin" />
+            <Pin Id="NkqgRb22SrDP6KcNO3hOV2" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,1955,165,19" Id="SE8P6ec0ky8O96Yspe5X2C">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="TwistLimit" />
+            </p:NodeReference>
+            <Pin Id="IwJFWMezzsLQVx2zkFj9N6" Name="Body A" Kind="InputPin" />
+            <Pin Id="VHEb77AlG7pLcarRjWMmKK" Name="Body B" Kind="InputPin" />
+            <Pin Id="B90sVsgM9k0MAIXfKjSP5z" Name="Local Basis A" Kind="InputPin" />
+            <Pin Id="BCkclZlZRicM0sNLHvshya" Name="Local Basis B" Kind="InputPin" />
+            <Pin Id="Pqo521artH5QIPlfxeSTpi" Name="Minimum Angle" Kind="InputPin" />
+            <Pin Id="KMvQJuAqC1yPLZVhPVHHSU" Name="Maximum Angle" Kind="InputPin" />
+            <Pin Id="OZDym2ViSAGMw7m2DDKxM6" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="HaWh95lrM3xPFhsKEyBvl2" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="OvZvajbLlsOOxCHv2pkcdA" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Jkp9ESH1IVENjzbvY9YMkd" Name="Output" Kind="OutputPin" />
+            <Pin Id="JubqXsPcG1DO98bB5wgkkQ" Name="Attached" Kind="OutputPin" />
+            <Pin Id="LGPF0WbNDVgPPxxEAucOGx" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1568,1955,145,19" Id="MhDnCPCxPV5QYX23VZfCgH">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="TwistMotor" />
+            </p:NodeReference>
+            <Pin Id="AubiPvxr3cJMOol7r8grX2" Name="Body A" Kind="InputPin" />
+            <Pin Id="Ep66mk0yyT7NT3eJe3wpTk" Name="Body B" Kind="InputPin" />
+            <Pin Id="An6TdWSpyGwPXtiPwEoG9m" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="SmtL0KhCumcPK7icPrU5M8" Name="Local Axis B" Kind="InputPin" />
+            <Pin Id="V5cg0WmTO6DM4AxUA1gFte" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="Cnp4yTFk4IlP8NdGDAXOp7" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="Lv1wWg7To6KN1fKLqnLdJF" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="STayNTzMqgtLgaGnqO1Qpc" Name="Enabled" Kind="InputPin" />
+            <Pin Id="O1k0QJg54JnNgzDlkhsIiG" Name="Output" Kind="OutputPin" />
+            <Pin Id="EfpvTDPOuhwOHsxF1VZSSd" Name="Attached" Kind="OutputPin" />
+            <Pin Id="DtAnUkxWAxNPKFM6XTicPD" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1773,1955,205,19" Id="I5sH5KLpu8lNCRY1OI1V4N">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="TwistServo" />
+            </p:NodeReference>
+            <Pin Id="M0ZzX0xt7tRL2kaJ1aNfs9" Name="Body A" Kind="InputPin" />
+            <Pin Id="KO0eFUoFqKaNN2U85mNTgU" Name="Body B" Kind="InputPin" />
+            <Pin Id="ClsFe9azyQ0PTaG7j9Fn2a" Name="Local Basis A" Kind="InputPin" />
+            <Pin Id="P8KVO7fJbGhNy16tLgv2Sf" Name="Local Basis B" Kind="InputPin" />
+            <Pin Id="M8ABj1XFVEOMmayIX39Vxw" Name="Target Angle" Kind="InputPin" />
+            <Pin Id="CQ4ULpBn21mMQpX94BizjA" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="QIt7iHbJfBKMI71jkJx6ws" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="TfZT1r0MzBDMufcxn3qRbb" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="A4rGiJzEomAQKOJKjtWttZ" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="DjRIE9lSIQhPIO0O1SNWUh" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="RtTrjLEyRzfPkG3fgHQrad" Name="Enabled" Kind="InputPin" />
+            <Pin Id="QsZY1CqovE4N2Pz194O2W9" Name="Output" Kind="OutputPin" />
+            <Pin Id="T6T7wxDh6P8PFP2D70T63C" Name="Attached" Kind="OutputPin" />
+            <Pin Id="VBKjnViJWnIP7DVRgpCKIh" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,2105,165,19" Id="FNkdsE63MyPPCZnrYAD6fG">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <Choice Kind="ProcessAppFlag" Name="Weld" />
+            </p:NodeReference>
+            <Pin Id="NdOXod8fOiqLecIj8hu9jc" Name="Body A" Kind="InputPin" />
+            <Pin Id="S6p2h2gdTN5MgdFtyeB8NY" Name="Body B" Kind="InputPin" />
+            <Pin Id="OCKWhutxaEiLZ58WP2vcC5" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="QSQeHw6ZM77LhyZfG2ANtM" Name="Local Orientation" Kind="InputPin" />
+            <Pin Id="KmVEGsZtVPoNkNqePKeUTF" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="E6ECB2BLj3wMzi8RowmjYz" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HRvjtsoQrJ0OHTXQicYoy5" Name="Enabled" Kind="InputPin" />
+            <Pin Id="IQRQL0M9c40MHwUGJt1aMo" Name="Output" Kind="OutputPin" />
+            <Pin Id="G2X122nF6w4QTP4FV0fJRU" Name="Attached" Kind="OutputPin" />
+            <Pin Id="ReRdTq99WYzPJw6HJpJ14a" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1363,647,156,19" Id="GT75qH1fcehPZqhAJ5F4fq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularAxisGearMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="O7ffxEGs9ZFMo2FKpV7jEQ" Name="Constraint" Kind="InputPin" />
+            <Pin Id="IrnhwfisLbtLCrzyCHA0qT" Name="Local Axis A" Kind="OutputPin" />
+            <Pin Id="O5DcIka14cjOR5wWMbNqBh" Name="Velocity Scale" Kind="OutputPin" />
+            <Pin Id="DipG0xkyGK0NVnlAhc2DaX" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="LtfCwEIT99mOevmboLcYFU" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,677,169,19" Id="Lly8MFI5g8nMYhmX0N2JYC">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularAxisGearMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="F1rSCYW1DMYNl3VNkj3CN4" Name="Constraint" Kind="InputPin" />
+            <Pin Id="PHkwieB7OZHP0xiO5usiEE" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="KsFmlcF8Z8oObJDLzXON5B" Name="Velocity Scale" Kind="InputPin" />
+            <Pin Id="JRkoLqifllUPWSkajGNdH6" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="OHtTnubHZo8QdOfQuv0XaG" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="Dasc4vuJ18vNmk3bY5b8QG" Name="Apply" Kind="InputPin" />
+            <Pin Id="O9rITLr9eCqNejHghz6kYv" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,647,135,19" Id="NtvlNC1703nQQvYniJ286w">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularAxisMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="M4JoLoHhjfPOKPqwlNJsR4" Name="Constraint" Kind="InputPin" />
+            <Pin Id="TylPKmxBnq3LtGxK7beKEx" Name="Local Axis A" Kind="OutputPin" />
+            <Pin Id="UGcanubZWESMjL5rLBbwT2" Name="Target Velocity" Kind="OutputPin" />
+            <Pin Id="Azw8R0Gs9fNOvbNRpESSlp" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="CXpxKx7lIkOLzONRQfdmMI" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,677,148,19" Id="H5HDvNJXs2PNwKPtg3uPi5">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularAxisMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="QxRlu6h7iHVMTxnr79FYkf" Name="Constraint" Kind="InputPin" />
+            <Pin Id="QyUdkhOrNEuPa4Lon9kYXN" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="Kdpuljdd6GfOpAxWUBXa2Q" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="NqtYClh3IgvL385KnE7vdE" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="LSSltw1jE61NWKlL5IPeqF" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="CsHMa9h7A2VM9juuuLGhI0" Name="Apply" Kind="InputPin" />
+            <Pin Id="Vdi5DCTPYRVNqSeKfjpCBB" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,647,135,19" Id="UNYN0qFQRUXPNZdBHtpYQG">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="QXQeDJR11m4N7uK0VgNhLT" Name="Constraint" Kind="InputPin" />
+            <Pin Id="N7XpE7h1w1tPnSyU62JAIM" Name="Local Hinge Axis A" Kind="OutputPin" />
+            <Pin Id="J3Vl8oMVFXJPCosszdStx6" Name="Local Hinge Axis B" Kind="OutputPin" />
+            <Pin Id="RXz4V6sUjv5QCk7SMW5qbo" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="SDopxAvrPsLPD9egGeBmDs" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,677,148,19" Id="PNFlX93fr70MIA0cOMw6hR">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="CYNa1ptXlKNOLubLIuzBUJ" Name="Constraint" Kind="InputPin" />
+            <Pin Id="JLMAC7so4LWP9hRa358ndi" Name="Local Hinge Axis A" Kind="InputPin" />
+            <Pin Id="LsMQj1FAxIeLqBXwuvHP8D" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="IHB0Q2dNoc6Mumnr29ZYCx" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Lhvl4rR05LxMOLgMFQguCg" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="BM7Kmirb4eJQIr7XkGz1ko" Name="Apply" Kind="InputPin" />
+            <Pin Id="Ax2DUzDNd9gPES6EwvPkEF" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1978,647,135,19" Id="AbCPiavAkQuM82e4UHzdh3">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="IC64ZwNFikcPD177ZbxA2M" Name="Constraint" Kind="InputPin" />
+            <Pin Id="MYyivfKOVkoLFiEn47dNAI" Name="Target Velocity Local A" Kind="OutputPin" />
+            <Pin Id="Dwsl5ZmVDUGOmHiLU1Qoir" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="C2QtS2Cf2hJM4oDHZweayV" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1978,677,148,19" Id="Hf5xxbjvljgQY0zz5tB2b4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="DxgY1yNqzUlNfJcKQnkQRb" Name="Constraint" Kind="InputPin" />
+            <Pin Id="OUrJmJVJEaGM8XUqJe9cef" Name="Target Velocity Local A" Kind="InputPin" />
+            <Pin Id="C1iQqbnSYDvP3YLvmqdD7O" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="TM8VDRhgymWLESa0Bff6kD" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="Qu2BoIVYrfKPFBHIkw1jgt" Name="Apply" Kind="InputPin" />
+            <Pin Id="Nss5gjDkc0JNnjpocWZQBi" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="2183,647,135,19" Id="Cii5JGEaCPuN0mc9fiACtI">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularServoSettings" />
+            </p:NodeReference>
+            <Pin Id="OXymB1uTvPANRUjZ4LSAzK" Name="Constraint" Kind="InputPin" />
+            <Pin Id="N0n99nJPjgHPQw5WrN0lfD" Name="Target Relative Rotation Local A" Kind="OutputPin" />
+            <Pin Id="HvPSwXjhhKROAfnY7lFsgD" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="B1aiIHkxMNSNQQFB9Uc8WX" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="Dyk8Fy1IpzyPX6ybvO0HH8" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="HQZO989ec6kQLVGxbVb8LE" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="EvtuQpsmgWAOGOHhTW86X0" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="2183,677,148,19" Id="KNhA4cCw2eQQdnFkmUWd08">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularServoSettings" />
+            </p:NodeReference>
+            <Pin Id="Dmh4jMVKeW3LhN3uucHJFI" Name="Constraint" Kind="InputPin" />
+            <Pin Id="Qg2uGNrhsdLQMKWbJUZ13Y" Name="Target Relative Rotation Local A" Kind="InputPin" />
+            <Pin Id="ViHYndVK7qJLgCrtGuMnXy" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="AFLA479lhKJNXsN5vHma0q" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Mw15Rm1HVgZLaaN5yXIIOQ" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="KAXw7KRqKccM8dhbMiPAn0" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="FARxWs3sjAqNELLBefpIeZ" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="VvuftK4Kww5N2BC9mmRlFE" Name="Apply" Kind="InputPin" />
+            <Pin Id="Q2in29YoTmnNtB9Ne2ehDJ" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="2428,647,142,19" Id="LuZuMbXbXwaLo3IEpTDOR4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AngularSwivelHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="MRckmyHAIe5LHchdWLXwGs" Name="Constraint" Kind="InputPin" />
+            <Pin Id="AeT87nKGn7LLawyOgO312z" Name="Local Swivel Axis A" Kind="OutputPin" />
+            <Pin Id="EV6z8nb6kybPAJUGAX1XOW" Name="Local Hinge Axis B" Kind="OutputPin" />
+            <Pin Id="M7yv0G1TBT4PwW1QV6whLh" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="JiGwD41bY8uOvVDRCoxrST" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="2428,677,156,19" Id="KEVWz4wswI4LZFiquupSHz">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularSwivelHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="OIRzenieeCFOHbRyRvJzlt" Name="Constraint" Kind="InputPin" />
+            <Pin Id="KRNbDeyhwgxPT5H6BnQaEe" Name="Local Swivel Axis A" Kind="InputPin" />
+            <Pin Id="AgpMZzaOgG8M7c6JixSmkK" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="CnyfPmvh5tZNfldjTzh5w6" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="PAKQQySuWfDLptNaFv5jl5" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="RLmCpDCwid9NGj6jn7xChW" Name="Apply" Kind="InputPin" />
+            <Pin Id="GdjQGzfCAd7NsLLJ1aXIh3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1364,797,73,19" Id="L52rJaWjddGQObXhZKzyZm">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="AreaSettings" />
+            </p:NodeReference>
+            <Pin Id="OKXF1HLxZHqPL1kPzhLAG2" Name="Constraint" Kind="InputPin" />
+            <Pin Id="EDc3mcZa3ZlNNNBr9bj9hB" Name="Target Scaled Area" Kind="OutputPin" />
+            <Pin Id="Ke3QpRAqkxDNnRI6Ngu2Jz" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="FtVrGwyIhxMMKJyfIgGJg1" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1364,827,87,19" Id="UIUBCARH6SpOPSraq7yme4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetAreaSettings" />
+            </p:NodeReference>
+            <Pin Id="AAbwjvFCYsgNtfMRm7js7D" Name="Constraint" Kind="InputPin" />
+            <Pin Id="MVuCvs8cen4Nt63GbCzCvD" Name="Target Scaled Area" Kind="InputPin" />
+            <Pin Id="QV8FcqKClghP91ae1DmnJM" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="NdoTjXQFFQfQF7QiQwB6UB" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HEOshtiKXOVPgxxdFhPiCz" Name="Apply" Kind="InputPin" />
+            <Pin Id="RneYarnM0ywPKX3hrBX1p9" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1567,797,87,19" Id="ImzxnfR70L5PL6rHh3cgly">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="VolumeSettings" />
+            </p:NodeReference>
+            <Pin Id="JnaQX3inxLNLnNdivdkafB" Name="Constraint" Kind="InputPin" />
+            <Pin Id="Js38nKEcKqMOhMk7cb2yzh" Name="Target Scaled Volume" Kind="OutputPin" />
+            <Pin Id="V7yJGoyJS2UPMPfyy1D1M5" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="EqQibZ8OVxlMQebYgr5GtQ" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1567,827,101,19" Id="GOAMxRc3wWPLMH26RSt2vw">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetVolumeSettings" />
+            </p:NodeReference>
+            <Pin Id="NnfqIGrFoDqLhT0r9xNE3J" Name="Constraint" Kind="InputPin" />
+            <Pin Id="TWl7NqYI9O0NsYY84UXaze" Name="Target Scaled Volume" Kind="InputPin" />
+            <Pin Id="IsRbYQYSMCrN2VP5KOI4gs" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="VmAte8JnqsaN9w7pDB17CC" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="KhTYXioVJkML4DLJvb9vBm" Name="Apply" Kind="InputPin" />
+            <Pin Id="IjV6nNthksgOVlWraVRVnJ" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,947,98,19" Id="P5EMVZRH5SUPAS3GgDEZmj">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="BallSocketSettings" />
+            </p:NodeReference>
+            <Pin Id="VKcJGEoQ3H0MkPvNWHw6ZC" Name="Constraint" Kind="InputPin" />
+            <Pin Id="NGptWjfT6zOOoR9PU7HVHl" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="Cy2Cf5wq0yHNM2gSdSDZzj" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="HPG9QSY8wTLQP9aLLOyKp3" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="JMzeK1vTSDQOqyqj8gL8p4" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,977,112,19" Id="FlUsBOR1wbbMBNrqY6kj4u">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetBallSocketSettings" />
+            </p:NodeReference>
+            <Pin Id="CoahOeBWbVsOLWEgnZnkfj" Name="Constraint" Kind="InputPin" />
+            <Pin Id="KbBsanSy4uMOtKWJrTk5Df" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="GF5dMIpmfMGNvSG3iRjaZM" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="GqUBNR7RhxcN3h0xTUrd2F" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="NwXoeOQaRpmNbutNtiW45R" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="LbEyOAOV20aQBGdPnWNpwf" Name="Apply" Kind="InputPin" />
+            <Pin Id="H1cZsl3P8WkPMJSaYmsNTk" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,947,125,19" Id="FEnByw41BJ9OvELHJN872Y">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="BallSocketMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="BQPFODmxuyAMWBxyj0REdM" Name="Constraint" Kind="InputPin" />
+            <Pin Id="QBTzsXFEbUyMb077fs5lf7" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="Io8v1nH0ReIPeexsWmkps6" Name="Target Velocity Local A" Kind="OutputPin" />
+            <Pin Id="VpcHEJerFRuNaKrrBH2mtw" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="Ni5Bph8lLL3QDzWg8C3BQK" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,977,139,19" Id="NMQ4AEjImueOYfDBJ4jUDt">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetBallSocketMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="U4mrt5xOPT3Onll8PDH0pB" Name="Constraint" Kind="InputPin" />
+            <Pin Id="H8VFiM7vwX8ONWlhf2Qruy" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="IQfvOYI6yDUObysXmlcJyN" Name="Target Velocity Local A" Kind="InputPin" />
+            <Pin Id="RgS5izDsiJnNS1h1OowrmA" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="EvRFstlvXAwL4a7VqMIvB9" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="GFf2RIyfoBENBCw3IAloIE" Name="Apply" Kind="InputPin" />
+            <Pin Id="E1PeD6v6UBSQH6PxM217vu" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,947,125,19" Id="DWFM0JXoqrmLPvtxsMuluC">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="BallSocketServoSettings" />
+            </p:NodeReference>
+            <Pin Id="RfqjIc4U48GNoOwNIgouth" Name="Constraint" Kind="InputPin" />
+            <Pin Id="NgNzokac4XRPtz6U7awPzW" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="AKhiw4ahpdHOkBCmuIeXrK" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="TyJBy0IVRsFP8M0SzhNFQv" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="AnHM2FLSl0iPDFDqNIHiaz" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="OONfszV4cAsPf8zl6iRv0X" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="MzxEJ8D6XoiLN60EKvKwyu" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="EWApQEB6FtVM9AJ3RzoWuZ" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,977,165,19" Id="RW9G7X1Ahz2LZkNNmH6fo8">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetBallSocketServoSettings" />
+            </p:NodeReference>
+            <Pin Id="V5zyVQ9PQaqM25LSbhLxeM" Name="Constraint" Kind="InputPin" />
+            <Pin Id="RF4ZGvySRR4NGgUL5qslJa" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="BLZYU7hUoO5OjP0NS7AYUa" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="MuAkXBr0qgvPkXOrUFFWhp" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="MBH2YT6vo1PPIWcNzgHIl8" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Np1xSziOTjvQB3S9HLYrZ2" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="VHxYkfNDlDfQEEe62q9FqY" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="VT6dWVIG54cMIpnH6IDdJm" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="Du2WWjlfWWmMWjzLYONQIb" Name="Apply" Kind="InputPin" />
+            <Pin Id="B485IU9kOBpNubkVXPAv7W" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1097,122,19" Id="TzCfzBpGpVNOjjYrdk4Sx4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="CenterDistanceSettings" />
+            </p:NodeReference>
+            <Pin Id="ToDnkV2R5n4PEET1etC6qt" Name="Constraint" Kind="InputPin" />
+            <Pin Id="V6hWcpw4kKqQTFokjH3jIy" Name="Target Distance" Kind="OutputPin" />
+            <Pin Id="GVkfFoo6JLCPRuSmKQ8W6t" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="MQBfove5zgJPyM7VQiQoDH" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1127,135,19" Id="Ta64nw50hx8Lkbz4CRm7Vv">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetCenterDistanceSettings" />
+            </p:NodeReference>
+            <Pin Id="F4I0sna0IhELS6HGIJp59Q" Name="Constraint" Kind="InputPin" />
+            <Pin Id="NMMycKn6cKFM7vS4hDXVl0" Name="Target Distance" Kind="InputPin" />
+            <Pin Id="CG5haWCDaCXLrwvsgLb2Ra" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="T5CSVAvGeDQN04xmVr5vDX" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Koff1HD2552MjTmLTdkqyD" Name="Apply" Kind="InputPin" />
+            <Pin Id="JnaKM1eTaVfN39s3sDKzjK" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1097,125,19" Id="OlqgTaWrfRgQb9XQaHXh5n">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="DistanceLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="M5UDMCc2WXHQIikHS4wjOW" Name="Constraint" Kind="InputPin" />
+            <Pin Id="LuxJzjEhmfTMuGuWsNhpnT" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="B0FF6nGJI5fL81UZod5sDr" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="FLU42Lr9w4PQasZKftOHjF" Name="Minimum Distance" Kind="OutputPin" />
+            <Pin Id="OhiQYblEWdgLqXTwDAzdvq" Name="Maximum Distance" Kind="OutputPin" />
+            <Pin Id="Jsc8GqXTgj9PZLapZYEKzx" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="DD5Nepxr09WNuWP6wJGpK1" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1127,145,19" Id="GvoJdZZOBjINMhAvsEhovF">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetDistanceLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="IISHu2nCMvaLdtBG42NPaC" Name="Constraint" Kind="InputPin" />
+            <Pin Id="ICJqBA6lSaBNhbaWvVH4mf" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="CVjEtuOlK5fPvioUB1N9ms" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="SbyJoZ86yqCQOiuLp0KnoH" Name="Minimum Distance" Kind="InputPin" />
+            <Pin Id="DGRRLQSrPEHLzJSCRhynkm" Name="Maximum Distance" Kind="InputPin" />
+            <Pin Id="FzIPbrdtQTiOCXWb4infim" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="I3TSd4CYCPALakjs6dvzIw" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="CXuaW7OJ1XmM1MKT4WPXB9" Name="Apply" Kind="InputPin" />
+            <Pin Id="TQ6l4CQMnDVO9sU5qjKJ2Z" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,1097,145,19" Id="UshMlGxEvQ4PRWPVmcXNlz">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="DistanceServoSettings" />
+            </p:NodeReference>
+            <Pin Id="AAA2Zsl9wFqNxhsnruJ7Fg" Name="Constraint" Kind="InputPin" />
+            <Pin Id="SoQBKFnfZlWN7poBVDpr5s" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="IKi24fKrtNDMfj31z7sZQc" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="PjCrYHWqelqQA0d6ihW7uW" Name="Target Distance" Kind="OutputPin" />
+            <Pin Id="JvPK7dGgc7UPhIqdi0rl4J" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="Ql2rFh6LrG8OrGcaXHXAmD" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="IazDgQ44bfZPkeYQsbh5Uf" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="RuvXizhnRfLLvlPDyav2R4" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="BL6Eiqj2LBYQap1Xi8RZBK" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,1127,185,19" Id="MRdrPkKsHqBLkKu220NPXv">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetDistanceServoSettings" />
+            </p:NodeReference>
+            <Pin Id="LCoCRM3C0BXOSIqafeFlq4" Name="Constraint" Kind="InputPin" />
+            <Pin Id="DVc4GJPtcxUNsR7gaUwdw1" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="DesCpES2BpqNiCEOOJewOk" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="FA8FGRhK4XxNbdnkq7SFd2" Name="Target Distance" Kind="InputPin" />
+            <Pin Id="KbSu9hpZ8etPBldFmVskTV" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="KqBiDQ5oXsuPh1SJnHYF9V" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="KBilcvAshfDPDwZsBfplPQ" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="KR9XFyhCV3bQUOrcORakYC" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="IzDYCBUyWDmQAkW3HmWdpM" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="KLlaBl9ONZAQZmDWf2W5D8" Name="Apply" Kind="InputPin" />
+            <Pin Id="QKyh1F8eBBZNSnGoXO1Nwt" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1364,1247,122,19" Id="UDogmXDWHENL1EVwoi0f5G">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="HingeSettings" />
+            </p:NodeReference>
+            <Pin Id="RrXqgem6UVZQdYs7CiCCIh" Name="Constraint" Kind="InputPin" />
+            <Pin Id="IPeaXe8FulCQTQ27LNW0NM" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="IJrqkgdIsAKNjFJJI9v50L" Name="Local Hinge Axis A" Kind="OutputPin" />
+            <Pin Id="RfIGcJYpwakNgnrWGwSreM" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="OLU1emJwdObNbbDeHSaAJQ" Name="Local Hinge Axis B" Kind="OutputPin" />
+            <Pin Id="JAvzcfvMH5pO3MHuGJXuoF" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="HLBZU4wgAwvQbEgqC3Zrb2" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1364,1277,145,19" Id="OUHMewf3QaJPnC7vEAhymD">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="AvGBoe9Hb74MmBcWwRK40F" Name="Constraint" Kind="InputPin" />
+            <Pin Id="Ly784MhNlngMwnA7bzSiYq" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="FH4ukmgCJcqPqO1PQcHcDC" Name="Local Hinge Axis A" Kind="InputPin" />
+            <Pin Id="Q6XFimc9KlXPOpDd2LmA7v" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="MnMHppHzHXcLeRES9lyfhi" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="II8BHiGWV2zQE3quZnZcDG" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="FICGniLljG9OA9PvXtUGlA" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="TSS2lkMmRCxLMImljzC29n" Name="Apply" Kind="InputPin" />
+            <Pin Id="L5H8012lJ4CM3AuTq5ZKat" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1569,1247,125,19" Id="Vn9xym74lGPLQilnhtghnX">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SwivelHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="K33mym3Et71N9z4FNPTFcm" Name="Constraint" Kind="InputPin" />
+            <Pin Id="HVNz8RMDwOjMeOqTtSwZSU" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="PedEELIJUyCLXy18YLmXMc" Name="Local Swivel Axis A" Kind="OutputPin" />
+            <Pin Id="SZef9IMLMURQa0aTZoKf45" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="M5v1UTMTApPQdXGRzXoilv" Name="Local Hinge Axis B" Kind="OutputPin" />
+            <Pin Id="KW2Ib8pcKl4PkpYCBFromx" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="RG7kiNTshAYLJ6LqaLmEpq" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1569,1277,145,19" Id="S9VUdOh5P6yLGaEZmfQa0L">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetSwivelHingeSettings" />
+            </p:NodeReference>
+            <Pin Id="TtpWfV5eddNQFkmvoGZang" Name="Constraint" Kind="InputPin" />
+            <Pin Id="H91E612NZxuNxvTiQFKSdR" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="LgONBNtIBnpPtku1vkUId8" Name="Local Swivel Axis A" Kind="InputPin" />
+            <Pin Id="ONJAq0XqnvxNmfiYbUfdQr" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="JNWLf82GrfwLsQith8S2jF" Name="Local Hinge Axis B" Kind="InputPin" />
+            <Pin Id="HWUj9p21lSBPS0JNhtnQQa" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="MrZrvTBJiyBLInYD6pUbO6" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="JBI6oP8yVwJNMLzAfDHmni" Name="Apply" Kind="InputPin" />
+            <Pin Id="Ubelt0vAsabL88lydfskhx" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1397,125,19" Id="EGWdFbg65PuQIxP6DvwWII">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="LinearAxisLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="JSabFZAYqbzNrfgNNCrFai" Name="Constraint" Kind="InputPin" />
+            <Pin Id="OjVJR17cYYiM4cA1vdIHWk" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="Ge6rNFxfMQALKKv5mCVWcY" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="UOpzTbwZlnsLKz71XAJfeN" Name="Local Axis" Kind="OutputPin" />
+            <Pin Id="FQQaN94bTsJMDnN0gTkVk0" Name="Minimum Offset" Kind="OutputPin" />
+            <Pin Id="CyVekWV4978L3BKfXQiq5Z" Name="Maximum Offset" Kind="OutputPin" />
+            <Pin Id="Co33Qf1u4DyQTqcgVXePMz" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="AynEAVTDWB9LVPHHrHyWm3" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1427,165,19" Id="PYkOIsTjIfSOJhsh3rxhlh">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetLinearAxisLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="GM9GCEjIegdLFAHtdXAb59" Name="Constraint" Kind="InputPin" />
+            <Pin Id="D3NNYPjxs7FLpiDqrFaV5j" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="QvIt1lSDOUQOha8N7AsSar" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="P0CcsRg91jGNx1QqhKDHhs" Name="Local Axis" Kind="InputPin" />
+            <Pin Id="VAd4seVhN31L2BMuuYBt0r" Name="Minimum Offset" Kind="InputPin" />
+            <Pin Id="G5IgbVL3gjvPLGNH1NH103" Name="Maximum Offset" Kind="InputPin" />
+            <Pin Id="Lv0mjg4IzrOOd1Z5Bsc9wf" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="Gow1gCmudjlNrcmw3slL5b" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="UllQhoiKOc4OmLuX2m0yXU" Name="Apply" Kind="InputPin" />
+            <Pin Id="EcNmC0LDFr5N4WRM3NkRD0" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1397,127,19" Id="VSQCaQUZoLMOvd1grq1SPn">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="LinearAxisMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="QaHQi4Ml5R0ODAF9Cj5qJe" Name="Constraint" Kind="InputPin" />
+            <Pin Id="EFVeR7ScDhlNfwcZ5kFuCA" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="C7x0rb4KoMoQSeLZXfH23E" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="VvS3otRvaikLvOiLlVH2Fu" Name="Local Axis" Kind="OutputPin" />
+            <Pin Id="LyULDdLvkcfNiX2df9jIMj" Name="Target Velocity" Kind="OutputPin" />
+            <Pin Id="R0NILM9t7TUQKdObuSLjGS" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="PPLLqqGhIZGOt5Iuf9GaGM" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1427,145,19" Id="V6C1HTFjuScNw9py79rYyu">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetLinearAxisMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="VvOLVjYfYc6NfjUbcjnHYp" Name="Constraint" Kind="InputPin" />
+            <Pin Id="BIMe5pXJlzNNvOGfEPp4Fh" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="DNrM7qn3iW6QLLTZaiudg8" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="EulPu1a8qKTQaeAyUqA7Dw" Name="Local Axis" Kind="InputPin" />
+            <Pin Id="DmM0pE7Z0cALeqgUfL5xoj" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="Pb3DuZ0l8N2OLAZFMQrnvw" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="JVADvSAJAz9L0JHfiyO1o9" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="SbtiWLSOSAuOXn7OdytASB" Name="Apply" Kind="InputPin" />
+            <Pin Id="GZtlkwYTuI8OKJnmKO2K0v" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,1397,165,19" Id="FhllOThaHypNNsN2gWC0iJ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="LinearAxisServoSettings" />
+            </p:NodeReference>
+            <Pin Id="M3qfQCeqASjNP4jvxodzZT" Name="Constraint" Kind="InputPin" />
+            <Pin Id="AJDHZTUjpVHP0EdXk4fRwX" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="OVFBOe4ZSxuLIoTjA1v6Kt" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="VIxmoTFhpfzLt4tdZkvUN0" Name="Local Plane Normal" Kind="OutputPin" />
+            <Pin Id="KTjHbexzSEXO8lefkefmL3" Name="Target Offset" Kind="OutputPin" />
+            <Pin Id="I83BCddvv1ELRcmdjE2JPY" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="QjbqgpKM7RkNImDUpg9fzx" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="SFTBS4nhE9JPtKSZQUOUL8" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="MWRQHvPFXJXOJUltsbvyMV" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="V1JDxbonQzCOr6x0nRvT1x" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1774,1427,205,19" Id="Be91lI2c2qEMs1O0CAixm3">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetLinearAxisServoSettings" />
+            </p:NodeReference>
+            <Pin Id="LoLQmHsi8IXMNf3INCQ7KG" Name="Constraint" Kind="InputPin" />
+            <Pin Id="P9FHCvzhiGEN7OoHtEmkZK" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="QqHQTTItWeuPufFMXBUyqa" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="EUEuIJPW6ucLu6hPzUi5jh" Name="Local Plane Normal" Kind="InputPin" />
+            <Pin Id="JNk297CAhPfLMBhWe9ENWJ" Name="Target Offset" Kind="InputPin" />
+            <Pin Id="QwJVjBWYU6wPsFVSX8dS3s" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="AG5GRkul194MWxus64FTux" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="VLxX7Xo9qnwPg1ZwtWMicZ" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="QsKQDQLul8oO0d0G2npnrL" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="EQTsmnnMfRCQbG5WvbpmgG" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="QEX6VoE72DKPIEB8EsOOVr" Name="Apply" Kind="InputPin" />
+            <Pin Id="Ltnn9hJ8QoOMGry3YFUdhc" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1547,156,19" Id="HBbuVlN6Ja6Pndaz3d7LLM">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="OneBodyAngularMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="BVWoQnJWMARNHmPjyPafcY" Name="Constraint" Kind="InputPin" />
+            <Pin Id="AwSTrWt3L34NHrNHg9PFk4" Name="Target Velocity" Kind="OutputPin" />
+            <Pin Id="IJhu6C8UxAoPT5AI1hCYVT" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="AK78CJQXVysLB0wjPzj7il" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1577,169,19" Id="Ts62AJaeiA1MpZs5h0p2SN">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetOneBodyAngularMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="CaWsYQksMBANGbKA1CMsmu" Name="Constraint" Kind="InputPin" />
+            <Pin Id="KsAKnSCnS4ONImyRIeAFUX" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="CTnYHMvW5H5QcXgX9zTiZ7" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="DO11L5Vr5qhQSLo9DP1i0u" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="NdIj03ePLpjLCn3ionm6xx" Name="Apply" Kind="InputPin" />
+            <Pin Id="GnRoRMrGlSXL1tAzShEnyD" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1547,153,19" Id="GJIKNgXrVK1Qc5eyvr2U8N">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="OneBodyAngularServoSettings" />
+            </p:NodeReference>
+            <Pin Id="Eu6sLZHgm8aML6kG2UHZps" Name="Constraint" Kind="InputPin" />
+            <Pin Id="HFg9dJTO81kO7PJv4XRk7M" Name="Target Orientation" Kind="OutputPin" />
+            <Pin Id="E2EAZ7hi0jWN8hneFUtvxr" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="Fc4p1Nl3lpOPBCgh3puYWu" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="O5y0RTutmeOOraLkAqKNIy" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="VWqfHBptDg7PZZkUocbeSF" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="EAHB6lM1wAUNzTp2M5Xd1W" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,1577,167,19" Id="SMCHjgHWTlMNvuKP4hP8Te">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetOneBodyAngularServoSettings" />
+            </p:NodeReference>
+            <Pin Id="E01wdpDMwCZMPnjFSRiquD" Name="Constraint" Kind="InputPin" />
+            <Pin Id="Iu7kxjMmhNxLwY8vy1qRf9" Name="Target Orientation" Kind="InputPin" />
+            <Pin Id="OpojMRBGh3sMX7MKwETaZe" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="BPLs7bf12HOOUqFRsZUq6b" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="C7IgEn5HpNDLuYirU4BM8a" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="DGroN3lOOgLP6RJEyqwBzx" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="TWqOZ13jO6FOTA770aYV49" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="U4ppnj0QlxvNjG3zclSoK3" Name="Apply" Kind="InputPin" />
+            <Pin Id="FMbaHd0LLAWOvh3bUfVDJ9" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,1547,145,19" Id="Crxkap7PfNNOsQuudWHQ3f">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="OneBodyLinearServoSettings" />
+            </p:NodeReference>
+            <Pin Id="ToNtUwt3Wy1NsWH0K7lEls" Name="Constraint" Kind="InputPin" />
+            <Pin Id="VfAWaGiTZKyOYlW9L5X8jv" Name="Local Offset" Kind="OutputPin" />
+            <Pin Id="Jnf1jG9QU6ZOwx60tZ1LPQ" Name="Target" Kind="OutputPin" />
+            <Pin Id="J5PIbcnPKMBMb9ZlosDyhg" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="AtIv3kB9QZOQEJAyJ8w8Oc" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="FstD7NHNBCeO86EH7zO7rI" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="TTmVy5Jxo0gONtkcNVcCjJ" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="MQRipQtBOEVMvReqhEkOje" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,1577,161,19" Id="TXnzgW4AreaOQFDpdMhVHq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetOneBodyLinearMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="VPchbbpmYCyLG3dG4IkxVj" Name="Constraint" Kind="InputPin" />
+            <Pin Id="FsvZmbGLYJNO9rYIF91Dth" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="RGyUKiOfPouPkp5nXtmfmW" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="Dzea24WWUwiQLqE5XnVepR" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="KBinhezl2WSMZdGDLb8gvG" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="TOeH9cwfdW5Nqv39fYltle" Name="Apply" Kind="InputPin" />
+            <Pin Id="C1BS18VSOnZQKcRYNwncvL" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1978,1547,145,19" Id="MCR9UQIbA6SMAkYWbE5efC">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="OneBodyLinearServoSettings" />
+            </p:NodeReference>
+            <Pin Id="LGIMHRJDsraM8nTBCvAL63" Name="Constraint" Kind="InputPin" />
+            <Pin Id="ShlPgm1JORuPepWjE6Cvih" Name="Local Offset" Kind="OutputPin" />
+            <Pin Id="RdfY4wT2ObHOdpTGfGOGLg" Name="Target" Kind="OutputPin" />
+            <Pin Id="Tmt0ctD0HA9QVO8QEKQ1ja" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="TgSSNUijoYJMAqaSUbug70" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="LznPvWStrBjPIg9hGtOLhd" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="Vt5Rd82L02cPuHlOhqptQt" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="JfJpL277LwiNVlKdMvLsDH" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1978,1577,165,19" Id="R8iCkAJqGxPLxVAknfHB4x">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetOneBodyLinearServoSettings" />
+            </p:NodeReference>
+            <Pin Id="O9DtL6goz4uOGwaD0j7ACP" Name="Constraint" Kind="InputPin" />
+            <Pin Id="DY25y9bLucXQKk7HXRTFcK" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="P3xydRttaFaNTsgIlesEV7" Name="Target" Kind="InputPin" />
+            <Pin Id="PKVJUEgU3hULdmOLHXmNd7" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="UpOXnYiaMKcLYy5qx7bJJa" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="EdLhztQ5rPoMhjxOtap2vE" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="HprmvHCtr5yMMj21kG2f87" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="KpQ0R1UU5p5P7Dgbvd14C8" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="GK1qMBhZGtpNk1G0BxmpEH" Name="Apply" Kind="InputPin" />
+            <Pin Id="Ji9Do0T97MqMeVoTkTDczP" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1697,145,19" Id="QAVgIQyA8uOMMFKaq5HMbP">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="PointOnLineServoSettings" />
+            </p:NodeReference>
+            <Pin Id="ENBE6gFJeJbPTmmsv18y2O" Name="Constraint" Kind="InputPin" />
+            <Pin Id="QhN0SaH9twmLHweCLINWEl" Name="Local Offset A" Kind="OutputPin" />
+            <Pin Id="OD1AxEmtlABNjwus2LJH6f" Name="Local Offset B" Kind="OutputPin" />
+            <Pin Id="Nye6H7nqkA0Oz3LXf198cE" Name="Local Direction" Kind="OutputPin" />
+            <Pin Id="V4Ma7tcCB7rPv047xJlYUI" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="BcdKFqgPzpMPeP178YgeUq" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="KHJZCrh02FiN6n0nXdBphZ" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="KM9vDJ3aBjKO2Hs7Bikjvo" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="IKc4qVrTDykN9MLsmSFmja" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1727,185,19" Id="BBEpanRqbpHMRdi3hHtMqs">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetPointOnLineServoSettings" />
+            </p:NodeReference>
+            <Pin Id="MF6Gn3OaFRpL2jCaXmEgIz" Name="Constraint" Kind="InputPin" />
+            <Pin Id="NQcKWJCEP0QLVwbdaO1SWA" Name="Local Offset A" Kind="InputPin" />
+            <Pin Id="FSYSoQsdVM5LTpmY94ILO4" Name="Local Offset B" Kind="InputPin" />
+            <Pin Id="PIKQj8M189zM0kY0DfpTi6" Name="Local Direction" Kind="InputPin" />
+            <Pin Id="DPtADXdyviwPUz9zcCHeZH" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="HRpt9T0fw9cLGBHjsOQ2CZ" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="I0FS7Z6zrtNOJMF1JgRtiP" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="Lvma6DIu6uJM8bKSfCx9NT" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="SnbsHaVDO29LshiapQVWzz" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="ADF3sOyIucvL9jvmSJD8io" Name="Apply" Kind="InputPin" />
+            <Pin Id="K3iV2cYjiT6NZ0U11GSaLh" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1852,102,19" Id="CIPQhkOUgocOi7F9FburIs">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SwingLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="CIOzyPJp7UgK9f6co9pmie" Name="Constraint" Kind="InputPin" />
+            <Pin Id="O5vz1XhsxlFPcVFBSuSvs5" Name="Axis Local A" Kind="OutputPin" />
+            <Pin Id="V0HuIhtUoz2NinPxURVexq" Name="Axis Local B" Kind="OutputPin" />
+            <Pin Id="K6mgJs4xE71Pqw5E8wE6YD" Name="Maximum Swing Angle" Kind="OutputPin" />
+            <Pin Id="E5yHlSlvKLeNkUVCRQb7uj" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="K5iecMBD0QgLTM2ZJNuGNS" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,1882,125,19" Id="VflVpuphZ7YNTwypiGTj4A">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetSwingLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="IO4EoNlUUQEOmfp6YGCkIb" Name="Constraint" Kind="InputPin" />
+            <Pin Id="LCCkxhszo3VPGduSSXjDk8" Name="Axis Local A" Kind="InputPin" />
+            <Pin Id="LIikY8YpctzNwl4LTZNXMF" Name="Axis Local B" Kind="InputPin" />
+            <Pin Id="Bx65czu3YjqPqNAKslqrg0" Name="Maximum Swing Angle" Kind="InputPin" />
+            <Pin Id="Ph2G9CJN3yqNdQTCVU866e" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="BJVB2p1SF4CPnB0tgEi2sV" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="Kn78wNypE52Nxb9UU83WV7" Name="Apply" Kind="InputPin" />
+            <Pin Id="Ora1uJoUmk0QPwAiiPXZzZ" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,2002,105,19" Id="THQpAi4nr16L7RHKtfTw0m">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="TwistLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="C7prpp5IERrNnDgx4Ta2DN" Name="Constraint" Kind="InputPin" />
+            <Pin Id="TeyWaxBGJDpQTbtFpypprs" Name="Local Basis A" Kind="OutputPin" />
+            <Pin Id="MA840c88juwPe0toBR8Ngp" Name="Local Basis B" Kind="OutputPin" />
+            <Pin Id="MXr224Ra30ZOs4mRTD2fEw" Name="Minimum Angle" Kind="OutputPin" />
+            <Pin Id="N1zj1Exvm5EO1apEDhj7Ne" Name="Maximum Angle" Kind="OutputPin" />
+            <Pin Id="KMvlROBEoTlOCUyibMg4R7" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="TENEd175iVlPxyBk6IIMeA" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,2032,145,19" Id="A2PIPAI0a2wPweLQtF0hAV">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetTwistLimitSettings" />
+            </p:NodeReference>
+            <Pin Id="AKM6NzmYlhxOadg8C95Zd6" Name="Constraint" Kind="InputPin" />
+            <Pin Id="JYlC71cNRzuNxpMpS2Dtdm" Name="Local Basis A" Kind="InputPin" />
+            <Pin Id="MvLVr4Zd6ziMK4EyQ1N7e1" Name="Local Basis B" Kind="InputPin" />
+            <Pin Id="VOPlZpD7PQ7OYeb7uAhmiY" Name="Minimum Angle" Kind="InputPin" />
+            <Pin Id="VWar1oNbddTOPbnwe9RfwZ" Name="Maximum Angle" Kind="InputPin" />
+            <Pin Id="S6vmAbuXxwgMczLxjhQceb" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="F70uknOli5gNBxZAeg21QO" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="SJwJGAjdU8uN53GWmHjcE8" Name="Apply" Kind="InputPin" />
+            <Pin Id="CYeCIrSE7kEMl3ZNHqK1UW" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,2002,104,19" Id="Sg9sKJSgspoPb7HHJjcOGH">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="TwistMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="StW3SU9bhqkLFjibeswEJ3" Name="Constraint" Kind="InputPin" />
+            <Pin Id="HT6ZBxMRuXmNZZUQnGtG0z" Name="Local Axis A" Kind="OutputPin" />
+            <Pin Id="VzVSpITwdH1NnoqUBnOoWf" Name="Local Axis B" Kind="OutputPin" />
+            <Pin Id="NGBaxYOkXUQLBSUWJ2m8ru" Name="Target Velocity" Kind="OutputPin" />
+            <Pin Id="AfLPtSHIDfHLFOzMOpM6Ew" Name="Motor Damping" Kind="OutputPin" />
+            <Pin Id="NMbyK7iM7jFPB89FZ7DRi5" Name="Motor Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1568,2032,125,19" Id="IFA12ZYH8uHOXm40uItxnn">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetTwistMotorSettings" />
+            </p:NodeReference>
+            <Pin Id="U5I9UQLw9GrM53uncuto0Y" Name="Constraint" Kind="InputPin" />
+            <Pin Id="CRG7JMlLdGkP6XIqbb8fbX" Name="Local Axis A" Kind="InputPin" />
+            <Pin Id="Ncl87zFM7paLqRjCDFQy6I" Name="Local Axis B" Kind="InputPin" />
+            <Pin Id="VnRoye3R5b3Pdvawb65WJV" Name="Target Velocity" Kind="InputPin" />
+            <Pin Id="MwkEojY3HoXQVYEyyaR3jq" Name="Motor Damping" Kind="InputPin" />
+            <Pin Id="NBDD7EVO307OtgktMrhkOH" Name="Motor Maximum Force" Kind="InputPin" />
+            <Pin Id="RWktWpvXhTXMHSSUxVdzAs" Name="Apply" Kind="InputPin" />
+            <Pin Id="P5nP29YAI63QTEHotOL73w" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,2002,145,19" Id="OgJpSw7g0woPMDUtqruBCB">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="TwistServoSettings" />
+            </p:NodeReference>
+            <Pin Id="CL5TiUERN5LP4AXbCVl12a" Name="Constraint" Kind="InputPin" />
+            <Pin Id="THX6caQmMGTNqWNJevJyrI" Name="Local Basis A" Kind="OutputPin" />
+            <Pin Id="QX0z0zuj5WmMtcpeUiDTtV" Name="Local Basis B" Kind="OutputPin" />
+            <Pin Id="QoMPfGhByUeMineigkdv93" Name="Target Angle" Kind="OutputPin" />
+            <Pin Id="CVBnkzd7YgWQY4gl2F9YP5" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="AdU0GOIvzHILbtc4RgHfHm" Name="Spring Damping Ratio" Kind="OutputPin" />
+            <Pin Id="LNGXGaQkbNRLZBaoNJ1DIQ" Name="Servo Maximum Speed" Kind="OutputPin" />
+            <Pin Id="T1EfDkeItJFLAvB3WDcTh2" Name="Servo Base Speed" Kind="OutputPin" />
+            <Pin Id="VtyC4h2fN89MKEHV1XRTqB" Name="Servo Maximum Force" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1773,2032,185,19" Id="QbugXk8RHbqQFsvNHYyOos">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetTwistServoSettings" />
+            </p:NodeReference>
+            <Pin Id="GpaAIoGZkx7QaxfApGUMAJ" Name="Constraint" Kind="InputPin" />
+            <Pin Id="OHm3rp7BNR1OlracUFhsFU" Name="Local Basis A" Kind="InputPin" />
+            <Pin Id="US2eqFK9XaKP6xTA7XjIlC" Name="Local Basis B" Kind="InputPin" />
+            <Pin Id="HF4sYpSHhcyN5HBy3cyRKS" Name="Target Angle" Kind="InputPin" />
+            <Pin Id="A0npsPcIobEL2IesLOUW89" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="TV08licS0ugMQcybWG1U5f" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="SKK9gho50irMbIqJQLmO0L" Name="Servo Maximum Speed" Kind="InputPin" />
+            <Pin Id="LOefdA8igFpNTUYTUzYJCj" Name="Servo Base Speed" Kind="InputPin" />
+            <Pin Id="IdzBDRCZ0ECNwjzuv66acs" Name="Servo Maximum Force" Kind="InputPin" />
+            <Pin Id="JEeavqi0hPePEWYYowbo8u" Name="Apply" Kind="InputPin" />
+            <Pin Id="CAfhapAebtLN7swP1TAMVm" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,2152,105,19" Id="SdWJlCSAZd6MYeNsqHtw44">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="WeldSettings" />
+            </p:NodeReference>
+            <Pin Id="MsdrlMji2IYLSaHv7UJuqB" Name="Constraint" Kind="InputPin" />
+            <Pin Id="E769YzUk9x5Po1CG2ctvUg" Name="Local Offset" Kind="OutputPin" />
+            <Pin Id="AMBZdHPTRYCLO95kUTXR5t" Name="Local Orientation" Kind="OutputPin" />
+            <Pin Id="HEKx0DqWoCXL0I4qG7bdgo" Name="Spring Frequency" Kind="OutputPin" />
+            <Pin Id="Q0MR336rrtOMlBXgpLsfkf" Name="Spring Damping Ratio" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1363,2182,145,19" Id="MG9ffRp9hpTNcdt1hRGAvq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Constraints.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Constraints" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetWeldSettings" />
+            </p:NodeReference>
+            <Pin Id="GmYJ2WyAgvCMN9NiytPKdI" Name="Constraint" Kind="InputPin" />
+            <Pin Id="VUK2SBSpxiLNecy7O7wfID" Name="Local Offset" Kind="InputPin" />
+            <Pin Id="HtDdKCke2muLN0du2yXUxs" Name="Local Orientation" Kind="InputPin" />
+            <Pin Id="IT6MZRflmHcP2fQmaeyKA1" Name="Spring Frequency" Kind="InputPin" />
+            <Pin Id="AO9IoxsziPULLOl0t7NfCi" Name="Spring Damping Ratio" Kind="InputPin" />
+            <Pin Id="HmwZNpbr2KFMBtmQNJbD6A" Name="Apply" Kind="InputPin" />
+            <Pin Id="MLHrWP7avfPMW4TIrXHVfB" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="JE1r27z8v4KNkWaFtdHZeE" Name="Colliders" Bounds="78,1745,1216,262">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="100,1795,69,19" Id="NuqYxjj9Bx6LxSFmaHskP4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="BoxCollider" />
+            </p:NodeReference>
+            <Pin Id="QJDX6H8XYgEQbR62HGMTnX" Name="Size" Kind="InputPin" />
+            <Pin Id="DUnUj0anbJIP3FqYedbmql" Name="Position Local" Kind="InputPin" />
+            <Pin Id="BoD86qXWIp1MWw3W9hga3J" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="NekwtnqbkbBPSU4lStS5hb" Name="Mass" Kind="InputPin" />
+            <Pin Id="Nm2hElY0G7lP7hnPwSODUS" Name="Output" Kind="OutputPin" />
+            <Pin Id="KsrW4QbwZsRNyA7m7Qwdrc" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="236,1795,88,19" Id="JFiKbFCNv0iLB9BLCmBQy6">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="CapsuleCollider" />
+            </p:NodeReference>
+            <Pin Id="Qyp4zTKR1lCM9ikuzXE7rb" Name="Radius" Kind="InputPin" />
+            <Pin Id="KURppsSmAAaLMzV8V3ohuT" Name="Length" Kind="InputPin" />
+            <Pin Id="Do1NwIgE9MTQGbryVC1N23" Name="Position Local" Kind="InputPin" />
+            <Pin Id="PUy3cR26ds3O6SpOERFhWm" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="Q8kMy2yviiZPZ6t0RqChL0" Name="Mass" Kind="InputPin" />
+            <Pin Id="MWN6WhmcmcPQbwMaM5fJZL" Name="Output" Kind="OutputPin" />
+            <Pin Id="O6tAQSwyID8LdRJ8MBm8xQ" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="391,1795,103,19" Id="PgiMvI0FTuDLvP4gjWdoXM">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="ConvexHullCollider" />
+            </p:NodeReference>
+            <Pin Id="TrUY0juU3rdPn1teQzv2Jk" Name="Hull" Kind="InputPin" />
+            <Pin Id="ADjpo30hyXbO4EN77OqfFl" Name="Mass" Kind="InputPin" />
+            <Pin Id="OzBq69r9ilePUN3El75fTf" Name="Output" Kind="OutputPin" />
+            <Pin Id="HVyuWEOCWhcMqYwn4BKLHQ" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="561,1795,89,19" Id="Nnqkr4SHldIQScIZh5axFk">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="CylinderCollider" />
+            </p:NodeReference>
+            <Pin Id="T93e9h0qOYuMdSwcO6RAG0" Name="Radius" Kind="InputPin" />
+            <Pin Id="FzFhfzBuVSWMO6X4gYNk7h" Name="Length" Kind="InputPin" />
+            <Pin Id="KUMnHA1luM5PyJk1CeGVLY" Name="Position Local" Kind="InputPin" />
+            <Pin Id="DrUU2cVYsQmMjrGPcKP2gY" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="R10oMf8sjRZMd7zM6696bk" Name="Mass" Kind="InputPin" />
+            <Pin Id="HZPOooTfKgvM0i4qdMzb37" Name="Output" Kind="OutputPin" />
+            <Pin Id="LAvNHWKoP2QNSufn4xbeGV" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="717,1795,80,19" Id="GCFqpJ1n7I7PP0eV774edK">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="EmptyCollider" />
+            </p:NodeReference>
+            <Pin Id="RrYPbqN4sWxPzUFMu5ahAb" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="864,1795,75,19" Id="DaAezOEOFFmQGqfWSPC8CL">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="MeshCollider" />
+            </p:NodeReference>
+            <Pin Id="Irv6LKlfyfnPJ5ByEaeaov" Name="Output" Kind="OutputPin" />
+            <Pin Id="ALLNar3koXpPTXBOhTalVT" Name="Model" Kind="InputPin" />
+            <Pin Id="Bqbx7QYNBtAP4HIEcyFUNY" Name="Closed" Kind="InputPin" />
+            <Pin Id="TDcVuXBwaybOLCSvIB2KCc" Name="Mass" Kind="InputPin" />
+            <Pin Id="PfETV17FrH7LwEOQoAR7x3" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="991,1795,83,19" Id="HmXZ6sa4YbBNFtJNAVfAj4">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="SphereCollider" />
+            </p:NodeReference>
+            <Pin Id="BMaGODCrqLOMsE5P2PtTDM" Name="Output" Kind="OutputPin" />
+            <Pin Id="NreGnNU1l99ML2q8pkNsqv" Name="Radius" Kind="InputPin" />
+            <Pin Id="S7nB6LZCFphPfjzkYqY6CV" Name="Position Local" Kind="InputPin" />
+            <Pin Id="I57lhLsqdxsOQkB5hNPQHG" Name="Mass" Kind="InputPin" />
+            <Pin Id="B9WV486vuBtPrkrMu1lQyl" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="1141,1795,105,19" Id="UiUUon7FVV2MYWWA1PTsps">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="TriangleCollider" />
+            </p:NodeReference>
+            <Pin Id="Nxjs2I0WtOjL7tZ2x1mZ1W" Name="Output" Kind="OutputPin" />
+            <Pin Id="K9FrKrqluSiNmn41atVSGY" Name="A" Kind="InputPin" />
+            <Pin Id="JvC8RYJlSJpMzlbHfXFVps" Name="B" Kind="InputPin" />
+            <Pin Id="AKMQCJMN20kK9sxRyFSRNq" Name="C" Kind="InputPin" />
+            <Pin Id="BGen8lkqGWLMRCumbh3sA7" Name="Position Local" Kind="InputPin" />
+            <Pin Id="KW8FEfj9H2rPZ3TLD5oLE3" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="F1X4mXdzvblPrq2yI00Gk7" Name="Mass" Kind="InputPin" />
+            <Pin Id="CnLWXgk8F2HN38bSrqMmJX" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+          </Node>
+          <Node Bounds="100,1835,105,19" Id="Ryduk1fxmgqLc0yl5cMstX">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="BoxColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="CKocDiuhF1IPA8fZaj1cyk" Name="Collider" Kind="InputPin" />
+            <Pin Id="FiLeFsRDNWDL4GJFZRfGd8" Name="Size" Kind="OutputPin" />
+            <Pin Id="SoiJz1Q4wXSOq2cRCIQqzT" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="BYFL2zZpEV1LUKB5fgylMP" Name="Rotation Local" Kind="OutputPin" />
+            <Pin Id="T46SrZWtqIVMHh0I6kfC1Z" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="100,1875,118,19" Id="HMR0yWGdCUtOYGh4SkVqRK">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetBoxColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="EiDM5ozBkRyOLnZlTDPQfW" Name="Collider" Kind="InputPin" />
+            <Pin Id="SFc7wFy0yAiN3QQkyYpRof" Name="Size" Kind="InputPin" />
+            <Pin Id="QafvjiVArqYO4dzTthK7Tw" Name="Position Local" Kind="InputPin" />
+            <Pin Id="IZFISqyo5ZvOofj7UYcn5M" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="CYeiMF8nKA7NNJqbTQd73I" Name="Mass" Kind="InputPin" />
+            <Pin Id="LJIqSvjQomrOQECuCFq5aL" Name="Apply" Kind="InputPin" />
+            <Pin Id="T4zuc9gA9D4NTB54O1TqLj" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="236,1835,124,19" Id="DcmBQ4mjWl0PO4oXhLNwdS">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="CapsuleColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="K08PqQt00yrLU52NmGifRD" Name="Collider" Kind="InputPin" />
+            <Pin Id="TocSNgz5h6WLEnCeLA1T4N" Name="Radius" Kind="OutputPin" />
+            <Pin Id="RN6igJ5Acq3NWa8vwoVicf" Name="Length" Kind="OutputPin" />
+            <Pin Id="B2vyUydpa0EPS02xrZKbSq" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="AlTAFaCsHvMMywcSiFe2rx" Name="Rotation Local" Kind="OutputPin" />
+            <Pin Id="EL9rS4kZBwnQMLpS85Tfhh" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="236,1875,138,19" Id="Qux14CvVaFnP1LV5YHs9uT">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetCapsuleColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="GWmxTz7O52wP0caLEgDxDf" Name="Collider" Kind="InputPin" />
+            <Pin Id="ROxdmI5G8xhLijjLsxIprk" Name="Radius" Kind="InputPin" />
+            <Pin Id="NkpoqRR60UGPNVc3L02FQU" Name="Length" Kind="InputPin" />
+            <Pin Id="FN8d3lg6m5QMo42WTTShd8" Name="Position Local" Kind="InputPin" />
+            <Pin Id="MBykUaf99nYMvvXHFNcjCY" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="MpYutK0OaMmMXjrG7uvkX1" Name="Mass" Kind="InputPin" />
+            <Pin Id="H3QSt8f4ikVO6rxyqCP2WJ" Name="Apply" Kind="InputPin" />
+            <Pin Id="MKBam41Z0m5LNTGeg2Jjib" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="391,1835,85,19" Id="CXbvwO8ewlJPWH37FalhQQ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="HullFromModel" />
+            </p:NodeReference>
+            <Pin Id="B2b6Eo3jkmmO6S8ZLeUef2" Name="Model" Kind="InputPin" />
+            <Pin Id="LejCYVsynhjLzClZfhDJVz" Name="Rebake" Kind="InputPin" />
+            <Pin Id="PT5gukq7BnPMgtWu1jD2z3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="391,1875,85,19" Id="QGsqk7OXxTkNROqRbu1SS0">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <Choice Kind="ProcessAppFlag" Name="HullFromPoints" />
+            </p:NodeReference>
+            <Pin Id="J5MJSVBKPcfNeS4VziuJgU" Name="Output" Kind="OutputPin" />
+            <Pin Id="TYFZDHpzmaQLuCTOHbnzMa" Name="Points" Kind="InputPin" />
+          </Node>
+          <Node Bounds="391,1925,69,19" Id="IZ2C6JZXpBmL3AzAyDI9ly">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="ColliderInfo" />
+            </p:NodeReference>
+            <Pin Id="BIC9flnBsnZMgZXGwMJhLY" Name="Collider" Kind="InputPin" />
+            <Pin Id="OC0LON6NvpIPQY5eM1gA7p" Name="Kind" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="391,1965,88,19" Id="DZqTEmjfeHqQSsPYAWUH5q">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="ColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="KvRmFq3BRnlMQyYAD3mZg6" Name="Collider" Kind="InputPin" />
+            <Pin Id="GbqESbmRTxoLZYjXxFPM6Z" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="COfyk1vJ8eMLzof9HlKrIz" Name="Rotation Local" Kind="OutputPin" />
+            <Pin Id="CVR21NMHojNN4zvn2XS7Cm" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="561,1835,125,19" Id="IaoFtEq7zKHLBFcXW4HzaI">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="CylinderColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="RrYqdH3ZAqbMeIFiF0WhTO" Name="Collider" Kind="InputPin" />
+            <Pin Id="TjKs1MCvmiINWyDDsItnfO" Name="Radius" Kind="OutputPin" />
+            <Pin Id="Tz68Ebczv9AP33ANf9UILW" Name="Length" Kind="OutputPin" />
+            <Pin Id="Jjcp41O9wTOLkmN83WXzkK" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="O3eJSwFy54aOVqp9bHiCYr" Name="Rotation Local" Kind="OutputPin" />
+            <Pin Id="HxqvPsbVkH5LaWolS6fUBf" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="561,1875,139,19" Id="H5AzQrDRalaLfCrZ2CXBNv">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetCylinderColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="NZgNrnMqe52OzrduHYSvpd" Name="Collider" Kind="InputPin" />
+            <Pin Id="OMYlskdBZpvMGli02YGDn0" Name="Radius" Kind="InputPin" />
+            <Pin Id="AHJMJIhtDNyMSCRsypzhRX" Name="Length" Kind="InputPin" />
+            <Pin Id="Ge6FYMi1mqMOP2CO7qLXjX" Name="Position Local" Kind="InputPin" />
+            <Pin Id="QSAmgsMX89GOSTotyLy2NL" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="UAP22VaLzaPPyoV84cZ9Dy" Name="Mass" Kind="InputPin" />
+            <Pin Id="Jx9eGfW4z2pOCvzZI4F2Uj" Name="Apply" Kind="InputPin" />
+            <Pin Id="ME2QXdGqlrVMaS2xaexvYY" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="991,1835,119,19" Id="Uy3qdG6Ef04Qc5wZkosp2s">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SphereColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="IW04ASn7K44PzHHSQRbyQx" Name="Collider" Kind="InputPin" />
+            <Pin Id="ODeHcO1yTziOVHlRmFZ1Ce" Name="Radius" Kind="OutputPin" />
+            <Pin Id="HtaGpIUAe7LPzP9xhzbqXO" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="HKsmJEKNLZOPYopaNOwQuH" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="991,1875,133,19" Id="GazUXpsh456PFjFwQLz5Ts">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetSphereColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="P9OY3DUcB3zMXWlfM5mCwQ" Name="Collider" Kind="InputPin" />
+            <Pin Id="PnS1P47sDCwMJMKVAnhiBy" Name="Radius" Kind="InputPin" />
+            <Pin Id="KIOxofDUcjzOhe5R6J5c1L" Name="Position Local" Kind="InputPin" />
+            <Pin Id="AcAwS5rcZ8sPVc1SKBI7ii" Name="Mass" Kind="InputPin" />
+            <Pin Id="L2cI9gN6an0NmlFFVzqILa" Name="Apply" Kind="InputPin" />
+            <Pin Id="Orug6pITGQFMo83CI1LAD3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1141,1835,125,19" Id="KPZKXzgIjCkMY7B2ReBj19">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="TriangleColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="TzjHBbT2xTFPp61U3yckmQ" Name="Collider" Kind="InputPin" />
+            <Pin Id="UsFfA834UNbLiacEEc1IjD" Name="A" Kind="OutputPin" />
+            <Pin Id="PkPbs0V8E89NohoJy6A139" Name="B" Kind="OutputPin" />
+            <Pin Id="QBFDaJ7DBcGMGNnO9cZuUQ" Name="C" Kind="OutputPin" />
+            <Pin Id="HP1nTS4R4F8MlPHHRYD9lB" Name="Position Local" Kind="OutputPin" />
+            <Pin Id="OrbKJzWNTyKNNNA1Qi7Wve" Name="Rotation Local" Kind="OutputPin" />
+            <Pin Id="JIU15VHolaQLc9KAPzxqXQ" Name="Mass" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1141,1875,145,19" Id="QSHLwFhVEcnMHPpo8qzaJq">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders.Operations" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Colliders" />
+              <CategoryReference Kind="ClassType" Name="Operations" />
+              <Choice Kind="OperationCallFlag" Name="SetTriangleColliderSettings" />
+            </p:NodeReference>
+            <Pin Id="UOOQZ63phrqOz6ixlvtOb3" Name="Collider" Kind="InputPin" />
+            <Pin Id="TlmlbwvXxxrQAerrhw4naL" Name="A" Kind="InputPin" />
+            <Pin Id="LQMHEoJfKlPNFjBozRccIm" Name="B" Kind="InputPin" />
+            <Pin Id="Gf6wGazcZNqL8bMKDPJu51" Name="C" Kind="InputPin" />
+            <Pin Id="S24hGZ2biiWL2uJgnz85ST" Name="Position Local" Kind="InputPin" />
+            <Pin Id="TcJ9Gsz2wvlN0OB2ndWd5q" Name="Rotation Local" Kind="InputPin" />
+            <Pin Id="L1nsQFZ3yNcMXEovBaInqL" Name="Mass" Kind="InputPin" />
+            <Pin Id="FZftULFLZDZL4TPcuUzJXy" Name="Apply" Kind="InputPin" />
+            <Pin Id="DSdnRk8jRZLNjBKUDcTrh8" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="SKSbAUKvLH7Ows5ZYy70E1" Name="Debug" Bounds="78,2035,560,202">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="105,2085,56,19" Id="OiUMSBlZNyMNbPZyyhdCnm">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Debug" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Debug" />
+              <Choice Kind="ProcessAppFlag" Name="BepuInfo" />
+            </p:NodeReference>
+            <Pin Id="DW1PFfGCk78MZXCbVgOVR5" Name="Collidable" Kind="InputPin" />
+            <Pin Id="EKUUYg2jruoONQI3fqQhAY" Name="Info" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="236,2085,105,19" Id="TvNgvpHgn8WLMzaa2sCkeL">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Debug" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Debug" />
+              <Choice Kind="ProcessAppFlag" Name="ColliderShapes" />
+            </p:NodeReference>
+            <Pin Id="CEM10X7q6zBOqIN09cFzYm" Name="Simulation" Kind="InputPin" />
+            <Pin Id="ONiiBNf4FJwOKyOmwaFTv6" Name="Visible" Kind="InputPin" />
+            <Pin Id="PMPCLCBeWiQN1bNZjFZ8IB" Name="Material" Kind="InputPin" />
+            <Pin Id="FYQUTZM3bqPN9kD5jaJaLU" Name="Line Width" Kind="InputPin" />
+            <Pin Id="ThnzIfcfOjtL7Ub2qCenEC" Name="Line Color" Kind="InputPin" />
+            <Pin Id="JDHPLCBozPRPwhEwv31Khw" Name="Instanced" Kind="InputPin" />
+            <Pin Id="VIqOlbLmimwLnuXxQyaIIz" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Overlay Id="JDS1N3gbP1nOXnBRdKGEfe" Name="Events" Bounds="677,2033,618,202">
+            <p:ColorIndex p:Type="Int32">10</p:ColorIndex>
+          </Overlay>
+          <Node Bounds="713,2085,145,19" Id="Sxy7VPOlEwFOVFfspImtRW">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Events" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Events" />
+              <Choice Kind="ProcessAppFlag" Name="ContactEvents" />
+            </p:NodeReference>
+            <Pin Id="OsZZI9pX74RN0FPCquZsrN" Name="No Contact Response" Kind="InputPin" />
+            <Pin Id="KIDLcZlH6YeORQtP2uzPEF" Name="Output" Kind="OutputPin" />
+            <Pin Id="MvE8DRT7KRNMsXYAlmdc5V" Name="Started" Kind="OutputPin" />
+            <Pin Id="Bzb9jFTZHyCPODIE6wg6hH" Name="Touching" Kind="OutputPin" />
+            <Pin Id="SqU1EvhTsnQOLWD9HAbluV" Name="Stopped" Kind="OutputPin" />
+            <Pin Id="D2vnvcQ02iaLsP6xriArri" Name="Any Started" Kind="OutputPin" />
+            <Pin Id="VPMF3NqKcQBMOrLiFvrzI8" Name="Any Stopped" Kind="OutputPin" />
+            <Pin Id="Rz0ghw4WOIVMRS0jhDAfrc" Name="On Started" Kind="OutputPin" />
+            <Pin Id="GbhGfqxnI0zMapfcPecGGb" Name="On Stopped" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="872,2085,145,19" Id="RwwlZqf65oMN4bkVULcx2Q">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Events" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Events" />
+              <Choice Kind="ProcessAppFlag" Name="Trigger" />
+            </p:NodeReference>
+            <Pin Id="PpS8wx0GvS9PPHF5Uay1oI" Name="Output" Kind="OutputPin" />
+            <Pin Id="PdZl6Wr3mvOPiKVduZXO9g" Name="Entered" Kind="OutputPin" />
+            <Pin Id="OWyNs8GGajxPe8lT8BBvaP" Name="Exited" Kind="OutputPin" />
+            <Pin Id="T7N6xAxEdwLNRM1Ji5vQ57" Name="Any Entered" Kind="OutputPin" />
+            <Pin Id="Vqo80JwZeTjQA6znsEnuPM" Name="Any Exited" Kind="OutputPin" />
+            <Pin Id="VNfqwfTA2AbPzOMfEWFJS0" Name="On Entered" Kind="OutputPin" />
+            <Pin Id="Ou7xi3u2yVWL9OPL2qGU6V" Name="On Exited" Kind="OutputPin" />
+          </Node>
+          <Pad Id="O7eFuxxZmWzLTeqfpcZpDv" Bounds="73,206,181,33" ShowValueBox="true" isIOBox="true" Value="Wrapper nodes">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">16</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="QyoEdr6Tg1NQCJZof4JssA" Bounds="73,248,748,208" ShowValueBox="true" isIOBox="true" Value="(Almost) all of them have reference patches, just select one of them an hit F1. The patches are mostly pretty barebones but the nodes and pins are documented. Hover a node or its pins and check the tooltips. Furthermore the reference patches link to the to the respective part of the Bepu Physics and Stride documentation.&#xD;&#xA;&#xD;&#xA;VL.Stride.BepuPhysics also forwards the underlying &quot;low level&quot;  Stide.BepuPhysics nodes for convenience. Enable the &quot;Advanced&quot; aspect in the NodeBrowser and navigate to Bepu &gt; Native.&#xD;&#xA;&#xD;&#xA;The one major thing that is missing is support for multiple simulations. Maybe coming with version 2.0, who knows ...&#xD;&#xA;&#xD;&#xA;If you encounter any issues or have feature requests please create an issue on github. Contributions, like bugfixes or some nice help / demo patches are appreciated.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="QNG4YwUHeXuMc2j1GTAmbr" Bounds="73,464,299,19" ShowValueBox="true" isIOBox="true" Value="https://github.com/bj-rn/VL.Stride.BepuPhysics">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
+        <Patch Id="Oy5HMLCuPmJOI6utRPUuuw" Name="Create" />
+        <Patch Id="Fe18JKwWvNaMfRIZZ1eSM8" Name="Update" />
+        <ProcessDefinition Id="BcIuIR0UB0mQaxNrYCUNou">
+          <Fragment Id="Ly9Wb7vO7jDO9AWMzfBrom" Patch="Oy5HMLCuPmJOI6utRPUuuw" Enabled="true" />
+          <Fragment Id="LhiWjqn23NKOy97wWXCXiA" Patch="Fe18JKwWvNaMfRIZZ1eSM8" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="TQnERM0MHjVOHuBf1j8CJj" Ids="PY7ffH3wJohMtoGi7ZrRZL,KUd8KgwEnmfNASPHHX2fbC" />
+        <Link Id="KRKKULFYZ8uQSAewxXhOSE" Ids="NmsWGoKR2PuLpDH2CCzPHd,BJUCDfIDNkZOpJW7krnzkm" />
+        <Link Id="Hn1s8RSkjHoLNVuosI5XUe" Ids="P6dRkd1HzjNLq3YSJcP0fZ,UvdLB64yx6PNuQAbWhFkLM" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="TvzlN3WSDOmOxpLAIQB4eI" Location="VL.Stride" Version="2025.7.3" />
+  <NugetDependency Id="J1bH9rpqSJuN3XKO6dtesI" Location="VL.Stride.BepuPhysics" Version="0.0.0" />
+</Document>
