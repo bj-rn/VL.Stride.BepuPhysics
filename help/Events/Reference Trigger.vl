@@ -610,6 +610,63 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="QR5PYK1ezT7MhOC7WYB69H" Bounds="711,84,59,19" ShowValueBox="true" isIOBox="true" Value="see also:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="790,100,85,19" Id="PxwY9YlEYzeMxMRZwWyS18">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Events" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Events" />
+              <Choice Kind="ProcessAppFlag" Name="ContactEvents" />
+            </p:NodeReference>
+            <Pin Id="KDOgKY62nJRLpr2wkWwkiZ" Name="No Contact Response" Kind="InputPin" />
+            <Pin Id="JJiZkRrwKCbPK0zUSrWggl" Name="Output" Kind="OutputPin" />
+            <Pin Id="SpWErcCi7lQNzzA5oWLmwp" Name="Started" Kind="OutputPin" />
+            <Pin Id="MYbxsGhUgKuNij6fSLgPk6" Name="Touching" Kind="OutputPin" />
+            <Pin Id="PlvjXt7qJ6bQbCCBwnwFPk" Name="Stopped" Kind="OutputPin" />
+            <Pin Id="EbsHjx6g6TIQbIPYrE0LSz" Name="Any Started" Kind="OutputPin" />
+            <Pin Id="UrjJodTHVt7ModMm5YsYF1" Name="Any Stopped" Kind="OutputPin" />
+            <Pin Id="AqFyI92AXp8O2c1TF7z797" Name="On Started" Kind="OutputPin" />
+            <Pin Id="RMzexbye43HMgheJFkTmki" Name="On Stopped" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="958,100,105,19" Id="ExBXNvWQYqBNZbfoZT7iqI">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="SimulationUpdate" />
+            </p:NodeReference>
+            <Pin Id="Vbwc1FXFsTcLkzLnx3Mj5x" Name="Output" Kind="OutputPin" />
+            <Pin Id="JQzWhEzeJM0NMlBVPxtk8c" Name="Steps Last Frame" Kind="OutputPin" />
+            <Pin Id="U7EgEVb2sJOPB4PNJ9n3zv" Name="Step Count" Kind="OutputPin" />
+            <Pin Id="I2nsgDN6p10MKpOdd7Rnfx" Name="Time Step" Kind="OutputPin" />
+            <Pin Id="ELhbaiyQevOMupvxHkK25b" Name="On Simulation Update" Kind="OutputPin" />
+            <Pin Id="Pgd0LCe2UJTPxZTwROZAdb" Name="On After Simulation Update" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1084,100,165,19" Id="QdtJuA1jTb9LqpVWYE8kuW">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Queries" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Overlap" />
+            </p:NodeReference>
+            <Pin Id="Fa7PDXZpjIrNw6vYGPMo6N" Name="Simulation" Kind="InputPin" />
+            <Pin Id="O1Rc3o4lGloP6E7DAaJxE5" Name="Position" Kind="InputPin" />
+            <Pin Id="KpREJ00wn6fPjry2Nr5zfn" Name="Shape" Kind="InputPin" />
+            <Pin Id="D6PCpHQ7QzlP9gMjOfTepx" Name="Radius" Kind="InputPin" />
+            <Pin Id="F6QgiR7NGrXQSz9sJmcGdc" Name="Box Size" Kind="InputPin" />
+            <Pin Id="UIZqojPyisWM2i8tKff8wJ" Name="Capsule Length" Kind="InputPin" />
+            <Pin Id="DrsVXBgHOp9Lz2sdUscMV0" Name="Orientation" Kind="InputPin" />
+            <Pin Id="QkHIsoCUeiTLKBfRjG4ACE" Name="Collision Mask" Kind="InputPin" />
+            <Pin Id="BCSjpdIZicdPF55rxIayS4" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Aan8SipaowGLj8g7gXn9pY" Name="Output" Kind="OutputPin" />
+            <Pin Id="TXFPZmMUg8mQMRxCGgC71G" Name="Collidables" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="HrRC000000000000000084" Name="Create" />
         <Patch Id="HrRC000000000000000085" Name="Update" />

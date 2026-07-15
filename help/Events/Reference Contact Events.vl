@@ -694,6 +694,44 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="FwPBkgqTZ7SM2D0Uzz3WFF" Bounds="872,84,59,19" ShowValueBox="true" isIOBox="true" Value="see also:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="951,100,145,19" Id="Gk6SwKbuqXJOZ9308SHAKO">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Events" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Events" />
+              <Choice Kind="ProcessAppFlag" Name="Trigger" />
+            </p:NodeReference>
+            <Pin Id="VNyEscclVcZOrnLyAdvuMw" Name="Output" Kind="OutputPin" />
+            <Pin Id="BCs9NEAzzPsQHcarNCz6tu" Name="Entered" Kind="OutputPin" />
+            <Pin Id="Orn4aEQDvClPSw2z0pHKhl" Name="Exited" Kind="OutputPin" />
+            <Pin Id="GkZpnC3AS8JQEhoyIKp5mz" Name="Any Entered" Kind="OutputPin" />
+            <Pin Id="KbJgi2GM7K2MMxlYtcTaQJ" Name="Any Exited" Kind="OutputPin" />
+            <Pin Id="PceGzK2Fo1bOne8CyWwxs6" Name="On Entered" Kind="OutputPin" />
+            <Pin Id="D1fuFo8PDPOOzDZrvBcB0l" Name="On Exited" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1119,100,105,19" Id="EGY2XfE3DofMY9hRyfUy0S">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Simulation" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="Bepu" />
+              <CategoryReference Kind="Category" Name="Simulation" />
+              <Choice Kind="ProcessAppFlag" Name="SimulationUpdate" />
+            </p:NodeReference>
+            <Pin Id="KgMFBF7roRRNpuy0hqcZIM" Name="Output" Kind="OutputPin" />
+            <Pin Id="LUvvtJ1YGpVOL9RhAaDtAz" Name="Steps Last Frame" Kind="OutputPin" />
+            <Pin Id="NsWPA6fCMUnM7vdD2P4DEY" Name="Step Count" Kind="OutputPin" />
+            <Pin Id="EZhLVXGF27JPCXfrwnWvSM" Name="Time Step" Kind="OutputPin" />
+            <Pin Id="FXwiBxMV1mDL2MYJaC6xdg" Name="On Simulation Update" Kind="OutputPin" />
+            <Pin Id="JB43k8ArMOMNUvx5oygZIN" Name="On After Simulation Update" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="HrRC000000000000000084" Name="Create" />
         <Patch Id="HrRC000000000000000085" Name="Update" />
