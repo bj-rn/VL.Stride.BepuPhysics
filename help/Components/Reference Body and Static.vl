@@ -528,16 +528,6 @@
             </p:NodeReference>
             <Pin Id="K5i24PAxH8MPTTKrtVJnSr" Name="Result" Kind="OutputPin" />
           </Node>
-          <Node Bounds="541,1470,48,19" Id="OQTXfJxKa1qPd05EuKPs0P">
-            <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="CastAs" />
-            </p:NodeReference>
-            <Pin Id="DszroZHTO5HL90CFELT9wi" Name="Input" Kind="StateInputPin" />
-            <Pin Id="PqZwnVt1PkPQVEyd1wZuSe" Name="Default" Kind="InputPin" />
-            <Pin Id="NJIb70yKwg2Ol5lTViwnxN" Name="Result" Kind="OutputPin" />
-            <Pin Id="FodDieOmRhRO94PEL68Tt1" Name="Success" Kind="OutputPin" />
-          </Node>
           <Node Bounds="541,1520,95,19" Id="R3alrKAwwdFPq9cCsehXKK">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.CollidableOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -561,6 +551,187 @@
               <p:fontsize p:Type="Int32">9</p:fontsize>
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="860,1320,240,19" Id="PWw6OU9W7RlNSGb3vT1YaZ">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="SetBodySettings" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="IwZ4VwT82DsMsECT76F8TQ" Name="Body" Kind="InputPin" />
+            <Pin Id="G1mjOgvl5CkOdKuvpvQ5La" Name="Kinematic" Kind="InputPin" />
+            <Pin Id="Dz4Bd0BUGSlOVN3WKcdThl" Name="Sleep Threshold" Kind="InputPin" />
+            <Pin Id="PNhfnAyQoHcOYFXmU622wg" Name="Minimum Timestep Count Under Threshold" Kind="InputPin" />
+            <Pin Id="GEOO4L14CZBOwtFUGPh7iU" Name="Gravity" Kind="InputPin" />
+            <Pin Id="IHhTJWDx8HDMyCHR9Ejch3" Name="Interpolation" Kind="InputPin" />
+            <Pin Id="BdWSm50TBVfOZxvISEXNf7" Name="Continuous Detection" Kind="InputPin" />
+            <Pin Id="IzUks830qRzMQuNZZw1r01" Name="Apply" Kind="InputPin" />
+            <Pin Id="PD5NywLcnYKN4x7ojaeNMd" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="DdmRob9iG23NNMx8NXTotQ" Comment="Apply" Bounds="1097,1270,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="1823,1020,114,19" Id="VTKLzrLCYiwPPWHjnvZWDp">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyAngularImpulse" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="CY6RYbaSjfHOHmhUeyMhCK" Name="Body" Kind="InputPin" />
+            <Pin Id="LxJDpOMhh6EMaKczsy2xZ6" Name="Impulse" Kind="InputPin" />
+            <Pin Id="UHtuvDTGSntOmGbsV1x0gM" Name="Apply" Kind="InputPin" />
+            <Pin Id="K46OM5P9FJhM3D7nbBIAut" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1823,1108,114,19" Id="B0F45zJEqmXM0rcbkoKH2J">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyImpulse" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="OcBePNHLpKFOz7mDuLnShW" Name="Body" Kind="InputPin" />
+            <Pin Id="A4jP5efYBAVLVGOfOP9gw3" Name="Impulse" Kind="InputPin" />
+            <Pin Id="AKOgHkeVoNFQTXEY9GIZOL" Name="Impulse Offset" Kind="InputPin" />
+            <Pin Id="GR4TysWVp7cNB7GKgcei2B" Name="Apply" Kind="InputPin" />
+            <Pin Id="HYRcLPyrFfMPJ6AZDw53a6" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1823,1196,114,19" Id="Gjmjjgfrks1OARIiX53ABh">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="ApplyLinearImpulse" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="CmhpC95pNeoQOua2UptlH2" Name="Body" Kind="InputPin" />
+            <Pin Id="JRYAEJSBUYyOL8sqRTOPya" Name="Impulse" Kind="InputPin" />
+            <Pin Id="MgYrrAGjQWoMIzqKOHt4TX" Name="Apply" Kind="InputPin" />
+            <Pin Id="RuF1DuS1lwWNm4hMxuDCc3" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1823,1284,125,19" Id="Dyknr8c1CJ6Oyoz0g1dwoW">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetAngularVelocity" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="GchwwULhPP7LcznG3Xpatd" Name="Body" Kind="InputPin" />
+            <Pin Id="StmaqhCsS5XOKrIge0HdNF" Name="Velocity" Kind="InputPin" />
+            <Pin Id="FY9k9ywdekAQbvw7xNMCuM" Name="Apply" Kind="InputPin" />
+            <Pin Id="VkY1W7FNfJSN4CZMmIeyEv" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1823,1372,125,19" Id="MQdsr1xIGydOrd5WlsyhKp">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="SetLinearVelocity" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="K67hv1oJv0bPanXc4xTXrF" Name="Body" Kind="InputPin" />
+            <Pin Id="UIHMYWbOypYLdT7SW4HiAx" Name="Velocity" Kind="InputPin" />
+            <Pin Id="CDrx2gMEohDM6BJcMAcPoH" Name="Apply" Kind="InputPin" />
+            <Pin Id="UzD6VogNABzMV4Zr8kBDMu" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="1823,1575,125,19" Id="Ev2t4LlCIkLPRgg4F9cNji">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Body" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Body" />
+              <Choice Kind="OperationCallFlag" Name="Teleport" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="QGNOFaYTENnMbCAEdtUq1E" Name="Body" Kind="InputPin" />
+            <Pin Id="AQzW9xVp2mMMItsF4NLaqp" Name="Position" Kind="InputPin" />
+            <Pin Id="PlTdSGyFY8kPchFmSwNNcn" Name="Orientation" Kind="InputPin" />
+            <Pin Id="GrkzRqyNFEEO3pnwMQCvzz" Name="Apply" Kind="InputPin" />
+            <Pin Id="VpHWQ4duqd0OJnq5DSZfU4" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="MDtsROAKpzbOJCXJm8EgYK" Comment="Impulse" Bounds="1879,970,35,43" ShowValueBox="true" isIOBox="true" Value="0, 0.29, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="L6pXXeKLctlMhn5BegVK1x" Comment="Apply" Bounds="1934,1000,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="Im3MDw0qixzOSsT5TE3Kxn" Comment="Apply" Bounds="1934,1080,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="FHdEedBALuFNDKjCwg80dP" Comment="Apply" Bounds="1934,1180,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="TbwC6LiiuN7LItUG6Y5vZ0" Comment="Apply" Bounds="1945,1260,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="OqdFTac6Wc8PdrIZNai9P1" Comment="Apply" Bounds="1945,1350,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="M7ZMIRZMj0XP4TShd44VMf" Comment="Apply" Bounds="1945,1557,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="HA8WzLFI1lSLDCVRiUgWhO" Comment="Impulse" Bounds="1861,1061,35,43" ShowValueBox="true" isIOBox="true" Value="0, 3, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="MHNxnvnTZwFOAmXrHlH8la" Comment="Impulse" Bounds="1879,1151,35,43" ShowValueBox="true" isIOBox="true" Value="0, 5, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="GKAHKyFXcvfQAu6Fb9REqV" Comment="Velocity" Bounds="1885,1240,35,43" ShowValueBox="true" isIOBox="true" Value="0, 1, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="OtF5gLrCFixLtEJVgGVXtI" Comment="Velocity" Bounds="1885,1331,35,43" ShowValueBox="true" isIOBox="true" Value="0, 3, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="AQe3oHEJiyRLeDhUppbotb" Comment="Position" Bounds="1865,1430,35,43" ShowValueBox="true" isIOBox="true" Value="0, 2, 0">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Vector3" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="DV7qtEGc8pqNibfgyRZBFT" Comment="Orientation" Bounds="1905,1480,35,57" ShowValueBox="true" isIOBox="true" Value="0, 0, 0, 1">
+            <p:TypeAnnotation LastCategoryFullName="3D" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Quaternion" />
+            </p:TypeAnnotation>
           </Pad>
         </Canvas>
         <Patch Id="HbFB000000000000000010" Name="Create" ParticipatingElements="PQvfdpvlZvXNPDDjxi2EBx" />
@@ -631,8 +802,28 @@
         <Link Id="V34OrGqhWNsNiQE7O6JhKy" Ids="T6yuPeFFXwkLI7sBpAqzxh,RjhDn95TQB4Oh2MRbyHfGE" />
         <Link Id="AjnFGTfnqBIN6UlXyJe0ZZ" Ids="OF7ly96YwVrOVWdGEmKprD,U358oC8N5iON8bl8L8fSKp" />
         <Link Id="PGD5tRCahLtMgSWbnHticd" Ids="IcxfL4GReHMNk0lpHyYDe2,DXvbxm4WBBzNfyQ7yImwvF" />
-        <Link Id="MJsy2timS2ePJVKKsix0WP" Ids="EDt6WhjLkSoM8BWeSbhKse,DszroZHTO5HL90CFELT9wi" />
-        <Link Id="OjsG975FyA0QUCjQpyZtIY" Ids="NJIb70yKwg2Ol5lTViwnxN,SxtqDOvhZIPOBNTFfWL8NC" />
+        <Link Id="A67tAZIZaLjOpKN7GGDNiv" Ids="LizcN143MLKOfxjfeOLWbe,IwZ4VwT82DsMsECT76F8TQ" />
+        <Link Id="Oe2qwXGdpMdPgkgCebFtHR" Ids="DdmRob9iG23NNMx8NXTotQ,IzUks830qRzMQuNZZw1r01" />
+        <Link Id="DrHIQpQoqxaQMTEAW99or7" Ids="EDt6WhjLkSoM8BWeSbhKse,SxtqDOvhZIPOBNTFfWL8NC" />
+        <Link Id="GrxDN8dfdLLOsa4fg779JT" Ids="MDtsROAKpzbOJCXJm8EgYK,LxJDpOMhh6EMaKczsy2xZ6" />
+        <Link Id="PvZd26QHwcwOUqhuff1MLh" Ids="L6pXXeKLctlMhn5BegVK1x,UHtuvDTGSntOmGbsV1x0gM" />
+        <Link Id="TafyZD2VopoOLN2P29Nm4z" Ids="Im3MDw0qixzOSsT5TE3Kxn,GR4TysWVp7cNB7GKgcei2B" />
+        <Link Id="IT6U8VgS0sENrf1uXleWN3" Ids="FHdEedBALuFNDKjCwg80dP,MgYrrAGjQWoMIzqKOHt4TX" />
+        <Link Id="RbaaX90KHtwPZ33VKBZzyt" Ids="TbwC6LiiuN7LItUG6Y5vZ0,FY9k9ywdekAQbvw7xNMCuM" />
+        <Link Id="VvpnDjLLZLGLNxsg5MFGqj" Ids="OqdFTac6Wc8PdrIZNai9P1,CDrx2gMEohDM6BJcMAcPoH" />
+        <Link Id="UPrT9esnthUMOPKb6ojSlT" Ids="M7ZMIRZMj0XP4TShd44VMf,GrkzRqyNFEEO3pnwMQCvzz" />
+        <Link Id="LN6DNDbkZk2Pi0lsDVBFhu" Ids="HA8WzLFI1lSLDCVRiUgWhO,A4jP5efYBAVLVGOfOP9gw3" />
+        <Link Id="TRPiPqcTmMbOIgtZrDQhVu" Ids="MHNxnvnTZwFOAmXrHlH8la,JRYAEJSBUYyOL8sqRTOPya" />
+        <Link Id="Jf708MkfHFmQSFGL7doJ6z" Ids="GKAHKyFXcvfQAu6Fb9REqV,StmaqhCsS5XOKrIge0HdNF" />
+        <Link Id="TSMygrXVi3ENxMsaq3tysN" Ids="OtF5gLrCFixLtEJVgGVXtI,UIHMYWbOypYLdT7SW4HiAx" />
+        <Link Id="IrQcjxMJRclM675j9ENieX" Ids="AQe3oHEJiyRLeDhUppbotb,AQzW9xVp2mMMItsF4NLaqp" />
+        <Link Id="DdJjv9CPercNDEDnJSu6eQ" Ids="DV7qtEGc8pqNibfgyRZBFT,PlTdSGyFY8kPchFmSwNNcn" />
+        <Link Id="Cs50sNDiXSQPOvC2cViq75" Ids="LizcN143MLKOfxjfeOLWbe,CY6RYbaSjfHOHmhUeyMhCK" />
+        <Link Id="MZP7l13l6lBOc4Z9vtc04y" Ids="LizcN143MLKOfxjfeOLWbe,OcBePNHLpKFOz7mDuLnShW" />
+        <Link Id="NJ3UT6moNF6QG5YihxLhvj" Ids="LizcN143MLKOfxjfeOLWbe,CmhpC95pNeoQOua2UptlH2" />
+        <Link Id="P5H0EKpkWTpPB0TTREsBrQ" Ids="LizcN143MLKOfxjfeOLWbe,GchwwULhPP7LcznG3Xpatd" />
+        <Link Id="Rd2AvJXFrbjPJmKIq2mDJB" Ids="LizcN143MLKOfxjfeOLWbe,K67hv1oJv0bPanXc4xTXrF" />
+        <Link Id="I6Yb01rC9gSLoJQ5IWVeKz" Ids="LizcN143MLKOfxjfeOLWbe,QGNOFaYTENnMbCAEdtUq1E" />
       </Patch>
     </Node>
   </Patch>

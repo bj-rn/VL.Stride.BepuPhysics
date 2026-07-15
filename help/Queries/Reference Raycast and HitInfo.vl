@@ -592,9 +592,9 @@
             </p:ValueBoxSettings>
           </Pad>
           <Node Bounds="1598,678,65,19" Id="TEES0gcwt7HMG0ZRdi0Uxf">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
+              <CategoryReference Kind="ClassType" Name="Collidable" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="RayCast" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
@@ -632,9 +632,9 @@
             </p:ValueBoxSettings>
           </Pad>
           <Node Bounds="2221,678,104,19" Id="GXprytCgGTRNcrxv0BmZYQ">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Bodies" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Collidable" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="ClassType" Name="Bodies" NeedsToBeDirectParent="true" />
+              <CategoryReference Kind="ClassType" Name="Collidable" NeedsToBeDirectParent="true" />
               <Choice Kind="ProcessAppFlag" Name="RayCastPenetrating" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>

@@ -136,8 +136,9 @@
             </p:ValueBoxSettings>
           </Pad>
           <Node Bounds="1149,707,150,19" Id="HbCH000000000000000080">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu" LastDependency="VL.Stride.BepuPhysics.vl">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Components.Character" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="Character" NeedsToBeDirectParent="true" />
               <Choice Kind="OperationCallFlag" Name="Move" />
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
@@ -740,16 +741,6 @@
           </Node>
           <Pad Id="RJjnplIjpZMO78eh3JfjbD" Comment="Speed" Bounds="1498,990,35,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="JcbzKko0p60OeVWa1XWnUu" Comment="Jump Force" Bounds="1605,980,35,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="758,840,48,19" Id="OzFnvNzgeMRMeq240Z45GZ">
-            <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="OperationCallFlag" Name="CastAs" />
-            </p:NodeReference>
-            <Pin Id="DeOp8KSSxC2NXgoCudnew5" Name="Input" Kind="StateInputPin" />
-            <Pin Id="L9Kd0KrcvjHOeijdfyInn7" Name="Default" Kind="InputPin" />
-            <Pin Id="Ur8M7EHjgZiOJHE8LZTekp" Name="Result" Kind="OutputPin" />
-            <Pin Id="OCqMzZvv1mhLWmnhdDko6y" Name="Success" Kind="OutputPin" />
-          </Node>
           <Node Bounds="758,900,295,19" Id="DZXWG1n8iNxMOYpYqtKcXW">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.BodyOperations" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -863,8 +854,6 @@
         <Link Id="GQXBFmcSNL3QHNtSrqpbY2" Ids="HbCH000000000000000045,Bbu9ipI0BGRLJERorA2d45" />
         <Link Id="D0HVWG6dJyPOed03yjsIYk" Ids="DG2AQVbh87HNcTk2QabH32,RJjnplIjpZMO78eh3JfjbD" />
         <Link Id="Py6cV7vr41cPVJreFj1kv9" Ids="MUmuMMUfVZcPEM1rH92MzQ,JcbzKko0p60OeVWa1XWnUu" />
-        <Link Id="JUofxR7iBEKNmZ8Rk087hb" Ids="HbCH000000000000000045,DeOp8KSSxC2NXgoCudnew5" />
-        <Link Id="AwD4YTDQtFRP1113CEBk9k" Ids="Ur8M7EHjgZiOJHE8LZTekp,PrG4xnI8Ed1MiA9jr2ImPY" />
         <Link Id="U2ucU2sXIcZLJIu5JVBzur" Ids="CaJOaQpCOpgMKj1fuKBhhb,QbyUBQiXfuDOuD69fL9xdL" />
         <Link Id="S4n5of3rHaoQLAUoVN7Y3z" Ids="CbHVYGhUTgMLGhm4o0tQgU,P1S3zBPhKIpPoY9UPZA7oP" />
         <Link Id="VmkM69MoYjVOwLoTILNgnI" Ids="BHuuwksbrdyNCZ35F9MK2u,CCkHtnFemnEQFnaXqp7OwR" />
@@ -876,6 +865,7 @@
         <Link Id="PvKrBIE4JQKLxL0Mld7QuX" Ids="KS68DUdgf0rQP0qACHcTOj,HarsJHXIz1SMHR4ljJbdBr" />
         <Link Id="SeIqdieDe11MlDakuJJB6u" Ids="RPEZrk0Y1NPMqnVbtc9Ba7,Rnbk4GDiK40N0YMbMIf2vD" />
         <Link Id="AudcF9qBa4XMKpVNe2jRxA" Ids="TR7VH1apzOeLgmo3tgVknR,VHunJ3fQR0jP8kzysa8mRO" />
+        <Link Id="EM6cnu8XOEKLjswv0dMDjD" Ids="HbCH000000000000000045,PrG4xnI8Ed1MiA9jr2ImPY" />
       </Patch>
     </Node>
   </Patch>
