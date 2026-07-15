@@ -152,7 +152,7 @@ public static class Queries
 /// <summary>
 /// Casts a ray and reports all hits along it, sorted by distance. The direction is normalized internally, Max Distance and the reported hit distances are always plain world units, independent of the length of the connected vector.
 /// </summary>
-[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
+[ProcessNode(Name = "RayCastPenetrating", Category = "Stride.Physics.Bepu.Simulation.Queries")]
 public class RayCastPenetratingNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
@@ -189,7 +189,7 @@ public class RayCastPenetratingNode
 /// <summary>
 /// Sweeps a shape along a direction and reports all hits. The direction is normalized internally, Max Distance, the reported hit distances and the Angular Velocity&#39;s per-distance unit are always based on plain world units, independent of the length of the connected vector.
 /// </summary>
-[ProcessNode(Name = "SweepCastPenetrating", Category = "Stride.Physics.Bepu.Queries")]
+[ProcessNode(Name = "SweepCastPenetrating", Category = "Stride.Physics.Bepu.Simulation.Queries")]
 public class SweepCastPenetratingNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends hits directly into it.
@@ -255,7 +255,7 @@ public class SweepCastPenetratingNode
 /// the direction and distance needed to separate. A compound collidable can produce several
 /// overlaps, one per overlapping child shape. Use Split to access an overlap's parts.
 /// </summary>
-[ProcessNode(Name = "Overlap", Category = "Stride.Physics.Bepu.Queries")]
+[ProcessNode(Name = "Overlap", Category = "Stride.Physics.Bepu.Simulation.Queries")]
 public class OverlapNode
 {
     // SpreadBuilder implements ICollection<T>, the engine appends overlaps directly into it.
