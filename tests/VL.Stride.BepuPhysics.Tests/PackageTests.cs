@@ -4,16 +4,16 @@ using VL.TestFramework;
 namespace VL.Stride.BepuPhysics.Tests;
 
 /// <summary>
-/// Headless compile checks via VL.TestFramework.
-/// Currently marked Explicit: VL.Lang's TestEnvironment crashes with
-/// ArgumentNullException in ImportedParameterPinDefinitionSymbol.GetDefaultValue when a
-/// referenced assembly (e.g. Stride.BepuPhysics itself) has enum parameter defaults —
-/// it cannot resolve the enum's runtime type in the headless host. The same documents
-/// compile and run fine in real vvvv (use tools/verify-patches.ps1 instead).
-/// Candidate for an upstream report to vvvv.
+/// Headless compile checks via VL.TestFramework: the main document and every help patch
+/// must compile without errors.
+/// PreCompilePackages MUST stay true: without it the VL compiler never loads the runtime
+/// assemblies of referenced packages, and computing imported pin defaults crashes with an
+/// ArgumentNullException in ImportedParameterPinDefinitionSymbol.GetDefaultValue as soon
+/// as any referenced assembly declares an enum parameter default (importing plain
+/// VL.Stride is enough to trigger it, no Bepu involved). With pre compilation the
+/// packages are processed like in a regular vvvv startup and everything resolves.
 /// </summary>
 [TestFixture]
-[Explicit("VL.TestFramework cannot resolve enum runtime types of referenced packages — verified working in real vvvv; run tools/verify-patches.ps1 instead.")]
 public class PackageTests
 {
     private TestEnvironment? _env;
@@ -40,7 +40,7 @@ public class PackageTests
         if (Directory.Exists(userNugets))
             searchPaths.Add(userNugets);
 
-        _env = TestEnvironmentLoader.Load(Path.Combine(VvvvDir, "vvvv.exe"), searchPaths);
+        _env = TestEnvironmentLoader.Load(Path.Combine(VvvvDir, "vvvv.exe"), searchPaths, preCompilePackages: true);
     }
 
     [OneTimeTearDown]
