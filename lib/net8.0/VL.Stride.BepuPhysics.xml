@@ -282,11 +282,11 @@
             A dynamic or kinematic rigid body simulated by BepuPhysics.
             Connect the output to an Entity (like a ModelComponent); the body drives the entity's transform.
             The entity's transform at attach time defines the initial pose.
-            Connect one or more collider shapes; each shape instance can only be used by one body.
+            Connect one or more collider shapes; each shape instance must only be used by one body.
             </summary>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Components.BodyNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Boolean,Stride.BepuPhysics.Definitions.InterpolationMode,Stride.BepuPhysics.CollisionLayer,System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,VL.Stride.BepuPhysics.Components.ContinuousDetectionKind,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
-            <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
+            <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance must only be used by one body.</param>
             <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated (recommended for display-rate rendering).</param>
             <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>
@@ -420,7 +420,7 @@
             </summary>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Components.CharacterNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},System.Single,System.Single,Stride.BepuPhysics.Definitions.InterpolationMode,Stride.BepuPhysics.CollisionLayer,System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Boolean,VL.Stride.BepuPhysics.Components.ContinuousDetectionKind,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Nullable{Stride.Core.Mathematics.Matrix},System.Boolean,System.Boolean)">
-            <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
+            <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance must only be used by one collidable.</param>
             <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
             <param name="jumpForce">Force of the impulse applied by TryJump.</param>
             <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated (recommended for display-rate rendering).</param>
@@ -576,11 +576,11 @@
             <summary>
             Immovable collision geometry (ground, walls, level geometry).
             Connect the output to an Entity; the entity's transform places the static shape.
-            Connect one or more collider shapes; each shape instance can only be used by one collidable.
+            Connect one or more collider shapes; each shape instance must only be used by one collidable.
             </summary>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Components.StaticNode.Update(VL.Lib.Collections.Spread{Stride.BepuPhysics.Definitions.Colliders.ColliderBase},Stride.BepuPhysics.CollisionLayer,System.Nullable{Stride.BepuPhysics.Definitions.CollisionGroup},System.Single,System.Single,System.Single,System.Single,Stride.BepuPhysics.Definitions.Contacts.IContactHandler,Stride.BepuPhysics.Definitions.Colliders.ICollider,System.Boolean)">
-            <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
+            <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance must only be used by one collidable.</param>
             <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>
             <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
             <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
