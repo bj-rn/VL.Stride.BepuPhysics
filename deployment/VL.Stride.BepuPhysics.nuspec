@@ -11,8 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
         BepuPhysics v2 rigid body physics for vvvv gamma, based on Stride.BepuPhysics and integrated
-        with the VL.Stride entity system: bodies, statics, collider shapes, all constraint types,
-        raycast/sweep/overlap queries, contact events and live simulation settings.
+        with the VL.Stride entity system: bodies, statics, a character controller, collider shapes
+        with runtime convex hull baking, all 30 constraint types with runtime get and set access,
+        raycast/sweep/overlap queries, contact events and trigger volumes, collision filtering via
+        layers and groups, per step simulation hooks, live simulation settings and debug views of
+        the physics world.
     </description>
     <tags>VL, vvvv, gamma, stride, stride3d, physics, bepu, bepuphysics, rigidbody</tags>
     <license type="expression">MIT</license>
