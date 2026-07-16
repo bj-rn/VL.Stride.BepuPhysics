@@ -155,7 +155,7 @@ public static class Collidable
     /// <param name="springDampingRatio">Contact spring damping; 1 = critical damping.</param>
     /// <param name="frictionCoefficient">Surface friction; 0 = frictionless, 1 = rough.</param>
     /// <param name="maximumRecoveryVelocity">Upper limit for the velocity used to push overlapping bodies apart.</param>
-    /// <param name="collisionLayer">The collision layer of this collidable (0..31). Null = Layer0.</param>
+    /// <param name="collisionLayer">The collision layer of this collidable (0..31).</param>
     /// <param name="collisionGroup">Fine grained filter on top of the collision layer. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
     [return: Pin(Name = "Output")]
@@ -164,7 +164,7 @@ public static class Collidable
         float springDampingRatio = 3f,
         float frictionCoefficient = 1f,
         float maximumRecoveryVelocity = 1000f,
-        SBepu.CollisionLayer? collisionLayer = null,
+        SBepu.CollisionLayer collisionLayer = SBepu.CollisionLayer.Layer0,
         SDefinitions.CollisionGroup? collisionGroup = null,
         bool apply = false)
     {
@@ -177,7 +177,7 @@ public static class Collidable
             collidable.SpringDampingRatio = springDampingRatio;
             collidable.FrictionCoefficient = frictionCoefficient;
             collidable.MaximumRecoveryVelocity = maximumRecoveryVelocity;
-            collidable.CollisionLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
+            collidable.CollisionLayer = collisionLayer;
             collidable.CollisionGroup = collisionGroup ?? default;
         }
         return collidable;

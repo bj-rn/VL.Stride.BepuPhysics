@@ -37,7 +37,7 @@ public class StaticNode
     }
 
     /// <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
-    /// <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+    /// <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>
     /// <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
     /// <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
@@ -50,7 +50,7 @@ public class StaticNode
     [return: Pin(Name = "Output")]
     public SBepu.StaticComponent Update(
         [Pin(PinGroupKind = PinGroupKind.Collection, PinGroupDefaultCount = 1)] Spread<SColliders.ColliderBase?>? colliders = null,
-        SBepu.CollisionLayer? collisionLayer = null,
+        SBepu.CollisionLayer collisionLayer = SBepu.CollisionLayer.Layer0,
         [Pin(Visibility = PinVisibility.Optional)] SDefinitions.CollisionGroup? collisionGroup = null,
         float springFrequency = 30f,
         float springDampingRatio = 3f,
@@ -64,10 +64,9 @@ public class StaticNode
         if (!ReferenceEquals(_component.Collider, effectiveCollider))
             _component.Collider = effectiveCollider;
 
-        var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
         // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
-        if (_collisionLayer.Changed(effectiveLayer) | reapplyInputs)
-            _component.CollisionLayer = effectiveLayer;
+        if (_collisionLayer.Changed(collisionLayer) | reapplyInputs)
+            _component.CollisionLayer = collisionLayer;
         var effectiveGroup = collisionGroup ?? default;
         if (_collisionGroup.Changed(effectiveGroup) | reapplyInputs)
             _component.CollisionGroup = effectiveGroup;

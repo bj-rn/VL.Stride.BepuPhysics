@@ -233,8 +233,8 @@ public static class Body
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
     /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
-    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated.</param>
-    /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete.</param>
+    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated.</param>
+    /// <param name="continuousDetection">Continuous collision detection mode. Default: Discrete.</param>
     /// <param name="apply">Writes all settings each frame while true. Connect a Bang for a one-shot write.</param>
     [return: Pin(Name = "Output")]
     public static SBepu.BodyComponent? SetBodySettings(SBepu.BodyComponent? body,
@@ -242,8 +242,8 @@ public static class Body
         float sleepThreshold = 0.01f,
         int minimumTimestepCountUnderThreshold = 32,
         bool gravity = true,
-        SDefinitions.InterpolationMode? interpolation = null,
-        ContinuousDetectionKind? continuousDetection = null,
+        SDefinitions.InterpolationMode interpolation = SDefinitions.InterpolationMode.Interpolated,
+        ContinuousDetectionKind continuousDetection = ContinuousDetectionKind.Discrete,
         bool apply = false)
     {
         if (apply && body is not null)
@@ -254,8 +254,8 @@ public static class Body
             body.SleepThreshold = sleepThreshold;
             body.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
             body.Gravity = gravity;
-            body.InterpolationMode = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
-            body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
+            body.InterpolationMode = interpolation;
+            body.ContinuousDetectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)continuousDetection;
         }
         return body;
     }

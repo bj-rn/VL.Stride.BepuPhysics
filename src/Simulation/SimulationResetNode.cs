@@ -32,7 +32,7 @@ public class SimulationResetNode
     /// <param name="capture">Takes a new snapshot of the poses and velocities of all bodies matching the filters. Connect a Bang. The filter pins are read at this moment; changing them later does not re-capture.</param>
     /// <param name="reset">Restores all captured bodies to their snapshot state. Connect a Bang. Restores the captured set as is: the filters are NOT re-checked, a body whose layer or group changed since the capture is still restored.</param>
     /// <param name="autoCapture">Automatically captures the first frame in which at least one body matching the filters exists: the capture is attempted every frame and keeps retrying while it catches nothing, then stays off. A manual Capture bang also ends the automatic attempts. With filters that never match anything the attempts continue indefinitely (cheap, but watch Captured Bodies staying at 0).</param>
-    /// <param name="collisionMask">Which collision layers are captured; null = all layers. A body is captured when its layer is contained in this mask AND its group passes Collision Group Id, both filters must agree. Read when a capture happens (bang or auto), never at reset.</param>
+    /// <param name="collisionMask">Which collision layers are captured, default all layers. A body is captured when its layer is contained in this mask AND its group passes Collision Group Id, both filters must agree. Read when a capture happens (bang or auto), never at reset.</param>
     /// <param name="collisionGroupId">Only bodies whose collision group Id matches are captured, combined with Collision Mask (both must agree). -1 = all groups. Note that 0 selects exactly the bodies WITHOUT a group, since Id 0 is the no group default; this is why -1 is the off value. The group's index values are ignored on purpose: members of one group (for example chain links) carry different indices by design, the Id alone says which set a body belongs to. Read when a capture happens, never at reset.</param>
     public void Update(
         out int capturedBodies,
@@ -40,7 +40,7 @@ public class SimulationResetNode
         bool capture = false,
         bool reset = false,
         bool autoCapture = true,
-        [Pin(Visibility = PinVisibility.Optional)] SBepu.CollisionMask? collisionMask = null,
+        [Pin(Visibility = PinVisibility.Optional)] SBepu.CollisionMask collisionMask = SBepu.CollisionMask.Everything,
         [Pin(Visibility = PinVisibility.Optional)] int collisionGroupId = -1)
     {
         var captureEdge = capture && !_lastCapture;
@@ -76,7 +76,7 @@ public class SimulationResetNode
         capturedBodies = _snapshot.Count;
     }
 
-    private void Capture(SBepu.BepuSimulation simulation, SBepu.CollisionMask? collisionMask, int collisionGroupId)
+    private void Capture(SBepu.BepuSimulation simulation, SBepu.CollisionMask collisionMask, int collisionGroupId)
     {
         _snapshot.Clear();
         var bodies = simulation.Simulation.Bodies;
@@ -91,7 +91,7 @@ public class SimulationResetNode
                 var component = simulation.GetComponent(set.IndexToHandle[i]);
                 if (component is null)
                     continue;
-                if (collisionMask is { } mask && ((uint)mask & (1u << (int)component.CollisionLayer)) == 0)
+                if (((uint)collisionMask & (1u << (int)component.CollisionLayer)) == 0)
                     continue;
                 if (collisionGroupId >= 0 && component.CollisionGroup.Id != collisionGroupId)
                     continue;

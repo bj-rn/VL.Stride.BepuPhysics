@@ -52,8 +52,8 @@ public class BodyNode
 
     /// <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
     /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
-    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Null = Interpolated (recommended for display-rate rendering).</param>
-    /// <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix. Null = Layer0.</param>
+    /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated (recommended for display-rate rendering).</param>
+    /// <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>
     /// <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>
     /// <param name="springDampingRatio">Contact spring damping; 1 = critical damping, higher values settle contacts more stiffly.</param>
@@ -62,7 +62,7 @@ public class BodyNode
     /// <param name="sleepThreshold">Velocity below which the body becomes a sleep candidate; -1 disables sleeping.</param>
     /// <param name="minimumTimestepCountUnderThreshold">Number of physics steps the body must stay under the sleep threshold before it becomes a sleeping candidate (1..255).</param>
     /// <param name="gravity">Whether gravity affects this body. Only evaluated when UsePerBodyAttributes is enabled on the simulation.</param>
-    /// <param name="continuousDetection">Continuous collision detection mode. Null = Discrete; use Continuous for fast bodies that would tunnel through thin geometry.</param>
+    /// <param name="continuousDetection">Continuous collision detection mode. Use Continuous for fast bodies that would tunnel through thin geometry.</param>
     /// <param name="contactHandler">Connect a ContactEvents node's output here to receive contact begin/touch/end events for this body.</param>
     /// <param name="colliderOverride">Advanced: use a MeshCollider or EmptyCollider instead of the Colliders shapes.</param>
     /// <param name="teleportTo">Places the body at this pose whenever the value CHANGES (a constant matrix = initial pose only). Do not wire a transformation into the entity instead.</param>
@@ -73,8 +73,8 @@ public class BodyNode
     public SBepu.BodyComponent Update(
         [Pin(PinGroupKind = PinGroupKind.Collection, PinGroupDefaultCount = 1)] Spread<SColliders.ColliderBase?>? colliders = null,
         bool kinematic = false,
-        SDefinitions.InterpolationMode? interpolation = null,
-        SBepu.CollisionLayer? collisionLayer = null,
+        SDefinitions.InterpolationMode interpolation = SDefinitions.InterpolationMode.Interpolated,
+        SBepu.CollisionLayer collisionLayer = SBepu.CollisionLayer.Layer0,
         [Pin(Visibility = PinVisibility.Optional)] SDefinitions.CollisionGroup? collisionGroup = null,
         float springFrequency = 30f,
         float springDampingRatio = 3f,
@@ -83,7 +83,7 @@ public class BodyNode
         float sleepThreshold = 0.01f,
         [Pin(Visibility = PinVisibility.Optional)] int minimumTimestepCountUnderThreshold = 32,
         bool gravity = true,
-        ContinuousDetectionKind? continuousDetection = null,
+        ContinuousDetectionKind continuousDetection = ContinuousDetectionKind.Discrete,
         SContacts.IContactHandler? contactHandler = null,
         [Pin(Visibility = PinVisibility.Optional)] SColliders.ICollider? colliderOverride = null,
         Matrix? teleportTo = null,
@@ -94,17 +94,13 @@ public class BodyNode
         if (!ReferenceEquals(_component.Collider, effectiveCollider))
             _component.Collider = effectiveCollider;
 
-        // null = default: Interpolated (smooth visuals at display rate vs the fixed physics step)
-        var effectiveInterpolation = interpolation ?? SDefinitions.InterpolationMode.Interpolated;
-        var effectiveLayer = collisionLayer ?? SBepu.CollisionLayer.Layer0;
-
         // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
         if (_kinematic.Changed(kinematic) | reapplyInputs)
             _component.Kinematic = kinematic;
-        if (_interpolation.Changed(effectiveInterpolation) | reapplyInputs)
-            _component.InterpolationMode = effectiveInterpolation;
-        if (_collisionLayer.Changed(effectiveLayer) | reapplyInputs)
-            _component.CollisionLayer = effectiveLayer;
+        if (_interpolation.Changed(interpolation) | reapplyInputs)
+            _component.InterpolationMode = interpolation;
+        if (_collisionLayer.Changed(collisionLayer) | reapplyInputs)
+            _component.CollisionLayer = collisionLayer;
         var effectiveGroup = collisionGroup ?? default;
         if (_collisionGroup.Changed(effectiveGroup) | reapplyInputs)
             _component.CollisionGroup = effectiveGroup;
@@ -122,7 +118,7 @@ public class BodyNode
             _component.MinimumTimestepCountUnderThreshold = (byte)Math.Clamp(minimumTimestepCountUnderThreshold, 1, byte.MaxValue);
         if (_gravity.Changed(gravity) | reapplyInputs)
             _component.Gravity = gravity;
-        var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)(continuousDetection ?? ContinuousDetectionKind.Discrete);
+        var detectionMode = (global::BepuPhysics.Collidables.ContinuousDetectionMode)continuousDetection;
         if (_continuousDetection.Changed(detectionMode) | reapplyInputs)
             _component.ContinuousDetectionMode = detectionMode;
         if (_contactHandler.Changed(contactHandler) | reapplyInputs)
