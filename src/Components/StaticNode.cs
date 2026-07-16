@@ -12,7 +12,7 @@ namespace VL.Stride.BepuPhysics.Components;
 /// <summary>
 /// Immovable collision geometry (ground, walls, level geometry).
 /// Connect the output to an Entity; the entity's transform places the static shape.
-/// Connect one or more collider shapes; each shape instance can only be used by one collidable.
+/// Connect one or more collider shapes; each shape instance must only be used by one collidable.
 /// </summary>
 [ProcessNode(Name = "Static")]
 public class StaticNode
@@ -36,7 +36,7 @@ public class StaticNode
         _component = new SBepu.StaticComponent { Collider = new SColliders.EmptyCollider() };
     }
 
-    /// <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance can only be used by one collidable.</param>
+    /// <param name="colliders">Collision shapes forming this static (combined into one rigid compound). Each shape instance must only be used by one collidable.</param>
     /// <param name="collisionLayer">The collision layer of this static (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>
     /// <param name="collisionGroup">Fine grained filter on top of the collision layer: collidables sharing the same non zero Id ignore each other while their indices differ by less than two. Create with the CollisionGroup operation. Null = no group.</param>
     /// <param name="springFrequency">Contact spring stiffness in Hz — how hard contacts push overlapping bodies apart.</param>

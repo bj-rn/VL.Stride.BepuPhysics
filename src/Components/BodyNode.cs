@@ -14,7 +14,7 @@ namespace VL.Stride.BepuPhysics.Components;
 /// A dynamic or kinematic rigid body simulated by BepuPhysics.
 /// Connect the output to an Entity (like a ModelComponent); the body drives the entity's transform.
 /// The entity's transform at attach time defines the initial pose.
-/// Connect one or more collider shapes; each shape instance can only be used by one body.
+/// Connect one or more collider shapes; each shape instance must only be used by one body.
 /// </summary>
 [ProcessNode(Name = "Body")]
 public class BodyNode
@@ -50,7 +50,7 @@ public class BodyNode
         };
     }
 
-    /// <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance can only be used by one body.</param>
+    /// <param name="colliders">Collision shapes forming this body (combined into one rigid compound). Each shape instance must only be used by one body.</param>
     /// <param name="kinematic">When true the body is unaffected by forces and collisions but pushes dynamic bodies away; move it via SetTargetPose or TeleportTo.</param>
     /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated (recommended for display-rate rendering).</param>
     /// <param name="collisionLayer">The collision layer of this body (0..31); pair filtering is configured via the SimulationSettings collision matrix.</param>

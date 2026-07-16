@@ -7,19 +7,20 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 
 ## Features
 
-- `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu`
+- `Body` (dynamic/kinematic) and `Static` components, category `Stride.Physics.Bepu.Components`
 - `Character` component: a walking, jumping physics character (Move / TryJump / CharacterState)
-- Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model), ConvexHull, Empty
+- Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model with CPU accessible mesh data), ConvexHull, Empty
 - Runtime hull baking: HullFromModel and HullFromPoints produce the ConvexHullCollider's hull data (single hull, the convex envelope; multi hull decomposition only exists in the Stride editor's asset pipeline)
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
-- Runtime constraint access: GetConstraints on a body, ConstraintInfo, spring / motor / servo settings operations, applied force readout, plus type specific settings operations for all 30 constraint types
-- Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating, Overlap
+- Runtime constraint access: GetConstraints on a body, GetConstraintBodies, ConstraintInfo, spring / motor / servo settings operations, applied force readout, plus type specific settings operations for all 30 constraint types
+- Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating (optionally with a rotating shape via the Angular Velocity pin) and Overlap, plus per collidable RayCast and RayCastPenetrating variants that test a single body or static
 - Per-collidable contact events (started / touching / stopped)
 - Trigger volumes: overlap detection without collision response (entered / exited)
 - SimulationSettings: gravity, fixed timestep, solver iterations, collision matrix, all live
 - Collision filtering: per collidable layer (32 layers, pair matrix) plus collision groups for fine grained rules like chain links ignoring their neighbours
 - Per step hooks: the SimulationUpdate node reports every physics step (counts and observables) for frame rate independent forces
 - Debug view: the ColliderShapes node builds translucent wireframed shape entities for every collider in the simulation, following the raw physics poses, rendered through the normal pipeline (works with the default SceneWindow). An opt in Instanced mode draws all shapes sharing a mesh in one draw call for very large simulations, fill only, wireframe lines are not supported there
+- Diagnostics: the BepuInfo node reports configuration and simulation state, body/static counts and, with a component connected, its attachment chain and pose (both debug nodes in category `Stride.Physics.Bepu.Debug`)
 - Transform interpolation enabled by default for smooth visuals at any frame rate
 
 ## Installation
@@ -49,13 +50,17 @@ matching release:
 3. Update the exact pins in `deployment/VL.Stride.BepuPhysics.nuspec`: the
    `Stride.BepuPhysics` version and the `BepuPhysics` beta it depends on
    (see the dependency list of the Stride.BepuPhysics package on nuget.org).
-4. Rebuild, run the patch verification (see Testing), bump the package version in the
+4. Rebuild, run the compile checks and the patch verification (see Testing), bump the package version in the
    nuspec, add a row to this table and release.
 
 ## Quick start
 
-Open `help/HowTo Falling Bodies.vl`, a dynamic box falling onto a static ground,
-or browse the `Stride.Physics.Bepu` category in the node browser.
+Open `help/Reference Overview Bepu Physics.vl` for a tour of the package, or browse
+the `Stride.Physics.Bepu` category in the node browser. Its subcategories: `Components`
+(Body, Static, Character and their operations), `Colliders`, `Constraints`, `Events`
+(ContactEvents, Trigger), `Simulation` (settings, reset, per step hooks and the scene
+queries) and `Debug`. Every node has a Reference patch in `help/`, organized in the same
+way, including one patch per constraint type.
 
 Basics:
 1. Create an Entity (any VL.Stride entity node, e.g. `Box` from `Stride.Models`).
@@ -65,13 +70,17 @@ Basics:
    Use `Teleport`/`SetTargetPose`/impulse operation nodes to move bodies.
 
 Notes:
-- A collider shape instance can only be used by **one** Body/Static.
+- A collider shape instance must only be used by **one** collidable (Body, Static or
+  Character). Sharing is not rejected, but the shape only tracks one owner, so property
+  changes and detachment go to the wrong body.
 - A component instance can only be attached to **one** Entity.
 - Simulation settings (gravity etc.) apply globally via the `SimulationSettings` node.
 - **Do not wire a matrix into a physics-driven entity's `Transformation` pin**, the entity
   node re-applies it every frame and overrides the physics. Use the Body node's `TeleportTo`
   pin instead: it places the body only when the value changes.
-- `Body.ResetPose` (bang) re-drops a single body; the `SimulationReset` node snapshots and
+- `Body.ResetPose` (bang) re-teleports a single body to its `TeleportTo` pose and zeroes
+  its velocities (it does nothing while `TeleportTo` is unconnected); the
+  `SimulationReset` node snapshots and
   restores many bodies at once (auto-captures the first frame with matching bodies,
   `Capture` for a new start state, `Reset` to restore). By default it captures **all**
   bodies; the optional Collision Mask and Collision Group Id pins narrow the capture to
@@ -103,7 +112,54 @@ Notes:
 
 There are two verification layers:
 
-### 1. Patch verification via vvvv (primary)
+### 1. Headless compile checks (primary)
+
+```
+dotnet test tests\VL.Stride.BepuPhysics.Tests
+```
+
+`tests/` contains an NUnit project using **VL.TestFramework**: it boots the VL compiler
+headlessly and verifies that the main `.vl` document and every help patch compile without
+errors. Each document runs through the full compiler pipeline (load, dependency
+resolution, type checking, code emission) but nothing is executed, no window opens and no
+physics steps. Expect around 20 to 30 seconds for the whole suite. Run it after any C#
+pin or signature change and after adding or generating patches, it is exactly the check
+that catches a renamed pin breaking some help patch you did not think of. vvvv can stay
+open while the tests run.
+
+Useful variations:
+
+```
+dotnet test tests\VL.Stride.BepuPhysics.Tests --filter "Name~MainDocumentCompiles"   # just the main document
+dotnet test tests\VL.Stride.BepuPhysics.Tests --filter "Name~HelpPatchCompiles"      # all help patches
+dotnet test tests\VL.Stride.BepuPhysics.Tests --filter "Name~Weld"                   # a specific patch (path is the test name)
+dotnet test tests\VL.Stride.BepuPhysics.Tests --logger "console;verbosity=detailed"  # full compiler messages on failure
+```
+
+Against a different vvvv installation (PowerShell):
+
+```
+$env:VVVV_DIR = "D:\vvvv\vvvv_gamma_7.4-win-x64"; dotnet test tests\VL.Stride.BepuPhysics.Tests
+```
+
+Preconditions: a local vvvv installation (the fixture's default path matches the
+author's machine, on any other machine set the `VVVV_DIR` environment variable as shown
+above) and the runtime packages (Stride.BepuPhysics, BepuPhysics, BepuUtilities)
+installed in vvvv's user nugets directory
+(`%LOCALAPPDATA%\vvvv\gamma\nugets`), which the test fixture adds to its search paths
+automatically. Because of these local requirements the tests are a verification tool for
+this machine rather than a CI gate for now.
+
+Important: `TestEnvironmentLoader.Load` is called with `preCompilePackages: true` and that
+must stay. Without pre compilation the headless host never loads the runtime assemblies of
+referenced packages, and computing imported pin defaults crashes with an
+ArgumentNullException in `ImportedParameterPinDefinitionSymbol.GetDefaultValue`
+(`Enum.ToObject(null, ...)`) as soon as any referenced assembly declares an enum parameter
+default. Importing plain VL.Stride is enough to trigger it, this wrapper is not involved.
+With pre compilation the packages are processed like in a regular vvvv startup and all
+runtime types resolve.
+
+### 2. Patch verification via vvvv (runtime fallback)
 
 ```
 powershell -File tools\verify-patches.ps1 [-VvvvExe <path\to\vvvv.exe>] [-Seconds 60]
@@ -111,29 +167,14 @@ powershell -File tools\verify-patches.ps1 [-VvvvExe <path\to\vvvv.exe>] [-Second
 
 Launches a real vvvv instance for **every patch in `help/`**, watches its stdout for
 `Exception` / compile errors for 60 seconds each, then kills it. Exit code 0 means all
-patches loaded and ran clean. This is the authoritative check, since it exercises the
-actual runtime: node import, entity attachment, the lazy Bepu bootstrap and the physics
-loop. Note it cannot judge *visual* correctness, open the help patches yourself to see
-bodies fall, the pendulum swing, etc. The `BepuInfo` node (category `Stride.Physics.Bepu`)
-helps there: it reports simulation state, body/static counts, and, with a component
-connected to its `Collidable` pin, that component's attachment chain and pose.
-
-### 2. Headless compile checks (currently disabled)
-
-```
-dotnet test
-```
-
-`tests/` contains an NUnit project using **VL.TestFramework**: it boots the VL compiler
-headlessly (entry assembly = `vvvv.exe`, override the install location with the `VVVV_DIR`
-environment variable) and verifies that the main `.vl` document and every help patch
-compile without errors. The fixture is currently marked `[Explicit]` because the headless
-host crashes while importing nodes whose *referenced assemblies* declare enum parameter
-defaults (`ImportedParameterPinDefinitionSymbol.GetDefaultValue` →
-`Enum.ToObject(null, ...)`, it cannot resolve the enum's runtime type). The same
-documents compile and run fine in real vvvv; the issue is a candidate for an upstream
-report to vvvv. Once fixed, remove the `[Explicit]` attribute and the checks become
-CI-ready (`dotnet test` in the GitHub workflow).
+patches loaded and ran clean. Much slower than the compile checks (a minute per patch),
+but it exercises what they cannot: the actual runtime, node import, entity attachment,
+the lazy Bepu bootstrap and the physics loop. Use it before releases and whenever a
+change could break behavior rather than compilation. Note it cannot judge *visual*
+correctness, open the help patches yourself to see bodies fall, the pendulum swing, etc.
+The `BepuInfo` node (category `Stride.Physics.Bepu.Debug`) helps there: it reports
+simulation state, body/static counts, and, with a component connected to its `Collidable`
+pin, that component's attachment chain and pose.
 
 ## Upgrading to a newer Stride.BepuPhysics
 
@@ -209,11 +250,12 @@ Wrapper impact when upgrading:
 - `BepuSettingsBootstrap` mirrors what `BepuConfiguration.NewInstance` does lazily.
   If upstream changes its lazy bootstrap or the warning behavior, adjust or drop the
   bootstrap.
-- `ISimulationUpdate` (relevant for the planned per step hook node) is an entity
-  component interface in 4.2.1 (`IComponent<ISimulationUpdate, SimulationUpdateProcessor>`
-  with `Entity`, `Simulation`, `SimulationSelector` properties). Registration happens
-  through the entity component system, so a hook node needs a carrier component
-  attached to an entity. Recheck the interface shape on the new version.
+- `ISimulationUpdate` (the interface behind the SimulationUpdate node's internal
+  carrier component) is an entity component interface in 4.2.1
+  (`IComponent<ISimulationUpdate, SimulationUpdateProcessor>` with `Entity`, `Simulation`,
+  `SimulationSelector` properties). Registration happens through the entity component
+  system, which is why the node attaches a carrier component to a scene entity. Recheck
+  the interface shape on the new version.
 - `HullFromModel` replicates the engine's internal `ShapeCacheSystem.ExtractMeshBuffers`
   (the system is not public) using the public `AsReadable`/`Copy` mesh helpers from
   `Stride.Graphics`. On master the extraction additionally applies skeleton node

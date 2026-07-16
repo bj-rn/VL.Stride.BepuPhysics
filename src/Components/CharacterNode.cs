@@ -50,7 +50,7 @@ public class CharacterNode
         };
     }
 
-    /// <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance can only be used by one collidable.</param>
+    /// <param name="colliders">Collision shapes forming this character (combined into one rigid compound), a capsule is typical. Each shape instance must only be used by one collidable.</param>
     /// <param name="speed">Base movement speed in units per second, scales the direction given to Move.</param>
     /// <param name="jumpForce">Force of the impulse applied by TryJump.</param>
     /// <param name="interpolation">Smooths the rendered motion between fixed physics steps. Default: Interpolated (recommended for display-rate rendering).</param>
