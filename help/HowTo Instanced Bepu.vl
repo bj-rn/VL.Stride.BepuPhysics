@@ -14,14 +14,14 @@
         </p:NodeReference>
         <Patch Id="LGB6AbX4BQWNvhkHB65qYq">
           <Canvas Id="DpIV4UQn1n8PX2QeWJ4jUf" CanvasType="Group">
-            <Node Bounds="318,377,411,313" Id="SibUTAaUy9BO3xoZe7D72Z">
+            <Node Bounds="318,357,411,333" Id="SibUTAaUy9BO3xoZe7D72Z">
               <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
                 <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
                 <CategoryReference Kind="Category" Name="Primitive" />
                 <Choice Kind="ApplicationStatefulRegion" Name="ForEach" />
               </p:NodeReference>
               <Pin Id="N00OwyaCGUIQXQsA19j06d" Name="Break" Kind="OutputPin" />
-              <ControlPoint Id="C6MzdVthlPsOuThCwWaGGw" Bounds="652,383" Alignment="Top" />
+              <ControlPoint Id="C6MzdVthlPsOuThCwWaGGw" Bounds="652,363" Alignment="Top" />
               <ControlPoint Id="MvtfJYVkhkfOtqYz9853OY" Bounds="332,684" Alignment="Bottom" />
               <Patch Id="R15v1CU5akrOi5cU9QnQAj" ManuallySortedPins="true">
                 <Patch Id="GwS91V866RvOr4cJx9K43y" Name="Create" ManuallySortedPins="true" />
@@ -97,6 +97,17 @@
                   <Pin Id="OixoHTFBwswO6bZ8Hv8QLY" Name="Translation" Kind="InputPin" />
                   <Pin Id="HG8C1y0nUk4QPP8JCzw2o8" Name="Result" Kind="OutputPin" />
                 </Node>
+                <Node Bounds="410,380,83,19" Id="TbuMegGDsstOTfVSIezWHm">
+                  <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+                    <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                    <Choice Kind="ProcessAppFlag" Name="SphereCollider" />
+                  </p:NodeReference>
+                  <Pin Id="PB75rqBtSaMPxuI0xwRcmz" Name="Radius" Kind="InputPin" />
+                  <Pin Id="SyFmgETRXsiMGFVzYdpTw4" Name="Position Local" Kind="InputPin" />
+                  <Pin Id="VvtCjAP4YIAMLoI8ZUlWia" Name="Mass" Kind="InputPin" />
+                  <Pin Id="Rut4T7ZNWvKNDvN1x1Stfb" Name="Output" Kind="OutputPin" />
+                  <Pin Id="AINa4TVLP7iOwXl1Zbq4cD" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+                </Node>
               </Patch>
             </Node>
             <Node Bounds="650,330,85,19" Id="FwdCFKBXKLYPjaUUl1qvHe">
@@ -144,17 +155,6 @@
                 <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
               </p:ValueBoxSettings>
             </Pad>
-            <Node Bounds="411,324,83,19" Id="TbuMegGDsstOTfVSIezWHm">
-              <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="ProcessAppFlag" Name="SphereCollider" />
-              </p:NodeReference>
-              <Pin Id="PB75rqBtSaMPxuI0xwRcmz" Name="Radius" Kind="InputPin" />
-              <Pin Id="SyFmgETRXsiMGFVzYdpTw4" Name="Position Local" Kind="InputPin" />
-              <Pin Id="VvtCjAP4YIAMLoI8ZUlWia" Name="Mass" Kind="InputPin" />
-              <Pin Id="Rut4T7ZNWvKNDvN1x1Stfb" Name="Output" Kind="OutputPin" />
-              <Pin Id="AINa4TVLP7iOwXl1Zbq4cD" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
-            </Node>
           </Canvas>
           <Patch Id="SGB8c2nAQFmPncahveI6OR" Name="Create" />
           <Patch Id="AtF2fIJdCT4LBpXadjTeiH" Name="Update">
