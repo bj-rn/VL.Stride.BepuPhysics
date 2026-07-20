@@ -4,6 +4,48 @@
         <name>VL.Stride.BepuPhysics</name>
     </assembly>
     <members>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.HullFromPointsAsyncNode">
+            <summary>
+            Like HullFromPoints, but reduces the points to their actual convex hull vertices on a
+            background thread. The output carries only the reduced points (typically dozens
+            instead of thousands), so the hull build the engine runs on the main thread when the
+            collider attaches becomes trivial. Unlike HullFromPoints the output carries triangle
+            data, so the ColliderShapes debug node can draw it.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.HullFromPointsAsyncNode.Update(System.Boolean@,VL.Lib.Collections.Spread{Stride.Core.Mathematics.Vector3})">
+            <param name="inProgress">True while a hull is being baked in the background.</param>
+            <param name="points">Points spanning the hull, in the collidable's local space. At least 4 distinct points not lying in one plane are required; degenerate input outputs null instead of failing at attach.</param>
+            <returns>Reduced hull data for the ConvexHullCollider's Hull pin (the last completed bake while a new one is computed).</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.HullsFromPointGroupsAsyncNode">
+            <summary>
+            Bakes one convex hull per point group on a background thread, combined into a single
+            hull data output: connected to one ConvexHullCollider, the shapes act as one
+            collidable. Made for per-glyph physics on the Point Groups output of the async
+            Text3dMeshes nodes (VL.Stride.Text3d), where per-glyph hulls track text far better
+            than one hull around everything.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.HullsFromPointGroupsAsyncNode.Update(System.Boolean@,VL.Lib.Collections.Spread{VL.Lib.Collections.Spread{Stride.Core.Mathematics.Vector3}})">
+            <param name="inProgress">True while hulls are being baked in the background.</param>
+            <param name="pointGroups">One group of points per hull, in the collidable's local space. Groups with fewer than 4 distinct points or all points in one plane are skipped; if no group forms a volume the output is null.</param>
+            <returns>Hull data with one reduced hull per group, for the ConvexHullCollider's Hull pin (the last completed bake while a new one is computed).</returns>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Colliders.HullFromModelAsyncNode">
+            <summary>
+            Like HullFromModel, but reduces the mesh vertices to their actual convex hull on a
+            background thread. Only the hull computation runs in the background; reading the mesh
+            buffers back from the GPU needs the graphics device and stays on the main thread, on
+            every Model change and Rebake.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Colliders.HullFromModelAsyncNode.Update(System.Boolean@,Stride.Rendering.Model,System.Boolean)">
+            <param name="inProgress">True while a hull is being baked in the background.</param>
+            <param name="model">Stride Model whose vertices are baked into a convex hull. Outputs null while unconnected.</param>
+            <param name="rebake">While true, re-extracts the model's mesh data. Connect a Bang after changing a runtime model's geometry.</param>
+            <returns>Reduced hull data for the ConvexHullCollider's Hull pin (the last completed bake while a new one is computed).</returns>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Colliders.Operations">
             <summary>
             Read and write access to collider shapes, for example from a GetColliders node.
@@ -145,6 +187,11 @@
             Collision shape from a Stride Model's mesh data. Works with runtime/procedural models.
             Connect to the Body/Static node's ColliderOverride pin (a mesh cannot be part of a compound).
             Outputs null while no Model is connected.
+            NOTE: when the collider attaches, the engine cooks the mesh (triangles plus acceleration
+            structure) on the main thread, with cost proportional to the triangle count; this cannot be
+            moved to a background thread. Generating the mesh itself asynchronously (for example with
+            Text3dMesh (Async) from VL.Stride.Text3d) does not avoid it. For frequently changing shapes
+            prefer HullFromPoints (Async) or HullsFromPointGroups (Async) with a ConvexHullCollider.
             </summary>
         </member>
         <member name="M:VL.Stride.BepuPhysics.Colliders.MeshColliderNode.Update(Stride.Rendering.Model,System.Boolean,System.Single,System.Boolean)">
@@ -2100,6 +2147,18 @@
             <param name="onExited">Observable notification per exiting collidable, for use with reactive nodes.</param>
             <returns>The trigger handler, connect to the ContactHandler pin of Body/Static nodes.</returns>
         </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.BackgroundComputation`1.Poll(System.Int32,`0@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Processes a completed task (if any) and reports the current state for the given
+            input hash. Returns true when a fresh result was adopted this call. When
+            <paramref name="needsStart"/> is true the caller must invoke <see cref="M:VL.Stride.BepuPhysics.Internal.BackgroundComputation`1.Start(System.Int32,System.Func{`0})"/>
+            with work matching <paramref name="inputHash"/>. Rethrows a pending fault for
+            the current inputs.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.BackgroundComputation`1.Start(System.Int32,System.Func{`0})">
+            <summary>Starts the background work for the given input hash.</summary>
+        </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.BepuSettingsBootstrap">
             <summary>
             Quietly pre-configures Bepu for the running game: without a BepuConfiguration entry in the
@@ -2130,6 +2189,39 @@
             Shared collider-pin logic for Body/Static nodes: a pin group of shapes is wrapped in a
             node-owned CompoundCollider; an explicit ICollider (MeshCollider, EmptyCollider) overrides it.
             </summary>
+        </member>
+        <member name="T:VL.Stride.BepuPhysics.Internal.ConvexHullBaker">
+             <summary>
+             Pure hull math for the async hull baking nodes: reduces a point cloud to its convex
+             hull vertices via BepuPhysics' public ConvexHullHelper, so the engine's unavoidable
+             attach-time hull build runs over ~dozens of points instead of thousands.
+            
+             THREADING: BufferPool is NOT thread-safe and the simulation's pool must never be
+             used here. Each invocation creates its own pool and clears it in finally; the pool
+             never escapes the call. The callers' latest-wins BackgroundComputation guarantees at
+             most one in-flight task per node, and abandoned tasks clear their own pool.
+             </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.ConvexHullBaker.BakeHull(Stride.Core.Mathematics.Vector3[])">
+            <summary>
+            Reduces the points to their convex hull. Returns null for degenerate input that
+            cannot form a volume: fewer than 4 distinct points, or a hull with fewer than
+            4 faces (ComputeHull does not throw on coplanar/collinear input; it returns a
+            flat 2-face "hull" for coplanar points and an empty one for collinear points,
+            verified against BepuPhysics 2.5.0-beta.25).
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.ConvexHullBaker.BakeHulls(Stride.Core.Mathematics.Vector3[][])">
+            <summary>
+            One hull per point group (per-glyph pipeline); degenerate groups are skipped.
+            Returns null when no group yields a hull.
+            </summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.ConvexHullBaker.Bake(Stride.Core.Mathematics.Vector3[])">
+            <summary>Single-hull wrapper around <see cref="M:VL.Stride.BepuPhysics.Internal.ConvexHullBaker.BakeHull(Stride.Core.Mathematics.Vector3[])"/>.</summary>
+        </member>
+        <member name="M:VL.Stride.BepuPhysics.Internal.ConvexHullBaker.Deduplicate(System.ReadOnlySpan{Stride.Core.Mathematics.Vector3})">
+            <summary>Exact-equality dedup preserving first-seen order.</summary>
         </member>
         <member name="T:VL.Stride.BepuPhysics.Internal.PinValue`1">
             <summary>
