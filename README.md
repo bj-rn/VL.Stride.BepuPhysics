@@ -124,6 +124,22 @@ What runs where:
 | MeshCollider cook at attach | main, unavoidable; proportional to triangles |
 | Collider (re)assign bookkeeping | main |
 
+Measured attach cost (headless, Release, Ryzen 7 PRO 5850U; 42 extruded text glyphs,
+21168 raw vertices reduced to 1424 hull points; hull/mesh builds as the engine runs
+them at attach):
+
+| Hull build at attach | ms |
+|---|---|
+| whole-text hull over all 21168 raw vertices (sync path) | 4.3 |
+| whole-text hull over 46 reduced points (HullFromPoints (Async)) | 0.15 |
+| 42 per-glyph hulls over raw point groups | 14.9 |
+| 42 per-glyph hulls over reduced points (HullsFromPointGroups (Async)) | 5.8 |
+| Bepu Mesh cook over 7056 triangles (MeshCollider proxy) | 7.5 |
+
+So async baking minimizes but does not eliminate the attach cost: a single reduced
+hull attaches for free; per glyph hulls keep a per-hull engine overhead (still well
+under a frame, and paid once per completed bake, not per keystroke).
+
 ## Development
 
 - `src/` builds with `dotnet build` into `lib/net8.0/`, vvvv loads the DLL from there,
