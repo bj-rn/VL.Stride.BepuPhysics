@@ -206,8 +206,10 @@
             HullFromPoints. Outputs null while no hull data is connected.
             </summary>
         </member>
-        <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,System.Single,System.Boolean)">
+        <member name="M:VL.Stride.BepuPhysics.Colliders.ConvexHullColliderNode.Update(Stride.BepuPhysics.Definitions.DecomposedHulls,Stride.Core.Mathematics.Vector3,Stride.Core.Mathematics.Quaternion,System.Single,System.Boolean)">
             <param name="hull">Hull data, from a HullFromModel or HullFromPoints node. Outputs null while unconnected.</param>
+            <param name="positionLocal">Position of this shape relative to the body origin. E.g. the negated glyph translation places a text-local per glyph hull in glyph-local space.</param>
+            <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
             <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
             <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
         </member>
