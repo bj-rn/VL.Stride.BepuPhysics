@@ -103,8 +103,9 @@ unavoidably runs on the main thread when the collider attaches becomes trivial.
 `HullsFromPointGroups (Async)` bakes one hull per point group into a single collider,
 made for per glyph text physics: the async mesh nodes of
 [VL.Stride.Text3d](https://github.com/bj-rn/VL.Stride.Text3d) (2.4.0 or newer) output
-matching `Point Groups`. See `help/Colliders/HowTo Async Hull Baking.vl` here and the
-end to end `HowTo Physical 3d Text.vl` patch shipped with VL.Stride.Text3d.
+matching `Point Groups`. See `help/Colliders/HowTo Async Hull Baking.vl`
+(self contained) and the end to end `help/HowTo Physical 3d Text.vl` (needs
+VL.Stride.Text3d installed, the package itself does not depend on it).
 
 Notes:
 - Degenerate input (fewer than 4 distinct points, or all points in one plane) outputs
@@ -205,8 +206,10 @@ author's machine, on any other machine set the `VVVV_DIR` environment variable a
 above) and the runtime packages (Stride.BepuPhysics, BepuPhysics, BepuUtilities)
 installed in vvvv's user nugets directory
 (`%LOCALAPPDATA%\vvvv\gamma\nugets`), which the test fixture adds to its search paths
-automatically. Because of these local requirements the tests are a verification tool for
-this machine rather than a CI gate for now.
+automatically. The `help/HowTo Physical 3d Text.vl` compile check additionally needs
+VL.Stride.Text3d (2.4.0 or newer) resolvable: a sibling checkout next to this repo
+works out of the box, otherwise install the nuget. Because of these local requirements
+the tests are a verification tool for this machine rather than a CI gate for now.
 
 Important: `TestEnvironmentLoader.Load` is called with `preCompilePackages: true` and that
 must stay. Without pre compilation the headless host never loads the runtime assemblies of
