@@ -147,6 +147,14 @@ under a frame, and paid once per completed bake, not per keystroke).
   (clone-and-go package repository), so rebuild before committing library changes.
 - For debugging, create a local `.vscode/launch.json` (not committed) launching
   `vvvv.exe --package-repositories <parent of this repo> -o VL.Stride.BepuPhysics.vl`.
+- `src/Internal/BackgroundComputation.cs` (the poll based helper behind the async hull
+  nodes) is an intentional copy of `src/Core/BackgroundComputation.cs` in
+  [VL.Stride.Text3d](https://github.com/bj-rn/VL.Stride.Text3d): only namespace and
+  visibility differ. Duplicating 75 stable lines beats a cross package dependency (or
+  a shared micro nuget) that would couple the two packages' releases. When changing
+  the helper, change it in both repos; each carries the same semantics tests
+  (`BackgroundComputationTests`), so a divergence shows up in whichever suite was not
+  updated.
 
 ### Tools
 
