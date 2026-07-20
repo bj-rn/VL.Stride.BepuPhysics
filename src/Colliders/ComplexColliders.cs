@@ -11,6 +11,11 @@ namespace VL.Stride.BepuPhysics.Colliders;
 /// Collision shape from a Stride Model's mesh data. Works with runtime/procedural models.
 /// Connect to the Body/Static node's ColliderOverride pin (a mesh cannot be part of a compound).
 /// Outputs null while no Model is connected.
+/// NOTE: when the collider attaches, the engine cooks the mesh (triangles plus acceleration
+/// structure) on the main thread, with cost proportional to the triangle count; this cannot be
+/// moved to a background thread. Generating the mesh itself asynchronously (for example with
+/// Text3dMesh (Async) from VL.Stride.Text3d) does not avoid it. For frequently changing shapes
+/// prefer HullFromPoints (Async) or HullsFromPointGroups (Async) with a ConvexHullCollider.
 /// </summary>
 [ProcessNode(Name = "MeshCollider")]
 public class MeshColliderNode
