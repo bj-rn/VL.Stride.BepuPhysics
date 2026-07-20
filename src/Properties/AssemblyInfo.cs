@@ -1,4 +1,9 @@
+using System.Runtime.CompilerServices;
 using VL.Core.Import;
+
+// Internal types (async baking infrastructure) are tested headlessly; they stay
+// internal so ImportAsIs does not import them as nodes.
+[assembly: InternalsVisibleTo("VL.Stride.BepuPhysics.Tests")]
 
 // Every public type under this namespace (and its sub-namespaces) becomes a node.
 // Sub-namespaces extend the category: VL.Stride.BepuPhysics.Colliders -> Stride.Physics.Bepu.Colliders

@@ -18,4 +18,8 @@
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\VL.Stride.BepuPhysics.csproj" />
+  </ItemGroup>
+
 </Project>
