@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using Stride.Core.Mathematics;
 using VL.Core.Import;
 using VL.Model;
 using VL.Stride.BepuPhysics.Internal;
@@ -59,15 +61,19 @@ public class ConvexHullColliderNode
 {
     private readonly SColliders.ConvexHullCollider _collider = new() { Hull = null! };
     private PinValue<SDefinitions.DecomposedHulls?> _hull;
-    private PinValue<float> _mass;
+    private ColliderPinSync _sync;
 
     /// <param name="hull">Hull data, from a HullFromModel or HullFromPoints node. Outputs null while unconnected.</param>
+    /// <param name="positionLocal">Position of this shape relative to the body origin. E.g. the negated glyph translation places a text-local per glyph hull in glyph-local space.</param>
+    /// <param name="rotationLocal">Rotation of this shape relative to the body. Use identity (0, 0, 0, 1) for no rotation, an all zero quaternion is invalid.</param>
     /// <param name="mass">Relative weight of this shape; distributes the compound inertia and center of mass. Must be greater than zero.</param>
     /// <param name="reapplyInputs">While true, writes all input values to the collider again, overriding values written by setter nodes. Connect a Bang.</param>
     [return: Pin(Name = "Output")]
     public SColliders.ConvexHullCollider? Update(
-        SDefinitions.DecomposedHulls? hull = null,
-        float mass = 1f,
+        SDefinitions.DecomposedHulls? hull,
+        Vector3 positionLocal,
+        Quaternion rotationLocal,
+        [DefaultValue(1f)] float mass,
         [Pin(Visibility = PinVisibility.Optional)] bool reapplyInputs = false)
     {
         if (hull is null)
@@ -76,8 +82,7 @@ public class ConvexHullColliderNode
         // Non-short-circuit | so the shadow fields update even while Reapply Inputs is true.
         if (_hull.Changed(hull) | reapplyInputs)
             _collider.Hull = hull;
-        if (_mass.Changed(mass) | reapplyInputs)
-            _collider.Mass = mass;
+        _sync.Sync(_collider, positionLocal, rotationLocal, mass, reapplyInputs);
         return _collider;
     }
 }
