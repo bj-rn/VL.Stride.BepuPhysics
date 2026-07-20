@@ -19,7 +19,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\VL.Stride.BepuPhysics.csproj" />
+    <!-- The internal async baking types are compiled into the test assembly directly.
+         A ProjectReference would drag VL.Stride.Runtime's Roslyn assemblies into the
+         test output and break VL.TestFramework (MissingMethodException in
+         Microsoft.CodeAnalysis); linked sources keep the output clean. -->
+    <Compile Include="..\..\src\Internal\BackgroundComputation.cs" Link="Internal\BackgroundComputation.cs" />
+    <Compile Include="..\..\src\Internal\ConvexHullBaker.cs" Link="Internal\ConvexHullBaker.cs" />
+    <PackageReference Include="Stride.BepuPhysics" Version="$(StrideVersion)" />
+    <!-- Stride.Core.Assets (via Stride.BepuPhysics) pulls Roslyn 3.6, which must not
+         land in the test output: VL.TestFramework runs on vvvv's own newer Roslyn and
+         a stale copy breaks it with a MissingMethodException. Pin the transitive
+         versions and exclude their runtime assets so the output stays clean. -->
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.6.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.6.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.6.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.6.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.6.0" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>
