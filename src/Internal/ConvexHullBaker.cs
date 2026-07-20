@@ -20,7 +20,7 @@ internal static class ConvexHullBaker
     /// <summary>
     /// Reduces the points to their convex hull. Returns null for degenerate input that
     /// cannot form a volume: fewer than 4 distinct points, or a hull with fewer than
-    /// 4 faces (ComputeHull does not throw on coplanar/collinear input — it returns a
+    /// 4 faces (ComputeHull does not throw on coplanar/collinear input; it returns a
     /// flat 2-face "hull" for coplanar points and an empty one for collinear points,
     /// verified against BepuPhysics 2.5.0-beta.25).
     /// </summary>
