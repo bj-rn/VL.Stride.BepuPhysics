@@ -1,10 +1,14 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Document xmlns:p="property" Id="hbpFZalUoJMN5oRrUWcdq4" LanguageVersion="2025.7.4" Version="0.128">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="hbpFZalUoJMN5oRrUWcdq4" LanguageVersion="2025.7.4" Version="0.128">
   <NugetDependency Id="jF8tjTpMOEr7ZZmCqk1MG4" Location="VL.CoreLib" Version="2025.7.4" />
   <NugetDependency Id="fSXoK0GkKoEVgSOW1uitP5" Location="VL.Stride" Version="2025.7.4" />
   <Patch Id="0UCwukrnT9iTXDx6z5aDH1">
     <Canvas Id="liyLO5pb85rjv7adynL933" DefaultCategory="Main" CanvasType="FullCategory" />
-    
+    <!--
+
+    ************************ Application ************************
+
+-->
     <Node Name="Application" Bounds="100,100" Id="TNCyB0Aw37OhUWLjqidg86">
       <p:NodeReference>
         <Choice Kind="ContainerDefinition" Name="Process" />
@@ -12,7 +16,7 @@
       </p:NodeReference>
       <Patch Id="AJHjw4NypoBdahzmKMDMD0">
         <Canvas Id="oEp0WldpQmfOA2CsN3OxT2" CanvasType="Group">
-          <Pad Id="oLat58GfJIVRqdoE9Y6Ps0" Bounds="69,198,564,93" ShowValueBox="true" isIOBox="true" Value="Async hull baking: the convex hull computation runs on a background thread, In Progress reports activity.&#13;&#10;Left: HullFromModel (Async) reduces the torus vertices to their hull; only the GPU readback stays on the main thread.&#13;&#10;Right: HullFromPoints (Async) bakes a hull from a point spread.&#13;&#10;The baked hulls carry only the reduced hull points, so the hull build the engine still runs on the main thread when a collider attaches is trivial. ColliderShapes draws the baked hulls; unlike the sync nodes the async ones carry triangle data.">
+          <Pad Id="oLat58GfJIVRqdoE9Y6Ps0" Bounds="69,198,836,129" ShowValueBox="true" isIOBox="true" Value="Async hull baking: the convex hull computation runs on a background thread, In Progress reports activity.&#xD;&#xA;Left: HullFromModel (Async) reduces the torus vertices to their hull; only the GPU readback stays on the main thread.&#xD;&#xA;Right: HullFromPoints (Async) bakes a hull from a point spread.&#xD;&#xA;The baked hulls carry only the reduced hull points, so the hull build the engine still runs on the main thread when a collider attaches is trivial. ColliderShapes draws the baked hulls; unlike the sync nodes the async ones carry triangle data.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -21,7 +25,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="UfLtI3Nn0TZDMxsJ9Nn9x3" Bounds="1002,783,428,62" ShowValueBox="true" isIOBox="true" Value="The points recipe: any point cloud works, degenerate input (fewer than 4 distinct points, or all in one plane) outputs null.&#13;&#10;Here: the 8 corners of a unit cube. For per glyph text hulls see HullsFromPointGroups (Async) and the HowTo Physical 3d Text patch in VL.Stride.Text3d.">
+          <Pad Id="UfLtI3Nn0TZDMxsJ9Nn9x3" Bounds="1002,728,497,95" ShowValueBox="true" isIOBox="true" Value="The points recipe: any point cloud works, degenerate input (fewer than 4 distinct points, or all in one plane) outputs null.&#xD;&#xA;Here: the 8 corners of a unit cube. For per glyph text hulls see HullsFromPointGroups (Async) and the HowTo Physical 3d Text patch in VL.Stride.Text3d.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -95,13 +99,14 @@
             <Pin Id="UMVboFZyH9sT3YNUjKnxI4" Name="Model" Kind="InputPin" />
             <Pin Id="Y0hOBFklzB5Mf9J036l367" Name="Rebake" Kind="InputPin" />
             <Pin Id="NWlz9hjsiq6r8sQdrN8eQ7" Name="Output" Kind="OutputPin" />
-          <Pin Id="SxEOC7VsoLTQy7zUucHKO5" Name="In Progress" Kind="OutputPin" /></Node>
+            <Pin Id="SxEOC7VsoLTQy7zUucHKO5" Name="In Progress" Kind="OutputPin" />
+          </Node>
           <Node Bounds="451,620,103,19" Id="OjfXgxQ1lj4nXPDCFaXli1">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="ConvexHullCollider" />
             </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
             <Pin Id="CoOy0DvVZ52PA0hwbA0n30" Name="Hull" Kind="InputPin" />
             <Pin Id="bquPcUuicAOF3jmgnFWuL4" Name="Mass" Kind="InputPin" />
             <Pin Id="cSc8PKQ4F5aHWhsDI00jk5" Name="Output" Kind="OutputPin" />
@@ -176,7 +181,7 @@
               <Choice Kind="TypeFlag" Name="Vector3" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="1000,880,140,19" Id="tDW2hGfz4spsNNfB2xsHx5">
+          <Node Bounds="1000,880,86,19" Id="tDW2hGfz4spsNNfB2xsHx5">
             <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="HullFromPoints (Async)" />
@@ -184,7 +189,8 @@
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="CPavj4C2J1I73Nrb8tfeW5" Name="Points" Kind="InputPin" />
             <Pin Id="4Hywj8UTo8FjnmJuKyYBh1" Name="Output" Kind="OutputPin" />
-          <Pin Id="y8N2VNjN5FXGsCTaLF1dP3" Name="In Progress" Kind="OutputPin" /></Node>
+            <Pin Id="y8N2VNjN5FXGsCTaLF1dP3" Name="In Progress" Kind="OutputPin" />
+          </Node>
           <Pad Id="DFJaqZTTtTocrX5pCLOX12" Comment="Points Start" Bounds="1295,871,144,67" ShowValueBox="true" isIOBox="true">
             <p:TypeAnnotation LastCategoryFullName="Collections" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Spread" />
@@ -397,7 +403,11 @@
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          
+          <!--
+
+    ************************ UnitCube ************************
+
+-->
           <Node Name="UnitCube" Bounds="-201,90" Id="M08ur81BGU7vMX3Tc5ajA7">
             <p:NodeReference>
               <Choice Kind="ContainerDefinition" />
@@ -583,18 +593,18 @@
                 <Pin Id="KRSaojo95znPuT5vZRzCE4" Name="Translation" Kind="InputPin" />
                 <Pin Id="YV1gRBZFvE59Di73wqOz60" Name="Output" Kind="OutputPin" />
               </Node>
-            <Node Bounds="1000,990,103,19" Id="OLQBBSOJU8zxxXdRcF78V7">
-            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessNode" Name="ConvexHullCollider" />
-            </p:NodeReference>
-            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
-            <Pin Id="Ta475AzxaA9NdUfjiyRAf0" Name="Hull" Kind="InputPin" />
-            <Pin Id="QilVqPtho8Nmp2gZsOlJL3" Name="Mass" Kind="InputPin" />
-            <Pin Id="YJnKg11gEBqnAGyQp5icS3" Name="Output" Kind="OutputPin" />
-            <Pin Id="jBwWR8xVTg3rcKQ7H18os3" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
-          </Node>
-          </Patch>
+              <Node Bounds="1000,990,103,19" Id="OLQBBSOJU8zxxXdRcF78V7">
+                <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Colliders" LastDependency="VL.Stride.BepuPhysics.vl">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="ProcessNode" Name="ConvexHullCollider" />
+                </p:NodeReference>
+                <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">Low</p:HelpFocus>
+                <Pin Id="Ta475AzxaA9NdUfjiyRAf0" Name="Hull" Kind="InputPin" />
+                <Pin Id="QilVqPtho8Nmp2gZsOlJL3" Name="Mass" Kind="InputPin" />
+                <Pin Id="YJnKg11gEBqnAGyQp5icS3" Name="Output" Kind="OutputPin" />
+                <Pin Id="jBwWR8xVTg3rcKQ7H18os3" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
+              </Node>
+            </Patch>
             <ControlPoint Id="8jI3hVQGK6KTGHHHWsExG0" Bounds="1295,966" Alignment="Top" />
             <ControlPoint Id="l7lKRmcMPeFxkuepobJdC4" Bounds="962,966" Alignment="Top" />
             <ControlPoint Id="cnyhby3VPS2xVeMyH51736" Bounds="902,1183" Alignment="Bottom" />
@@ -685,7 +695,38 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="qHFPqbfBiZXV55l9bjCRe0" Comment="In Progress" Bounds="610,583,70,15" ShowValueBox="true" isIOBox="true"><p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl"><Choice Kind="ImmutableTypeFlag" Name="Boolean" /></p:TypeAnnotation></Pad><Pad Id="HEOunORajK0Nn34MT47Wx0" Comment="In Progress" Bounds="1160,883,70,15" ShowValueBox="true" isIOBox="true"><p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl"><Choice Kind="ImmutableTypeFlag" Name="Boolean" /></p:TypeAnnotation></Pad><Node Bounds="620,1310,105,19" Id="o8X1x1nqpNf2z9s058Gl12"><p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Debug" LastDependency="VL.Stride.BepuPhysics.vl"><Choice Kind="NodeFlag" Name="Node" Fixed="true" /><Choice Kind="ProcessAppFlag" Name="ColliderShapes" /></p:NodeReference><Pin Id="DWmn5W9QXGc8OjCuDEHVk6" Name="Simulation" Kind="InputPin" /><Pin Id="LwGgeGkzwlnetIkM6WtKn2" Name="Visible" Kind="InputPin" /><Pin Id="awuumqKzcFy5Otl2S9Rg13" Name="Material" Kind="InputPin" /><Pin Id="v3IL61Y8vDpiln4m3O5S16" Name="Line Width" Kind="InputPin" /><Pin Id="0iDKNgKjigiN9sUqN2fHu3" Name="Line Color" Kind="InputPin" /><Pin Id="roZ0OMVJyMUUmorNzOnod3" Name="Instanced" Kind="InputPin" /><Pin Id="qmxfSL0Fm1zgE86vEGvsv4" Name="Output" Kind="OutputPin" /></Node></Canvas>
+          <Pad Id="qHFPqbfBiZXV55l9bjCRe0" Comment="In Progress" Bounds="588,630,70,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="HEOunORajK0Nn34MT47Wx0" Comment="In Progress" Bounds="1083,930,70,15" ShowValueBox="true" isIOBox="true">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="620,1310,105,19" Id="o8X1x1nqpNf2z9s058Gl12">
+            <p:NodeReference LastCategoryFullName="Stride.Physics.Bepu.Debug" LastDependency="VL.Stride.BepuPhysics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ColliderShapes" />
+            </p:NodeReference>
+            <Pin Id="DWmn5W9QXGc8OjCuDEHVk6" Name="Simulation" Kind="InputPin" />
+            <Pin Id="LwGgeGkzwlnetIkM6WtKn2" Name="Visible" Kind="InputPin" />
+            <Pin Id="awuumqKzcFy5Otl2S9Rg13" Name="Material" Kind="InputPin" />
+            <Pin Id="v3IL61Y8vDpiln4m3O5S16" Name="Line Width" Kind="InputPin" />
+            <Pin Id="0iDKNgKjigiN9sUqN2fHu3" Name="Line Color" Kind="InputPin" />
+            <Pin Id="roZ0OMVJyMUUmorNzOnod3" Name="Instanced" Kind="InputPin" />
+            <Pin Id="qmxfSL0Fm1zgE86vEGvsv4" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="Dnews3xWiA9L9R5SFdAuIR" Comment="Rebake" Bounds="588,520,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
         <Patch Id="Evvuk9A2q1Jwe7E5Ri02T3" Name="Create" />
         <Patch Id="S9yAjuhLoAvIjuhBB25CI6" Name="Update" />
         <ProcessDefinition Id="nbyyksrbv1856XblfLo9r4">
@@ -734,7 +775,11 @@
         <Link Id="36m48LDIylNe89GGxu5wP6" Ids="iz4ech1EuJwkb7WZvNzlA6,vpriWpNwnBA3uyjqSnlkZ6" />
         <Link Id="g9GILMT5pzYa3Iks1877N7" Ids="iz4ech1EuJwkb7WZvNzlA6,kIv2flmkMyqPJpAdqIWu32" />
         <Link Id="cOIUjOs66lU035SqRusxv3" Ids="oYVGAqna8hxJZpJyNXBFV0,7BiUPHEoRWRunGcIbQWtX7" />
-        <Link Id="BBm6rKtsV8KKsNrakisBn6" Ids="SxEOC7VsoLTQy7zUucHKO5,qHFPqbfBiZXV55l9bjCRe0" /><Link Id="kHDEAejnAQw11ayJSP2Jz6" Ids="y8N2VNjN5FXGsCTaLF1dP3,HEOunORajK0Nn34MT47Wx0" /><Link Id="4mLOhWdCKLY40itYIrrv91" Ids="qmxfSL0Fm1zgE86vEGvsv4,4f0s2z0UA8c5KVnIICr4z3" /></Patch>
+        <Link Id="BBm6rKtsV8KKsNrakisBn6" Ids="SxEOC7VsoLTQy7zUucHKO5,qHFPqbfBiZXV55l9bjCRe0" />
+        <Link Id="kHDEAejnAQw11ayJSP2Jz6" Ids="y8N2VNjN5FXGsCTaLF1dP3,HEOunORajK0Nn34MT47Wx0" />
+        <Link Id="4mLOhWdCKLY40itYIrrv91" Ids="qmxfSL0Fm1zgE86vEGvsv4,4f0s2z0UA8c5KVnIICr4z3" />
+        <Link Id="FV2buolNs0UOVh7NrV2ZWC" Ids="Dnews3xWiA9L9R5SFdAuIR,Y0hOBFklzB5Mf9J036l367" />
+      </Patch>
     </Node>
   </Patch>
   <NugetDependency Id="JIvfpxhka7bWO5T8bkcon6" Location="VL.Stride.BepuPhysics" Version="0.0.0" />
