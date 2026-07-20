@@ -821,6 +821,15 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="Ahb1AsyncPointer000001" Bounds="712,120,560,21" ShowValueBox="true" isIOBox="true" Value="Async variants: HullFromPoints (Async) and HullFromModel (Async) bake on a background thread, see HowTo Async Hull Baking.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
           <Pad Id="NN3uPYm5rNfO2iUqMjHG2H" Bounds="1262,625,479,45" ShowValueBox="true" isIOBox="true" Value="MeshCollider and EmptyCollider are complete shapes (ICollider) and&#xD;&#xA;connect to Collider Override instead, a mesh cannot be part of a compound.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
