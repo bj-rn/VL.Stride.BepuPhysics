@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="HbCX000000000000000001" LanguageVersion="2025.7.3" Version="0.128">
-  <NugetDependency Id="HbCX000000000000000002" Location="VL.CoreLib" Version="2025.7.3" />
-  <NugetDependency Id="HbCX000000000000000003" Location="VL.Stride" Version="2025.7.3" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="HbCX000000000000000001" LanguageVersion="2025.7.4" Version="0.128">
+  <NugetDependency Id="HbCX000000000000000002" Location="VL.CoreLib" Version="2025.7.4" />
+  <NugetDependency Id="HbCX000000000000000003" Location="VL.Stride" Version="2025.7.4" />
   <Patch Id="HbCX000000000000000005">
     <Canvas Id="HbCX000000000000000006" DefaultCategory="Main" CanvasType="FullCategory" />
     <!--
@@ -107,6 +107,8 @@
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="HbCX000000000000000046" Name="Hull" Kind="InputPin" />
+            <Pin Id="KioYaLYa6vuPhp6mjF8rSP" Name="Position Local" Kind="InputPin" />
+            <Pin Id="JllxvDG2ZBYLo43qiXUTh0" Name="Rotation Local" Kind="InputPin" />
             <Pin Id="HbCX000000000000000047" Name="Mass" Kind="InputPin" />
             <Pin Id="HbCX000000000000000048" Name="Output" Kind="OutputPin" />
             <Pin Id="LQpbU437XHmM8C5NOsWF2d" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
@@ -289,6 +291,8 @@
             </p:NodeReference>
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="HbCX000000000000000126" Name="Hull" Kind="InputPin" />
+            <Pin Id="BRBmRBbriFKQTJNgC4suqb" Name="Position Local" Kind="InputPin" />
+            <Pin Id="TKOueMhehGvPju8QhBYtUl" Name="Rotation Local" Kind="InputPin" />
             <Pin Id="HbCX000000000000000127" Name="Mass" Kind="InputPin" />
             <Pin Id="HbCX000000000000000128" Name="Output" Kind="OutputPin" />
             <Pin Id="EPfEvjGLAL4QQTbq2Yfx57" Name="Reapply Inputs" Kind="InputPin" IsHidden="true" />
@@ -470,7 +474,7 @@
             <Pin Id="HbCX000000000000000206" Name="Input" Kind="InputPin" />
             <Pin Id="LVQpWrZQncxO35u4Otwcn7" Name="Camera" Kind="InputPin" />
             <Pin Id="B15whOlXp4COclibgbqmbC" Name="Enable Default Camera" Kind="InputPin" />
-            <Pin Id="HbCX000000000000000207" Name="Title" Kind="InputPin" DefaultValue="Convex Hulls" />
+            <Pin Id="HbCX000000000000000207" Name="Title" Kind="InputPin" DefaultValue="Convex Hulls  and Mesh Collider" />
             <Pin Id="Kj4mhWtKpwFMtYWILY8GiD" Name="Title Bar Interaction Width" Kind="InputPin" IsHidden="true" />
             <Pin Id="HVBNtMKgo9ENIy2YxiOTv1" Name="Clear Color" Kind="InputPin" />
             <Pin Id="HKl4f1wlqPAOvYoSzpE95T" Name="Clear" Kind="InputPin" />
@@ -821,7 +825,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="Ahb1AsyncPointer000001" Bounds="712,120,560,21" ShowValueBox="true" isIOBox="true" Value="Async variants: HullFromPoints (Async) and HullFromModel (Async) bake on a background thread, see HowTo Async Hull Baking.">
+          <Pad Id="Ahb1AsyncPointer000001" Bounds="712,120,547,44" ShowValueBox="true" isIOBox="true" Value="Async variants: HullFromPoints (Async) and HullFromModel (Async) bake on a background thread, see Reference Async Hull Baking.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
