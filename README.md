@@ -11,6 +11,7 @@ exactly like a ModelComponent, and physics drives the entity's transform.
 - `Character` component: a walking, jumping physics character (Move / TryJump / CharacterState)
 - Collider shapes: Box, Sphere, Capsule, Cylinder, Triangle, Mesh (from any Model with CPU accessible mesh data), ConvexHull, Empty
 - Runtime hull baking: HullFromModel and HullFromPoints produce the ConvexHullCollider's hull data (single hull, the convex envelope; multi hull decomposition only exists in the Stride editor's asset pipeline)
+- Async hull baking: HullFromPoints (Async), HullsFromPointGroups (Async) and HullFromModel (Async) reduce point clouds to their convex hull on a background thread, incl. one hull per point group for per glyph text physics with VL.Stride.Text3d (see below)
 - All 30 Bepu constraint types (BallSocket, Hinge, motors, servos, limits, Weld, Area, Volume, ...)
 - Runtime constraint access: GetConstraints on a body, GetConstraintBodies, ConstraintInfo, spring / motor / servo settings operations, applied force readout, plus type specific settings operations for all 30 constraint types
 - Queries: RayCast, RayCastPenetrating, SweepCast, SweepCastPenetrating (optionally with a rotating shape via the Angular Velocity pin) and Overlap, plus per collidable RayCast and RayCastPenetrating variants that test a single body or static
@@ -89,6 +90,39 @@ Notes:
   use `SimulationSettings.Enabled` to stage a scene frozen, or bang `Reset` once visible.
 - Fast bodies (long drops) can tunnel through thin geometry in `Discrete` mode, set the
   Body's `Continuous Detection` pin to `Continuous` for swept collision.
+
+## Async hull baking
+
+`HullFromPoints (Async)`, `HullsFromPointGroups (Async)` and `HullFromModel (Async)`
+run the convex hull computation on a background thread (`In Progress` reports
+activity; the last completed hull stays active meanwhile, and rapid input changes are
+coalesced into one bake). The baked hull carries only the reduced hull vertices,
+typically dozens instead of thousands of mesh vertices, so the hull build the engine
+unavoidably runs on the main thread when the collider attaches becomes trivial.
+
+`HullsFromPointGroups (Async)` bakes one hull per point group into a single collider,
+made for per glyph text physics: the async mesh nodes of
+[VL.Stride.Text3d](https://github.com/bj-rn/VL.Stride.Text3d) (2.4.0 or newer) output
+matching `Point Groups`. See `help/Colliders/HowTo Async Hull Baking.vl` here and the
+end to end `HowTo Physical 3d Text.vl` patch shipped with VL.Stride.Text3d.
+
+Notes:
+- Degenerate input (fewer than 4 distinct points, or all points in one plane) outputs
+  null instead of failing at attach; degenerate groups are skipped.
+- Unlike the sync HullFromPoints, the async hulls carry triangle data, so the
+  ColliderShapes debug node can draw them.
+- MeshCollider has no async variant: the engine cooks the mesh on the main thread at
+  attach, proportional to the triangle count, and that cannot be moved off thread.
+
+What runs where:
+
+| Work | Thread |
+|---|---|
+| Convex hull computation / point reduction | background (private per task BufferPool) |
+| HullFromModel GPU readback | main (needs the graphics device) |
+| Engine hull build at collider attach | main, unavoidable; trivial with reduced points |
+| MeshCollider cook at attach | main, unavoidable; proportional to triangles |
+| Collider (re)assign bookkeeping | main |
 
 ## Development
 
