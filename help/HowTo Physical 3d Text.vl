@@ -654,7 +654,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="nu4bqT0qGZ8wgdrabAODN7" Bounds="73,136,780,150" ShowValueBox="true" isIOBox="true" Value="The end to end async pipeline of VL.Stride.Text3d and VL.Stride.BepuPhysics: type into Text and the spheres bounce off the letters.&#xD;&#xA;Text3dMeshes (Async) extrudes one mesh per glyph on a background thread; with Compute Points enabled it also outputs the distinct vertex positions per glyph (text local space).&#xD;&#xA;HullsFromPointGroups (Async) reduces every group to its convex hull on a background thread, one hull per glyph, combined into a single collider on the text entity's Static.&#xD;&#xA;Both In Progress pins report background activity; while a bake runs the last completed result stays active, so typing never stalls the frame. The only remaining main thread work is the engine's (now trivial) hull build when the collider attaches.&#xD;&#xA;ColliderShapes draws the baked per glyph hulls.">
+          <Pad Id="nu4bqT0qGZ8wgdrabAODN7" Bounds="73,136,785,170" ShowValueBox="true" isIOBox="true" Value="The end to end async pipeline of VL.Stride.Text3d and VL.Stride.BepuPhysics: type into Text and the spheres bounce off the letters.&#xD;&#xA;Text3dMeshes (Async) extrudes one mesh per glyph on a background thread; with Compute Points enabled it also outputs the distinct vertex positions per glyph (text local space).&#xD;&#xA;HullsFromPointGroups (Async) reduces every group to its convex hull on a background thread, one hull per glyph, combined into a single collider on the text entity's Static.&#xD;&#xA;Hulls are convex per glyph, so counters (the holes in e, o, a, ...) are filled in by design.&#xD;&#xA;Both In Progress pins report background activity; while a bake runs the last completed result stays active, so typing never stalls the frame. The only remaining main thread work is the engine's (now trivial) hull build when the collider attaches.&#xD;&#xA;ColliderShapes draws the baked per glyph hulls.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -684,6 +684,16 @@
             <p:TypeAnnotation LastCategoryFullName="Color" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="RGBA" />
             </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Bc98o5vycfVNm8cDAn4PSk" Bounds="73,325,293,26" ShowValueBox="true" isIOBox="true" Value="Red nodes? Install VL.Stride.Text3d">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">12</p:fontsize>
+              <p:showvalue p:Type="Boolean">true</p:showvalue>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
           </Pad>
         </Canvas>
         <Patch Id="XHO9b2kvDIIO0aKEGPZFg2" Name="Create" />
