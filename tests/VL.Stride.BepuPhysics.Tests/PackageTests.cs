@@ -23,7 +23,7 @@ public class PackageTests
 
     // The vvvv installation this library targets; override with the VVVV_DIR environment variable.
     private static string VvvvDir =>
-        Environment.GetEnvironmentVariable("VVVV_DIR") ?? @"D:\vvvv\vvvv_gamma_7.3-win-x64";
+        Environment.GetEnvironmentVariable("VVVV_DIR") ?? @"D:\vvvv\vvvv_gamma_7.4-win-x64";
 
     [OneTimeSetUp]
     public void Setup()

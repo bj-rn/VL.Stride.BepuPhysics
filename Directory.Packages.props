@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- Pinned to the vvvv gamma installation this library was developed against -->
-    <VLVersion>2025.7.3</VLVersion>
+    <VLVersion>2025.7.4</VLVersion>
     <!-- Stride version bundled with that vvvv release; Stride.BepuPhysics ships in lock-step with Stride -->
     <StrideVersion>4.2.1.2487</StrideVersion>
   </PropertyGroup>
